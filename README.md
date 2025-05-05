@@ -14,5 +14,7 @@ Score is mainly calculated from individual contributions made to the commit. The
 - [Task 4](/function_documentation.md)
 
 ## Team Members
-- Member A
-- Member B
+- Muhamad Almahbuby Anwar (1313623066)
+- Fatur Kautsarahman (1313623012)
+- Yunia Putri Adifa (1313623015)
+- Raynanda Ramadhan Putra Aurely (1313623063)
