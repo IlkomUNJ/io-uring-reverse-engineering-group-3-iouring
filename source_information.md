@@ -26,7 +26,7 @@ Contains a core data structure: `struct io_ev_fd`, for holding all necessary dat
 Also contains functions `io_eventfd_register` (registering user-provided eventfd with a specific `io_uring` instance), `io_eventfd_unregister` (unregistering an eventfd from an `io_uring` instance), `io_eventfd_signal` (signaling registered eventfd to notify the application of new completion events), `io_eventfd_flush_signal` (signaling registered eventfd, but optimized such that signaling is avoided when there's no new completion event since the last signal), `__io_eventfd_signal` (for directly signaling eventfd/deferring signal if immediate signaling is not possible), alongside some lifecycle helper functions `io_eventfd_grab`, `io_eventfd_release`, `io_eventfd_put`, `io_eventfd_free`, `io_eventfd_do_signal`, and `io_eventfd_trigger`.
 
 ### fdinfo.c
-Implements io_uring_show_fdinfo, a helper function to print file descriptor-related debug or introspection information when /proc/*/fdinfo is queried. Used to expose io_uring-specific file descriptor info to userspace via the proc filesystem.
+Implements `io_uring_show_fdinfo`, a helper function to print file descriptor-related debug or introspection information when `/proc/*/fdinfo` is queried. Used to expose io_uring-specific file descriptor info to userspace via the proc filesystem.
 
 ### filetable.c
 Implements io_uring_show_fdinfo, a helper function to print file descriptor-related debug or introspection information when /proc/*/fdinfo is queried. Used to expose io_uring-specific file descriptor info to userspace via the proc filesystem.
@@ -35,10 +35,10 @@ Implements io_uring_show_fdinfo, a helper function to print file descriptor-rela
 Handles filesystem-related operations in io_uring, such as async path resolution and file lookup, particularly for openat/openat2 operations. Implements functions related to path resolution caching, directory traversal, and credentials management used during file-related syscalls.
 
 ### futex.c
-Implements support for futex (fast userspace mutex) operations in io_uring. The file integrates futex wait/wake requests with the asynchronous model of io_uring using kernel mechanisms like futex_wait_setup and futex_wake.
+Implements support for futex (fast userspace mutex) operations in io_uring. The file integrates futex wait/wake requests with the asynchronous model of io_uring using kernel mechanisms like `futex_wait_setup` and `futex_wake`.
 
 ### io_uring.c
-The core of the io_uring implementation. Sets up the ring buffer memory, handles registration of resources (buffers, files, etc.), manages submission and completion queue interactions, and contains the high-level syscall entry points for io_uring_setup, io_uring_enter, and io_uring_register.
+The core of the io_uring implementation. Sets up the ring buffer memory, handles registration of resources (buffers, files, etc.), manages submission and completion queue interactions, and contains the high-level syscall entry points for io_uring_setup, `io_uring_enter`, and `io_uring_register`.
 
 ### io-wq.c
 Implements the io-wq (I/O worker queue) system used by io_uring to perform blocking I/O in worker threads without stalling the main context. Includes thread pool management, work item dispatch, and priority handling for background I/O operations.
@@ -47,10 +47,10 @@ Implements the io-wq (I/O worker queue) system used by io_uring to perform block
 Manages kernel-side buffer operations, specifically for providing zero-copy data transfers and inline buffers for I/O. Helps in reducing memory copy overhead for high-performance data paths.
 
 ### memmap.c
-Handles memory mapping-related functionality within io_uring, particularly for supporting the IORING_OP_MMAP operation. Manages pinning of user pages and proper cleanup during teardown of memory mappings.
+Handles memory mapping-related functionality within io_uring, particularly for supporting the `IORING_OP_MMAP` operation. Manages pinning of user pages and proper cleanup during teardown of memory mappings.
 
 ### msg_ring.c
-Supports inter-ring communication using IORING_OP_MSG_RING, allowing one io_uring instance to send messages or commands to another. Provides a mechanism for advanced coordination between rings or between user and kernel contexts.
+Supports inter-ring communication using `IORING_OP_MSG_RING`, allowing one io_uring instance to send messages or commands to another. Provides a mechanism for advanced coordination between rings or between user and kernel contexts.
 
 ### napi.c
 Integrates io_uring with the NAPI (New API) networking subsystem for efficient packet reception. Enables low-overhead network I/O by directly interfacing with NAPI-enabled drivers.
@@ -68,52 +68,52 @@ Handles notification-based operations that allow userspace to be notified of I/O
 Contains definitions and metadata for each supported io_uring operation code (opcodes), including their required features, flags, and compatibility. Used internally to validate and dispatch SQEs based on their opcode.
 
 ### openclose.c
-Implements asynchronous file open and close operations (IORING_OP_OPENAT, IORING_OP_CLOSE, etc.), enabling non-blocking file lifecycle management. Works in conjunction with fs.c and filetable.c.
+Implements asynchronous file open and close operations (`IORING_OP_OPENAT`, `IORING_OP_CLOSE`, etc.), enabling non-blocking file lifecycle management. Works in conjunction with fs.c and filetable.c.
 
 ### poll.c
-Handles IORING_OP_POLL_ADD and IORING_OP_POLL_REMOVE, enabling applications to wait on file descriptors for readiness events asynchronously. Integrates with the kernel's poll subsystem.
+Handles `IORING_OP_POLL_ADD` and `IORING_OP_POLL_REMOVE`, enabling applications to wait on file descriptors for readiness events asynchronously. Integrates with the kernel's poll subsystem.
 
 ### register.c
-Implements io_uring_register syscall handling for registering files, buffers, personality IDs, and more. Central to reducing syscall overhead and speeding up repeated I/O operations.
+Implements `io_uring_register` syscall handling for registering files, buffers, personality IDs, and more. Central to reducing syscall overhead and speeding up repeated I/O operations.
 
 ### rsrc.c
-Manages registered resources (files, buffers, personalities, etc.), providing lifecycle control and fast lookup for use in I/O operations. Works closely with register.c and filetable.c.
+Manages registered resources (files, buffers, personalities, etc.), providing lifecycle control and fast lookup for use in I/O operations. Works closely with `register.c` and `filetable.c`.
 
 ### rw.c
-Implements read/write operations (e.g., IORING_OP_READ, IORING_OP_WRITE, etc.) for regular files and devices. Supports both direct and buffered I/O depending on flags and context.
+Implements read/write operations (e.g., `IORING_OP_READ`, `IORING_OP_WRITE`, etc.) for regular files and devices. Supports both direct and buffered I/O depending on flags and context.
 
 ### splice.c
-Handles IORING_OP_SPLICE, which allows data transfer between file descriptors without copying into userspace. Supports zero-copy movement for high-throughput applications.
+Handles `IORING_OP_SPLICE`, which allows data transfer between file descriptors without copying into userspace. Supports zero-copy movement for high-throughput applications.
 
 ### sqpoll.c
 Implements SQPOLL (submission queue polling), where a dedicated kernel thread continuously polls the submission queue to reduce syscall latency. Allows user applications to submit I/O without kernel transitions in certain cases.
 
 ### statx.c
-Implements IORING_OP_STATX to asynchronously retrieve file status information, similar to the statx syscall. Enables non-blocking stat operations in io_uring.
+Implements `IORING_OP_STATX` to asynchronously retrieve file status information, similar to the statx syscall. Enables non-blocking stat operations in io_uring.
 
 ### sync.c
-Implements various synchronization operations, including IORING_OP_FSYNC, IORING_OP_SYNC_FILE_RANGE, and IORING_OP_WAIT_SYNC. Ensures durability and consistency of data after writes.
+Implements various synchronization operations, including `IORING_OP_FSYNC`, `IORING_OP_SYNC_FILE_RANGE`, and `IORING_OP_WAIT_SYNC`. Ensures durability and consistency of data after writes.
 
 ### tctx.c
-Manages task_context structures, which are per-task (per-thread) contexts for io_uring. Handles initialization, cleanup, and resource management for each user task that uses io_uring.
+Manages `task_context` structures, which are per-task (per-thread) contexts for io_uring. Handles initialization, cleanup, and resource management for each user task that uses io_uring.
 
 ### timeout.c
-Implements timeout and linked timeout operations (IORING_OP_TIMEOUT, IORING_OP_TIMEOUT_REMOVE, etc.). Allows for scheduling time-based operations and enforcing deadlines on I/O.
+Implements timeout and linked timeout operations (`IORING_OP_TIMEOUT`, `IORING_OP_TIMEOUT_REMOVE`, etc.). Allows for scheduling time-based operations and enforcing deadlines on I/O.
 
 ### truncate.c
-Implements IORING_OP_FTRUNCATE, allowing asynchronous file truncation (resize) operations to be performed using io_uring.
+Implements `IORING_OP_FTRUNCATE`, allowing asynchronous file truncation (resize) operations to be performed using io_uring.
 
 ### uring_cmd.c
-Supports the IORING_OP_URING_CMD, which allows sending custom commands to specific subsystems (e.g., storage drivers) from userspace via io_uring. Enables extensibility and vendor-specific operations.
+Supports the `IORING_OP_URING_CMD`, which allows sending custom commands to specific subsystems (e.g., storage drivers) from userspace via io_uring. Enables extensibility and vendor-specific operations.
 
 ### waitid.c
-Implements IORING_OP_WAITID, a system call wrapper for asynchronously waiting on process exit/status change events. Enables process-level synchronization using io_uring.
+Implements `IORING_OP_WAITID`, a system call wrapper for asynchronously waiting on process exit/status change events. Enables process-level synchronization using io_uring.
 
 ### xattr.c
-Implements extended attribute (xattr) operations, enabling asynchronous get/set/remove of file extended attributes using IORING_OP_GETXATTR, IORING_OP_SETXATTR, etc.
+Implements extended attribute (xattr) operations, enabling asynchronous get/set/remove of file extended attributes using `IORING_OP_GETXATTR`, `IORING_OP_SETXATTR`, etc.
 
 ### zcrx.c
-Implements zero-copy receive support for networking (ZC RX), allowing data to be received directly into user-provided buffers without additional memory copies. Designed for very high-performance networking.
+Implements zero-copy receive support for networking (`ZC RX`), allowing data to be received directly into user-provided buffers without additional memory copies. Designed for very high-performance networking.
 
 ## Headers
 
