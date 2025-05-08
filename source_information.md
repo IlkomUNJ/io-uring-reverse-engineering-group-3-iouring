@@ -148,59 +148,88 @@ Defines the prototype for functions implemented in `filetable.c`, as well as the
 The file only defines the prototype for functions implemented in `fs.c`.
 
 ### futex.h
+Defines function prototypes and structures related to futex operations, for use in futex.c and other internal logic involving wait queues and fast mutexes.
 
 ### io_uring.h
+Defines core data structures, constants, and prototypes used across nearly every io_uring source file. Includes SQE/CQE definitions, flags, and system-wide configuration macros.
 
 ### io-wq.h
+Declares structures and function prototypes for managing the io_wq thread pool system. Provides hooks for submitting, canceling, and managing background I/O workers.
 
 ### kbuf.h
+Defines the interface and helper functions for kernel buffer management used in zero-copy and inline buffer operations.
 
 ### memmap.h
+Declares prototypes for memory-mapping related functions, page pinning, and safe teardown procedures used in memory-managed I/O operations.
 
 ### msg_ring.h
+Defines data structures and APIs related to inter-ring messaging (`IORING_OP_MSG_RING`). Used for coordinating between multiple io_uring instances.
 
 ### napi.h
+Declares functions for handling integration with the Linux NAPI networking API, allowing efficient packet processing in conjunction with io_uring.
 
 ### net.h
+Contains function declarations and helper macros used for handling networking operations, including socket send/receive functions for various protocols.
 
 ### nop.h
+Defines the function prototype for the no-op handler in io_uring.
 
 ### notif.h
+Declares structures and functions related to internal notification mechanisms, signaling interfaces, and integration with eventfd or signal-based completion.
 
 ### opdef.h
+Defines internal constants, flags, and data structures used to declare and manage io_uring operation definitions.
 
 ### openclose.h
+Contains function declarations related to file open/close operations within the io_uring context.
 
 ### poll.h
+Declares prototypes and data structures for polling support, used for monitoring file descriptor readiness.
 
 ### refs.h
+Provides reference-counting helper macros and inline functions for resource management in io_uring.
 
 ### register.h
+Declares internal functions used for handling resource registration, including buffers, files, and personality IDs.
 
 ### rsrc.h
+Defines internal structures and management functions for registered resources used in io_uring.
 
 ### rw.h
+Declares the read/write handlers and related data structures for I/O operations.
 
 ### slist.h
+Implements a simple lockless singly-linked list, used for efficient communication between threads in the kernel.
 
 ### splice.h
+Declares splice operation handlers and internal helper functions for zero-copy data movement.
 
 ### sqpoll.h
+Defines functions and macros related to the submission queue polling feature, including management of the SQPOLL thread.
 
 ### statx.h
+Contains function prototypes and helper functions for statx (stat with extended info) file operations.
 
 ### sync.h
+Declares synchronization-related operations and helper utilities for ensuring file and data durability.
 
 ### tctx.h
+Declares task context structures and helper functions, enabling per-task lifecycle management in io_uring.
 
 ### timeout.h
+Declares timeout operation prototypes and helper macros used to schedule and manage timed I/O.
 
 ### truncate.h
+Declares asynchronous truncate operation handler used in truncate.c.
 
 ### uring_cmd.h
+Declares data structures and prototypes used for vendor-defined or driver-specific commands through io_uring.
 
 ### waitid.h
+Defines prototypes for waitid operation handlers and related data structures used to monitor process state changes.
 
 ### xattr.h
+Declares get/set/remove extended attribute handlers and supporting structures.
 
 ### zcrx.h
+Declares functions and structures for zero-copy receive networking support, enabling fast and memory-efficient packet handling.
