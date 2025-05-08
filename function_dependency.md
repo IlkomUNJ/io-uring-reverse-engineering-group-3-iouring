@@ -10,9 +10,9 @@ alloc_cache.h | /include/linux/kasan.h | kasan_mempool_unpoison_object | 1
 | | alloc_cache.h | io_alloc_cache_put | 1
 | | linux/mm/slub.c | kfree | 1
 | advise.h | io_uring/advise.c                      | io_madvise_prep          | 1         |
-| advise.h | io_uring/advise.c                      | io_madvise               | 1         |
-| advise.h | io_uring/advise.c                      | io_fadvise_prep          | 1         |
-| advise.h | io_uring/advise.c                      | io_fadvise               | 1         |
+| | io_uring/advise.c                      | io_madvise               | 1         |
+| | io_uring/advise.c                      | io_fadvise_prep          | 1         |
+| | io_uring/advise.c                      | io_fadvise               | 1         |
 | epoll.c  | arch/alpha/include/asm/irq.h           | defined                  | 1         |
 | epoll.c  | io_uring/epoll.c                       | io_epoll_ctl_prep        | 1         |
 | epoll.c  | include/linux/io_uring_types.h         | io_kiocb_to_cmd          | 2         |
