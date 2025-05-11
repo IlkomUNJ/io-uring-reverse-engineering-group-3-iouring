@@ -10,6 +10,7 @@ Store io_madvice & io_fadvice structures, both have the same exact attributes. W
 
 Defines functions `io_alloc_cache_free`, `io_alloc_cache_init`, and `io_cache_alloc_new`, which appears to be used for faster, more efficient caching in the io_uring process. The file basically implements a simple fixed-size object cache for use in the io_uring subsystem.
 
+
 ### cancel.c
 
 Defines functions that are used for the process of aborting/cancelling previously submitted I/O process, based on submitted SQE (submission queue entry).
@@ -26,31 +27,31 @@ Contains a core data structure: `struct io_ev_fd`, for holding all necessary dat
 Also contains functions `io_eventfd_register` (registering user-provided eventfd with a specific `io_uring` instance), `io_eventfd_unregister` (unregistering an eventfd from an `io_uring` instance), `io_eventfd_signal` (signaling registered eventfd to notify the application of new completion events), `io_eventfd_flush_signal` (signaling registered eventfd, but optimized such that signaling is avoided when there's no new completion event since the last signal), `__io_eventfd_signal` (for directly signaling eventfd/deferring signal if immediate signaling is not possible), alongside some lifecycle helper functions `io_eventfd_grab`, `io_eventfd_release`, `io_eventfd_put`, `io_eventfd_free`, `io_eventfd_do_signal`, and `io_eventfd_trigger`.
 
 ### fdinfo.c
-Implements `io_uring_show_fdinfo`, a helper function to print file descriptor-related debug or introspection information when `/proc/*/fdinfo` is queried. Used to expose io_uring-specific file descriptor info to userspace via the proc filesystem.
+Defines functions for use within io_uring's internal debugging helper, which runs when an io_uring file descriptor is inspected via procfs. The entire file is enclosed in a `#ifdef CONFIG_PROC_FS` flag, which makes the file compile to nothing if `procfs` support is disabled.
 
 ### filetable.c
-Implements io_uring_show_fdinfo, a helper function to print file descriptor-related debug or introspection information when /proc/*/fdinfo is queried. Used to expose io_uring-specific file descriptor info to userspace via the proc filesystem.
+Implements and manages fixed-file tables structure for an io_uring instance/per-ring array of struct `file*` handles that user-space can preinstall once, and then make a reference to by index in I/O submissions. Includes functions `io_alloc_file_tables` (allocation), `io_free_file_tables` (teardown/freeing), `io_file_bitmap_get` (bitmap helper), `__io_fixed_fd_install` and `io_fixed_fd_install` (fixed file install), `io_fixed_fd_remove` (fixed file remove), io_register_file_alloc_range` (UAPI range registration)
 
 ### fs.c
-Handles filesystem-related operations in io_uring, such as async path resolution and file lookup, particularly for openat/openat2 operations. Implements functions related to path resolution caching, directory traversal, and credentials management used during file-related syscalls.
+Implements file system-related operations within io_uring, enabling submissions of file system calls (mkdir, unlink, symlink, link, rename) as io_uring SQEs. Includes structures needed for file system operations in io_uring: `io_rename` (renaming), `io_unlink` (unlinking), `io_mkdir` (creating directory), `io_link` (linking & symlinking), of which each struct contains necessary metadata for their respective functions; as well as functions for each possible filesystem operations: `io_<operation>_prep`, `io_<operation>`, `io_<operation>_cleanup` (possible operations include `mkdirat`, `unlinkat`, `symlinkat`, `linkat`/`link`, `renameat`).
 
 ### futex.c
-Implements support for futex (fast userspace mutex) operations in io_uring. The file integrates futex wait/wake requests with the asynchronous model of io_uring using kernel mechanisms like `futex_wait_setup` and `futex_wake`.
+Implements `futex` (fast userspace mutex) API within io_uring, of which the implementation hooks `futex` into io_uring's asynchronous submission/completion model.
 
 ### io_uring.c
-The core of the io_uring implementation. Sets up the ring buffer memory, handles registration of resources (buffers, files, etc.), manages submission and completion queue interactions, and contains the high-level syscall entry points for io_uring_setup, `io_uring_enter`, and `io_uring_register`.
+The core of the io_uring implementation. Sets up the ring buffer memory, handles registration of resources (buffers, files, etc.), manages submission and completion queue interactions, and contains the high-level syscall entry points for io_uring_setup, `io_uring_enter`, and `io_uring_register`. Includes `struct io_futex` as its core data structure, functions for preparing (SQE parsing) asynchronous futex operations: `io_futex_prep`, `io_futexv_prep` (similar to `io_futex_prep` but for `FUTEX_WAITV`/`FUTEX_WAKEV`, vectorized futex); submission callbacks (calls futex core once the request reaches async worker threads): `io_futex_wait`, `io_futexv_wait`, `io_futexv_wake`; completion callbacks (gets called when a wait actually wakes/times out/finishes): `__io_futex_complete`, `io_futex_complete` (wrapper), `io_futexv_complete`; wake callbacks: `io_futex_wake_fn`, `io_futex_wakev_fn`, cancellation functions (called when user cancels an in-flight SQE): `__io_futex_cancel` (wrapped in `io_futex_cancel`), void `io_futex_cache_free` (freeing cached `file*` references).
 
 ### io-wq.c
-Implements the io-wq (I/O worker queue) system used by io_uring to perform blocking I/O in worker threads without stalling the main context. Includes thread pool management, work item dispatch, and priority handling for background I/O operations.
+Implements `io_wq` (I/O workequeue) layer under io_uring, which manages a pool of kernel threads (workers), hashes and dispatches I/O work items onto them, handles cancellation and CPU hot-plug, and teardown. Includes internal data structures `io_worker` (one kernel thread in a pool), `io_wq_acct` (per-cpu accounting for a given `io_wq`), `io_wq` (an I/O workqueue instance), `io_cb_cancel_data` (book-keeping for cancelling a given batch of work items), as well as functions for initialization (`io_wq_create`) & teardown (`io_wq_destroy`, `io_wq_exit_workers`), worker threads (`io_wq_worker`, `io_wq_worker_running`, `io_wq_worker_sleeping`, `io_wq_worker_stopped`), enqueueing (`io_wq_enqueue`) & hashing work (`io_wq_hash_work`, `io_get_next_work`), cancelling work (`io_run_cancel`, `io_wq_cancel`), and CPU hot-plug support (adding & removing CPU from a system without rebooting) implementation (`io_wq_cpu_online`, `io_wq_cpu_down_prep`).
 
 ### kbuf.c
-Manages kernel-side buffer operations, specifically for providing zero-copy data transfers and inline buffers for I/O. Helps in reducing memory copy overhead for high-performance data paths.
+Implements a buffer-providing subsystem within `io_uring`, letting applications register groups of user-space buffers with the kernel, and select, map, and commit portions of those buffers for individual I/O submissions. Includes data structures `io_provide_buf` for buffer registration, as well as functions `io_add_buffers`, `io_buffer_add_list`, and `io_map_user_buffers` for registration & mapping; `io_buffer_get_list`, `io_provided_buffer_select`, `io_ring_buffer_select`, `io_provided_buffers_select` and `io_ring_buffers_peek` for selection; `io_kbuf_commit`/`io_kbuf_inc_commit`, `__io_put_kbuf_ring` for committing; and `io_put_bl`, `io_destroy_bl`, and `__io_remove_buffers` for teardown & cleanup.
 
 ### memmap.c
-Handles memory mapping-related functionality within io_uring, particularly for supporting the `IORING_OP_MMAP` operation. Manages pinning of user pages and proper cleanup during teardown of memory mappings.
+Implements a set of structs and functions for managing memory mappings for `io_uring` instances. Includes a structure for use in tracking `memmap`'s memory tracking functionality (`io_mapped_region`), another for describing memory region to be registered/mapped (`io_uring_region_desc`), as well as enums for defining properties of a mapped memory region (`enum { IO_REGION_F_VMAP, IO_REGION_F_USER_PROVIDED, IO_REGION_F_SINGLE_REF, };`), as well as functions for use in creating (`io_pin_pages`, `io_create_region`, `io_create_region_mmap_safe`), mapping (`io_uring_mmap`, `io_uring_get_unmapped_area`), and freeing memory regions (`io_free_region`), and some helper functions.
 
 ### msg_ring.c
-Supports inter-ring communication using `IORING_OP_MSG_RING`, allowing one io_uring instance to send messages or commands to another. Provides a mechanism for advanced coordination between rings or between user and kernel contexts.
+Implements functions for handling the passing of messages or file descriptors from one io_uring instance to another (inter-ring communication). Includes `io_msg` as its primary data structure, holding all the necessary data for a message ring operation; as well as functions `io_msg_ring_prep` for request preparation, `io_msg_ring` for request execution, `io_msg_ring_data` for CQE passing, `io_msg_send_fd` for passing a file descriptor, `io_msg_grab_file` for grabbing a source file descriptor's reference, `io_msg_install_complete` for source file descriptor installation, remote (different task) completion handling functions (`io_msg_data_remote`, `io_msg_fd_remote`, `io_msg_tw_complete`, `io_msg_tw_fd_complete`), `io_msg_ring_cleanup` for message ring request cleanup, `io_uring_sync_msg_ring` for synchronous request operations, and some locking helpers (`io_lock_external_ctx`, `io_double_unlock_ctx`)
 
 ### napi.c
 Integrates io_uring with the NAPI (New API) networking subsystem for efficient packet reception. Enables low-overhead network I/O by directly interfacing with NAPI-enabled drivers.
@@ -154,16 +155,16 @@ Defines function prototypes and structures related to futex operations, for use 
 Defines core data structures, constants, and prototypes used across nearly every io_uring source file. Includes SQE/CQE definitions, flags, and system-wide configuration macros.
 
 ### io-wq.h
-Declares structures and function prototypes for managing the io_wq thread pool system. Provides hooks for submitting, canceling, and managing background I/O workers.
+Declares structures and function prototypes to be implemented in the `io-wq.c` source file, as well as structures `io_wq_hash`, `io_wq_data`,; enums for `io_wq` status; type aliases `io_wq_work` and `io_wq_work_fn`, and function implementations for `io_wq_put_hash`, `io_wq_is_hashed`, and `io_wq_current_is_worker`.
 
 ### kbuf.h
-Defines the interface and helper functions for kernel buffer management used in zero-copy and inline buffer operations.
+Defines structures and function prototypes to be implemented in `kbuf.c`, as well as interface and helper functions for kernel buffer management used in zero-copy and inline buffer operations.
 
 ### memmap.h
-Declares prototypes for memory-mapping related functions, page pinning, and safe teardown procedures used in memory-managed I/O operations.
+Defines function prototypes to be implemented in memmap.c, as well as functions helper functions for getting pointers of a region (`io_region_get_ptr`), and checking if a region is set (`io_region_is_set`)
 
 ### msg_ring.h
-Defines data structures and APIs related to inter-ring messaging (`IORING_OP_MSG_RING`). Used for coordinating between multiple io_uring instances.
+Defines function prototypes to be implemented in `msg_ring.c`.
 
 ### napi.h
 Declares functions for handling integration with the Linux NAPI networking API, allowing efficient packet processing in conjunction with io_uring.
