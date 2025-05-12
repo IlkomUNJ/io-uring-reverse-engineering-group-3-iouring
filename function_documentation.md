@@ -1,7 +1,6 @@
 # Task 4: Documenting function
 For the final part of the assignment, you won't fill any info in this readme. But put any explanation on each function definition on all sources of io_uring subdirectory. For the given example you can check epoll.c, on function io_epoll_ctl. 
 
-/**
  * io_madvise_prep - Prepare a madvise SQE (I/O memory advice) request.
  * @req: The io_kiocb structure holding the request.
  * @cmd: The sqe data parsed from userspace.
@@ -10,7 +9,6 @@ For the final part of the assignment, you won't fill any info in this readme. Bu
  */
 static int io_madvise_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
-/**
  * io_madvise - Executes a madvise operation on a memory range.
  * @req: io_kiocb containing prepared request data.
  * @issue_flags: Flags related to SQE issue.
