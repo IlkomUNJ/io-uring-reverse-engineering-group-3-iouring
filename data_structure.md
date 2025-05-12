@@ -1,1624 +1,1624 @@
 | Structure name | Defined in | Attributes | Caller Functions Source | Source Caller | Usage |
 |---|---|---|---|---|---|
-| io_fadvise | advise.c | offset, len, advice | io_madvise | advise.c | local variable |
-| io_fadvise | advise.c | offset, len, advice | io_madvise | advise.h | local variable |
-| io_fadvise | advise.c | offset, len, advice | io_fadvise_force_async | advise.c | function parameter |
-| io_fadvise | advise.c | offset, len, advice | io_fadvise_prep | advise.c | local variable, return value |
-| io_fadvise | advise.c | offset, len, advice | io_fadvise_prep | advise.h | local variable, return value |
-| io_fadvise | advise.c | offset, len, advice | io_fadvise | advise.c | local variable, return value |
-| io_fadvise | advise.c | offset, len, advice | io_fadvise | advise.h | local variable, return value |
-| io_fadvise | advise.c | offset, len, advice | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_madvise | advise.c | addr, len, advice | io_madvise_prep | advise.c | local variable, return value |
-| io_madvise | advise.c | addr, len, advice | io_madvise_prep | advise.h | local variable, return value |
-| io_madvise | advise.c | addr, len, advice | io_madvise | advise.c | local variable, return value |
-| io_madvise | advise.c | addr, len, advice | io_madvise | advise.h | local variable, return value |
-| io_madvise | advise.c | addr, len, advice | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_cancel_req_match | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_cancel_req_match | cancel.h | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_cancel_req_match | poll.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_cancel_req_match | timeout.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_async_cancel_one | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_try_cancel | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_try_cancel | cancel.h | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_try_cancel | timeout.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_async_cancel_prep | cancel.c | local variable, return value |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_async_cancel_prep | cancel.h | local variable, return value |
-| io_cancel | cancel.c | addr, flags, fd, opcode | __io_async_cancel | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_async_cancel | cancel.c | local variable, return value |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_async_cancel | cancel.h | local variable, return value |
-| io_cancel | cancel.c | addr, flags, fd, opcode | __io_sync_cancel | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_futex_cancel | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_futex_cancel | futex.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_futex_cancel | futex.h | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_futex_cancel | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_futex_cancel | futex.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_futex_cancel | futex.h | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_poll_find | poll.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_poll_file_find | poll.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | __io_poll_cancel | poll.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_poll_cancel | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_poll_cancel | poll.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_poll_cancel | poll.h | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_waitid_cancel | cancel.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_waitid_cancel | waitid.c | function parameter |
-| io_cancel | cancel.c | addr, flags, fd, opcode | io_waitid_cancel | waitid.h | function parameter |
-| io_cancel_data | cancel.h | data | io_cancel_req_match | cancel.c | function parameter |
-| io_cancel_data | cancel.h | data | io_cancel_req_match | cancel.h | function parameter |
-| io_cancel_data | cancel.h | data | io_cancel_req_match | poll.c | function parameter |
-| io_cancel_data | cancel.h | data | io_cancel_req_match | timeout.c | function parameter |
-| io_cancel_data | cancel.h | data | io_cancel_cb | cancel.c | local variable, return value |
-| io_cancel_data | cancel.h | data | io_async_cancel_one | cancel.c | function parameter, local variable |
-| io_cancel_data | cancel.h | data | io_try_cancel | cancel.c | function parameter |
-| io_cancel_data | cancel.h | data | io_try_cancel | cancel.h | function parameter |
-| io_cancel_data | cancel.h | data | io_try_cancel | timeout.c | function parameter |
-| io_cancel_data | cancel.h | data | io_async_cancel_prep | cancel.c | local variable |
-| io_cancel_data | cancel.h | data | io_async_cancel_prep | cancel.h | local variable |
-| io_cancel_data | cancel.h | data | __io_async_cancel | cancel.c | function parameter |
-| io_cancel_data | cancel.h | data | io_async_cancel | cancel.c | local variable, return value |
-| io_cancel_data | cancel.h | data | io_async_cancel | cancel.h | local variable, return value |
-| io_cancel_data | cancel.h | data | __io_sync_cancel | cancel.c | function parameter, local variable, return value |
-| io_cancel_data | cancel.h | data | __io_futex_cancel | futex.c | local variable |
-| io_cancel_data | cancel.h | data | io_futex_cancel | cancel.c | function parameter |
-| io_cancel_data | cancel.h | data | io_futex_cancel | futex.c | function parameter |
-| io_cancel_data | cancel.h | data | io_futex_cancel | futex.h | function parameter |
-| io_cancel_data | cancel.h | data | io_futex_cancel | cancel.c | function parameter |
-| io_cancel_data | cancel.h | data | io_futex_cancel | futex.c | function parameter |
-| io_cancel_data | cancel.h | data | io_futex_cancel | futex.h | function parameter |
-| io_cancel_data | cancel.h | data | io_poll_remove_all | io_uring.c | local variable |
-| io_cancel_data | cancel.h | data | io_poll_remove_all | poll.c | local variable |
-| io_cancel_data | cancel.h | data | io_poll_remove_all | poll.h | local variable |
-| io_cancel_data | cancel.h | data | io_poll_find | poll.c | function parameter, local variable |
-| io_cancel_data | cancel.h | data | io_poll_file_find | poll.c | function parameter |
-| io_cancel_data | cancel.h | data | io_poll_disarm | poll.c | local variable |
-| io_cancel_data | cancel.h | data | __io_poll_cancel | poll.c | function parameter, local variable |
-| io_cancel_data | cancel.h | data | io_poll_cancel | cancel.c | function parameter |
-| io_cancel_data | cancel.h | data | io_poll_cancel | poll.c | function parameter |
-| io_cancel_data | cancel.h | data | io_poll_cancel | poll.h | function parameter |
-| io_cancel_data | cancel.h | data | io_poll_remove | poll.c | local variable, return value |
-| io_cancel_data | cancel.h | data | io_poll_remove | poll.h | local variable, return value |
-| io_cancel_data | cancel.h | data | io_poll_multishot_retry | poll.h | local variable |
-| io_cancel_data | cancel.h | data | io_poll_multishot_retry | rw.c | local variable |
-| io_cancel_data | cancel.h | data | io_timeout_fn | timeout.c | local variable |
-| io_cancel_data | cancel.h | data | io_req_task_link_timeout | timeout.c | local variable, return value |
-| io_cancel_data | cancel.h | data | io_timeout_get_clock | timeout.c | local variable, return value |
-| io_cancel_data | cancel.h | data | io_timeout_remove | timeout.c | local variable, return value |
-| io_cancel_data | cancel.h | data | io_timeout_remove | timeout.h | local variable, return value |
-| io_cancel_data | cancel.h | data | io_disarm_linked_timeout | timeout.c | local variable |
-| io_cancel_data | cancel.h | data | io_disarm_linked_timeout | timeout.h | local variable |
-| io_cancel_data | cancel.h | data | __io_waitid_cancel | waitid.c | local variable |
-| io_cancel_data | cancel.h | data | io_waitid_cancel | cancel.c | function parameter |
-| io_cancel_data | cancel.h | data | io_waitid_cancel | waitid.c | function parameter |
-| io_cancel_data | cancel.h | data | io_waitid_cancel | waitid.h | function parameter |
-| io_epoll | epoll.c | epfd, op, fd, event | io_epoll_ctl_prep | epoll.c | local variable, return value |
-| io_epoll | epoll.c | epfd, op, fd, event | io_epoll_ctl_prep | epoll.h | local variable, return value |
-| io_epoll | epoll.c | epfd, op, fd, event | io_epoll_ctl | epoll.c | local variable, return value |
-| io_epoll | epoll.c | epfd, op, fd, event | io_epoll_ctl | epoll.h | local variable, return value |
-| io_epoll_wait | epoll.c | maxevents | io_epoll_wait_prep | epoll.c | local variable, return value |
-| io_epoll_wait | epoll.c | maxevents | io_epoll_wait_prep | epoll.h | local variable, return value |
-| io_epoll_wait | epoll.c | maxevents | io_epoll_wait | epoll.c | local variable, return value |
-| io_epoll_wait | epoll.c | maxevents | io_epoll_wait | epoll.h | local variable, return value |
-| io_epoll_wait | epoll.c | maxevents | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_free | eventfd.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_put | eventfd.c | function parameter |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_do_signal | eventfd.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_release | eventfd.c | function parameter, local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | __io_eventfd_signal | eventfd.c | function parameter, local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_trigger | eventfd.c | function parameter, local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_grab | eventfd.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_signal | eventfd.c | local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_signal | eventfd.h | local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_signal | io_uring.c | local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_flush_signal | eventfd.c | local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_flush_signal | eventfd.h | local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_flush_signal | io_uring.c | local variable |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_register | eventfd.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_register | eventfd.h | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_register | register.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_unregister | eventfd.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_unregister | eventfd.h | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_unregister | io_uring.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_unregister | register.c | local variable, return value |
-| io_ev_fd | eventfd.c | eventfd_async, last_cq_tail, refs, ops, rcu | io_eventfd_unregister | register.h | local variable, return value |
-| io_rename | fs.c | old_dfd, new_dfd, flags | io_renameat_prep | fs.c | local variable, return value |
-| io_rename | fs.c | old_dfd, new_dfd, flags | io_renameat_prep | fs.h | local variable, return value |
-| io_rename | fs.c | old_dfd, new_dfd, flags | io_renameat | fs.c | local variable, return value |
-| io_rename | fs.c | old_dfd, new_dfd, flags | io_renameat | fs.h | local variable, return value |
-| io_rename | fs.c | old_dfd, new_dfd, flags | io_renameat_cleanup | fs.c | local variable, return value |
-| io_rename | fs.c | old_dfd, new_dfd, flags | io_renameat_cleanup | fs.h | local variable, return value |
-| io_unlink | fs.c | dfd, flags | io_unlinkat_prep | fs.c | local variable, return value |
-| io_unlink | fs.c | dfd, flags | io_unlinkat_prep | fs.h | local variable, return value |
-| io_unlink | fs.c | dfd, flags | io_unlinkat | fs.c | local variable, return value |
-| io_unlink | fs.c | dfd, flags | io_unlinkat | fs.h | local variable, return value |
-| io_unlink | fs.c | dfd, flags | io_unlinkat_cleanup | fs.c | local variable, return value |
-| io_unlink | fs.c | dfd, flags | io_unlinkat_cleanup | fs.h | local variable, return value |
-| io_mkdir | fs.c | dfd, mode | io_mkdirat_prep | fs.c | local variable, return value |
-| io_mkdir | fs.c | dfd, mode | io_mkdirat_prep | fs.h | local variable, return value |
-| io_mkdir | fs.c | dfd, mode | io_mkdirat | fs.c | local variable, return value |
-| io_mkdir | fs.c | dfd, mode | io_mkdirat | fs.h | local variable, return value |
-| io_mkdir | fs.c | dfd, mode | io_mkdirat_cleanup | fs.c | local variable, return value |
-| io_mkdir | fs.c | dfd, mode | io_mkdirat_cleanup | fs.h | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_symlinkat_prep | fs.c | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_symlinkat_prep | fs.h | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_symlinkat | fs.c | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_symlinkat | fs.h | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_linkat_prep | fs.c | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_linkat_prep | fs.h | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_linkat | fs.c | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_linkat | fs.h | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_link_cleanup | fs.c | local variable, return value |
-| io_link | fs.c | old_dfd, new_dfd, flags | io_link_cleanup | fs.h | local variable, return value |
-| io_futex | futex.c | - | io_futexv_complete | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futexv_claim | futex.c | function parameter |
-| io_futex | futex.c | - | __io_futex_cancel | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futex_prep | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futex_prep | futex.h | local variable, return value |
-| io_futex | futex.c | - | io_futex_wakev_fn | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futexv_prep | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futexv_prep | futex.h | local variable, return value |
-| io_futex | futex.c | - | io_futexv_wait | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futexv_wait | futex.h | local variable, return value |
-| io_futex | futex.c | - | io_futex_wait | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futex_wait | futex.h | local variable, return value |
-| io_futex | futex.c | - | io_futex_wake | futex.c | local variable, return value |
-| io_futex | futex.c | - | io_futex_wake | futex.h | local variable, return value |
-| io_futex_data | futex.c | q | io_futex_cache_init | futex.c | local variable |
-| io_futex_data | futex.c | q | io_futex_cache_init | futex.h | local variable |
-| io_futex_data | futex.c | q | io_futex_cache_init | io_uring.c | local variable |
-| io_futex_data | futex.c | q | __io_futex_cancel | futex.c | local variable, return value |
-| io_futex_data | futex.c | q | io_futex_wake_fn | futex.c | local variable, return value |
-| io_futex_data | futex.c | q | io_futex_wait | futex.c | local variable, return value |
-| io_futex_data | futex.c | q | io_futex_wait | futex.h | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_worker_get | io-wq.c | function parameter, local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_worker_release | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_work_get_acct | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_get_acct | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_stopped | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_stopped | io-wq.h | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_stopped | io_uring.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_worker_cancel_cb | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_task_worker_match | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_worker_exit | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | __io_acct_run_queue | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_create_worker | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_inc_running | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | create_worker_cb | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_queue_worker_create | io-wq.c | function parameter, local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_dec_running | io-wq.c | function parameter, local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | __io_worker_busy | io-wq.c | function parameter, local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wait_on_hash | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_assign_current_work | io-wq.c | function parameter, local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_running | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_running | io-wq.h | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_sleeping | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_sleeping | io-wq.h | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_init_new_worker | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_work_match_all | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_should_retry_thread | io-wq.c | function parameter, local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | queue_create_worker_retry | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | create_worker_cont | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_workqueue_create | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | create_io_worker | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_wake | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_hash_work | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_hash_work | io-wq.h | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_hash_work | io_uring.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | __io_wq_worker_cancel | io-wq.c | function parameter, local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_cancel | io-wq.c | function parameter |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_task_work_match | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_cancel_tw_create | io-wq.c | local variable, return value |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_put_and_exit | io-wq.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_put_and_exit | io-wq.h | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_put_and_exit | tctx.c | local variable |
-| io_worker | io-wq.c | ref, flags, nulls_node, all_list, lock, ref_done, create_state, create_work, init_retries, rcu, work | io_wq_worker_affinity | io-wq.c | function parameter |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_worker_release | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_get_acct | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_work_get_acct | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_worker_cancel_cb | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_worker_exit | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | __io_acct_run_queue | io-wq.c | function parameter, local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_create_worker | io-wq.c | function parameter |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_inc_running | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | create_worker_cb | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_queue_worker_create | io-wq.c | function parameter |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_dec_running | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | __io_worker_busy | io-wq.c | function parameter, local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wait_on_hash | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_assign_current_work | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_worker | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_worker_sleeping | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_worker_sleeping | io-wq.h | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_init_new_worker | io-wq.c | function parameter |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | create_worker_cont | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_workqueue_create | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | create_io_worker | io-wq.c | function parameter, local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_run_cancel | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_insert_work | io-wq.c | function parameter |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_enqueue | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_enqueue | io-wq.h | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_enqueue | io_uring.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_worker_cancel | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_remove_pending | io-wq.c | function parameter, local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_acct_cancel_pending_work | io-wq.c | function parameter |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_cancel_pending_work | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_acct_cancel_running_work | io-wq.c | function parameter |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_hash_wake | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_create | io-wq.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_create | io-wq.h | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_create | tctx.c | local variable, return value |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_max_workers | io-wq.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_max_workers | io-wq.h | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_max_workers | register.c | local variable |
-| io_wq_acct | io-wq.c | workers_lock, nr_workers, max_workers, nr_running, free_list, all_list, lock, work_list, flags | io_wq_max_workers | tctx.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_cancel_cb | cancel.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_async_cancel_one | cancel.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_worker_release | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_get_acct | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_work_get_acct | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_get_acct | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_worker_ref_put | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_worker_cancel_cb | io-wq.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_worker_exit | io-wq.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_acct_run_queue | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_create_worker | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | create_worker_cb | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_queue_worker_create | io-wq.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_dec_running | io-wq.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_worker_busy | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_get_work_hash | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wait_on_hash | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_assign_current_work | io-wq.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_worker | io-wq.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_worker_sleeping | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_worker_sleeping | io-wq.h | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_init_new_worker | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_work_match_all | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | create_worker_cont | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_workqueue_create | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | create_io_worker | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_worker_wake | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_run_cancel | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_insert_work | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_work_match_item | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_enqueue | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_enqueue | io-wq.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_enqueue | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_hash_work | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_hash_work | io-wq.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_hash_work | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_wq_worker_cancel | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_worker_cancel | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_remove_pending | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_acct_cancel_pending_work | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cancel_pending_work | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_acct_cancel_running_work | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cancel_running_work | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cancel_cb | cancel.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cancel_cb | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cancel_cb | io-wq.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cancel_cb | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_hash_wake | io-wq.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_create | io-wq.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_create | io-wq.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_create | tctx.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_task_work_match | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_exit_start | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_exit_start | io-wq.h | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_exit_start | io_uring.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cancel_tw_create | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_exit_workers | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_destroy | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_put_and_exit | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_put_and_exit | io-wq.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_put_and_exit | tctx.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_worker_affinity | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_wq_cpu_online | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cpu_online | io-wq.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cpu_offline | io-wq.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cpu_affinity | io-wq.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cpu_affinity | io-wq.h | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cpu_affinity | register.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_cpu_affinity | sqpoll.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_max_workers | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_max_workers | io-wq.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_max_workers | register.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_max_workers | tctx.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_put_hash | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_put_hash | io-wq.h | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_put_hash | io_uring.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_is_hashed | io-wq.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_is_hashed | io-wq.h | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_is_hashed | io_uring.c | function parameter, local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_queue_iowq | io_uring.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_free_work | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_free_work | io_uring.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_submit_work | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_wq_submit_work | io_uring.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_cancel_ctx_cb | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_ring_exit_work | io_uring.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_ring_exit_work | sqpoll.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_cancel_task_cb | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_try_cancel_iowq | io_uring.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_try_cancel_iowq | tctx.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_try_cancel_requests | io_uring.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | advise.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | alloc_cache.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | alloc_cache.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | cancel.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | cancel.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | epoll.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | eventfd.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | fdinfo.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | filetable.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | fs.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | futex.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | io-wq.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | io-wq.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | io_uring.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | io_uring.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | kbuf.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | kbuf.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | memmap.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | msg_ring.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | napi.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | napi.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | net.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | nop.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | notif.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | notif.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | opdef.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | openclose.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | poll.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | refs.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | register.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | rsrc.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | rsrc.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | rw.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | slist.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | splice.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | sqpoll.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | statx.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | sync.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | tctx.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | tctx.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | timeout.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | timeout.h | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | truncate.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | uring_cmd.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | waitid.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | xattr.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | if | zcrx.c | function parameter, local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_cancel_generic | io_uring.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_cancel_generic | io_uring.h | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_cancel_generic | sqpoll.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_unregister_iowq_aff | register.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_after | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_after | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_tail | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_tail | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_tail | io_uring.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_tail | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_head | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_add_head | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_cut | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_cut | rw.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_cut | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __wq_list_splice | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_splice | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_stack_add_head | io_uring.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_stack_add_head | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_del | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_list_del | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_stack_extract | io_uring.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_stack_extract | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_next_work | io-wq.c | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | wq_next_work | slist.h | function parameter |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_uring_free | io_uring.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_uring_free | tctx.c | local variable |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_alloc_task_context | io_uring.h | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_alloc_task_context | sqpoll.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_alloc_task_context | tctx.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_alloc_task_context | tctx.h | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_uring_add_tctx_node | io_uring.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_uring_add_tctx_node | tctx.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | __io_uring_add_tctx_node | tctx.h | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_clean_tctx | io_uring.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_clean_tctx | tctx.c | local variable, return value |
-| io_wq | io-wq.c | state, worker_refs, worker_done, cpuhp_node, wait, cpu_mask | io_uring_clean_tctx | tctx.h | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | create_worker_cont | io-wq.c | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_enqueue | io-wq.c | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_enqueue | io-wq.h | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_enqueue | io_uring.c | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_hash_work | io-wq.c | local variable |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_hash_work | io-wq.h | local variable |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_hash_work | io_uring.c | local variable |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | __io_wq_worker_cancel | io-wq.c | function parameter |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_worker_cancel | io-wq.c | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_remove_pending | io-wq.c | local variable |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_acct_cancel_pending_work | io-wq.c | function parameter, local variable |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_cancel_pending_work | io-wq.c | function parameter, local variable |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_acct_cancel_running_work | io-wq.c | function parameter, local variable |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_cancel_running_work | io-wq.c | function parameter |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_cancel_cb | cancel.c | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_cancel_cb | io-wq.c | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_cancel_cb | io-wq.h | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_cancel_cb | io_uring.c | local variable, return value |
-| io_cb_cancel_data | io-wq.c | nr_running, nr_pending, cancel_all | io_wq_destroy | io-wq.c | local variable, return value |
-| online_data | io-wq.c | cpu, online | io_wq_put_and_exit | io-wq.c | local variable |
-| online_data | io-wq.c | cpu, online | io_wq_put_and_exit | io-wq.h | local variable |
-| online_data | io-wq.c | cpu, online | io_wq_put_and_exit | tctx.c | local variable |
-| online_data | io-wq.c | cpu, online | io_wq_worker_affinity | io-wq.c | local variable, return value |
-| online_data | io-wq.c | cpu, online | __io_wq_cpu_online | io-wq.c | local variable, return value |
-| io_wq_hash | io-wq.h | refs, map, wait | io_wq_put_hash | io-wq.c | function parameter, local variable |
-| io_wq_hash | io-wq.h | refs, map, wait | io_wq_put_hash | io-wq.h | function parameter, local variable |
-| io_wq_hash | io-wq.h | refs, map, wait | io_wq_put_hash | io_uring.c | function parameter, local variable |
-| io_wq_hash | io-wq.h | refs, map, wait | io_init_wq_offload | tctx.c | local variable |
-| io_wq_data | io-wq.h | - | io_wq_hash_wake | io-wq.c | local variable |
-| io_wq_data | io-wq.h | - | io_wq_create | io-wq.c | function parameter |
-| io_wq_data | io-wq.h | - | io_wq_create | io-wq.h | function parameter |
-| io_wq_data | io-wq.h | - | io_wq_create | tctx.c | function parameter |
-| io_wq_data | io-wq.h | - | io_wq_put_hash | io-wq.c | local variable |
-| io_wq_data | io-wq.h | - | io_wq_put_hash | io-wq.h | local variable |
-| io_wq_data | io-wq.h | - | io_wq_put_hash | io_uring.c | local variable |
-| io_wq_data | io-wq.h | - | io_init_wq_offload | tctx.c | local variable |
-| io_defer_entry | io_uring.c | list, seq | io_queue_deferred | io_uring.c | local variable, return value |
-| io_defer_entry | io_uring.c | list, seq | io_get_sequence | io_uring.c | local variable |
-| io_defer_entry | io_uring.c | list, seq | io_cancel_defer_files | io_uring.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | io_cqring_schedule_timeout | io_uring.c | local variable |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | __io_cqring_wait_schedule | io_uring.c | function parameter, local variable |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | io_cqring_wait_schedule | io_uring.c | function parameter, local variable |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | io_cqring_wait | io_uring.c | function parameter, local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | io_validate_ext_arg | io_uring.c | local variable |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | io_get_ext_arg | io_uring.c | function parameter, local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | advise.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | alloc_cache.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | alloc_cache.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | cancel.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | cancel.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | epoll.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | eventfd.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | fdinfo.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | filetable.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | fs.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | futex.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | io-wq.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | io-wq.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | io_uring.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | io_uring.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | kbuf.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | kbuf.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | memmap.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | msg_ring.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | napi.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | napi.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | net.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | nop.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | notif.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | notif.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | opdef.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | openclose.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | poll.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | refs.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | register.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | rsrc.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | rsrc.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | rw.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | slist.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | splice.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | sqpoll.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | statx.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | sync.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | tctx.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | tctx.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | timeout.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | timeout.h | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | truncate.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | uring_cmd.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | waitid.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | xattr.c | local variable, return value |
-| ext_arg | io_uring.c | argsz, ts, min_time, ts_set, iowait | if | zcrx.c | local variable, return value |
-| io_tctx_exit | io_uring.c | task_work, completion | io_uring_poll | io_uring.c | local variable |
-| io_tctx_exit | io_uring.c | task_work, completion | io_tctx_exit_cb | io_uring.c | local variable, return value |
-| io_tctx_exit | io_uring.c | task_work, completion | io_ring_exit_work | io_uring.c | local variable |
-| io_tctx_exit | io_uring.c | task_work, completion | io_ring_exit_work | sqpoll.c | local variable |
-| io_task_cancel | io_uring.c | all | io_uring_release | io_uring.c | local variable |
-| io_task_cancel | io_uring.c | all | io_cancel_task_cb | io_uring.c | local variable, return value |
-| io_task_cancel | io_uring.c | all | io_uring_try_cancel_requests | io_uring.c | local variable, return value |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_wake_function | io_uring.c | local variable, return value |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_cqring_timer_wakeup | io_uring.c | local variable, return value |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_cqring_min_timer_wakeup | io_uring.c | local variable, return value |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_cqring_schedule_timeout | io_uring.c | function parameter, local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | __io_cqring_wait_schedule | io_uring.c | function parameter, local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_cqring_wait_schedule | io_uring.c | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_cqring_wait | io_uring.c | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_should_wake | io_uring.c | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_should_wake | io_uring.h | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_should_wake | napi.c | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_busy_loop_should_end | napi.c | local variable, return value |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_blocking_busy_loop | napi.c | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_unregister_napi | napi.c | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_unregister_napi | napi.h | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_unregister_napi | register.c | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | __io_napi_busy_loop | napi.c | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | __io_napi_busy_loop | napi.h | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi | napi.h | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi | sqpoll.c | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_busy_loop | io_uring.c | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_busy_loop | napi.h | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_add | napi.h | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_add | poll.c | local variable |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_busy_loop | io_uring.c | function parameter |
-| io_wait_queue | io_uring.h | wq, cq_tail, cq_min_tail, nr_timeouts, hit_timeout, min_timeout, timeout, t, napi_busy_poll_dt, napi_prefer_busy_poll | io_napi_busy_loop | napi.h | function parameter |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_remove_buffers_prep | kbuf.c | local variable, return value |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_remove_buffers_prep | kbuf.h | local variable, return value |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_remove_buffers | kbuf.c | local variable, return value |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_remove_buffers | kbuf.h | local variable, return value |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_provide_buffers_prep | kbuf.c | local variable, return value |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_provide_buffers_prep | kbuf.h | local variable, return value |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_add_buffers | kbuf.c | function parameter |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_provide_buffers | kbuf.c | local variable, return value |
-| io_provide_buf | kbuf.c | addr, len, bgid, nbufs, bid | io_provide_buffers | kbuf.h | local variable, return value |
-| io_buffer_list | kbuf.h | buf_list | io_kbuf_inc_commit | kbuf.c | function parameter, local variable |
-| io_buffer_list | kbuf.h | buf_list | io_kbuf_commit | kbuf.c | function parameter, local variable |
-| io_buffer_list | kbuf.h | buf_list | io_kbuf_commit | kbuf.h | function parameter, local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffer_get_list | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffer_add_list | kbuf.c | function parameter |
-| io_buffer_list | kbuf.h | buf_list | io_kbuf_recycle_legacy | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_kbuf_recycle_legacy | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_provided_buffer_select | kbuf.c | function parameter, local variable |
-| io_buffer_list | kbuf.h | buf_list | io_provided_buffers_select | kbuf.c | function parameter, local variable |
-| io_buffer_list | kbuf.h | buf_list | io_ring_buffer_select | kbuf.c | function parameter |
-| io_buffer_list | kbuf.h | buf_list | io_buffer_select | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffer_select | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffer_select | net.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffer_select | rw.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_ring_buffers_peek | kbuf.c | function parameter |
-| io_buffer_list | kbuf.h | buf_list | io_buffers_select | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffers_select | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffers_select | net.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffers_peek | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffers_peek | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_buffers_peek | net.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | __io_put_kbuf_ring | kbuf.c | local variable, return value |
-| io_buffer_list | kbuf.h | buf_list | __io_put_kbufs | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | __io_put_kbufs | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | __io_remove_buffers | kbuf.c | function parameter, local variable |
-| io_buffer_list | kbuf.h | buf_list | io_put_bl | kbuf.c | function parameter |
-| io_buffer_list | kbuf.h | buf_list | io_destroy_buffers | io_uring.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_destroy_buffers | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_destroy_buffers | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_destroy_bl | kbuf.c | function parameter |
-| io_buffer_list | kbuf.h | buf_list | io_remove_buffers | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_remove_buffers | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_provide_buffers_prep | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_provide_buffers_prep | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_add_buffers | kbuf.c | function parameter |
-| io_buffer_list | kbuf.h | buf_list | io_provide_buffers | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_provide_buffers | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_register_pbuf_ring | kbuf.c | local variable, return value |
-| io_buffer_list | kbuf.h | buf_list | io_register_pbuf_ring | kbuf.h | local variable, return value |
-| io_buffer_list | kbuf.h | buf_list | io_register_pbuf_ring | register.c | local variable, return value |
-| io_buffer_list | kbuf.h | buf_list | io_unregister_pbuf_ring | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_unregister_pbuf_ring | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_unregister_pbuf_ring | register.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_register_pbuf_status | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_register_pbuf_status | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_register_pbuf_status | register.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_pbuf_get_region | kbuf.c | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_pbuf_get_region | kbuf.h | local variable |
-| io_buffer_list | kbuf.h | buf_list | io_pbuf_get_region | memmap.c | local variable |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_kbuf_inc_commit | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_kbuf_commit | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_kbuf_commit | kbuf.h | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_buffer_add_list | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_kbuf_recycle_legacy | kbuf.c | local variable |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_kbuf_recycle_legacy | kbuf.h | local variable |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_provided_buffer_select | kbuf.c | function parameter, local variable, return value |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_provided_buffers_select | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_ring_buffer_select | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_ring_buffers_peek | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | __io_remove_buffers | kbuf.c | function parameter, local variable, return value |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_put_bl | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_destroy_bl | kbuf.c | function parameter |
-| io_buffer | kbuf.h | list, addr, len, bid, bgid | io_add_buffers | kbuf.c | function parameter, local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffer_select | kbuf.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffer_select | kbuf.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffer_select | net.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffer_select | rw.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_ring_buffers_peek | kbuf.c | function parameter |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | advise.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | alloc_cache.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | alloc_cache.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | cancel.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | cancel.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | epoll.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | eventfd.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | fdinfo.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | filetable.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | fs.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | futex.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | io-wq.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | io-wq.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | io_uring.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | io_uring.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | kbuf.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | kbuf.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | memmap.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | msg_ring.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | napi.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | napi.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | net.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | nop.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | notif.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | notif.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | opdef.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | openclose.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | poll.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | refs.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | register.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | rsrc.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | rsrc.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | rw.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | slist.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | splice.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | sqpoll.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | statx.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | sync.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | tctx.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | tctx.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | timeout.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | timeout.h | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | truncate.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | uring_cmd.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | waitid.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | xattr.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | if | zcrx.c | local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffers_select | kbuf.c | function parameter, local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffers_select | kbuf.h | function parameter, local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffers_select | net.c | function parameter, local variable |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffers_peek | kbuf.c | function parameter |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffers_peek | kbuf.h | function parameter |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_buffers_peek | net.c | function parameter |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_send_select_buffer | net.c | local variable, return value |
-| buf_sel_arg | kbuf.h | out_len, max_len, nr_iovs, mode | io_recv_buf_select | net.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_ring_cleanup | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_ring_cleanup | msg_ring.h | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_get_kiocb | msg_ring.c | local variable |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_data_remote | msg_ring.c | function parameter, local variable |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | __io_msg_ring_data | msg_ring.c | function parameter |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_ring_data | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_grab_file | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_install_complete | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_tw_fd_complete | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_fd_remote | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_send_fd | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | __io_msg_ring_prep | msg_ring.c | function parameter |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_ring_prep | msg_ring.c | local variable |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_ring_prep | msg_ring.h | local variable |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_ring | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_msg_ring | msg_ring.h | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_uring_sync_msg_ring | msg_ring.c | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_uring_sync_msg_ring | msg_ring.h | local variable, return value |
-| io_msg | msg_ring.c | tw, user_data, len, cmd, src_fd, dst_fd, cqe_flags | io_uring_sync_msg_ring | register.c | local variable, return value |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | io_napi_hash_find | napi.c | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | __io_napi_add_id | napi.c | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | __io_napi_add_id | napi.h | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | __io_napi_del_id | napi.c | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | __io_napi_remove_stale | napi.c | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | io_napi_busy_loop_should_end | napi.c | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | io_napi_free | io_uring.c | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | io_napi_free | napi.c | local variable |
-| io_napi_entry | napi.c | napi_id, list, timeout, node, rcu | io_napi_free | napi.h | local variable |
-| io_shutdown | net.c | how | io_shutdown_prep | net.c | local variable, return value |
-| io_shutdown | net.c | how | io_shutdown_prep | net.h | local variable, return value |
-| io_shutdown | net.c | how | io_shutdown | net.c | local variable, return value |
-| io_shutdown | net.c | how | io_shutdown | net.h | local variable, return value |
-| io_shutdown | net.c | how | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_accept | net.c | flags, iou_flags, file_slot, nofile | io_accept_prep | net.c | local variable, return value |
-| io_accept | net.c | flags, iou_flags, file_slot, nofile | io_accept_prep | net.h | local variable, return value |
-| io_accept | net.c | flags, iou_flags, file_slot, nofile | io_accept | net.c | local variable, return value |
-| io_accept | net.c | flags, iou_flags, file_slot, nofile | io_accept | net.h | local variable, return value |
-| io_accept | net.c | flags, iou_flags, file_slot, nofile | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_socket | net.c | domain, type, protocol, flags, file_slot, nofile | io_socket_prep | net.c | local variable, return value |
-| io_socket | net.c | domain, type, protocol, flags, file_slot, nofile | io_socket_prep | net.h | local variable, return value |
-| io_socket | net.c | domain, type, protocol, flags, file_slot, nofile | io_socket | net.c | local variable, return value |
-| io_socket | net.c | domain, type, protocol, flags, file_slot, nofile | io_socket | net.h | local variable, return value |
-| io_socket | net.c | domain, type, protocol, flags, file_slot, nofile | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_connect | net.c | addr_len, in_progress, seen_econnaborted | io_connect_prep | net.c | local variable, return value |
-| io_connect | net.c | addr_len, in_progress, seen_econnaborted | io_connect_prep | net.h | local variable, return value |
-| io_connect | net.c | addr_len, in_progress, seen_econnaborted | io_connect | net.c | local variable, return value |
-| io_connect | net.c | addr_len, in_progress, seen_econnaborted | io_connect | net.h | local variable, return value |
-| io_connect | net.c | addr_len, in_progress, seen_econnaborted | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_bind | net.c | addr_len | io_bind_prep | net.c | local variable, return value |
-| io_bind | net.c | addr_len | io_bind_prep | net.h | local variable, return value |
-| io_bind | net.c | addr_len | io_bind | net.c | local variable, return value |
-| io_bind | net.c | addr_len | io_bind | net.h | local variable, return value |
-| io_bind | net.c | addr_len | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_listen | net.c | backlog | io_listen_prep | net.c | local variable, return value |
-| io_listen | net.c | backlog | io_listen_prep | net.h | local variable, return value |
-| io_listen | net.c | backlog | io_listen | net.c | local variable, return value |
-| io_listen | net.c | backlog | io_listen | net.h | local variable, return value |
-| io_listen | net.c | backlog | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_sr_msg | net.c | - | io_mshot_prep_retry | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_compat_msg_copy_hdr | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_msg_copy_hdr | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_send_setup | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_sendmsg_setup | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_sendmsg_prep | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_sendmsg_prep | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_send_finish | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_sendmsg | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_sendmsg | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_send_select_buffer | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_send | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_send | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_recvmsg_prep_setup | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_recvmsg_prep | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_recvmsg_prep | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_recv_finish | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_recvmsg_prep_multishot | net.c | function parameter, local variable |
-| io_sr_msg | net.c | - | io_recvmsg_multishot | net.c | function parameter |
-| io_sr_msg | net.c | - | io_recvmsg | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_recvmsg | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_recv_buf_select | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_recv | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_recv | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_send_zc_cleanup | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_send_zc_cleanup | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_send_zc_prep | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_send_zc_prep | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_send_zc_import | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_send_zc | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_send_zc | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_sendmsg_zc | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_sendmsg_zc | net.h | local variable, return value |
-| io_sr_msg | net.c | - | io_sendrecv_fail | net.c | local variable, return value |
-| io_sr_msg | net.c | - | io_sendrecv_fail | net.h | local variable, return value |
-| io_recvzc | net.c | msg_flags, flags, len | io_recvzc_prep | net.c | local variable, return value |
-| io_recvzc | net.c | msg_flags, flags, len | io_recvzc_prep | zcrx.h | local variable, return value |
-| io_recvzc | net.c | msg_flags, flags, len | io_recvzc | net.c | local variable, return value |
-| io_recvzc | net.c | msg_flags, flags, len | io_recvzc | zcrx.h | local variable, return value |
-| io_recvzc | net.c | msg_flags, flags, len | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_recvzc | net.c | msg_flags, flags, len | io_zcrx_recv | net.c | local variable |
-| io_recvzc | net.c | msg_flags, flags, len | io_zcrx_recv | zcrx.c | local variable |
-| io_recvzc | net.c | msg_flags, flags, len | io_zcrx_recv | zcrx.h | local variable |
-| io_recvmsg_multishot_hdr | net.c | msg, addr | io_recvmsg_prep_multishot | net.c | local variable |
-| io_recvmsg_multishot_hdr | net.c | msg, addr | io_recvmsg_multishot | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_ring_ctx_alloc | io_uring.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_net_retry | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_netmsg_iovec_free | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_netmsg_recycle | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_msg_alloc_async | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_mshot_prep_retry | net.c | function parameter, local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_net_import_vec | net.c | function parameter, local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_compat_msg_copy_hdr | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_copy_msghdr_from_user | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_msg_copy_hdr | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_sendmsg_recvmsg_cleanup | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_sendmsg_recvmsg_cleanup | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_setup | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_sendmsg_setup | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_req_msg_cleanup | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_bundle_nbufs | net.c | function parameter, local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_finish | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_sendmsg | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_sendmsg | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_select_buffer | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg_mshot_prep | net.c | function parameter, local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg_copy_hdr | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg_prep_setup | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg_prep | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg_prep | net.h | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recv_finish | net.c | function parameter, local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg_prep_multishot | net.c | function parameter, local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg_multishot | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recvmsg | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recv_buf_select | net.c | function parameter |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recv | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_recv | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_zc_cleanup | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_zc_cleanup | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_zc_prep | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_zc_prep | net.h | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_zc_import | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_zc | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_send_zc | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_sendmsg_zc | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_sendmsg_zc | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_connect_prep | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_connect_prep | net.h | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_connect | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_connect | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_bind_prep | net.c | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_bind_prep | net.h | local variable |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_bind | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_bind | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_netmsg_cache_free | net.c | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_netmsg_cache_free | net.h | local variable, return value |
-| io_async_msghdr | net.h | vec, namelen, fast_iov, controllen, payloadlen, msg, addr | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_nop | nop.c | result, fd, flags | io_nop_prep | nop.c | local variable, return value |
-| io_nop | nop.c | result, fd, flags | io_nop_prep | nop.h | local variable, return value |
-| io_nop | nop.c | result, fd, flags | io_nop | nop.c | local variable, return value |
-| io_nop | nop.c | result, fd, flags | io_nop | nop.h | local variable, return value |
-| io_nop | nop.c | result, fd, flags | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_send_zc_prep | net.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_send_zc_prep | net.h | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_notif_tw_complete | notif.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_tx_ubuf_complete | notif.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_tx_ubuf_complete | notif.h | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_link_skb | notif.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_notif_to_data | net.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_notif_to_data | notif.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_notif_to_data | notif.h | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_notif_account_mem | net.c | local variable, return value |
-| io_notif_data | notif.h | uarg, account_pages, zc_report, zc_used, zc_copied | io_notif_account_mem | notif.h | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_prep_async_work | io_uring.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_get_sequence | io_uring.c | local variable |
-| io_issue_def | opdef.h | async_size | io_assign_file | io_uring.c | function parameter, local variable |
-| io_issue_def | opdef.h | async_size | __io_issue_sqe | io_uring.c | function parameter |
-| io_issue_def | opdef.h | async_size | io_issue_sqe | io_uring.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_wq_submit_work | io_uring.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_wq_submit_work | io_uring.h | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_init_fail_req | io_uring.c | local variable |
-| io_issue_def | opdef.h | async_size | io_uring_alloc_async_data | io_uring.h | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_uring_alloc_async_data | net.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_uring_alloc_async_data | rw.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_uring_alloc_async_data | timeout.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_uring_alloc_async_data | uring_cmd.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_uring_alloc_async_data | waitid.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_arm_poll_handler | io_uring.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_arm_poll_handler | poll.c | local variable, return value |
-| io_issue_def | opdef.h | async_size | io_arm_poll_handler | poll.h | local variable, return value |
-| io_issue_def | opdef.h | async_size | __io_import_rw_buffer | rw.c | local variable, return value |
-| io_cold_def | opdef.h | - | io_clean_op | io_uring.c | local variable, return value |
-| io_cold_def | opdef.h | - | io_req_complete_post | io_uring.c | local variable, return value |
-| io_cold_def | opdef.h | - | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_openat_force_async | openclose.c | function parameter |
-| io_open | openclose.c | dfd, file_slot, how, nofile | __io_openat_prep | openclose.c | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_openat_prep | openclose.c | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_openat_prep | openclose.h | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_openat2_prep | openclose.c | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_openat2_prep | openclose.h | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_openat2 | openclose.c | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_openat2 | openclose.h | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_open_cleanup | openclose.c | local variable, return value |
-| io_open | openclose.c | dfd, file_slot, how, nofile | io_open_cleanup | openclose.h | local variable, return value |
-| io_close | openclose.c | fd, file_slot | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_close | openclose.c | fd, file_slot | io_close_fixed | openclose.c | local variable, return value |
-| io_close | openclose.c | fd, file_slot | io_close_prep | openclose.c | local variable, return value |
-| io_close | openclose.c | fd, file_slot | io_close_prep | openclose.h | local variable, return value |
-| io_close | openclose.c | fd, file_slot | io_close | openclose.c | local variable, return value |
-| io_close | openclose.c | fd, file_slot | io_close | openclose.h | local variable, return value |
-| io_fixed_install | openclose.c | o_flags | io_install_fixed_fd_prep | openclose.c | local variable, return value |
-| io_fixed_install | openclose.c | o_flags | io_install_fixed_fd_prep | openclose.h | local variable, return value |
-| io_fixed_install | openclose.c | o_flags | io_install_fixed_fd | openclose.c | local variable, return value |
-| io_fixed_install | openclose.c | o_flags | io_install_fixed_fd | openclose.h | local variable, return value |
-| io_poll_update | poll.c | old_user_data, new_user_data, events, update_events, update_user_data | io_poll_remove_prep | poll.c | local variable, return value |
-| io_poll_update | poll.c | old_user_data, new_user_data, events, update_events, update_user_data | io_poll_remove_prep | poll.h | local variable, return value |
-| io_poll_update | poll.c | old_user_data, new_user_data, events, update_events, update_user_data | io_poll_remove | poll.c | local variable, return value |
-| io_poll_update | poll.c | old_user_data, new_user_data, events, update_events, update_user_data | io_poll_remove | poll.h | local variable, return value |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_poll_double_prepare | poll.c | local variable |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | __io_queue_proc | poll.c | function parameter |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_poll_queue_proc | poll.c | local variable, return value |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_poll_can_finish_inline | poll.c | function parameter |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_poll_add_hash | poll.c | local variable |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | __io_arm_poll_handler | poll.c | function parameter |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_async_queue_proc | poll.c | local variable, return value |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_arm_poll_handler | io_uring.c | local variable |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_arm_poll_handler | poll.c | local variable |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_arm_poll_handler | poll.h | local variable |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_poll_add | poll.c | local variable |
-| io_poll_table | poll.c | pt, nr_entries, error, owning, result_mask | io_poll_add | poll.h | local variable |
-| io_poll | poll.h | events, retries, wait | io_poll_mark_cancelled | poll.c | local variable |
-| io_poll | poll.h | events, retries, wait | io_poll_get_double | poll.c | local variable |
-| io_poll | poll.h | events, retries, wait | io_poll_get_single | poll.c | local variable |
-| io_poll | poll.h | events, retries, wait | io_poll_req_insert | poll.c | local variable |
-| io_poll | poll.h | events, retries, wait | io_init_poll_iocb | poll.c | function parameter, local variable |
-| io_poll | poll.h | events, retries, wait | io_poll_remove_entry | poll.c | function parameter |
-| io_poll | poll.h | events, retries, wait | if | advise.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | alloc_cache.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | alloc_cache.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | cancel.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | cancel.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | epoll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | eventfd.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | fdinfo.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | filetable.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | fs.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | futex.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | io-wq.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | io-wq.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | io_uring.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | io_uring.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | kbuf.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | kbuf.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | memmap.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | msg_ring.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | napi.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | napi.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | net.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | nop.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | notif.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | notif.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | opdef.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | openclose.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | poll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | refs.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | register.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | rsrc.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | rsrc.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | rw.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | slist.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | splice.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | sqpoll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | statx.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | sync.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | tctx.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | tctx.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | timeout.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | timeout.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | truncate.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | uring_cmd.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | waitid.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | xattr.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | if | zcrx.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_cancel_req | poll.c | local variable |
-| io_poll | poll.h | events, retries, wait | io_pollfree_wake | poll.c | function parameter |
-| io_poll | poll.h | events, retries, wait | io_poll_wake | poll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_double_prepare | poll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | __io_queue_proc | poll.c | function parameter, local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_queue_proc | poll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_can_finish_inline | poll.c | function parameter |
-| io_poll | poll.h | events, retries, wait | io_poll_add_hash | poll.c | local variable |
-| io_poll | poll.h | events, retries, wait | __io_arm_poll_handler | poll.c | function parameter |
-| io_poll | poll.h | events, retries, wait | io_poll_add_prep | poll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_add_prep | poll.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_add | poll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_add | poll.h | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_remove | poll.c | local variable, return value |
-| io_poll | poll.h | events, retries, wait | io_poll_remove | poll.h | local variable, return value |
-| async_poll | poll.h | poll | io_ring_ctx_alloc | io_uring.c | local variable |
-| async_poll | poll.h | poll | io_queue_next | io_uring.c | local variable, return value |
-| async_poll | poll.h | poll | io_queue_next | io_uring.h | local variable, return value |
-| async_poll | poll.h | poll | io_queue_next | timeout.c | local variable, return value |
-| async_poll | poll.h | poll | io_async_queue_proc | poll.c | local variable, return value |
-| async_poll | poll.h | poll | io_req_alloc_apoll | poll.c | local variable |
-| async_poll | poll.h | poll | io_arm_poll_handler | io_uring.c | local variable |
-| async_poll | poll.h | poll | io_arm_poll_handler | poll.c | local variable |
-| async_poll | poll.h | poll | io_arm_poll_handler | poll.h | local variable |
-| io_ring_ctx_rings | register.c | sq_region, ring_region | io_register_clock | register.c | local variable |
-| io_ring_ctx_rings | register.c | sq_region, ring_region | io_register_free_rings | register.c | function parameter |
-| io_ring_ctx_rings | register.c | sq_region, ring_region | io_register_resize_rings | register.c | local variable, return value |
-| io_rsrc_update | rsrc.c | arg, nr_args, offset | io_files_update_prep | rsrc.c | local variable, return value |
-| io_rsrc_update | rsrc.c | arg, nr_args, offset | io_files_update_prep | rsrc.h | local variable, return value |
-| io_rsrc_update | rsrc.c | arg, nr_args, offset | io_files_update_with_index_alloc | rsrc.c | local variable, return value |
-| io_rsrc_update | rsrc.c | arg, nr_args, offset | io_files_update | rsrc.c | local variable, return value |
-| io_rsrc_update | rsrc.c | arg, nr_args, offset | io_files_update | rsrc.h | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | __io_sync_cancel | cancel.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_free_file_tables | filetable.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_free_file_tables | filetable.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_free_file_tables | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_fixed_fd_remove | filetable.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_fixed_fd_remove | filetable.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_fixed_fd_remove | openclose.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_file_bitmap_set | filetable.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_file_bitmap_set | filetable.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_file_bitmap_set | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_flags | filetable.h | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_flags | io_uring.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_file | cancel.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_file | fdinfo.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_file | filetable.h | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_file | io_uring.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_file | msg_ring.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_file | rsrc.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_slot_file | splice.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_fixed_file_set | filetable.c | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_fixed_file_set | filetable.h | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_fixed_file_set | rsrc.c | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_file_get_fixed | cancel.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_file_get_fixed | io_uring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_file_get_fixed | io_uring.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_file_get_fixed | nop.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_msg_grab_file | msg_ring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_buffer_unmap | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_alloc | filetable.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_alloc | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_alloc | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_cache_init | io_uring.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_cache_init | rsrc.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_cache_init | rsrc.h | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_data_alloc | filetable.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_data_alloc | rsrc.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_data_alloc | rsrc.h | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | __io_sqe_files_update | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | __io_sqe_buffers_update | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_files_update | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_files_update | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_free_rsrc_node | rsrc.c | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_free_rsrc_node | rsrc.h | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_sqe_files_register | register.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_sqe_files_register | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_sqe_files_register | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | headpage_already_acct | rsrc.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | advise.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | alloc_cache.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | alloc_cache.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | cancel.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | cancel.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | epoll.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | eventfd.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | fdinfo.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | filetable.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | fs.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | futex.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io-wq.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io-wq.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io_uring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io_uring.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | kbuf.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | kbuf.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | memmap.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | msg_ring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | napi.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | napi.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | net.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | nop.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | notif.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | notif.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | opdef.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | openclose.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | poll.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | refs.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | register.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | rw.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | slist.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | splice.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | sqpoll.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | statx.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | sync.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | tctx.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | tctx.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | timeout.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | timeout.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | truncate.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | uring_cmd.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | waitid.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | xattr.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | zcrx.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_sqe_buffer_register | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_sqe_buffers_register | register.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_sqe_buffers_register | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_sqe_buffers_register | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_buffer_unregister_bvec | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | advise.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | alloc_cache.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | alloc_cache.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | cancel.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | cancel.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | epoll.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | eventfd.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | fdinfo.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | filetable.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | fs.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | futex.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io-wq.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io-wq.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io_uring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | io_uring.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | kbuf.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | kbuf.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | memmap.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | msg_ring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | napi.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | napi.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | net.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | nop.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | notif.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | notif.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | opdef.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | openclose.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | poll.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | refs.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | register.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | rw.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | slist.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | splice.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | sqpoll.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | statx.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | sync.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | tctx.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | tctx.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | timeout.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | timeout.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | truncate.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | uring_cmd.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | waitid.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | xattr.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | if | zcrx.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_find_buf_node | nop.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_find_buf_node | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_find_buf_node | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_buf | net.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_buf | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_buf | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_buf | rw.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_buf | uring_cmd.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_clone_buffers | rsrc.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_vec | net.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_vec | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_vec | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_vec | rw.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_import_reg_vec | uring_cmd.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_lookup | cancel.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_lookup | filetable.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_lookup | io_uring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_lookup | msg_ring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_lookup | rsrc.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_lookup | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_rsrc_node_lookup | splice.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_put_rsrc_node | rsrc.c | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_put_rsrc_node | rsrc.h | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_put_rsrc_node | splice.c | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_reset_rsrc_node | filetable.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_reset_rsrc_node | rsrc.c | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_reset_rsrc_node | rsrc.h | local variable, return value |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_req_put_rsrc_nodes | io_uring.c | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_req_put_rsrc_nodes | rsrc.h | local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_req_assign_rsrc_node | io_uring.c | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_req_assign_rsrc_node | rsrc.h | function parameter, local variable |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_req_assign_buf_node | rsrc.c | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_req_assign_buf_node | rsrc.h | function parameter |
-| io_rsrc_node | rsrc.h | type, refs, tag, file_ptr | io_splice_get_file | splice.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_uring_show_fdinfo | fdinfo.c | local variable, return value |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_uring_show_fdinfo | fdinfo.h | local variable, return value |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_release_ubuf | rsrc.c | local variable, return value |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_alloc_imu | rsrc.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_free_imu | rsrc.c | function parameter, local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_buffer_unmap | rsrc.c | function parameter |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_rsrc_cache_init | io_uring.c | local variable, return value |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_rsrc_cache_init | rsrc.c | local variable, return value |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_rsrc_cache_init | rsrc.h | local variable, return value |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | headpage_already_acct | rsrc.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_buffer_account_pin | rsrc.c | function parameter |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_sqe_buffer_register | rsrc.c | local variable, return value |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_sqe_buffers_register | register.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_sqe_buffers_register | rsrc.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_sqe_buffers_register | rsrc.h | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_buffer_unregister_bvec | rsrc.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | validate_fixed_range | rsrc.c | function parameter, local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_import_fixed | rsrc.c | function parameter |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_vec_realloc | rsrc.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_vec_realloc | rsrc.h | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_vec_fill_bvec | rsrc.c | function parameter, local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_estimate_bvec_size | rsrc.c | function parameter, local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_vec_fill_kern_bvec | rsrc.c | function parameter, local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | iov_kern_bvec_size | rsrc.c | function parameter, local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_kern_bvec_size | rsrc.c | function parameter |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_import_reg_vec | net.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_import_reg_vec | rsrc.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_import_reg_vec | rsrc.h | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_import_reg_vec | rw.c | local variable |
-| io_mapped_ubuf | rsrc.h | ubuf, len, nr_bvecs, folio_shift, refs, acct_pages, is_kbuf, dir | io_import_reg_vec | uring_cmd.c | local variable |
-| io_imu_folio_data | rsrc.h | nr_pages_head, nr_pages_mid, folio_shift, nr_folios | io_region_init_ptr | memmap.c | local variable |
-| io_imu_folio_data | rsrc.h | nr_pages_head, nr_pages_mid, folio_shift, nr_folios | io_buffer_account_pin | rsrc.c | local variable |
-| io_imu_folio_data | rsrc.h | nr_pages_head, nr_pages_mid, folio_shift, nr_folios | io_coalesce_buffer | rsrc.c | function parameter, local variable |
-| io_imu_folio_data | rsrc.h | nr_pages_head, nr_pages_mid, folio_shift, nr_folios | io_check_coalesce_buffer | memmap.c | function parameter |
-| io_imu_folio_data | rsrc.h | nr_pages_head, nr_pages_mid, folio_shift, nr_folios | io_check_coalesce_buffer | rsrc.c | function parameter |
-| io_imu_folio_data | rsrc.h | nr_pages_head, nr_pages_mid, folio_shift, nr_folios | io_check_coalesce_buffer | rsrc.h | function parameter |
-| io_imu_folio_data | rsrc.h | nr_pages_head, nr_pages_mid, folio_shift, nr_folios | io_sqe_buffer_register | rsrc.c | local variable |
-| io_rw | rw.c | kiocb, addr, len, flags | io_file_supports_nowait | rw.c | local variable |
-| io_rw | rw.c | kiocb, addr, len, flags | io_iov_compat_buffer_select_prep | rw.c | function parameter |
-| io_rw | rw.c | kiocb, addr, len, flags | io_iov_buffer_select_prep | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | __io_import_rw_buffer | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_meta_restore | rw.c | local variable |
-| io_rw | rw.c | kiocb, addr, len, flags | io_prep_rw_pi | rw.c | function parameter |
-| io_rw | rw.c | kiocb, addr, len, flags | __io_prep_rw | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_init_rw_fixed | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_rw_import_reg_vec | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_rw_prep_reg_vec | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_read_mshot_prep | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_read_mshot_prep | rw.h | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_kiocb_update_pos | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_rw_should_reissue | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_req_end_write | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_req_io_end | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_req_rw_complete | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_req_rw_complete | rw.h | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_complete_rw | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_complete_rw_iopoll | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_rw_done | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | kiocb_done | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_kiocb_ppos | rw.c | local variable |
-| io_rw | rw.c | kiocb, addr, len, flags | loop_rw_iter | rw.c | function parameter |
-| io_rw | rw.c | kiocb, addr, len, flags | io_async_buf_func | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_rw_should_retry | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_iter_do_read | rw.c | function parameter |
-| io_rw | rw.c | kiocb, addr, len, flags | io_rw_init_file | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | __io_read | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_read_mshot | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_read_mshot | rw.h | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_write | rw.c | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_write | rw.h | local variable, return value |
-| io_rw | rw.c | kiocb, addr, len, flags | io_uring_classic_poll | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_ring_ctx_alloc | io_uring.c | local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_iov_buffer_select_prep | rw.c | local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_import_vec | rw.c | function parameter, local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | __io_import_rw_buffer | rw.c | function parameter, local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_import_rw_buffer | rw.c | function parameter |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_recycle | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_alloc_async | rw.c | local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_meta_save_state | rw.c | function parameter, local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_meta_restore | rw.c | function parameter |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_prep_rw_pi | rw.c | local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_init_rw_fixed | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_prep_write_fixed | rw.c | local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_prep_write_fixed | rw.h | local variable |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_import_reg_vec | rw.c | function parameter |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_prep_reg_vec | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_should_reissue | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_fixup_rw_res | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_should_retry | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_init_file | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | __io_read | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_write | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_write | rw.h | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_cache_free | rw.c | local variable, return value |
-| io_async_rw | rw.h | vec, bytes_done, iter, iter_state, fast_iov, wpq, meta, meta_state | io_rw_cache_free | rw.h | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | __io_splice_prep | splice.c | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_splice_cleanup | splice.c | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_splice_cleanup | splice.h | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_splice_get_file | splice.c | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_tee | splice.c | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_tee | splice.h | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_splice_prep | splice.c | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_splice_prep | splice.h | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_splice | splice.c | local variable, return value |
-| io_splice | splice.c | off_out, off_in, len, splice_fd_in, flags | io_splice | splice.h | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_uring_show_fdinfo | fdinfo.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_uring_show_fdinfo | fdinfo.h | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_ring_exit_work | io_uring.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_ring_exit_work | sqpoll.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | tctx_inflight | io_uring.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_uring_cancel_generic | io_uring.c | function parameter |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_uring_cancel_generic | io_uring.h | function parameter |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_uring_cancel_generic | sqpoll.c | function parameter |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_should_wake | io_uring.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_should_wake | io_uring.h | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_should_wake | napi.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_unregister_iowq_aff | register.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_thread_stop | sqpoll.c | function parameter, local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_thread_stop | sqpoll.h | function parameter, local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_put_sq_data | register.c | function parameter, local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_put_sq_data | sqpoll.c | function parameter, local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_put_sq_data | sqpoll.h | function parameter, local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sqd_update_thread_idle | sqpoll.c | function parameter |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_thread_finish | io_uring.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_thread_finish | sqpoll.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_thread_finish | sqpoll.h | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_attach_sq_data | sqpoll.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_get_sq_data | sqpoll.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sqd_events_pending | sqpoll.c | function parameter |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | __io_sq_thread | sqpoll.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sqd_handle_event | sqpoll.c | function parameter |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_tw_pending | sqpoll.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_update_worktime | sqpoll.c | function parameter |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_thread | sqpoll.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_offload_create | io_uring.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_offload_create | sqpoll.c | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sq_offload_create | sqpoll.h | local variable |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sqpoll_wq_cpu_affinity | register.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sqpoll_wq_cpu_affinity | sqpoll.c | local variable, return value |
-| io_sq_data | sqpoll.h | refs, park_pending, lock, ctx_list, wait, sq_thread_idle, sq_cpu, task_pid, task_tgid, work_time, state, exited | io_sqpoll_wq_cpu_affinity | sqpoll.h | local variable, return value |
-| io_statx | statx.c | dfd, mask, flags | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_statx | statx.c | dfd, mask, flags | io_statx_prep | statx.c | local variable, return value |
-| io_statx | statx.c | dfd, mask, flags | io_statx_prep | statx.h | local variable, return value |
-| io_statx | statx.c | dfd, mask, flags | io_statx | statx.c | local variable, return value |
-| io_statx | statx.c | dfd, mask, flags | io_statx | statx.h | local variable, return value |
-| io_statx | statx.c | dfd, mask, flags | io_statx_cleanup | statx.c | local variable, return value |
-| io_statx | statx.c | dfd, mask, flags | io_statx_cleanup | statx.h | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_sfr_prep | sync.c | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_sfr_prep | sync.h | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_sync_file_range | sync.c | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_sync_file_range | sync.h | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fsync_prep | sync.c | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fsync_prep | sync.h | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fsync | sync.c | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fsync | sync.h | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fallocate_prep | sync.c | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fallocate_prep | sync.h | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fallocate | sync.c | local variable, return value |
-| io_sync | sync.c | len, off, flags, mode | io_fallocate | sync.h | local variable, return value |
-| io_tctx_node | tctx.h | ctx_node | __io_async_cancel | cancel.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_ring_exit_work | io_uring.c | local variable, return value |
-| io_tctx_node | tctx.h | ctx_node | io_ring_exit_work | sqpoll.c | local variable, return value |
-| io_tctx_node | tctx.h | ctx_node | io_uring_try_cancel_iowq | io_uring.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_try_cancel_iowq | tctx.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_cancel_generic | io_uring.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_cancel_generic | io_uring.h | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_cancel_generic | sqpoll.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_unregister_iowq_aff | register.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | __io_uring_free | io_uring.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | __io_uring_free | tctx.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | __io_uring_add_tctx_node | io_uring.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | __io_uring_add_tctx_node | tctx.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | __io_uring_add_tctx_node | tctx.h | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_del_tctx_node | io_uring.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_del_tctx_node | tctx.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_del_tctx_node | tctx.h | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_clean_tctx | io_uring.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_clean_tctx | tctx.c | local variable |
-| io_tctx_node | tctx.h | ctx_node | io_uring_clean_tctx | tctx.h | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_is_timeout_noseq | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_put_req | timeout.c | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_timeout_finish | timeout.c | function parameter |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_timeout_complete | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_flush_killed_timeouts | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_flush_timeouts | io_uring.c | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_flush_timeouts | timeout.c | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_flush_timeouts | timeout.h | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | advise.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | alloc_cache.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | alloc_cache.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | cancel.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | cancel.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | epoll.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | eventfd.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | fdinfo.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | filetable.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | fs.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | futex.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | io-wq.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | io-wq.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | io_uring.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | io_uring.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | kbuf.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | kbuf.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | memmap.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | msg_ring.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | napi.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | napi.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | net.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | nop.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | notif.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | notif.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | opdef.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | openclose.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | poll.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | refs.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | register.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | rsrc.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | rsrc.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | rw.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | slist.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | splice.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | sqpoll.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | statx.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | sync.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | tctx.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | tctx.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | timeout.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | truncate.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | uring_cmd.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | waitid.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | xattr.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | if | zcrx.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_timeout_fn | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_req_task_link_timeout | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_link_timeout_fn | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_timeout_get_clock | timeout.c | function parameter, local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | __io_timeout_prep | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_link_timeout_prep | timeout.c | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_link_timeout_prep | timeout.h | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_timeout | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_timeout | timeout.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_queue_linked_timeout | io_uring.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_queue_linked_timeout | timeout.c | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_queue_linked_timeout | timeout.h | local variable, return value |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_kill_timeouts | io_uring.c | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_kill_timeouts | timeout.c | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_kill_timeouts | timeout.h | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_disarm_linked_timeout | timeout.c | local variable |
-| io_timeout | timeout.c | off, target_seq, repeats, list | io_disarm_linked_timeout | timeout.h | local variable |
-| io_timeout_rem | timeout.c | addr, ts, flags, ltimeout | io_timeout_remove_prep | timeout.c | local variable, return value |
-| io_timeout_rem | timeout.c | addr, ts, flags, ltimeout | io_timeout_remove_prep | timeout.h | local variable, return value |
-| io_timeout_rem | timeout.c | addr, ts, flags, ltimeout | io_timeout_remove | timeout.c | local variable, return value |
-| io_timeout_rem | timeout.c | addr, ts, flags, ltimeout | io_timeout_remove | timeout.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_is_timeout_noseq | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_put_req | timeout.c | local variable |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_timeout_finish | timeout.c | function parameter |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_timeout_complete | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_flush_killed_timeouts | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | advise.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | alloc_cache.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | alloc_cache.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | cancel.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | cancel.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | epoll.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | eventfd.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | fdinfo.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | filetable.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | fs.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | futex.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | io-wq.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | io-wq.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | io_uring.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | io_uring.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | kbuf.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | kbuf.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | memmap.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | msg_ring.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | napi.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | napi.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | net.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | nop.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | notif.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | notif.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | opdef.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | openclose.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | poll.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | refs.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | register.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | rsrc.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | rsrc.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | rw.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | slist.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | splice.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | sqpoll.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | statx.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | sync.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | tctx.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | tctx.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | timeout.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | truncate.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | uring_cmd.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | waitid.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | xattr.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | if | zcrx.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_timeout_fn | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_link_timeout_fn | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_timeout_get_clock | timeout.c | function parameter, local variable |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | __io_timeout_prep | timeout.c | local variable |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_timeout | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_timeout | timeout.h | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_queue_linked_timeout | io_uring.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_queue_linked_timeout | timeout.c | local variable, return value |
-| io_timeout_data | timeout.h | timer, ts, mode, flags | io_queue_linked_timeout | timeout.h | local variable, return value |
-| io_ftrunc | truncate.c | len | io_ftruncate_prep | truncate.c | local variable, return value |
-| io_ftrunc | truncate.c | len | io_ftruncate_prep | truncate.h | local variable, return value |
-| io_ftrunc | truncate.c | len | io_ftruncate | truncate.c | local variable, return value |
-| io_ftrunc | truncate.c | len | io_ftruncate | truncate.h | local variable, return value |
-| io_async_cmd | uring_cmd.h | data, vec | io_ring_ctx_alloc | io_uring.c | local variable |
-| io_async_cmd | uring_cmd.h | data, vec | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_async_cmd | uring_cmd.h | data, vec | io_cmd_cache_free | uring_cmd.c | local variable, return value |
-| io_async_cmd | uring_cmd.h | data, vec | io_cmd_cache_free | uring_cmd.h | local variable, return value |
-| io_async_cmd | uring_cmd.h | data, vec | io_req_uring_cleanup | uring_cmd.c | local variable, return value |
-| io_async_cmd | uring_cmd.h | data, vec | io_uring_cmd_prep_setup | uring_cmd.c | local variable, return value |
-| io_async_cmd | uring_cmd.h | data, vec | io_uring_cmd_import_fixed_vec | uring_cmd.c | local variable, return value |
-| io_async_cmd | uring_cmd.h | data, vec | io_uring_cmd_import_fixed_vec | uring_cmd.h | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_free | waitid.c | local variable |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_compat_copy_si | waitid.c | function parameter |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_copy_si | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_complete | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | __io_waitid_cancel | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_drop_issue_ref | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_cb | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_wait | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_prep | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid_prep | waitid.h | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid | waitid.c | local variable, return value |
-| io_waitid | waitid.c | which, upid, options, refs, info | io_waitid | waitid.h | local variable, return value |
-| io_waitid_async | waitid.h | wo | io_eopnotsupp_prep | opdef.c | local variable, return value |
-| io_waitid_async | waitid.h | wo | io_waitid_free | waitid.c | local variable, return value |
-| io_waitid_async | waitid.h | wo | __io_waitid_cancel | waitid.c | local variable, return value |
-| io_waitid_async | waitid.h | wo | io_waitid_drop_issue_ref | waitid.c | local variable, return value |
-| io_waitid_async | waitid.h | wo | io_waitid_cb | waitid.c | local variable, return value |
-| io_waitid_async | waitid.h | wo | io_waitid_wait | waitid.c | local variable, return value |
-| io_waitid_async | waitid.h | wo | io_waitid_prep | waitid.c | local variable |
-| io_waitid_async | waitid.h | wo | io_waitid_prep | waitid.h | local variable |
-| io_waitid_async | waitid.h | wo | io_waitid | waitid.c | local variable, return value |
-| io_waitid_async | waitid.h | wo | io_waitid | waitid.h | local variable, return value |
-| io_xattr | xattr.c | ctx | io_xattr_cleanup | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_xattr_cleanup | xattr.h | local variable, return value |
-| io_xattr | xattr.c | ctx | __io_getxattr_prep | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_getxattr_prep | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_getxattr_prep | xattr.h | local variable, return value |
-| io_xattr | xattr.c | ctx | io_fgetxattr | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_fgetxattr | xattr.h | local variable, return value |
-| io_xattr | xattr.c | ctx | io_getxattr | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_getxattr | xattr.h | local variable, return value |
-| io_xattr | xattr.c | ctx | __io_setxattr_prep | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_setxattr_prep | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_setxattr_prep | xattr.h | local variable, return value |
-| io_xattr | xattr.c | ctx | io_fsetxattr | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_fsetxattr | xattr.h | local variable, return value |
-| io_xattr | xattr.c | ctx | io_setxattr | xattr.c | local variable, return value |
-| io_xattr | xattr.c | ctx | io_setxattr | xattr.h | local variable, return value |
-| io_zcrx_args | zcrx.c | nr_skbs | io_zcrx_sync_for_device | zcrx.c | local variable |
-| io_zcrx_args | zcrx.c | nr_skbs | io_zcrx_recv_skb | zcrx.c | local variable, return value |
-| io_zcrx_args | zcrx.c | nr_skbs | io_zcrx_tcp_recvmsg | zcrx.c | local variable, return value |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | __io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_map_area | zcrx.c | function parameter |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_sync_for_device | zcrx.c | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_iov_to_area | zcrx.c | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_get_user_counter | zcrx.c | local variable, return value |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_iov_page | zcrx.c | local variable, return value |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_free_rbuf_ring | zcrx.c | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_free_area | zcrx.c | function parameter, local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_create_area | zcrx.c | function parameter, local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_unregister_zcrx_ifqs | io_uring.c | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_unregister_zcrx_ifqs | zcrx.c | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_unregister_zcrx_ifqs | zcrx.h | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | __io_zcrx_get_free_niov | zcrx.c | function parameter |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_return_niov_freelist | zcrx.c | local variable, return value |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_scrub | zcrx.c | local variable, return value |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_ring_refill | zcrx.c | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_refill_slow | zcrx.c | local variable, return value |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_pp_zc_destroy | zcrx.c | local variable, return value |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_queue_cqe | zcrx.c | local variable |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_alloc_fallback | zcrx.c | function parameter |
-| io_zcrx_area | zcrx.h | nia, is_mapped, area_id, ____cacheline_aligned_in_smp, free_count | io_zcrx_copy_chunk | zcrx.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | __io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_map_area | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_sync_for_device | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_iov_page | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_allocate_rbuf_ring | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_free_rbuf_ring | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_free_area | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_create_area | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_ifq_alloc | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_drop_netdev | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_close_queue | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_ifq_free | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_register_zcrx_ifq | register.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_register_zcrx_ifq | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_register_zcrx_ifq | zcrx.h | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_unregister_zcrx_ifqs | io_uring.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_unregister_zcrx_ifqs | zcrx.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_unregister_zcrx_ifqs | zcrx.h | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_return_niov | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_scrub | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_shutdown_zcrx_ifqs | io_uring.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_shutdown_zcrx_ifqs | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_shutdown_zcrx_ifqs | zcrx.h | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_rqring_entries | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_get_rqe | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_ring_refill | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_refill_slow | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_pp_zc_alloc_netmems | zcrx.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_pp_zc_init | zcrx.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_pp_zc_destroy | zcrx.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_pp_uninstall | zcrx.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_queue_cqe | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_alloc_fallback | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_copy_chunk | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_copy_frag | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv_frag | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv_skb | zcrx.c | local variable, return value |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_tcp_recvmsg | zcrx.c | function parameter, local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv | net.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv | zcrx.h | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_shutdown_zcrx_ifqs | io_uring.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_shutdown_zcrx_ifqs | zcrx.c | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_shutdown_zcrx_ifqs | zcrx.h | local variable |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv | net.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv | zcrx.c | function parameter |
-| io_zcrx_ifq | zcrx.h | rq_entries, cached_rq_head, rq_lock, if_rxq, netdev_tracker, lock | io_zcrx_recv | zcrx.h | function parameter |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_madvise | advise.c | local variable |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_madvise | advise.h | local variable |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_fadvise_force_async | advise.c | function parameter |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_fadvise_prep | advise.c | local variable, return value |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_fadvise_prep | advise.h | local variable, return value |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_fadvise | advise.c | local variable, return value |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_fadvise | advise.h | local variable, return value |
+| io_fadvise | advise.c | *file: struct file, offset: u64, len: u64, advice: u32 | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_madvise | advise.c | *file: struct file, addr: u64, len: u64, advice: u32 | io_madvise_prep | advise.c | local variable, return value |
+| io_madvise | advise.c | *file: struct file, addr: u64, len: u64, advice: u32 | io_madvise_prep | advise.h | local variable, return value |
+| io_madvise | advise.c | *file: struct file, addr: u64, len: u64, advice: u32 | io_madvise | advise.c | local variable, return value |
+| io_madvise | advise.c | *file: struct file, addr: u64, len: u64, advice: u32 | io_madvise | advise.h | local variable, return value |
+| io_madvise | advise.c | *file: struct file, addr: u64, len: u64, advice: u32 | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_cancel_req_match | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_cancel_req_match | cancel.h | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_cancel_req_match | poll.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_cancel_req_match | timeout.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_async_cancel_one | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_try_cancel | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_try_cancel | cancel.h | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_try_cancel | timeout.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_async_cancel_prep | cancel.c | local variable, return value |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_async_cancel_prep | cancel.h | local variable, return value |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | __io_async_cancel | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_async_cancel | cancel.c | local variable, return value |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_async_cancel | cancel.h | local variable, return value |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | __io_sync_cancel | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_futex_cancel | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_futex_cancel | futex.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_futex_cancel | futex.h | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_futex_cancel | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_futex_cancel | futex.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_futex_cancel | futex.h | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_poll_find | poll.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_poll_file_find | poll.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | __io_poll_cancel | poll.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_poll_cancel | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_poll_cancel | poll.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_poll_cancel | poll.h | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_waitid_cancel | cancel.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_waitid_cancel | waitid.c | function parameter |
+| io_cancel | cancel.c | *file: struct file, addr: u64, flags: u32, fd: s32, opcode: u8 | io_waitid_cancel | waitid.h | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_cancel_req_match | cancel.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_cancel_req_match | cancel.h | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_cancel_req_match | poll.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_cancel_req_match | timeout.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_cancel_cb | cancel.c | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_async_cancel_one | cancel.c | function parameter, local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_try_cancel | cancel.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_try_cancel | cancel.h | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_try_cancel | timeout.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_async_cancel_prep | cancel.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_async_cancel_prep | cancel.h | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | __io_async_cancel | cancel.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_async_cancel | cancel.c | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_async_cancel | cancel.h | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | __io_sync_cancel | cancel.c | function parameter, local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | __io_futex_cancel | futex.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_futex_cancel | cancel.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_futex_cancel | futex.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_futex_cancel | futex.h | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_futex_cancel | cancel.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_futex_cancel | futex.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_futex_cancel | futex.h | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_remove_all | io_uring.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_remove_all | poll.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_remove_all | poll.h | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_find | poll.c | function parameter, local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_file_find | poll.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_disarm | poll.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | __io_poll_cancel | poll.c | function parameter, local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_cancel | cancel.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_cancel | poll.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_cancel | poll.h | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_remove | poll.c | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_remove | poll.h | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_multishot_retry | poll.h | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_poll_multishot_retry | rw.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_timeout_fn | timeout.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_req_task_link_timeout | timeout.c | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_timeout_get_clock | timeout.c | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_timeout_remove | timeout.c | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_timeout_remove | timeout.h | local variable, return value |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_disarm_linked_timeout | timeout.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_disarm_linked_timeout | timeout.h | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | __io_waitid_cancel | waitid.c | local variable |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_waitid_cancel | cancel.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_waitid_cancel | waitid.c | function parameter |
+| io_cancel_data | cancel.h | *ctx: struct io_ring_ctx, {: union, data: u64, *file: struct file | io_waitid_cancel | waitid.h | function parameter |
+| io_epoll | epoll.c | *file: struct file, epfd: int, op: int, fd: int, event: struct epoll_event | io_epoll_ctl_prep | epoll.c | local variable, return value |
+| io_epoll | epoll.c | *file: struct file, epfd: int, op: int, fd: int, event: struct epoll_event | io_epoll_ctl_prep | epoll.h | local variable, return value |
+| io_epoll | epoll.c | *file: struct file, epfd: int, op: int, fd: int, event: struct epoll_event | io_epoll_ctl | epoll.c | local variable, return value |
+| io_epoll | epoll.c | *file: struct file, epfd: int, op: int, fd: int, event: struct epoll_event | io_epoll_ctl | epoll.h | local variable, return value |
+| io_epoll_wait | epoll.c | *file: struct file, maxevents: int, *events: struct epoll_event __user | io_epoll_wait_prep | epoll.c | local variable, return value |
+| io_epoll_wait | epoll.c | *file: struct file, maxevents: int, *events: struct epoll_event __user | io_epoll_wait_prep | epoll.h | local variable, return value |
+| io_epoll_wait | epoll.c | *file: struct file, maxevents: int, *events: struct epoll_event __user | io_epoll_wait | epoll.c | local variable, return value |
+| io_epoll_wait | epoll.c | *file: struct file, maxevents: int, *events: struct epoll_event __user | io_epoll_wait | epoll.h | local variable, return value |
+| io_epoll_wait | epoll.c | *file: struct file, maxevents: int, *events: struct epoll_event __user | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_free | eventfd.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_put | eventfd.c | function parameter |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_do_signal | eventfd.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_release | eventfd.c | function parameter, local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | __io_eventfd_signal | eventfd.c | function parameter, local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_trigger | eventfd.c | function parameter, local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_grab | eventfd.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_signal | eventfd.c | local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_signal | eventfd.h | local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_signal | io_uring.c | local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_flush_signal | eventfd.c | local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_flush_signal | eventfd.h | local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_flush_signal | io_uring.c | local variable |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_register | eventfd.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_register | eventfd.h | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_register | register.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_unregister | eventfd.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_unregister | eventfd.h | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_unregister | io_uring.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_unregister | register.c | local variable, return value |
+| io_ev_fd | eventfd.c | *cq_ev_fd: struct eventfd_ctx, eventfd_async: unsigned int, last_cq_tail: unsigned, refs: refcount_t, ops: atomic_t, rcu: struct rcu_head | io_eventfd_unregister | register.h | local variable, return value |
+| io_rename | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_renameat_prep | fs.c | local variable, return value |
+| io_rename | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_renameat_prep | fs.h | local variable, return value |
+| io_rename | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_renameat | fs.c | local variable, return value |
+| io_rename | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_renameat | fs.h | local variable, return value |
+| io_rename | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_renameat_cleanup | fs.c | local variable, return value |
+| io_rename | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_renameat_cleanup | fs.h | local variable, return value |
+| io_unlink | fs.c | *file: struct file, dfd: int, flags: int, *filename: struct filename | io_unlinkat_prep | fs.c | local variable, return value |
+| io_unlink | fs.c | *file: struct file, dfd: int, flags: int, *filename: struct filename | io_unlinkat_prep | fs.h | local variable, return value |
+| io_unlink | fs.c | *file: struct file, dfd: int, flags: int, *filename: struct filename | io_unlinkat | fs.c | local variable, return value |
+| io_unlink | fs.c | *file: struct file, dfd: int, flags: int, *filename: struct filename | io_unlinkat | fs.h | local variable, return value |
+| io_unlink | fs.c | *file: struct file, dfd: int, flags: int, *filename: struct filename | io_unlinkat_cleanup | fs.c | local variable, return value |
+| io_unlink | fs.c | *file: struct file, dfd: int, flags: int, *filename: struct filename | io_unlinkat_cleanup | fs.h | local variable, return value |
+| io_mkdir | fs.c | *file: struct file, dfd: int, mode: umode_t, *filename: struct filename | io_mkdirat_prep | fs.c | local variable, return value |
+| io_mkdir | fs.c | *file: struct file, dfd: int, mode: umode_t, *filename: struct filename | io_mkdirat_prep | fs.h | local variable, return value |
+| io_mkdir | fs.c | *file: struct file, dfd: int, mode: umode_t, *filename: struct filename | io_mkdirat | fs.c | local variable, return value |
+| io_mkdir | fs.c | *file: struct file, dfd: int, mode: umode_t, *filename: struct filename | io_mkdirat | fs.h | local variable, return value |
+| io_mkdir | fs.c | *file: struct file, dfd: int, mode: umode_t, *filename: struct filename | io_mkdirat_cleanup | fs.c | local variable, return value |
+| io_mkdir | fs.c | *file: struct file, dfd: int, mode: umode_t, *filename: struct filename | io_mkdirat_cleanup | fs.h | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_symlinkat_prep | fs.c | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_symlinkat_prep | fs.h | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_symlinkat | fs.c | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_symlinkat | fs.h | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_linkat_prep | fs.c | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_linkat_prep | fs.h | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_linkat | fs.c | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_linkat | fs.h | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_link_cleanup | fs.c | local variable, return value |
+| io_link | fs.c | *file: struct file, old_dfd: int, new_dfd: int, *oldpath: struct filename, *newpath: struct filename, flags: int | io_link_cleanup | fs.h | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futexv_complete | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futexv_claim | futex.c | function parameter |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | __io_futex_cancel | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futex_prep | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futex_prep | futex.h | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futex_wakev_fn | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futexv_prep | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futexv_prep | futex.h | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futexv_wait | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futexv_wait | futex.h | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futex_wait | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futex_wait | futex.h | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futex_wake | futex.c | local variable, return value |
+| io_futex | futex.c | *file: struct file, {: union, *uaddr: u32 __user, *uwaitv: struct futex_waitv __user | io_futex_wake | futex.h | local variable, return value |
+| io_futex_data | futex.c | q: struct futex_q, *req: struct io_kiocb | io_futex_cache_init | futex.c | local variable |
+| io_futex_data | futex.c | q: struct futex_q, *req: struct io_kiocb | io_futex_cache_init | futex.h | local variable |
+| io_futex_data | futex.c | q: struct futex_q, *req: struct io_kiocb | io_futex_cache_init | io_uring.c | local variable |
+| io_futex_data | futex.c | q: struct futex_q, *req: struct io_kiocb | __io_futex_cancel | futex.c | local variable, return value |
+| io_futex_data | futex.c | q: struct futex_q, *req: struct io_kiocb | io_futex_wake_fn | futex.c | local variable, return value |
+| io_futex_data | futex.c | q: struct futex_q, *req: struct io_kiocb | io_futex_wait | futex.c | local variable, return value |
+| io_futex_data | futex.c | q: struct futex_q, *req: struct io_kiocb | io_futex_wait | futex.h | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_worker_get | io-wq.c | function parameter, local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_worker_release | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_work_get_acct | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_get_acct | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_stopped | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_stopped | io-wq.h | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_stopped | io_uring.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_worker_cancel_cb | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_task_worker_match | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_worker_exit | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | __io_acct_run_queue | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_create_worker | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_inc_running | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | create_worker_cb | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_queue_worker_create | io-wq.c | function parameter, local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_dec_running | io-wq.c | function parameter, local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | __io_worker_busy | io-wq.c | function parameter, local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wait_on_hash | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_assign_current_work | io-wq.c | function parameter, local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_running | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_running | io-wq.h | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_sleeping | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_sleeping | io-wq.h | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_init_new_worker | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_work_match_all | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_should_retry_thread | io-wq.c | function parameter, local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | queue_create_worker_retry | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | create_worker_cont | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_workqueue_create | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | create_io_worker | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_wake | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_hash_work | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_hash_work | io-wq.h | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_hash_work | io_uring.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | __io_wq_worker_cancel | io-wq.c | function parameter, local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_cancel | io-wq.c | function parameter |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_task_work_match | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_cancel_tw_create | io-wq.c | local variable, return value |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_put_and_exit | io-wq.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_put_and_exit | io-wq.h | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_put_and_exit | tctx.c | local variable |
+| io_worker | io-wq.c | ref: refcount_t, flags: unsigned long, nulls_node: struct hlist_nulls_node, all_list: struct list_head, *task: struct task_struct, *wq: struct io_wq, *acct: struct io_wq_acct, *cur_work: struct io_wq_work, lock: raw_spinlock_t, ref_done: struct completion, create_state: unsigned long, create_work: struct callback_head, init_retries: int, {: union, rcu: struct rcu_head, work: struct delayed_work | io_wq_worker_affinity | io-wq.c | function parameter |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_worker_release | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_get_acct | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_work_get_acct | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_worker_cancel_cb | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_worker_exit | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | __io_acct_run_queue | io-wq.c | function parameter, local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_create_worker | io-wq.c | function parameter |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_inc_running | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | create_worker_cb | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_queue_worker_create | io-wq.c | function parameter |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_dec_running | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | __io_worker_busy | io-wq.c | function parameter, local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wait_on_hash | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_assign_current_work | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_worker | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_worker_sleeping | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_worker_sleeping | io-wq.h | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_init_new_worker | io-wq.c | function parameter |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | create_worker_cont | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_workqueue_create | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | create_io_worker | io-wq.c | function parameter, local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_run_cancel | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_insert_work | io-wq.c | function parameter |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_enqueue | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_enqueue | io-wq.h | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_enqueue | io_uring.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_worker_cancel | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_remove_pending | io-wq.c | function parameter, local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_acct_cancel_pending_work | io-wq.c | function parameter |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_cancel_pending_work | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_acct_cancel_running_work | io-wq.c | function parameter |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_hash_wake | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_create | io-wq.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_create | io-wq.h | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_create | tctx.c | local variable, return value |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_max_workers | io-wq.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_max_workers | io-wq.h | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_max_workers | register.c | local variable |
+| io_wq_acct | io-wq.c | lists.: * Protects access to the worker, workers_lock: raw_spinlock_t, nr_workers: unsigned, max_workers: unsigned, nr_running: atomic_t, #workers_lock: * The list of free workers. Protected by, (read).: * (write) and RCU, free_list: struct hlist_nulls_head, #workers_lock: * The list of all workers. Protected by, (read).: * (write) and RCU, all_list: struct list_head, lock: raw_spinlock_t, work_list: struct io_wq_work_list, flags: unsigned long | io_wq_max_workers | tctx.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_cancel_cb | cancel.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_async_cancel_one | cancel.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_worker_release | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_get_acct | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_work_get_acct | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_get_acct | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_worker_ref_put | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_worker_cancel_cb | io-wq.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_worker_exit | io-wq.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_acct_run_queue | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_create_worker | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | create_worker_cb | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_queue_worker_create | io-wq.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_dec_running | io-wq.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_worker_busy | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_get_work_hash | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wait_on_hash | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_assign_current_work | io-wq.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_worker | io-wq.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_worker_sleeping | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_worker_sleeping | io-wq.h | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_init_new_worker | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_work_match_all | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | create_worker_cont | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_workqueue_create | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | create_io_worker | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_worker_wake | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_run_cancel | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_insert_work | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_work_match_item | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_enqueue | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_enqueue | io-wq.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_enqueue | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_hash_work | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_hash_work | io-wq.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_hash_work | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_wq_worker_cancel | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_worker_cancel | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_remove_pending | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_acct_cancel_pending_work | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cancel_pending_work | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_acct_cancel_running_work | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cancel_running_work | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cancel_cb | cancel.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cancel_cb | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cancel_cb | io-wq.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cancel_cb | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_hash_wake | io-wq.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_create | io-wq.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_create | io-wq.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_create | tctx.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_task_work_match | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_exit_start | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_exit_start | io-wq.h | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_exit_start | io_uring.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cancel_tw_create | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_exit_workers | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_destroy | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_put_and_exit | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_put_and_exit | io-wq.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_put_and_exit | tctx.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_worker_affinity | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_wq_cpu_online | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cpu_online | io-wq.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cpu_offline | io-wq.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cpu_affinity | io-wq.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cpu_affinity | io-wq.h | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cpu_affinity | register.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_cpu_affinity | sqpoll.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_max_workers | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_max_workers | io-wq.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_max_workers | register.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_max_workers | tctx.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_put_hash | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_put_hash | io-wq.h | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_put_hash | io_uring.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_is_hashed | io-wq.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_is_hashed | io-wq.h | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_is_hashed | io_uring.c | function parameter, local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_queue_iowq | io_uring.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_free_work | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_free_work | io_uring.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_submit_work | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_wq_submit_work | io_uring.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_cancel_ctx_cb | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_ring_exit_work | io_uring.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_ring_exit_work | sqpoll.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_cancel_task_cb | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_try_cancel_iowq | io_uring.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_try_cancel_iowq | tctx.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_try_cancel_requests | io_uring.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | advise.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | alloc_cache.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | alloc_cache.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | cancel.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | cancel.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | epoll.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | eventfd.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | fdinfo.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | filetable.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | fs.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | futex.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | io-wq.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | io-wq.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | io_uring.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | io_uring.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | kbuf.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | kbuf.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | memmap.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | msg_ring.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | napi.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | napi.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | net.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | nop.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | notif.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | notif.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | opdef.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | openclose.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | poll.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | refs.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | register.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | rsrc.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | rsrc.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | rw.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | slist.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | splice.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | sqpoll.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | statx.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | sync.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | tctx.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | tctx.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | timeout.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | timeout.h | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | truncate.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | uring_cmd.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | waitid.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | xattr.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | if | zcrx.c | function parameter, local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_cancel_generic | io_uring.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_cancel_generic | io_uring.h | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_cancel_generic | sqpoll.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_unregister_iowq_aff | register.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_after | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_after | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_tail | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_tail | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_tail | io_uring.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_tail | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_head | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_add_head | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_cut | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_cut | rw.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_cut | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __wq_list_splice | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_splice | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_stack_add_head | io_uring.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_stack_add_head | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_del | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_list_del | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_stack_extract | io_uring.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_stack_extract | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_next_work | io-wq.c | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | wq_next_work | slist.h | function parameter |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_uring_free | io_uring.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_uring_free | tctx.c | local variable |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_alloc_task_context | io_uring.h | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_alloc_task_context | sqpoll.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_alloc_task_context | tctx.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_alloc_task_context | tctx.h | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_uring_add_tctx_node | io_uring.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_uring_add_tctx_node | tctx.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | __io_uring_add_tctx_node | tctx.h | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_clean_tctx | io_uring.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_clean_tctx | tctx.c | local variable, return value |
+| io_wq | io-wq.c | state: unsigned long, *free_work: free_work_fn, *do_work: io_wq_work_fn, *hash: struct io_wq_hash, worker_refs: atomic_t, worker_done: struct completion, cpuhp_node: struct hlist_node, *task: struct task_struct, acct[IO_WQ_ACCT_NR]: struct io_wq_acct, wait: struct wait_queue_entry, *hash_tail[IO_WQ_NR_HASH_BUCKETS]: struct io_wq_work, cpu_mask: cpumask_var_t | io_uring_clean_tctx | tctx.h | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | create_worker_cont | io-wq.c | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_enqueue | io-wq.c | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_enqueue | io-wq.h | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_enqueue | io_uring.c | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_hash_work | io-wq.c | local variable |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_hash_work | io-wq.h | local variable |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_hash_work | io_uring.c | local variable |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | __io_wq_worker_cancel | io-wq.c | function parameter |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_worker_cancel | io-wq.c | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_remove_pending | io-wq.c | local variable |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_acct_cancel_pending_work | io-wq.c | function parameter, local variable |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_cancel_pending_work | io-wq.c | function parameter, local variable |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_acct_cancel_running_work | io-wq.c | function parameter, local variable |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_cancel_running_work | io-wq.c | function parameter |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_cancel_cb | cancel.c | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_cancel_cb | io-wq.c | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_cancel_cb | io-wq.h | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_cancel_cb | io_uring.c | local variable, return value |
+| io_cb_cancel_data | io-wq.c | *fn: work_cancel_fn, *data: void, nr_running: int, nr_pending: int, cancel_all: bool | io_wq_destroy | io-wq.c | local variable, return value |
+| online_data | io-wq.c | cpu: unsigned int, online: bool | io_wq_put_and_exit | io-wq.c | local variable |
+| online_data | io-wq.c | cpu: unsigned int, online: bool | io_wq_put_and_exit | io-wq.h | local variable |
+| online_data | io-wq.c | cpu: unsigned int, online: bool | io_wq_put_and_exit | tctx.c | local variable |
+| online_data | io-wq.c | cpu: unsigned int, online: bool | io_wq_worker_affinity | io-wq.c | local variable, return value |
+| online_data | io-wq.c | cpu: unsigned int, online: bool | __io_wq_cpu_online | io-wq.c | local variable, return value |
+| io_wq_hash | io-wq.h | refs: refcount_t, map: unsigned long, wait: struct wait_queue_head | io_wq_put_hash | io-wq.c | function parameter, local variable |
+| io_wq_hash | io-wq.h | refs: refcount_t, map: unsigned long, wait: struct wait_queue_head | io_wq_put_hash | io-wq.h | function parameter, local variable |
+| io_wq_hash | io-wq.h | refs: refcount_t, map: unsigned long, wait: struct wait_queue_head | io_wq_put_hash | io_uring.c | function parameter, local variable |
+| io_wq_hash | io-wq.h | refs: refcount_t, map: unsigned long, wait: struct wait_queue_head | io_init_wq_offload | tctx.c | local variable |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_wq_hash_wake | io-wq.c | local variable |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_wq_create | io-wq.c | function parameter |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_wq_create | io-wq.h | function parameter |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_wq_create | tctx.c | function parameter |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_wq_put_hash | io-wq.c | local variable |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_wq_put_hash | io-wq.h | local variable |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_wq_put_hash | io_uring.c | local variable |
+| io_wq_data | io-wq.h | *hash: struct io_wq_hash, *task: struct task_struct, *do_work: io_wq_work_fn, *free_work: free_work_fn | io_init_wq_offload | tctx.c | local variable |
+| io_defer_entry | io_uring.c | list: struct list_head, *req: struct io_kiocb, seq: u32 | io_queue_deferred | io_uring.c | local variable, return value |
+| io_defer_entry | io_uring.c | list: struct list_head, *req: struct io_kiocb, seq: u32 | io_get_sequence | io_uring.c | local variable |
+| io_defer_entry | io_uring.c | list: struct list_head, *req: struct io_kiocb, seq: u32 | io_cancel_defer_files | io_uring.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | io_cqring_schedule_timeout | io_uring.c | local variable |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | __io_cqring_wait_schedule | io_uring.c | function parameter, local variable |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | io_cqring_wait_schedule | io_uring.c | function parameter, local variable |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | io_cqring_wait | io_uring.c | function parameter, local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | io_validate_ext_arg | io_uring.c | local variable |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | io_get_ext_arg | io_uring.c | function parameter, local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | advise.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | alloc_cache.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | alloc_cache.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | cancel.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | cancel.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | epoll.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | eventfd.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | fdinfo.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | filetable.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | fs.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | futex.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | io-wq.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | io-wq.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | io_uring.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | io_uring.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | kbuf.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | kbuf.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | memmap.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | msg_ring.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | napi.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | napi.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | net.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | nop.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | notif.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | notif.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | opdef.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | openclose.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | poll.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | refs.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | register.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | rsrc.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | rsrc.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | rw.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | slist.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | splice.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | sqpoll.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | statx.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | sync.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | tctx.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | tctx.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | timeout.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | timeout.h | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | truncate.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | uring_cmd.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | waitid.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | xattr.c | local variable, return value |
+| ext_arg | io_uring.c | argsz: size_t, ts: struct timespec64, *sig: const sigset_t __user, min_time: ktime_t, ts_set: bool, iowait: bool | if | zcrx.c | local variable, return value |
+| io_tctx_exit | io_uring.c | task_work: struct callback_head, completion: struct completion, *ctx: struct io_ring_ctx | io_uring_poll | io_uring.c | local variable |
+| io_tctx_exit | io_uring.c | task_work: struct callback_head, completion: struct completion, *ctx: struct io_ring_ctx | io_tctx_exit_cb | io_uring.c | local variable, return value |
+| io_tctx_exit | io_uring.c | task_work: struct callback_head, completion: struct completion, *ctx: struct io_ring_ctx | io_ring_exit_work | io_uring.c | local variable |
+| io_tctx_exit | io_uring.c | task_work: struct callback_head, completion: struct completion, *ctx: struct io_ring_ctx | io_ring_exit_work | sqpoll.c | local variable |
+| io_task_cancel | io_uring.c | *tctx: struct io_uring_task, all: bool | io_uring_release | io_uring.c | local variable |
+| io_task_cancel | io_uring.c | *tctx: struct io_uring_task, all: bool | io_cancel_task_cb | io_uring.c | local variable, return value |
+| io_task_cancel | io_uring.c | *tctx: struct io_uring_task, all: bool | io_uring_try_cancel_requests | io_uring.c | local variable, return value |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_wake_function | io_uring.c | local variable, return value |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_cqring_timer_wakeup | io_uring.c | local variable, return value |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_cqring_min_timer_wakeup | io_uring.c | local variable, return value |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_cqring_schedule_timeout | io_uring.c | function parameter, local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | __io_cqring_wait_schedule | io_uring.c | function parameter, local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_cqring_wait_schedule | io_uring.c | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_cqring_wait | io_uring.c | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_should_wake | io_uring.c | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_should_wake | io_uring.h | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_should_wake | napi.c | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_busy_loop_should_end | napi.c | local variable, return value |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_blocking_busy_loop | napi.c | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_unregister_napi | napi.c | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_unregister_napi | napi.h | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_unregister_napi | register.c | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | __io_napi_busy_loop | napi.c | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | __io_napi_busy_loop | napi.h | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi | napi.h | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi | sqpoll.c | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_busy_loop | io_uring.c | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_busy_loop | napi.h | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_add | napi.h | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_add | poll.c | local variable |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_busy_loop | io_uring.c | function parameter |
+| io_wait_queue | io_uring.h | wq: struct wait_queue_entry, *ctx: struct io_ring_ctx, cq_tail: unsigned, cq_min_tail: unsigned, nr_timeouts: unsigned, hit_timeout: int, min_timeout: ktime_t, timeout: ktime_t, t: struct hrtimer, CONFIG_NET_RX_BUSY_POLL: #ifdef, napi_busy_poll_dt: ktime_t, napi_prefer_busy_poll: bool | io_napi_busy_loop | napi.h | function parameter |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_remove_buffers_prep | kbuf.c | local variable, return value |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_remove_buffers_prep | kbuf.h | local variable, return value |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_remove_buffers | kbuf.c | local variable, return value |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_remove_buffers | kbuf.h | local variable, return value |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_provide_buffers_prep | kbuf.c | local variable, return value |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_provide_buffers_prep | kbuf.h | local variable, return value |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_add_buffers | kbuf.c | function parameter |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_provide_buffers | kbuf.c | local variable, return value |
+| io_provide_buf | kbuf.c | *file: struct file, addr: __u64, len: __u32, bgid: __u32, nbufs: __u32, bid: __u16 | io_provide_buffers | kbuf.h | local variable, return value |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_kbuf_inc_commit | kbuf.c | function parameter, local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_kbuf_commit | kbuf.c | function parameter, local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_kbuf_commit | kbuf.h | function parameter, local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffer_get_list | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffer_add_list | kbuf.c | function parameter |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_kbuf_recycle_legacy | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_kbuf_recycle_legacy | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_provided_buffer_select | kbuf.c | function parameter, local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_provided_buffers_select | kbuf.c | function parameter, local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_ring_buffer_select | kbuf.c | function parameter |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffer_select | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffer_select | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffer_select | net.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffer_select | rw.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_ring_buffers_peek | kbuf.c | function parameter |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffers_select | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffers_select | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffers_select | net.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffers_peek | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffers_peek | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_buffers_peek | net.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | __io_put_kbuf_ring | kbuf.c | local variable, return value |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | __io_put_kbufs | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | __io_put_kbufs | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | __io_remove_buffers | kbuf.c | function parameter, local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_put_bl | kbuf.c | function parameter |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_destroy_buffers | io_uring.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_destroy_buffers | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_destroy_buffers | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_destroy_bl | kbuf.c | function parameter |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_remove_buffers | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_remove_buffers | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_provide_buffers_prep | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_provide_buffers_prep | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_add_buffers | kbuf.c | function parameter |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_provide_buffers | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_provide_buffers | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_register_pbuf_ring | kbuf.c | local variable, return value |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_register_pbuf_ring | kbuf.h | local variable, return value |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_register_pbuf_ring | register.c | local variable, return value |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_unregister_pbuf_ring | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_unregister_pbuf_ring | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_unregister_pbuf_ring | register.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_register_pbuf_status | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_register_pbuf_status | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_register_pbuf_status | register.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_pbuf_get_region | kbuf.c | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_pbuf_get_region | kbuf.h | local variable |
+| io_buffer_list | kbuf.h | not,: * If ->buf_nr_pages is set, then buf_pages/buf_ring are used. If, used.: * then these are classic provided buffers and ->buf_list is, {: union, buf_list: struct list_head, *buf_ring: struct io_uring_buf_ring | io_pbuf_get_region | memmap.c | local variable |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_kbuf_inc_commit | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_kbuf_commit | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_kbuf_commit | kbuf.h | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_buffer_add_list | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_kbuf_recycle_legacy | kbuf.c | local variable |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_kbuf_recycle_legacy | kbuf.h | local variable |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_provided_buffer_select | kbuf.c | function parameter, local variable, return value |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_provided_buffers_select | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_ring_buffer_select | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_ring_buffers_peek | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | __io_remove_buffers | kbuf.c | function parameter, local variable, return value |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_put_bl | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_destroy_bl | kbuf.c | function parameter |
+| io_buffer | kbuf.h | list: struct list_head, addr: __u64, len: __u32, bid: __u16, bgid: __u16 | io_add_buffers | kbuf.c | function parameter, local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffer_select | kbuf.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffer_select | kbuf.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffer_select | net.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffer_select | rw.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_ring_buffers_peek | kbuf.c | function parameter |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | advise.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | alloc_cache.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | alloc_cache.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | cancel.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | cancel.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | epoll.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | eventfd.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | fdinfo.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | filetable.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | fs.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | futex.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | io-wq.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | io-wq.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | io_uring.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | io_uring.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | kbuf.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | kbuf.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | memmap.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | msg_ring.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | napi.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | napi.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | net.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | nop.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | notif.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | notif.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | opdef.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | openclose.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | poll.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | refs.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | register.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | rsrc.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | rsrc.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | rw.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | slist.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | splice.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | sqpoll.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | statx.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | sync.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | tctx.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | tctx.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | timeout.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | timeout.h | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | truncate.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | uring_cmd.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | waitid.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | xattr.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | if | zcrx.c | local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffers_select | kbuf.c | function parameter, local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffers_select | kbuf.h | function parameter, local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffers_select | net.c | function parameter, local variable |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffers_peek | kbuf.c | function parameter |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffers_peek | kbuf.h | function parameter |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_buffers_peek | net.c | function parameter |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_send_select_buffer | net.c | local variable, return value |
+| buf_sel_arg | kbuf.h | *iovs: struct iovec, out_len: size_t, max_len: size_t, nr_iovs: unsigned short, mode: unsigned short | io_recv_buf_select | net.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_ring_cleanup | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_ring_cleanup | msg_ring.h | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_get_kiocb | msg_ring.c | local variable |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_data_remote | msg_ring.c | function parameter, local variable |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | __io_msg_ring_data | msg_ring.c | function parameter |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_ring_data | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_grab_file | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_install_complete | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_tw_fd_complete | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_fd_remote | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_send_fd | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | __io_msg_ring_prep | msg_ring.c | function parameter |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_ring_prep | msg_ring.c | local variable |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_ring_prep | msg_ring.h | local variable |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_ring | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_msg_ring | msg_ring.h | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_uring_sync_msg_ring | msg_ring.c | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_uring_sync_msg_ring | msg_ring.h | local variable, return value |
+| io_msg | msg_ring.c | *file: struct file, *src_file: struct file, tw: struct callback_head, user_data: u64, len: u32, cmd: u32, src_fd: u32, {: union, dst_fd: u32, cqe_flags: u32 | io_uring_sync_msg_ring | register.c | local variable, return value |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | io_napi_hash_find | napi.c | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | __io_napi_add_id | napi.c | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | __io_napi_add_id | napi.h | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | __io_napi_del_id | napi.c | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | __io_napi_remove_stale | napi.c | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | io_napi_busy_loop_should_end | napi.c | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | io_napi_free | io_uring.c | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | io_napi_free | napi.c | local variable |
+| io_napi_entry | napi.c | napi_id: unsigned int, list: struct list_head, timeout: unsigned long, node: struct hlist_node, rcu: struct rcu_head | io_napi_free | napi.h | local variable |
+| io_shutdown | net.c | *file: struct file, how: int | io_shutdown_prep | net.c | local variable, return value |
+| io_shutdown | net.c | *file: struct file, how: int | io_shutdown_prep | net.h | local variable, return value |
+| io_shutdown | net.c | *file: struct file, how: int | io_shutdown | net.c | local variable, return value |
+| io_shutdown | net.c | *file: struct file, how: int | io_shutdown | net.h | local variable, return value |
+| io_shutdown | net.c | *file: struct file, how: int | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_accept | net.c | *file: struct file, *addr: struct sockaddr __user, *addr_len: int __user, flags: int, iou_flags: int, file_slot: u32, nofile: unsigned long | io_accept_prep | net.c | local variable, return value |
+| io_accept | net.c | *file: struct file, *addr: struct sockaddr __user, *addr_len: int __user, flags: int, iou_flags: int, file_slot: u32, nofile: unsigned long | io_accept_prep | net.h | local variable, return value |
+| io_accept | net.c | *file: struct file, *addr: struct sockaddr __user, *addr_len: int __user, flags: int, iou_flags: int, file_slot: u32, nofile: unsigned long | io_accept | net.c | local variable, return value |
+| io_accept | net.c | *file: struct file, *addr: struct sockaddr __user, *addr_len: int __user, flags: int, iou_flags: int, file_slot: u32, nofile: unsigned long | io_accept | net.h | local variable, return value |
+| io_accept | net.c | *file: struct file, *addr: struct sockaddr __user, *addr_len: int __user, flags: int, iou_flags: int, file_slot: u32, nofile: unsigned long | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_socket | net.c | *file: struct file, domain: int, type: int, protocol: int, flags: int, file_slot: u32, nofile: unsigned long | io_socket_prep | net.c | local variable, return value |
+| io_socket | net.c | *file: struct file, domain: int, type: int, protocol: int, flags: int, file_slot: u32, nofile: unsigned long | io_socket_prep | net.h | local variable, return value |
+| io_socket | net.c | *file: struct file, domain: int, type: int, protocol: int, flags: int, file_slot: u32, nofile: unsigned long | io_socket | net.c | local variable, return value |
+| io_socket | net.c | *file: struct file, domain: int, type: int, protocol: int, flags: int, file_slot: u32, nofile: unsigned long | io_socket | net.h | local variable, return value |
+| io_socket | net.c | *file: struct file, domain: int, type: int, protocol: int, flags: int, file_slot: u32, nofile: unsigned long | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_connect | net.c | *file: struct file, *addr: struct sockaddr __user, addr_len: int, in_progress: bool, seen_econnaborted: bool | io_connect_prep | net.c | local variable, return value |
+| io_connect | net.c | *file: struct file, *addr: struct sockaddr __user, addr_len: int, in_progress: bool, seen_econnaborted: bool | io_connect_prep | net.h | local variable, return value |
+| io_connect | net.c | *file: struct file, *addr: struct sockaddr __user, addr_len: int, in_progress: bool, seen_econnaborted: bool | io_connect | net.c | local variable, return value |
+| io_connect | net.c | *file: struct file, *addr: struct sockaddr __user, addr_len: int, in_progress: bool, seen_econnaborted: bool | io_connect | net.h | local variable, return value |
+| io_connect | net.c | *file: struct file, *addr: struct sockaddr __user, addr_len: int, in_progress: bool, seen_econnaborted: bool | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_bind | net.c | *file: struct file, addr_len: int | io_bind_prep | net.c | local variable, return value |
+| io_bind | net.c | *file: struct file, addr_len: int | io_bind_prep | net.h | local variable, return value |
+| io_bind | net.c | *file: struct file, addr_len: int | io_bind | net.c | local variable, return value |
+| io_bind | net.c | *file: struct file, addr_len: int | io_bind | net.h | local variable, return value |
+| io_bind | net.c | *file: struct file, addr_len: int | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_listen | net.c | *file: struct file, backlog: int | io_listen_prep | net.c | local variable, return value |
+| io_listen | net.c | *file: struct file, backlog: int | io_listen_prep | net.h | local variable, return value |
+| io_listen | net.c | *file: struct file, backlog: int | io_listen | net.c | local variable, return value |
+| io_listen | net.c | *file: struct file, backlog: int | io_listen | net.h | local variable, return value |
+| io_listen | net.c | *file: struct file, backlog: int | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_mshot_prep_retry | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_compat_msg_copy_hdr | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_msg_copy_hdr | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_setup | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendmsg_setup | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendmsg_prep | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendmsg_prep | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_finish | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendmsg | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendmsg | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_select_buffer | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recvmsg_prep_setup | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recvmsg_prep | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recvmsg_prep | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recv_finish | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recvmsg_prep_multishot | net.c | function parameter, local variable |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recvmsg_multishot | net.c | function parameter |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recvmsg | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recvmsg | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recv_buf_select | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recv | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_recv | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_zc_cleanup | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_zc_cleanup | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_zc_prep | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_zc_prep | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_zc_import | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_zc | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_send_zc | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendmsg_zc | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendmsg_zc | net.h | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendrecv_fail | net.c | local variable, return value |
+| io_sr_msg | net.c | *file: struct file, {: union, *umsg_compat: struct compat_msghdr __user, *umsg: struct user_msghdr __user, *buf: void __user | io_sendrecv_fail | net.h | local variable, return value |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_recvzc_prep | net.c | local variable, return value |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_recvzc_prep | zcrx.h | local variable, return value |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_recvzc | net.c | local variable, return value |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_recvzc | zcrx.h | local variable, return value |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_zcrx_recv | net.c | local variable |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_zcrx_recv | zcrx.c | local variable |
+| io_recvzc | net.c | *file: struct file, msg_flags: unsigned, flags: u16, len: u32, *ifq: struct io_zcrx_ifq | io_zcrx_recv | zcrx.h | local variable |
+| io_recvmsg_multishot_hdr | net.c | msg: struct io_uring_recvmsg_out, addr: struct sockaddr_storage | io_recvmsg_prep_multishot | net.c | local variable |
+| io_recvmsg_multishot_hdr | net.c | msg: struct io_uring_recvmsg_out, addr: struct sockaddr_storage | io_recvmsg_multishot | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_ring_ctx_alloc | io_uring.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_net_retry | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_netmsg_iovec_free | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_netmsg_recycle | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_msg_alloc_async | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_mshot_prep_retry | net.c | function parameter, local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_net_import_vec | net.c | function parameter, local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_compat_msg_copy_hdr | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_copy_msghdr_from_user | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_msg_copy_hdr | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_sendmsg_recvmsg_cleanup | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_sendmsg_recvmsg_cleanup | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_setup | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_sendmsg_setup | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_req_msg_cleanup | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_bundle_nbufs | net.c | function parameter, local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_finish | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_sendmsg | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_sendmsg | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_select_buffer | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg_mshot_prep | net.c | function parameter, local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg_copy_hdr | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg_prep_setup | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg_prep | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg_prep | net.h | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recv_finish | net.c | function parameter, local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg_prep_multishot | net.c | function parameter, local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg_multishot | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recvmsg | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recv_buf_select | net.c | function parameter |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recv | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_recv | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_zc_cleanup | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_zc_cleanup | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_zc_prep | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_zc_prep | net.h | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_zc_import | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_zc | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_send_zc | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_sendmsg_zc | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_sendmsg_zc | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_connect_prep | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_connect_prep | net.h | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_connect | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_connect | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_bind_prep | net.c | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_bind_prep | net.h | local variable |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_bind | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_bind | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_netmsg_cache_free | net.c | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_netmsg_cache_free | net.h | local variable, return value |
+| io_async_msghdr | net.h | defined(CONFIG_NET): #if, vec: struct iou_vec, namelen: int, fast_iov: struct iovec, controllen: __kernel_size_t, payloadlen: __kernel_size_t, *uaddr: struct sockaddr __user, msg: struct msghdr, addr: struct sockaddr_storage | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_nop | nop.c | *file: struct file, result: int, fd: int, flags: unsigned int | io_nop_prep | nop.c | local variable, return value |
+| io_nop | nop.c | *file: struct file, result: int, fd: int, flags: unsigned int | io_nop_prep | nop.h | local variable, return value |
+| io_nop | nop.c | *file: struct file, result: int, fd: int, flags: unsigned int | io_nop | nop.c | local variable, return value |
+| io_nop | nop.c | *file: struct file, result: int, fd: int, flags: unsigned int | io_nop | nop.h | local variable, return value |
+| io_nop | nop.c | *file: struct file, result: int, fd: int, flags: unsigned int | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_send_zc_prep | net.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_send_zc_prep | net.h | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_notif_tw_complete | notif.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_tx_ubuf_complete | notif.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_tx_ubuf_complete | notif.h | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_link_skb | notif.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_notif_to_data | net.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_notif_to_data | notif.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_notif_to_data | notif.h | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_notif_account_mem | net.c | local variable, return value |
+| io_notif_data | notif.h | *file: struct file, uarg: struct ubuf_info, *next: struct io_notif_data, *head: struct io_notif_data, account_pages: unsigned, zc_report: bool, zc_used: bool, zc_copied: bool | io_notif_account_mem | notif.h | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_prep_async_work | io_uring.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_get_sequence | io_uring.c | local variable |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_assign_file | io_uring.c | function parameter, local variable |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | __io_issue_sqe | io_uring.c | function parameter |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_issue_sqe | io_uring.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_wq_submit_work | io_uring.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_wq_submit_work | io_uring.h | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_init_fail_req | io_uring.c | local variable |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_uring_alloc_async_data | io_uring.h | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_uring_alloc_async_data | net.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_uring_alloc_async_data | rw.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_uring_alloc_async_data | timeout.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_uring_alloc_async_data | uring_cmd.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_uring_alloc_async_data | waitid.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_arm_poll_handler | io_uring.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_arm_poll_handler | poll.c | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | io_arm_poll_handler | poll.h | local variable, return value |
+| io_issue_def | opdef.h | 1: unsigned needs_file :, 1: unsigned plug :, 1: unsigned ioprio :, 1: unsigned iopoll :, 1: unsigned buffer_select :, 1: unsigned hash_reg_file :, 1: unsigned unbound_nonreg_file :, 1: unsigned pollin :, 1: unsigned pollout :, 1: unsigned poll_exclusive :, 1: unsigned audit_skip :, 1: unsigned iopoll_queue :, 1: unsigned vectored :, async_size: unsigned short, int): int (*issue)(struct io_kiocb *, unsigned, *): int (*prep)(struct io_kiocb *, const struct io_uring_sqe | __io_import_rw_buffer | rw.c | local variable, return value |
+| io_cold_def | opdef.h | *name: const char, *): void (*cleanup)(struct io_kiocb, *): void (*fail)(struct io_kiocb | io_clean_op | io_uring.c | local variable, return value |
+| io_cold_def | opdef.h | *name: const char, *): void (*cleanup)(struct io_kiocb, *): void (*fail)(struct io_kiocb | io_req_complete_post | io_uring.c | local variable, return value |
+| io_cold_def | opdef.h | *name: const char, *): void (*cleanup)(struct io_kiocb, *): void (*fail)(struct io_kiocb | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_openat_force_async | openclose.c | function parameter |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | __io_openat_prep | openclose.c | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_openat_prep | openclose.c | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_openat_prep | openclose.h | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_openat2_prep | openclose.c | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_openat2_prep | openclose.h | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_openat2 | openclose.c | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_openat2 | openclose.h | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_open_cleanup | openclose.c | local variable, return value |
+| io_open | openclose.c | *file: struct file, dfd: int, file_slot: u32, *filename: struct filename, how: struct open_how, nofile: unsigned long | io_open_cleanup | openclose.h | local variable, return value |
+| io_close | openclose.c | *file: struct file, fd: int, file_slot: u32 | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_close | openclose.c | *file: struct file, fd: int, file_slot: u32 | io_close_fixed | openclose.c | local variable, return value |
+| io_close | openclose.c | *file: struct file, fd: int, file_slot: u32 | io_close_prep | openclose.c | local variable, return value |
+| io_close | openclose.c | *file: struct file, fd: int, file_slot: u32 | io_close_prep | openclose.h | local variable, return value |
+| io_close | openclose.c | *file: struct file, fd: int, file_slot: u32 | io_close | openclose.c | local variable, return value |
+| io_close | openclose.c | *file: struct file, fd: int, file_slot: u32 | io_close | openclose.h | local variable, return value |
+| io_fixed_install | openclose.c | *file: struct file, o_flags: unsigned int | io_install_fixed_fd_prep | openclose.c | local variable, return value |
+| io_fixed_install | openclose.c | *file: struct file, o_flags: unsigned int | io_install_fixed_fd_prep | openclose.h | local variable, return value |
+| io_fixed_install | openclose.c | *file: struct file, o_flags: unsigned int | io_install_fixed_fd | openclose.c | local variable, return value |
+| io_fixed_install | openclose.c | *file: struct file, o_flags: unsigned int | io_install_fixed_fd | openclose.h | local variable, return value |
+| io_poll_update | poll.c | *file: struct file, old_user_data: u64, new_user_data: u64, events: __poll_t, update_events: bool, update_user_data: bool | io_poll_remove_prep | poll.c | local variable, return value |
+| io_poll_update | poll.c | *file: struct file, old_user_data: u64, new_user_data: u64, events: __poll_t, update_events: bool, update_user_data: bool | io_poll_remove_prep | poll.h | local variable, return value |
+| io_poll_update | poll.c | *file: struct file, old_user_data: u64, new_user_data: u64, events: __poll_t, update_events: bool, update_user_data: bool | io_poll_remove | poll.c | local variable, return value |
+| io_poll_update | poll.c | *file: struct file, old_user_data: u64, new_user_data: u64, events: __poll_t, update_events: bool, update_user_data: bool | io_poll_remove | poll.h | local variable, return value |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_poll_double_prepare | poll.c | local variable |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | __io_queue_proc | poll.c | function parameter |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_poll_queue_proc | poll.c | local variable, return value |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_poll_can_finish_inline | poll.c | function parameter |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_poll_add_hash | poll.c | local variable |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | __io_arm_poll_handler | poll.c | function parameter |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_async_queue_proc | poll.c | local variable, return value |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_arm_poll_handler | io_uring.c | local variable |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_arm_poll_handler | poll.c | local variable |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_arm_poll_handler | poll.h | local variable |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_poll_add | poll.c | local variable |
+| io_poll_table | poll.c | pt: struct poll_table_struct, *req: struct io_kiocb, nr_entries: int, error: int, owning: bool, result_mask: __poll_t | io_poll_add | poll.h | local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_mark_cancelled | poll.c | local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_get_double | poll.c | local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_get_single | poll.c | local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_req_insert | poll.c | local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_init_poll_iocb | poll.c | function parameter, local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_remove_entry | poll.c | function parameter |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | advise.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | alloc_cache.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | alloc_cache.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | cancel.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | cancel.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | epoll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | eventfd.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | fdinfo.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | filetable.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | fs.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | futex.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | io-wq.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | io-wq.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | io_uring.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | io_uring.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | kbuf.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | kbuf.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | memmap.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | msg_ring.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | napi.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | napi.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | net.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | nop.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | notif.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | notif.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | opdef.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | openclose.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | poll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | refs.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | register.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | rsrc.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | rsrc.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | rw.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | slist.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | splice.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | sqpoll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | statx.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | sync.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | tctx.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | tctx.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | timeout.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | timeout.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | truncate.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | uring_cmd.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | waitid.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | xattr.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | if | zcrx.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_cancel_req | poll.c | local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_pollfree_wake | poll.c | function parameter |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_wake | poll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_double_prepare | poll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | __io_queue_proc | poll.c | function parameter, local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_queue_proc | poll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_can_finish_inline | poll.c | function parameter |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_add_hash | poll.c | local variable |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | __io_arm_poll_handler | poll.c | function parameter |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_add_prep | poll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_add_prep | poll.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_add | poll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_add | poll.h | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_remove | poll.c | local variable, return value |
+| io_poll | poll.h | *file: struct file, *head: struct wait_queue_head, events: __poll_t, retries: int, wait: struct wait_queue_entry | io_poll_remove | poll.h | local variable, return value |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_ring_ctx_alloc | io_uring.c | local variable |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_queue_next | io_uring.c | local variable, return value |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_queue_next | io_uring.h | local variable, return value |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_queue_next | timeout.c | local variable, return value |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_async_queue_proc | poll.c | local variable, return value |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_req_alloc_apoll | poll.c | local variable |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_arm_poll_handler | io_uring.c | local variable |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_arm_poll_handler | poll.c | local variable |
+| async_poll | poll.h | poll: struct io_poll, *double_poll: struct io_poll | io_arm_poll_handler | poll.h | local variable |
+| io_ring_ctx_rings | register.c | *rings: struct io_rings, *sq_sqes: struct io_uring_sqe, sq_region: struct io_mapped_region, ring_region: struct io_mapped_region | io_register_clock | register.c | local variable |
+| io_ring_ctx_rings | register.c | *rings: struct io_rings, *sq_sqes: struct io_uring_sqe, sq_region: struct io_mapped_region, ring_region: struct io_mapped_region | io_register_free_rings | register.c | function parameter |
+| io_ring_ctx_rings | register.c | *rings: struct io_rings, *sq_sqes: struct io_uring_sqe, sq_region: struct io_mapped_region, ring_region: struct io_mapped_region | io_register_resize_rings | register.c | local variable, return value |
+| io_rsrc_update | rsrc.c | *file: struct file, arg: u64, nr_args: u32, offset: u32 | io_files_update_prep | rsrc.c | local variable, return value |
+| io_rsrc_update | rsrc.c | *file: struct file, arg: u64, nr_args: u32, offset: u32 | io_files_update_prep | rsrc.h | local variable, return value |
+| io_rsrc_update | rsrc.c | *file: struct file, arg: u64, nr_args: u32, offset: u32 | io_files_update_with_index_alloc | rsrc.c | local variable, return value |
+| io_rsrc_update | rsrc.c | *file: struct file, arg: u64, nr_args: u32, offset: u32 | io_files_update | rsrc.c | local variable, return value |
+| io_rsrc_update | rsrc.c | *file: struct file, arg: u64, nr_args: u32, offset: u32 | io_files_update | rsrc.h | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | __io_sync_cancel | cancel.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_free_file_tables | filetable.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_free_file_tables | filetable.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_free_file_tables | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_fixed_fd_remove | filetable.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_fixed_fd_remove | filetable.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_fixed_fd_remove | openclose.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_file_bitmap_set | filetable.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_file_bitmap_set | filetable.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_file_bitmap_set | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_flags | filetable.h | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_flags | io_uring.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_file | cancel.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_file | fdinfo.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_file | filetable.h | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_file | io_uring.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_file | msg_ring.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_file | rsrc.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_slot_file | splice.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_fixed_file_set | filetable.c | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_fixed_file_set | filetable.h | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_fixed_file_set | rsrc.c | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_file_get_fixed | cancel.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_file_get_fixed | io_uring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_file_get_fixed | io_uring.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_file_get_fixed | nop.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_msg_grab_file | msg_ring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_buffer_unmap | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_alloc | filetable.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_alloc | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_alloc | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_cache_init | io_uring.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_cache_init | rsrc.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_cache_init | rsrc.h | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_data_alloc | filetable.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_data_alloc | rsrc.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_data_alloc | rsrc.h | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | __io_sqe_files_update | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | __io_sqe_buffers_update | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_files_update | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_files_update | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_free_rsrc_node | rsrc.c | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_free_rsrc_node | rsrc.h | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_sqe_files_register | register.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_sqe_files_register | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_sqe_files_register | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | headpage_already_acct | rsrc.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | advise.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | alloc_cache.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | alloc_cache.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | cancel.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | cancel.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | epoll.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | eventfd.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | fdinfo.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | filetable.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | fs.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | futex.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io-wq.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io-wq.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io_uring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io_uring.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | kbuf.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | kbuf.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | memmap.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | msg_ring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | napi.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | napi.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | net.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | nop.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | notif.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | notif.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | opdef.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | openclose.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | poll.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | refs.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | register.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | rw.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | slist.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | splice.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | sqpoll.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | statx.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | sync.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | tctx.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | tctx.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | timeout.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | timeout.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | truncate.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | uring_cmd.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | waitid.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | xattr.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | zcrx.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_sqe_buffer_register | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_sqe_buffers_register | register.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_sqe_buffers_register | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_sqe_buffers_register | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_buffer_unregister_bvec | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | advise.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | alloc_cache.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | alloc_cache.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | cancel.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | cancel.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | epoll.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | eventfd.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | fdinfo.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | filetable.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | fs.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | futex.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io-wq.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io-wq.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io_uring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | io_uring.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | kbuf.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | kbuf.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | memmap.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | msg_ring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | napi.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | napi.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | net.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | nop.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | notif.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | notif.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | opdef.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | openclose.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | poll.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | refs.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | register.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | rw.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | slist.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | splice.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | sqpoll.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | statx.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | sync.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | tctx.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | tctx.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | timeout.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | timeout.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | truncate.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | uring_cmd.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | waitid.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | xattr.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | if | zcrx.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_find_buf_node | nop.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_find_buf_node | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_find_buf_node | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_buf | net.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_buf | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_buf | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_buf | rw.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_buf | uring_cmd.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_clone_buffers | rsrc.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_vec | net.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_vec | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_vec | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_vec | rw.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_import_reg_vec | uring_cmd.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_lookup | cancel.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_lookup | filetable.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_lookup | io_uring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_lookup | msg_ring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_lookup | rsrc.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_lookup | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_rsrc_node_lookup | splice.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_put_rsrc_node | rsrc.c | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_put_rsrc_node | rsrc.h | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_put_rsrc_node | splice.c | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_reset_rsrc_node | filetable.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_reset_rsrc_node | rsrc.c | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_reset_rsrc_node | rsrc.h | local variable, return value |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_req_put_rsrc_nodes | io_uring.c | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_req_put_rsrc_nodes | rsrc.h | local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_req_assign_rsrc_node | io_uring.c | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_req_assign_rsrc_node | rsrc.h | function parameter, local variable |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_req_assign_buf_node | rsrc.c | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_req_assign_buf_node | rsrc.h | function parameter |
+| io_rsrc_node | rsrc.h | type: unsigned char, refs: int, tag: u64, {: union, file_ptr: unsigned long, *buf: struct io_mapped_ubuf | io_splice_get_file | splice.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_uring_show_fdinfo | fdinfo.c | local variable, return value |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_uring_show_fdinfo | fdinfo.h | local variable, return value |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_release_ubuf | rsrc.c | local variable, return value |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_alloc_imu | rsrc.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_free_imu | rsrc.c | function parameter, local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_buffer_unmap | rsrc.c | function parameter |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_rsrc_cache_init | io_uring.c | local variable, return value |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_rsrc_cache_init | rsrc.c | local variable, return value |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_rsrc_cache_init | rsrc.h | local variable, return value |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | headpage_already_acct | rsrc.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_buffer_account_pin | rsrc.c | function parameter |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_sqe_buffer_register | rsrc.c | local variable, return value |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_sqe_buffers_register | register.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_sqe_buffers_register | rsrc.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_sqe_buffers_register | rsrc.h | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_buffer_unregister_bvec | rsrc.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | validate_fixed_range | rsrc.c | function parameter, local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_import_fixed | rsrc.c | function parameter |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_vec_realloc | rsrc.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_vec_realloc | rsrc.h | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_vec_fill_bvec | rsrc.c | function parameter, local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_estimate_bvec_size | rsrc.c | function parameter, local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_vec_fill_kern_bvec | rsrc.c | function parameter, local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | iov_kern_bvec_size | rsrc.c | function parameter, local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_kern_bvec_size | rsrc.c | function parameter |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_import_reg_vec | net.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_import_reg_vec | rsrc.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_import_reg_vec | rsrc.h | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_import_reg_vec | rw.c | local variable |
+| io_mapped_ubuf | rsrc.h | ubuf: u64, len: unsigned int, nr_bvecs: unsigned int, folio_shift: unsigned int, refs: refcount_t, acct_pages: unsigned long, *): void (*release)(void, *priv: void, is_kbuf: bool, dir: u8, __counted_by(nr_bvecs): struct bio_vec bvec[] | io_import_reg_vec | uring_cmd.c | local variable |
+| io_imu_folio_data | rsrc.h | nr_pages_head: unsigned int, nr_pages_mid: unsigned int, folio_shift: unsigned int, nr_folios: unsigned int | io_region_init_ptr | memmap.c | local variable |
+| io_imu_folio_data | rsrc.h | nr_pages_head: unsigned int, nr_pages_mid: unsigned int, folio_shift: unsigned int, nr_folios: unsigned int | io_buffer_account_pin | rsrc.c | local variable |
+| io_imu_folio_data | rsrc.h | nr_pages_head: unsigned int, nr_pages_mid: unsigned int, folio_shift: unsigned int, nr_folios: unsigned int | io_coalesce_buffer | rsrc.c | function parameter, local variable |
+| io_imu_folio_data | rsrc.h | nr_pages_head: unsigned int, nr_pages_mid: unsigned int, folio_shift: unsigned int, nr_folios: unsigned int | io_check_coalesce_buffer | memmap.c | function parameter |
+| io_imu_folio_data | rsrc.h | nr_pages_head: unsigned int, nr_pages_mid: unsigned int, folio_shift: unsigned int, nr_folios: unsigned int | io_check_coalesce_buffer | rsrc.c | function parameter |
+| io_imu_folio_data | rsrc.h | nr_pages_head: unsigned int, nr_pages_mid: unsigned int, folio_shift: unsigned int, nr_folios: unsigned int | io_check_coalesce_buffer | rsrc.h | function parameter |
+| io_imu_folio_data | rsrc.h | nr_pages_head: unsigned int, nr_pages_mid: unsigned int, folio_shift: unsigned int, nr_folios: unsigned int | io_sqe_buffer_register | rsrc.c | local variable |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_file_supports_nowait | rw.c | local variable |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_iov_compat_buffer_select_prep | rw.c | function parameter |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_iov_buffer_select_prep | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | __io_import_rw_buffer | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_meta_restore | rw.c | local variable |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_prep_rw_pi | rw.c | function parameter |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | __io_prep_rw | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_init_rw_fixed | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_rw_import_reg_vec | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_rw_prep_reg_vec | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_read_mshot_prep | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_read_mshot_prep | rw.h | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_kiocb_update_pos | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_rw_should_reissue | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_req_end_write | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_req_io_end | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_req_rw_complete | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_req_rw_complete | rw.h | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_complete_rw | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_complete_rw_iopoll | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_rw_done | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | kiocb_done | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_kiocb_ppos | rw.c | local variable |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | loop_rw_iter | rw.c | function parameter |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_async_buf_func | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_rw_should_retry | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_iter_do_read | rw.c | function parameter |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_rw_init_file | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | __io_read | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_read_mshot | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_read_mshot | rw.h | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_write | rw.c | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_write | rw.h | local variable, return value |
+| io_rw | rw.c | kiocb: struct kiocb, addr: u64, len: u32, flags: rwf_t | io_uring_classic_poll | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_ring_ctx_alloc | io_uring.c | local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_iov_buffer_select_prep | rw.c | local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_import_vec | rw.c | function parameter, local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | __io_import_rw_buffer | rw.c | function parameter, local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_import_rw_buffer | rw.c | function parameter |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_recycle | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_alloc_async | rw.c | local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_meta_save_state | rw.c | function parameter, local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_meta_restore | rw.c | function parameter |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_prep_rw_pi | rw.c | local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_init_rw_fixed | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_prep_write_fixed | rw.c | local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_prep_write_fixed | rw.h | local variable |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_import_reg_vec | rw.c | function parameter |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_prep_reg_vec | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_should_reissue | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_fixup_rw_res | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_should_retry | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_init_file | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | __io_read | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_write | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_write | rw.h | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_cache_free | rw.c | local variable, return value |
+| io_async_rw | rw.h | vec: struct iou_vec, bytes_done: size_t, iter: struct iov_iter, iter_state: struct iov_iter_state, fast_iov: struct iovec, with: * wpq is for buffered io, while meta fields are used, io: * direct, {: union, wpq: struct wait_page_queue, {: struct, meta: struct uio_meta, meta_state: struct io_meta_state | io_rw_cache_free | rw.h | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | __io_splice_prep | splice.c | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_splice_cleanup | splice.c | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_splice_cleanup | splice.h | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_splice_get_file | splice.c | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_tee | splice.c | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_tee | splice.h | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_splice_prep | splice.c | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_splice_prep | splice.h | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_splice | splice.c | local variable, return value |
+| io_splice | splice.c | *file_out: struct file, off_out: loff_t, off_in: loff_t, len: u64, splice_fd_in: int, flags: unsigned int, *rsrc_node: struct io_rsrc_node | io_splice | splice.h | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_uring_show_fdinfo | fdinfo.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_uring_show_fdinfo | fdinfo.h | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_ring_exit_work | io_uring.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_ring_exit_work | sqpoll.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | tctx_inflight | io_uring.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_uring_cancel_generic | io_uring.c | function parameter |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_uring_cancel_generic | io_uring.h | function parameter |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_uring_cancel_generic | sqpoll.c | function parameter |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_should_wake | io_uring.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_should_wake | io_uring.h | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_should_wake | napi.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_unregister_iowq_aff | register.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_thread_stop | sqpoll.c | function parameter, local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_thread_stop | sqpoll.h | function parameter, local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_put_sq_data | register.c | function parameter, local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_put_sq_data | sqpoll.c | function parameter, local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_put_sq_data | sqpoll.h | function parameter, local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sqd_update_thread_idle | sqpoll.c | function parameter |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_thread_finish | io_uring.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_thread_finish | sqpoll.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_thread_finish | sqpoll.h | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_attach_sq_data | sqpoll.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_get_sq_data | sqpoll.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sqd_events_pending | sqpoll.c | function parameter |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | __io_sq_thread | sqpoll.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sqd_handle_event | sqpoll.c | function parameter |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_tw_pending | sqpoll.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_update_worktime | sqpoll.c | function parameter |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_thread | sqpoll.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_offload_create | io_uring.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_offload_create | sqpoll.c | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sq_offload_create | sqpoll.h | local variable |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sqpoll_wq_cpu_affinity | register.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sqpoll_wq_cpu_affinity | sqpoll.c | local variable, return value |
+| io_sq_data | sqpoll.h | refs: refcount_t, park_pending: atomic_t, lock: struct mutex, ctx_list: struct list_head, *thread: struct task_struct, wait: struct wait_queue_head, sq_thread_idle: unsigned, sq_cpu: int, task_pid: pid_t, task_tgid: pid_t, work_time: u64, state: unsigned long, exited: struct completion | io_sqpoll_wq_cpu_affinity | sqpoll.h | local variable, return value |
+| io_statx | statx.c | *file: struct file, dfd: int, mask: unsigned int, flags: unsigned int, *filename: struct filename, *buffer: struct statx __user | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_statx | statx.c | *file: struct file, dfd: int, mask: unsigned int, flags: unsigned int, *filename: struct filename, *buffer: struct statx __user | io_statx_prep | statx.c | local variable, return value |
+| io_statx | statx.c | *file: struct file, dfd: int, mask: unsigned int, flags: unsigned int, *filename: struct filename, *buffer: struct statx __user | io_statx_prep | statx.h | local variable, return value |
+| io_statx | statx.c | *file: struct file, dfd: int, mask: unsigned int, flags: unsigned int, *filename: struct filename, *buffer: struct statx __user | io_statx | statx.c | local variable, return value |
+| io_statx | statx.c | *file: struct file, dfd: int, mask: unsigned int, flags: unsigned int, *filename: struct filename, *buffer: struct statx __user | io_statx | statx.h | local variable, return value |
+| io_statx | statx.c | *file: struct file, dfd: int, mask: unsigned int, flags: unsigned int, *filename: struct filename, *buffer: struct statx __user | io_statx_cleanup | statx.c | local variable, return value |
+| io_statx | statx.c | *file: struct file, dfd: int, mask: unsigned int, flags: unsigned int, *filename: struct filename, *buffer: struct statx __user | io_statx_cleanup | statx.h | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_sfr_prep | sync.c | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_sfr_prep | sync.h | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_sync_file_range | sync.c | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_sync_file_range | sync.h | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fsync_prep | sync.c | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fsync_prep | sync.h | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fsync | sync.c | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fsync | sync.h | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fallocate_prep | sync.c | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fallocate_prep | sync.h | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fallocate | sync.c | local variable, return value |
+| io_sync | sync.c | *file: struct file, len: loff_t, off: loff_t, flags: int, mode: int | io_fallocate | sync.h | local variable, return value |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | __io_async_cancel | cancel.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_ring_exit_work | io_uring.c | local variable, return value |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_ring_exit_work | sqpoll.c | local variable, return value |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_try_cancel_iowq | io_uring.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_try_cancel_iowq | tctx.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_cancel_generic | io_uring.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_cancel_generic | io_uring.h | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_cancel_generic | sqpoll.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_unregister_iowq_aff | register.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | __io_uring_free | io_uring.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | __io_uring_free | tctx.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | __io_uring_add_tctx_node | io_uring.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | __io_uring_add_tctx_node | tctx.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | __io_uring_add_tctx_node | tctx.h | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_del_tctx_node | io_uring.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_del_tctx_node | tctx.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_del_tctx_node | tctx.h | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_clean_tctx | io_uring.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_clean_tctx | tctx.c | local variable |
+| io_tctx_node | tctx.h | ctx_node: struct list_head, *task: struct task_struct, *ctx: struct io_ring_ctx | io_uring_clean_tctx | tctx.h | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_is_timeout_noseq | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_put_req | timeout.c | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_timeout_finish | timeout.c | function parameter |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_timeout_complete | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_flush_killed_timeouts | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_flush_timeouts | io_uring.c | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_flush_timeouts | timeout.c | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_flush_timeouts | timeout.h | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | advise.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | alloc_cache.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | alloc_cache.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | cancel.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | cancel.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | epoll.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | eventfd.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | fdinfo.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | filetable.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | fs.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | futex.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | io-wq.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | io-wq.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | io_uring.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | io_uring.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | kbuf.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | kbuf.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | memmap.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | msg_ring.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | napi.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | napi.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | net.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | nop.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | notif.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | notif.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | opdef.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | openclose.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | poll.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | refs.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | register.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | rsrc.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | rsrc.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | rw.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | slist.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | splice.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | sqpoll.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | statx.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | sync.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | tctx.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | tctx.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | timeout.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | truncate.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | uring_cmd.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | waitid.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | xattr.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | if | zcrx.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_timeout_fn | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_req_task_link_timeout | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_link_timeout_fn | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_timeout_get_clock | timeout.c | function parameter, local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | __io_timeout_prep | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_link_timeout_prep | timeout.c | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_link_timeout_prep | timeout.h | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_timeout | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_timeout | timeout.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_queue_linked_timeout | io_uring.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_queue_linked_timeout | timeout.c | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_queue_linked_timeout | timeout.h | local variable, return value |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_kill_timeouts | io_uring.c | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_kill_timeouts | timeout.c | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_kill_timeouts | timeout.h | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_disarm_linked_timeout | timeout.c | local variable |
+| io_timeout | timeout.c | *file: struct file, off: u32, target_seq: u32, repeats: u32, list: struct list_head, *head: struct io_kiocb, *prev: struct io_kiocb | io_disarm_linked_timeout | timeout.h | local variable |
+| io_timeout_rem | timeout.c | *file: struct file, addr: u64, ts: struct timespec64, flags: u32, ltimeout: bool | io_timeout_remove_prep | timeout.c | local variable, return value |
+| io_timeout_rem | timeout.c | *file: struct file, addr: u64, ts: struct timespec64, flags: u32, ltimeout: bool | io_timeout_remove_prep | timeout.h | local variable, return value |
+| io_timeout_rem | timeout.c | *file: struct file, addr: u64, ts: struct timespec64, flags: u32, ltimeout: bool | io_timeout_remove | timeout.c | local variable, return value |
+| io_timeout_rem | timeout.c | *file: struct file, addr: u64, ts: struct timespec64, flags: u32, ltimeout: bool | io_timeout_remove | timeout.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_is_timeout_noseq | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_put_req | timeout.c | local variable |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_timeout_finish | timeout.c | function parameter |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_timeout_complete | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_flush_killed_timeouts | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | advise.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | alloc_cache.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | alloc_cache.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | cancel.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | cancel.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | epoll.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | eventfd.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | fdinfo.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | filetable.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | fs.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | futex.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | io-wq.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | io-wq.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | io_uring.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | io_uring.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | kbuf.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | kbuf.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | memmap.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | msg_ring.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | napi.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | napi.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | net.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | nop.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | notif.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | notif.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | opdef.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | openclose.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | poll.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | refs.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | register.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | rsrc.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | rsrc.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | rw.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | slist.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | splice.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | sqpoll.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | statx.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | sync.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | tctx.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | tctx.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | timeout.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | truncate.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | uring_cmd.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | waitid.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | xattr.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | if | zcrx.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_timeout_fn | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_link_timeout_fn | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_timeout_get_clock | timeout.c | function parameter, local variable |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | __io_timeout_prep | timeout.c | local variable |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_timeout | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_timeout | timeout.h | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_queue_linked_timeout | io_uring.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_queue_linked_timeout | timeout.c | local variable, return value |
+| io_timeout_data | timeout.h | *req: struct io_kiocb, timer: struct hrtimer, ts: struct timespec64, mode: enum hrtimer_mode, flags: u32 | io_queue_linked_timeout | timeout.h | local variable, return value |
+| io_ftrunc | truncate.c | *file: struct file, len: loff_t | io_ftruncate_prep | truncate.c | local variable, return value |
+| io_ftrunc | truncate.c | *file: struct file, len: loff_t | io_ftruncate_prep | truncate.h | local variable, return value |
+| io_ftrunc | truncate.c | *file: struct file, len: loff_t | io_ftruncate | truncate.c | local variable, return value |
+| io_ftrunc | truncate.c | *file: struct file, len: loff_t | io_ftruncate | truncate.h | local variable, return value |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_ring_ctx_alloc | io_uring.c | local variable |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_cmd_cache_free | uring_cmd.c | local variable, return value |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_cmd_cache_free | uring_cmd.h | local variable, return value |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_req_uring_cleanup | uring_cmd.c | local variable, return value |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_uring_cmd_prep_setup | uring_cmd.c | local variable, return value |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_uring_cmd_import_fixed_vec | uring_cmd.c | local variable, return value |
+| io_async_cmd | uring_cmd.h | data: struct io_uring_cmd_data, vec: struct iou_vec, sqes[2]: struct io_uring_sqe | io_uring_cmd_import_fixed_vec | uring_cmd.h | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_free | waitid.c | local variable |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_compat_copy_si | waitid.c | function parameter |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_copy_si | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_complete | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | __io_waitid_cancel | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_drop_issue_ref | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_cb | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_wait | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_prep | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid_prep | waitid.h | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid | waitid.c | local variable, return value |
+| io_waitid | waitid.c | *file: struct file, which: int, upid: pid_t, options: int, refs: atomic_t, *head: struct wait_queue_head, *infop: struct siginfo __user, info: struct waitid_info | io_waitid | waitid.h | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_eopnotsupp_prep | opdef.c | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid_free | waitid.c | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | __io_waitid_cancel | waitid.c | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid_drop_issue_ref | waitid.c | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid_cb | waitid.c | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid_wait | waitid.c | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid_prep | waitid.c | local variable |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid_prep | waitid.h | local variable |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid | waitid.c | local variable, return value |
+| io_waitid_async | waitid.h | *req: struct io_kiocb, wo: struct wait_opts | io_waitid | waitid.h | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_xattr_cleanup | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_xattr_cleanup | xattr.h | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | __io_getxattr_prep | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_getxattr_prep | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_getxattr_prep | xattr.h | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_fgetxattr | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_fgetxattr | xattr.h | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_getxattr | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_getxattr | xattr.h | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | __io_setxattr_prep | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_setxattr_prep | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_setxattr_prep | xattr.h | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_fsetxattr | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_fsetxattr | xattr.h | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_setxattr | xattr.c | local variable, return value |
+| io_xattr | xattr.c | *file: struct file, ctx: struct kernel_xattr_ctx, *filename: struct filename | io_setxattr | xattr.h | local variable, return value |
+| io_zcrx_args | zcrx.c | *req: struct io_kiocb, *ifq: struct io_zcrx_ifq, *sock: struct socket, nr_skbs: unsigned | io_zcrx_sync_for_device | zcrx.c | local variable |
+| io_zcrx_args | zcrx.c | *req: struct io_kiocb, *ifq: struct io_zcrx_ifq, *sock: struct socket, nr_skbs: unsigned | io_zcrx_recv_skb | zcrx.c | local variable, return value |
+| io_zcrx_args | zcrx.c | *req: struct io_kiocb, *ifq: struct io_zcrx_ifq, *sock: struct socket, nr_skbs: unsigned | io_zcrx_tcp_recvmsg | zcrx.c | local variable, return value |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | __io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_map_area | zcrx.c | function parameter |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_sync_for_device | zcrx.c | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_iov_to_area | zcrx.c | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_get_user_counter | zcrx.c | local variable, return value |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_iov_page | zcrx.c | local variable, return value |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_free_rbuf_ring | zcrx.c | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_free_area | zcrx.c | function parameter, local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_create_area | zcrx.c | function parameter, local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_unregister_zcrx_ifqs | io_uring.c | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_unregister_zcrx_ifqs | zcrx.c | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_unregister_zcrx_ifqs | zcrx.h | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | __io_zcrx_get_free_niov | zcrx.c | function parameter |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_return_niov_freelist | zcrx.c | local variable, return value |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_scrub | zcrx.c | local variable, return value |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_ring_refill | zcrx.c | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_refill_slow | zcrx.c | local variable, return value |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_pp_zc_destroy | zcrx.c | local variable, return value |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_queue_cqe | zcrx.c | local variable |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_alloc_fallback | zcrx.c | function parameter |
+| io_zcrx_area | zcrx.h | nia: struct net_iov_area, *ifq: struct io_zcrx_ifq, *user_refs: atomic_t, is_mapped: bool, area_id: u16, **pages: struct page, ____cacheline_aligned_in_smp: spinlock_t freelist_lock, free_count: u32, *freelist: u32 | io_zcrx_copy_chunk | zcrx.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | __io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_unmap_area | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_map_area | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_sync_for_device | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_iov_page | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_allocate_rbuf_ring | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_free_rbuf_ring | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_free_area | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_create_area | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_ifq_alloc | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_drop_netdev | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_close_queue | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_ifq_free | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_register_zcrx_ifq | register.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_register_zcrx_ifq | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_register_zcrx_ifq | zcrx.h | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_unregister_zcrx_ifqs | io_uring.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_unregister_zcrx_ifqs | zcrx.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_unregister_zcrx_ifqs | zcrx.h | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_return_niov | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_scrub | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_shutdown_zcrx_ifqs | io_uring.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_shutdown_zcrx_ifqs | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_shutdown_zcrx_ifqs | zcrx.h | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_rqring_entries | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_get_rqe | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_ring_refill | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_refill_slow | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_pp_zc_alloc_netmems | zcrx.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_pp_zc_init | zcrx.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_pp_zc_destroy | zcrx.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_pp_uninstall | zcrx.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_queue_cqe | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_alloc_fallback | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_copy_chunk | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_copy_frag | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv_frag | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv_skb | zcrx.c | local variable, return value |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_tcp_recvmsg | zcrx.c | function parameter, local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv | net.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv | zcrx.h | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_shutdown_zcrx_ifqs | io_uring.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_shutdown_zcrx_ifqs | zcrx.c | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_shutdown_zcrx_ifqs | zcrx.h | local variable |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv | net.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv | zcrx.c | function parameter |
+| io_zcrx_ifq | zcrx.h | *ctx: struct io_ring_ctx, *area: struct io_zcrx_area, *rq_ring: struct io_uring, *rqes: struct io_uring_zcrx_rqe, rq_entries: u32, cached_rq_head: u32, rq_lock: spinlock_t, if_rxq: u32, *dev: struct device, *netdev: struct net_device, netdev_tracker: netdevice_tracker, lock: spinlock_t | io_zcrx_recv | zcrx.h | function parameter |
