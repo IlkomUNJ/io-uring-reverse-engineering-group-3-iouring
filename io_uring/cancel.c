@@ -31,8 +31,13 @@ struct io_cancel {
 			 IORING_ASYNC_CANCEL_ANY | IORING_ASYNC_CANCEL_FD_FIXED | \
 			 IORING_ASYNC_CANCEL_USERDATA | IORING_ASYNC_CANCEL_OP)
 
-/*
- * Returns true if the request matches the criteria outlined by 'cd'.
+/**
+ * io_cancel_req_match - Check if request matches cancellation criteria
+ * @req: the request being checked
+ * @cd: cancellation descriptor with matching conditions
+ *
+ * Returns true if the request matches the flags, fd, opcode, or user_data
+ * specified in the cancel descriptor.
  */
 bool io_cancel_req_match(struct io_kiocb *req, struct io_cancel_data *cd)
 {
@@ -64,7 +69,13 @@ check_seq:
 
 	return true;
 }
-
+/**
+ * io_cancel_cb - io_wq cancel callback that uses request matcher
+ * @work: the work structure (wrapped in io_kiocb)
+ * @data: pointer to io_cancel_data structure
+ *
+ * Used by the io_wq system to locate matching work items for cancellation.
+ */
 static bool io_cancel_cb(struct io_wq_work *work, void *data)
 {
 	struct io_kiocb *req = container_of(work, struct io_kiocb, work);
@@ -72,7 +83,14 @@ static bool io_cancel_cb(struct io_wq_work *work, void *data)
 
 	return io_cancel_req_match(req, cd);
 }
-
+/**
+ * io_async_cancel_one - Cancel one async work in the current tctx
+ * @tctx: task's io_uring context
+ * @cd: cancellation descriptor
+ *
+ * Tries to cancel a work item in the associated io_wq. Returns appropriate
+ * error or success based on whether it was canceled or still running.
+ */
 static int io_async_cancel_one(struct io_uring_task *tctx,
 			       struct io_cancel_data *cd)
 {
@@ -99,7 +117,14 @@ static int io_async_cancel_one(struct io_uring_task *tctx,
 
 	return ret;
 }
-
+/**
+ * io_try_cancel - Try to cancel a request using multiple cancel paths
+ * @tctx: io_uring task context
+ * @cd: cancellation descriptor
+ * @issue_flags: context flags
+ *
+ * Attempts cancellation through io_wq, poll, waitid, futex, and timeout.
+ */
 int io_try_cancel(struct io_uring_task *tctx, struct io_cancel_data *cd,
 		  unsigned issue_flags)
 {
@@ -134,7 +159,13 @@ int io_try_cancel(struct io_uring_task *tctx, struct io_cancel_data *cd,
 	spin_unlock(&ctx->completion_lock);
 	return ret;
 }
-
+/**
+ * io_async_cancel_prep - Prepare cancellation request from SQE
+ * @req: the io_kiocb request
+ * @sqe: the submission queue entry from user
+ *
+ * Validates and extracts flags and other fields from the SQE for cancellation.
+ */
 int io_async_cancel_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	struct io_cancel *cancel = io_kiocb_to_cmd(req, struct io_cancel);
@@ -161,7 +192,15 @@ int io_async_cancel_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	return 0;
 }
-
+/**
+ * __io_async_cancel - Internal cancellation handler across workers
+ * @cd: cancellation descriptor
+ * @tctx: target io_uring task context
+ * @issue_flags: context flags
+ *
+ * Attempts to cancel requests for the specified context, optionally
+ * iterating over all tctx nodes if required.
+ */
 static int __io_async_cancel(struct io_cancel_data *cd,
 			     struct io_uring_task *tctx,
 			     unsigned int issue_flags)
@@ -194,7 +233,14 @@ static int __io_async_cancel(struct io_cancel_data *cd,
 	io_ring_submit_unlock(ctx, issue_flags);
 	return all ? nr : ret;
 }
-
+/**
+ * io_async_cancel - Submit an async cancel request
+ * @req: the prepared cancel request
+ * @issue_flags: submission context flags
+ *
+ * Handles the full lifecycle of canceling one or more requests
+ * asynchronously based on SQE-provided options.
+ */
 int io_async_cancel(struct io_kiocb *req, unsigned int issue_flags)
 {
 	struct io_cancel *cancel = io_kiocb_to_cmd(req, struct io_cancel);
@@ -231,7 +277,14 @@ done:
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
 }
-
+/**
+ * __io_sync_cancel - Perform sync cancel logic for fixed FDs
+ * @tctx: io_uring task context
+ * @cd: cancellation descriptor
+ * @fd: file descriptor to match
+ *
+ * Internal helper for io_sync_cancel, handling fixed file lookup if needed.
+ */
 static int __io_sync_cancel(struct io_uring_task *tctx,
 			    struct io_cancel_data *cd, int fd)
 {
@@ -252,7 +305,14 @@ static int __io_sync_cancel(struct io_uring_task *tctx,
 
 	return __io_async_cancel(cd, tctx, 0);
 }
-
+/**
+ * io_sync_cancel - Synchronously cancel a request
+ * @ctx: io_uring ring context
+ * @arg: user pointer to sync_cancel struct
+ *
+ * Attempts to cancel matching request immediately. If the target is running,
+ * waits until it completes or times out.
+ */
 int io_sync_cancel(struct io_ring_ctx *ctx, void __user *arg)
 	__must_hold(&ctx->uring_lock)
 {
@@ -341,7 +401,16 @@ out:
 		fput(file);
 	return ret;
 }
-
+/**
+ * io_cancel_remove_all - Remove all cancellable requests from list
+ * @ctx: io_uring context
+ * @tctx: task-specific io_uring context
+ * @list: list of requests to check
+ * @cancel_all: whether to cancel all or specific
+ * @cancel: cancellation callback
+ *
+ * Removes all matching requests from the list and applies the callback.
+ */
 bool io_cancel_remove_all(struct io_ring_ctx *ctx, struct io_uring_task *tctx,
 			  struct hlist_head *list, bool cancel_all,
 			  bool (*cancel)(struct io_kiocb *))
@@ -362,7 +431,17 @@ bool io_cancel_remove_all(struct io_ring_ctx *ctx, struct io_uring_task *tctx,
 
 	return found;
 }
-
+/**
+ * io_cancel_remove - Remove cancelable requests from list
+ * @ctx: io_uring context
+ * @cd: cancellation descriptor
+ * @issue_flags: submission flags
+ * @list: request list to check
+ * @cancel: callback for performing cancellation
+ *
+ * Scans list for matching requests and cancels them.
+ * Stops after first match unless ALL flag is set.
+ */
 int io_cancel_remove(struct io_ring_ctx *ctx, struct io_cancel_data *cd,
 		     unsigned int issue_flags, struct hlist_head *list,
 		     bool (*cancel)(struct io_kiocb *))
