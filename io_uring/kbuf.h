@@ -83,6 +83,11 @@ bool io_kbuf_commit(struct io_kiocb *req,
 
 struct io_mapped_region *io_pbuf_get_region(struct io_ring_ctx *ctx,
 					    unsigned int bgid);
+/*
+ * io_kbuf_recycle_ring - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 static inline bool io_kbuf_recycle_ring(struct io_kiocb *req)
 {
@@ -99,12 +104,23 @@ static inline bool io_kbuf_recycle_ring(struct io_kiocb *req)
 		return true;
 	}
 	return false;
+/*
+ * io_do_buffer_select - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 static inline bool io_do_buffer_select(struct io_kiocb *req)
 {
 	if (!(req->flags & REQ_F_BUFFER_SELECT))
 		return false;
+/*
+ * io_kbuf_recycle - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 	return !(req->flags & (REQ_F_BUFFER_SELECTED|REQ_F_BUFFER_RING));
 }
 
@@ -115,6 +131,13 @@ static inline bool io_kbuf_recycle(struct io_kiocb *req, unsigned issue_flags)
 	if (req->flags & REQ_F_BUFFER_SELECTED)
 		return io_kbuf_recycle_legacy(req, issue_flags);
 	if (req->flags & REQ_F_BUFFER_RING)
+/*
+ * io_put_kbuf - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int len
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 		return io_kbuf_recycle_ring(req);
 	return false;
 }
@@ -122,6 +145,14 @@ static inline bool io_kbuf_recycle(struct io_kiocb *req, unsigned issue_flags)
 static inline unsigned int io_put_kbuf(struct io_kiocb *req, int len,
 				       unsigned issue_flags)
 {
+/*
+ * io_put_kbufs - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int len
+ * @param int nbufs
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 	if (!(req->flags & (REQ_F_BUFFER_RING | REQ_F_BUFFER_SELECTED)))
 		return 0;
 	return __io_put_kbufs(req, len, 1);
