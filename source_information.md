@@ -54,22 +54,22 @@ Implements a set of structs and functions for managing memory mappings for `io_u
 Implements functions for handling the passing of messages or file descriptors from one io_uring instance to another (inter-ring communication). Includes `io_msg` as its primary data structure, holding all the necessary data for a message ring operation; as well as functions `io_msg_ring_prep` for request preparation, `io_msg_ring` for request execution, `io_msg_ring_data` for CQE passing, `io_msg_send_fd` for passing a file descriptor, `io_msg_grab_file` for grabbing a source file descriptor's reference, `io_msg_install_complete` for source file descriptor installation, remote (different task) completion handling functions (`io_msg_data_remote`, `io_msg_fd_remote`, `io_msg_tw_complete`, `io_msg_tw_fd_complete`), `io_msg_ring_cleanup` for message ring request cleanup, `io_uring_sync_msg_ring` for synchronous request operations, and some locking helpers (`io_lock_external_ctx`, `io_double_unlock_ctx`)
 
 ### napi.c
-Integrates io_uring with the NAPI (New API) networking subsystem for efficient packet reception. Enables low-overhead network I/O by directly interfacing with NAPI-enabled drivers.
+Handles integration between `io_uring` and the NAPI (New API) busy-polling mechanism, designed for reducing network I/O latency. The entire code depends on whether the `CONFIG_NET_RX_BUSY_POLL` flag is enabled. Includes definition for data structure `io_napi_entry`, as well as functions `io_napi_init` (initialization), `io_napi_free` (resource cleanup), `io_register_napi` (NAPI instance registration), `io_unregister_napi` (NAPI instance unregistration), `__io_napi_add_id` (`napi_id` addition to the io_uring context's tracking list), `__io_napi_del_id` (removal of a `napi_id` from the context's tracking list), `__io_napi_busy_loop` (NAPI busy-polling loop execution), `io_napi_sqpoll_busy_poll` (NAPI busy-polling for SQPOLL), as well as helper functions `io_napi_blocking_busy_loop()`, `<static/dynamic>_tracking_do_busy_loop`, `io_napi_busy_loop_should_end`, `io_napi_remove_stale`.
 
 ### net.c
-Implements asynchronous networking operations, including recv/send for TCP and UDP, using io_uring. Provides support for efficient and scalable network socket operations in a non-blocking fashion.
+Implements asynchronous networking operations within `io_uring`, handling integration with the kernel's networking stack. The entire code depends on whether `CONFIG_NET` flag is enabled during compilation. Includes data structures `io_shutdown`, `io_accept`, `io_connect`, `io_bind`, `io_listen`, each used for their respective Linux network call, and also `io_sr_msg`, used for send-and-receive operations, and `io_recvzc`, which  is used for async for zero-copy receive. Includes preparation functions `io_shutdown_prep`, `io_accept_prep`, `io_sendmsg_prep`, `io_listen_prep`, `io_bind_prep`, `io_connect_prep`, `io_socket_prep`, `io_accept_prep`, `io_send_zc_prep`, `io_recvmsg_prep`, etc. as well as operation functions `io_shutdown`, `io_sendmsg`, `io_send`, `io_recv`, `io_recvzc`, `io_accept`, etc. and also helper functions `io_msg_alloc_async()`, `io_netmsg_recycle()`, `io_netmsg_iovec_free()`, `io_netmsg_cache_free()`, `io_copy_msghdr_from_user()`, `io_compat_msg_copy_hdr()`, `io_net_import_vec()`, `io_send_select_buffer()`, `io_recv_buf_select()`, `io_sg_from_iter()`, `io_sg_from_iter_iovec()`, `io_recvmsg_multishot()`, `io_mshot_prep_retry()`, `io_send_finish()`, and `io_recv_finish()`.
 
 ### nop.c
-Defines a no-operation (NOP) handler in io_uring, which is used for testing, benchmarking, or as a placeholder SQE operation. Useful for debugging or delaying execution flow.
+Handles the implementation of `OP_NOP` (no operation) in `io_uring`, providing a way to submit requests that doesn't do any actual I/O work. Primarily used for debugging and testing. Includes `io_nop` primary data structure, as well as `io_nop_prep` preparation function and `io_nop` NOP execution function.
 
 ### notif.c
-Handles notification-based operations that allow userspace to be notified of I/O completions using registered file descriptors or other signaling mechanisms.
+Handles completion notification management for zero-copy networking operations within io_uring. Includes `io_notif_data` as its primary data structure, which is assocated with `io_kiocb`, as well as a static constant structure `io_ubuf_ops` that points to two functions `io_tx_ubuf_complete` and `io_link_skb`, as well as `io_kiocb`. Also includes functions `io_alloc_notif` (structure allocation & init), `io_tx_ubuf_complete` (signifying that it no longer needs the `uarg`-associated buffer; executed by the network stack upon zero-copy transmission completion), `io_link_skb` (for linking multiple io_uring requests to the same `skb`), `io_notif_tw_complete` (final completion processing for notification requests).
 
 ### opdef.c
-Contains definitions and metadata for each supported io_uring operation code (opcodes), including their required features, flags, and compatibility. Used internally to validate and dispatch SQEs based on their opcode.
+Handles the mechanism for dispatching operations to kernel functions within `io_uring`, using a defined lookup table that maps each `io_uring` opcode to specific kernel functions responsible for handling the operation, alongside some metadata. Includes data structure `io_issue_def` (properties and handlers for an `io_uring` operation; with each instance corresponding to an opcode) as well as `io_issue_defs` (an array of `io_issue_def`s, indexed by `IORING_OP_*` constants, used as a lookup array during SQE operations), `io_cold_def` (defines props and handlers for things less frequently accesssed), and `io_cold_defs` (similar to `io_issue_defs` but for `io_cold_def`s). Includes functions `io_no_issue`, `io_eopnotsupp_prep`, `io_uring_get_opcode`, `io_uring_op_supported`, `io_uring_optable_init`. `io_issue_defs` contains some `#if` directives that indicate whether or not their respective `io_uring` operation is included in the final build, depending whether the respective feature is enabled in kernel config.
 
 ### openclose.c
-Implements asynchronous file open and close operations (`IORING_OP_OPENAT`, `IORING_OP_CLOSE`, etc.), enabling non-blocking file lifecycle management. Works in conjunction with fs.c and filetable.c.
+Implements asynchronous implementations for file opening and closing operations (`IORING_OP_OPENAT`, `IORING_OP_CLOSE`, etc.), enabling non-blocking file lifecycle management.
 
 ### poll.c
 Handles `IORING_OP_POLL_ADD` and `IORING_OP_POLL_REMOVE`, enabling applications to wait on file descriptors for readiness events asynchronously. Integrates with the kernel's poll subsystem.
@@ -167,19 +167,19 @@ Defines function prototypes to be implemented in memmap.c, as well as functions 
 Defines function prototypes to be implemented in `msg_ring.c`.
 
 ### napi.h
-Declares functions for handling integration with the Linux NAPI networking API, allowing efficient packet processing in conjunction with io_uring.
+Defines function prototypes to be implemented in `napi.h`, as well as implementing functions for adding napi id to a busy poll list (`io_napi_add`), registering (`io_register_napi`) and unregistering (`io_unregister_napi`), checking if a napi list is empty (`io_napi`), executing busy pool loop (`__io_napi_busy_loop`), etc.
 
 ### net.h
-Contains function declarations and helper macros used for handling networking operations, including socket send/receive functions for various protocols.
+Defines function prototypes to be included in `net.c`
 
 ### nop.h
-Defines the function prototype for the no-op handler in io_uring.
+Defines the function prototypes to be implemented in `nop.c`.
 
 ### notif.h
-Declares structures and functions related to internal notification mechanisms, signaling interfaces, and integration with eventfd or signal-based completion.
+Defines function prototypes to be implemented in `notif.h`, as well as defining core data structure `io_notif_data`, preprocessor macros (`IO_NOTIF_UBUF_FLAGS` and `IO_NOTIF_SPLICE_BATCH`), and helper functions for some tasks (`io_notif_to_data`, `io_notif_flush`, `io_notif_account_mem`).
 
 ### opdef.h
-Defines internal constants, flags, and data structures used to declare and manage io_uring operation definitions.
+Defines internal constants (`io_issue_def`, `io_cold_def`), and data structures (`io_issue_def`, `io_cold_def`), and function prototypes used to declare and manage io_uring operation definitions (defined in `opdef.c`).
 
 ### openclose.h
 Contains function declarations related to file open/close operations within the io_uring context.

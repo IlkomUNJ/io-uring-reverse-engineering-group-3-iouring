@@ -38,6 +38,13 @@ int io_cancel_remove(struct io_ring_ctx *ctx, struct io_cancel_data *cd,
  * @return TODO: Return value description.
  */
 
+/*
+    helping in preventing a single req from being match multiple times
+    within the same cancel all/cancel any operation.
+    checking if the request has already been marked with the current
+    attempt's unique sequence number, and returning true if already marked,
+    false if first seen.
+*/
 static inline bool io_cancel_match_sequence(struct io_kiocb *req, int sequence)
 {
 	if (req->cancel_seq_set && sequence == req->work.cancel_seq)
