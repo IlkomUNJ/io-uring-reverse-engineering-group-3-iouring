@@ -10,6 +10,12 @@
 #include "rsrc.h"
 
 static const struct ubuf_info_ops io_ubuf_ops;
+/*
+ * io_notif_tw_complete - TODO: Describe what this function does.
+ * @param struct io_kiocb *notif
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 
 static void io_notif_tw_complete(struct io_kiocb *notif, io_tw_token_t tw)
 {
@@ -31,6 +37,13 @@ static void io_notif_tw_complete(struct io_kiocb *notif, io_tw_token_t tw)
 		nd = nd->next;
 		io_req_task_complete(notif, tw);
 	} while (nd);
+/*
+ * io_tx_ubuf_complete - TODO: Describe what this function does.
+ * @param struct sk_buff *skb
+ * @param struct ubuf_info *uarg
+ * @param bool success
+ * @return TODO: Return value description.
+ */
 }
 
 void io_tx_ubuf_complete(struct sk_buff *skb, struct ubuf_info *uarg,
@@ -57,6 +70,12 @@ void io_tx_ubuf_complete(struct sk_buff *skb, struct ubuf_info *uarg,
 
 	tw_flags = nd->next ? 0 : IOU_F_TWQ_LAZY_WAKE;
 	notif->io_task_work.func = io_notif_tw_complete;
+/*
+ * io_link_skb - TODO: Describe what this function does.
+ * @param struct sk_buff *skb
+ * @param struct ubuf_info *uarg
+ * @return TODO: Return value description.
+ */
 	__io_req_task_work_add(notif, tw_flags);
 }
 
