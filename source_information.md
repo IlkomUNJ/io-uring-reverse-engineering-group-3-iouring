@@ -119,7 +119,7 @@ Implements zero-copy receive support for networking (`ZC RX`), allowing data to 
 ## Headers
 
 ### advise.h
-Just declare the function specification.
+Declares the function prototype for the fadvise operation implemented in advise.c. Provides support for the IORING_OP_FADVISE command, which gives the kernel file access pattern hints to optimize caching behavior.
 
 ### alloc_cache.h
 Defines the cache size limit, specification of the functions implemented in the `alloc_cache.c`, as well as functions/APIs for use by other files such as `io_alloc_cache_put`, `io_alloc_cache_get`, `io_cache_alloc`, and`io_cache_free`, of which those functions are used for the caching procedures.
@@ -130,11 +130,11 @@ Defines the prototype for functions implemented in `cancel.c`, the definition of
 
 ### epoll.h
 
-The file only defines the prototype for functions implemented in `epoll.c`.
+Declares the function prototype for IORING_OP_EPOLL_CTL, implemented in epoll.c. Supports asynchronous epoll_ctl operations within io_uring, allowing dynamic monitoring of file descriptors.
 
 ### eventfd.h
 
-The file only defines the prototype for functions implemented in `eventfd.c`.
+Declares the function prototype for IORING_OP_EVENTFD_REGISTER, implemented in eventfd.c. Enables registration of eventfds with an io_uring instance to receive notifications on operation completion
 
 ### fdinfo.h
 
