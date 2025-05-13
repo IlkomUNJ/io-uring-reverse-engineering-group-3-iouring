@@ -32,13 +32,6 @@ int io_cancel_remove(struct io_ring_ctx *ctx, struct io_cancel_data *cd,
 		     unsigned int issue_flags, struct hlist_head *list,
 		     bool (*cancel)(struct io_kiocb *));
 /*
- * io_cancel_match_sequence - TODO: Describe what this function does.
- * @param struct io_kiocb *req
- * @param int sequence
- * @return TODO: Return value description.
- */
-
-/*
     helping in preventing a single req from being match multiple times
     within the same cancel all/cancel any operation.
     checking if the request has already been marked with the current
