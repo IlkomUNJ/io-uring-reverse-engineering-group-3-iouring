@@ -32,10 +32,21 @@ struct io_msg {
 	};
 	u32 flags;
 };
+/*
+ * io_double_unlock_ctx - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *octx
+ * @return TODO: Return value description.
+ */
 
 static void io_double_unlock_ctx(struct io_ring_ctx *octx)
 {
 	mutex_unlock(&octx->uring_lock);
+/*
+ * io_lock_external_ctx - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *octx
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 static int io_lock_external_ctx(struct io_ring_ctx *octx,
@@ -52,6 +63,11 @@ static int io_lock_external_ctx(struct io_ring_ctx *octx,
 		return 0;
 	}
 	mutex_lock(&octx->uring_lock);
+/*
+ * io_msg_ring_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	return 0;
 }
 
@@ -62,10 +78,21 @@ void io_msg_ring_cleanup(struct io_kiocb *req)
 	if (WARN_ON_ONCE(!msg->src_file))
 		return;
 
+/*
+ * io_msg_need_remote - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *target_ctx
+ * @return TODO: Return value description.
+ */
 	fput(msg->src_file);
 	msg->src_file = NULL;
 }
 
+/*
+ * io_msg_tw_complete - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 static inline bool io_msg_need_remote(struct io_ring_ctx *target_ctx)
 {
 	return target_ctx->task_complete;
@@ -80,6 +107,15 @@ static void io_msg_tw_complete(struct io_kiocb *req, io_tw_token_t tw)
 		if (io_alloc_cache_put(&ctx->msg_cache, req))
 			req = NULL;
 		spin_unlock(&ctx->msg_lock);
+/*
+ * io_msg_remote_post - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_kiocb *req
+ * @param int res
+ * @param u32 cflags
+ * @param u64 user_data
+ * @return TODO: Return value description.
+ */
 	}
 	if (req)
 		kmem_cache_free(req_cachep, req);
@@ -110,6 +146,12 @@ static struct io_kiocb *io_msg_get_kiocb(struct io_ring_ctx *ctx)
 
 	if (spin_trylock(&ctx->msg_lock)) {
 		req = io_alloc_cache_get(&ctx->msg_cache);
+/*
+ * io_msg_data_remote - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *target_ctx
+ * @param struct io_msg *msg
+ * @return TODO: Return value description.
+ */
 		spin_unlock(&ctx->msg_lock);
 		if (req)
 			return req;
@@ -126,6 +168,13 @@ static int io_msg_data_remote(struct io_ring_ctx *target_ctx,
 	target = io_msg_get_kiocb(target_ctx);
 	if (unlikely(!target))
 		return -ENOMEM;
+/*
+ * __io_msg_ring_data - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *target_ctx
+ * @param struct io_msg *msg
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	if (msg->flags & IORING_MSG_RING_FLAGS_PASS)
 		flags = msg->cqe_flags;
@@ -156,6 +205,12 @@ static int __io_msg_ring_data(struct io_ring_ctx *target_ctx,
 	ret = -EOVERFLOW;
 	if (target_ctx->flags & IORING_SETUP_IOPOLL) {
 		if (unlikely(io_lock_external_ctx(target_ctx, issue_flags)))
+/*
+ * io_msg_ring_data - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 			return -EAGAIN;
 	}
 	if (io_post_aux_cqe(target_ctx, msg->user_data, msg->len, flags))
@@ -163,6 +218,12 @@ static int __io_msg_ring_data(struct io_ring_ctx *target_ctx,
 	if (target_ctx->flags & IORING_SETUP_IOPOLL)
 		io_double_unlock_ctx(target_ctx);
 	return ret;
+/*
+ * io_msg_grab_file - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 static int io_msg_ring_data(struct io_kiocb *req, unsigned int issue_flags)
@@ -182,6 +243,12 @@ static int io_msg_grab_file(struct io_kiocb *req, unsigned int issue_flags)
 
 	io_ring_submit_lock(ctx, issue_flags);
 	node = io_rsrc_node_lookup(&ctx->file_table.data, msg->src_fd);
+/*
+ * io_msg_install_complete - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	if (node) {
 		msg->src_file = io_slot_file(node);
 		if (msg->src_file)
@@ -226,6 +293,11 @@ out_unlock:
 }
 
 static void io_msg_tw_fd_complete(struct callback_head *head)
+/*
+ * io_msg_fd_remote - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 {
 	struct io_msg *msg = container_of(head, struct io_msg, tw);
 	struct io_kiocb *req = cmd_to_io_kiocb(msg);
@@ -241,6 +313,12 @@ static void io_msg_tw_fd_complete(struct callback_head *head)
 static int io_msg_fd_remote(struct io_kiocb *req)
 {
 	struct io_ring_ctx *ctx = req->file->private_data;
+/*
+ * io_msg_send_fd - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	struct io_msg *msg = io_kiocb_to_cmd(req, struct io_msg);
 	struct task_struct *task = READ_ONCE(ctx->submitter_task);
 
@@ -263,6 +341,12 @@ static int io_msg_send_fd(struct io_kiocb *req, unsigned int issue_flags)
 	if (msg->len)
 		return -EINVAL;
 	if (target_ctx == ctx)
+/*
+ * __io_msg_ring_prep - TODO: Describe what this function does.
+ * @param struct io_msg *msg
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		return -EINVAL;
 	if (target_ctx->flags & IORING_SETUP_R_DISABLED)
 		return -EBADFD;
@@ -280,10 +364,22 @@ static int io_msg_send_fd(struct io_kiocb *req, unsigned int issue_flags)
 static int __io_msg_ring_prep(struct io_msg *msg, const struct io_uring_sqe *sqe)
 {
 	if (unlikely(sqe->buf_index || sqe->personality))
+/*
+ * io_msg_ring_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		return -EINVAL;
 
 	msg->src_file = NULL;
 	msg->user_data = READ_ONCE(sqe->off);
+/*
+ * io_msg_ring - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	msg->len = READ_ONCE(sqe->len);
 	msg->cmd = READ_ONCE(sqe->addr);
 	msg->src_fd = READ_ONCE(sqe->addr3);
@@ -314,6 +410,11 @@ int io_msg_ring(struct io_kiocb *req, unsigned int issue_flags)
 		ret = io_msg_ring_data(req, issue_flags);
 		break;
 	case IORING_MSG_SEND_FD:
+/*
+ * io_uring_sync_msg_ring - TODO: Describe what this function does.
+ * @param struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		ret = io_msg_send_fd(req, issue_flags);
 		break;
 	default:

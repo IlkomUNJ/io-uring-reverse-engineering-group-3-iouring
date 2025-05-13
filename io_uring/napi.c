@@ -31,6 +31,11 @@ static struct io_napi_entry *io_napi_hash_find(struct hlist_head *hash_list,
 
 	return NULL;
 }
+/*
+ * net_to_ktime - TODO: Describe what this function does.
+ * @param unsigned long t
+ * @return TODO: Return value description.
+ */
 
 static inline ktime_t net_to_ktime(unsigned long t)
 {
@@ -79,6 +84,12 @@ int __io_napi_add_id(struct io_ring_ctx *ctx, unsigned int napi_id)
 	list_add_tail_rcu(&e->list, &ctx->napi_list);
 	spin_unlock(&ctx->napi_lock);
 	return 0;
+/*
+ * __io_napi_del_id - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned int napi_id
+ * @return TODO: Return value description.
+ */
 }
 
 static int __io_napi_del_id(struct io_ring_ctx *ctx, unsigned int napi_id)
@@ -99,6 +110,11 @@ static int __io_napi_del_id(struct io_ring_ctx *ctx, unsigned int napi_id)
 	list_del_rcu(&e->list);
 	hash_del_rcu(&e->node);
 	kfree_rcu(e, rcu);
+/*
+ * __io_napi_remove_stale - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	return 0;
 }
 
@@ -118,11 +134,23 @@ static void __io_napi_remove_stale(struct io_ring_ctx *ctx)
 			list_del_rcu(&e->list);
 			hash_del_rcu(&e->node);
 			kfree_rcu(e, rcu);
+/*
+ * io_napi_remove_stale - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param bool is_stale
+ * @return TODO: Return value description.
+ */
 		}
 	}
 }
 
 static inline void io_napi_remove_stale(struct io_ring_ctx *ctx, bool is_stale)
+/*
+ * io_napi_busy_loop_timeout - TODO: Describe what this function does.
+ * @param ktime_t start_time
+ * @param ktime_t bp
+ * @return TODO: Return value description.
+ */
 {
 	if (is_stale)
 		__io_napi_remove_stale(ctx);
@@ -135,6 +163,12 @@ static inline bool io_napi_busy_loop_timeout(ktime_t start_time,
 		ktime_t end_time = ktime_add(start_time, bp);
 		ktime_t now = net_to_ktime(busy_loop_current_time());
 
+/*
+ * io_napi_busy_loop_should_end - TODO: Describe what this function does.
+ * @param void *data
+ * @param unsigned long start_time
+ * @return TODO: Return value description.
+ */
 		return ktime_after(now, end_time);
 	}
 
@@ -194,6 +228,12 @@ dynamic_tracking_do_busy_loop(struct io_ring_ctx *ctx,
 static inline bool
 __io_napi_do_busy_loop(struct io_ring_ctx *ctx,
 		       bool (*loop_end)(void *, unsigned long),
+/*
+ * io_napi_blocking_busy_loop - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_wait_queue *iowq
+ * @return TODO: Return value description.
+ */
 		       void *loop_end_arg)
 {
 	if (READ_ONCE(ctx->napi_track_mode) == IO_URING_NAPI_TRACKING_STATIC)
@@ -227,6 +267,11 @@ static void io_napi_blocking_busy_loop(struct io_ring_ctx *ctx,
 
 	io_napi_remove_stale(ctx, is_stale);
 }
+/*
+ * io_napi_init - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 
 /*
  * io_napi_init() - Init napi settings
@@ -243,6 +288,11 @@ void io_napi_init(struct io_ring_ctx *ctx)
 	ctx->napi_prefer_busy_poll = false;
 	ctx->napi_busy_poll_dt = ns_to_ktime(sys_dt);
 	ctx->napi_track_mode = IO_URING_NAPI_TRACKING_INACTIVE;
+/*
+ * io_napi_free - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 }
 
 /*
@@ -253,6 +303,12 @@ void io_napi_init(struct io_ring_ctx *ctx)
  */
 void io_napi_free(struct io_ring_ctx *ctx)
 {
+/*
+ * io_napi_register_napi - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_napi *napi
+ * @return TODO: Return value description.
+ */
 	struct io_napi_entry *e;
 
 	guard(spinlock)(&ctx->napi_lock);
@@ -278,6 +334,12 @@ static int io_napi_register_napi(struct io_ring_ctx *ctx,
 	WRITE_ONCE(ctx->napi_track_mode, napi->op_param);
 	WRITE_ONCE(ctx->napi_busy_poll_dt, napi->busy_poll_to * NSEC_PER_USEC);
 	WRITE_ONCE(ctx->napi_prefer_busy_poll, !!napi->prefer_busy_poll);
+/*
+ * io_register_napi - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 	return 0;
 }
 
@@ -320,6 +382,12 @@ int io_register_napi(struct io_ring_ctx *ctx, void __user *arg)
 		return __io_napi_del_id(ctx, napi.op_param);
 	default:
 		return -EINVAL;
+/*
+ * io_unregister_napi - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 	}
 }
 
@@ -342,6 +410,12 @@ int io_unregister_napi(struct io_ring_ctx *ctx, void __user *arg)
 		return -EFAULT;
 
 	WRITE_ONCE(ctx->napi_busy_poll_dt, 0);
+/*
+ * __io_napi_busy_loop - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_wait_queue *iowq
+ * @return TODO: Return value description.
+ */
 	WRITE_ONCE(ctx->napi_prefer_busy_poll, false);
 	WRITE_ONCE(ctx->napi_track_mode, IO_URING_NAPI_TRACKING_INACTIVE);
 	return 0;
@@ -363,6 +437,11 @@ void __io_napi_busy_loop(struct io_ring_ctx *ctx, struct io_wait_queue *iowq)
 	if (iowq->timeout != KTIME_MAX) {
 		ktime_t dt = ktime_sub(iowq->timeout, io_get_time(ctx));
 
+/*
+ * io_napi_sqpoll_busy_poll - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		iowq->napi_busy_poll_dt = min_t(u64, iowq->napi_busy_poll_dt, dt);
 	}
 

@@ -87,7 +87,13 @@ int io_buffer_validate(struct iovec *iov);
 
 bool io_check_coalesce_buffer(struct page **page_array, int nr_pages,
 			      struct io_imu_folio_data *data);
-
+/*
+    Looks up a registered resource node (either a file or a buffer)
+    from a resource data array using a given index.
+    If the index is valid, it retrieves the io_rsrc_node pointer from the
+    nodes array.
+    Returns NULL when index is out of bounds.
+*/
 static inline struct io_rsrc_node *io_rsrc_node_lookup(struct io_rsrc_data *data,
 						       int index)
 {
@@ -95,14 +101,23 @@ static inline struct io_rsrc_node *io_rsrc_node_lookup(struct io_rsrc_data *data
 		return data->nodes[array_index_nospec(index, data->nr)];
 	return NULL;
 }
-
+/*
+    Decrements the reference count of an io_rsrc_node. If the
+    reference count drops to zero, it means the resource is no
+    longer in use by any active io_uring request, and the function
+    then frees the node.
+*/
 static inline void io_put_rsrc_node(struct io_ring_ctx *ctx, struct io_rsrc_node *node)
 {
 	lockdep_assert_held(&ctx->uring_lock);
 	if (!--node->refs)
 		io_free_rsrc_node(ctx, node);
 }
-
+/*
+    Attempts to remove a resource node from a resource data array at a
+    specific index. It decrements the node's reference count and, if
+    successful in finding a node, sets the array slot to NULL.
+*/
 static inline bool io_reset_rsrc_node(struct io_ring_ctx *ctx,
 				      struct io_rsrc_data *data, int index)
 {
@@ -114,7 +129,10 @@ static inline bool io_reset_rsrc_node(struct io_ring_ctx *ctx,
 	data->nodes[index] = NULL;
 	return true;
 }
-
+/*
+    Releases references to resource nodes (both file and buffer) that might be
+    associated with a specific io_kiocb (io_uring request).
+*/
 static inline void io_req_put_rsrc_nodes(struct io_kiocb *req)
 {
 	if (req->file_node) {
@@ -126,14 +144,21 @@ static inline void io_req_put_rsrc_nodes(struct io_kiocb *req)
 		req->buf_node = NULL;
 	}
 }
-
+/*
+    Assigns a resource node to a destination pointer (typically within an io_kiocb)
+    and increments the node's reference count.
+*/
 static inline void io_req_assign_rsrc_node(struct io_rsrc_node **dst_node,
 					   struct io_rsrc_node *node)
 {
 	node->refs++;
 	*dst_node = node;
 }
-
+/*
+    A specialized version of io_req_assign_rsrc_node specifically for
+    assigning a buffer resource node to an io_kiocb.
+    Also sets the appropriate flag in the request.
+*/
 static inline void io_req_assign_buf_node(struct io_kiocb *req,
 					  struct io_rsrc_node *node)
 {
@@ -145,7 +170,9 @@ int io_files_update(struct io_kiocb *req, unsigned int issue_flags);
 int io_files_update_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe);
 
 int __io_account_mem(struct user_struct *user, unsigned long nr_pages);
-
+/*
+    Decrements the count of locked VM pages accounted to a specific user.
+*/
 static inline void __io_unaccount_mem(struct user_struct *user,
 				      unsigned long nr_pages)
 {
@@ -154,7 +181,11 @@ static inline void __io_unaccount_mem(struct user_struct *user,
 
 void io_vec_free(struct iou_vec *iv);
 int io_vec_realloc(struct iou_vec *iv, unsigned nr_entries);
-
+/*
+    Resets an iou_vec structure (which likely wraps an array of iovecs) to
+    point to a new iovec array. It first frees any existing data associated
+    with the iou_vec.
+*/
 static inline void io_vec_reset_iovec(struct iou_vec *iv,
 				      struct iovec *iovec, unsigned nr)
 {
@@ -162,7 +193,12 @@ static inline void io_vec_reset_iovec(struct iou_vec *iv,
 	iv->iovec = iovec;
 	iv->nr = nr;
 }
-
+/*
+    Ensures that if an iou_vec is being reused from a cache,
+    KASAN doesn't complain about use-after-free or other memory
+    errors related to the contents of the iovecs if they were not
+    properly re-initialized.
+*/
 static inline void io_alloc_cache_vec_kasan(struct iou_vec *iv)
 {
 	if (IS_ENABLED(CONFIG_KASAN))

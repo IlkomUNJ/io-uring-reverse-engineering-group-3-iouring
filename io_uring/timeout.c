@@ -34,6 +34,11 @@ struct io_timeout_rem {
 	u32				flags;
 	bool				ltimeout;
 };
+/*
+ * io_is_timeout_noseq - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 static inline bool io_is_timeout_noseq(struct io_kiocb *req)
 {
@@ -41,6 +46,11 @@ static inline bool io_is_timeout_noseq(struct io_kiocb *req)
 	struct io_timeout_data *data = req->async_data;
 
 	return !timeout->off || data->flags & IORING_TIMEOUT_MULTISHOT;
+/*
+ * io_put_req - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 static inline void io_put_req(struct io_kiocb *req)
@@ -48,6 +58,12 @@ static inline void io_put_req(struct io_kiocb *req)
 	if (req_ref_put_and_test(req)) {
 		io_queue_next(req);
 		io_free_req(req);
+/*
+ * io_timeout_finish - TODO: Describe what this function does.
+ * @param struct io_timeout *timeout
+ * @param struct io_timeout_data *data
+ * @return TODO: Return value description.
+ */
 	}
 }
 
@@ -61,6 +77,12 @@ static inline bool io_timeout_finish(struct io_timeout *timeout,
 		return false;
 
 	return true;
+/*
+ * io_timeout_complete - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 }
 
 static enum hrtimer_restart io_timeout_fn(struct hrtimer *timer);
@@ -80,6 +102,12 @@ static void io_timeout_complete(struct io_kiocb *req, io_tw_token_t tw)
 			raw_spin_unlock_irq(&ctx->timeout_lock);
 			return;
 		}
+/*
+ * io_flush_killed_timeouts - TODO: Describe what this function does.
+ * @param struct list_head *list
+ * @param int err
+ * @return TODO: Return value description.
+ */
 	}
 
 	io_req_task_complete(req, tw);
@@ -113,6 +141,11 @@ static void io_kill_timeout(struct io_kiocb *req, struct list_head *list)
 	if (hrtimer_try_to_cancel(&io->timer) != -1) {
 		struct io_timeout *timeout = io_kiocb_to_cmd(req, struct io_timeout);
 
+/*
+ * io_flush_timeouts - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		atomic_set(&req->ctx->cq_timeouts,
 			atomic_read(&req->ctx->cq_timeouts) + 1);
 		list_move_tail(&timeout->list, list);
@@ -147,6 +180,12 @@ __cold void io_flush_timeouts(struct io_ring_ctx *ctx)
 		if (events_got < events_needed)
 			break;
 
+/*
+ * io_req_tw_fail_links - TODO: Describe what this function does.
+ * @param struct io_kiocb *link
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 		io_kill_timeout(req, &list);
 	}
 	ctx->cq_last_tm_flush = seq;
@@ -186,6 +225,11 @@ static void io_fail_links(struct io_kiocb *req)
 			link->flags &= ~REQ_F_CQE_SKIP;
 		trace_io_uring_fail_link(req, link);
 		link = link->link;
+/*
+ * io_remove_next_linked - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	}
 
 	link = req->link;
@@ -237,6 +281,11 @@ struct io_kiocb *__io_disarm_linked_timeout(struct io_kiocb *req,
 	struct io_timeout *timeout = io_kiocb_to_cmd(link, struct io_timeout);
 
 	io_remove_next_linked(req);
+/*
+ * io_timeout_fn - TODO: Describe what this function does.
+ * @param struct hrtimer *timer
+ * @return TODO: Return value description.
+ */
 	timeout->head = NULL;
 	if (hrtimer_try_to_cancel(&io->timer) != -1) {
 		list_del(&timeout->list);
@@ -302,6 +351,12 @@ int io_timeout_cancel(struct io_ring_ctx *ctx, struct io_cancel_data *cd)
 {
 	struct io_kiocb *req;
 
+/*
+ * io_req_task_link_timeout - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 	raw_spin_lock_irq(&ctx->timeout_lock);
 	req = io_timeout_extract(ctx, cd);
 	raw_spin_unlock_irq(&ctx->timeout_lock);
@@ -327,6 +382,11 @@ static void io_req_task_link_timeout(struct io_kiocb *req, io_tw_token_t tw)
 
 			ret = io_try_cancel(req->tctx, &cd, 0);
 		} else {
+/*
+ * io_link_timeout_fn - TODO: Describe what this function does.
+ * @param struct hrtimer *timer
+ * @return TODO: Return value description.
+ */
 			ret = -ECANCELED;
 		}
 		io_req_set_res(req, ret ?: -ETIME, 0);
@@ -357,6 +417,11 @@ static enum hrtimer_restart io_link_timeout_fn(struct hrtimer *timer)
 	 */
 	if (prev) {
 		io_remove_next_linked(prev);
+/*
+ * io_timeout_get_clock - TODO: Describe what this function does.
+ * @param struct io_timeout_data *data
+ * @return TODO: Return value description.
+ */
 		if (!req_ref_inc_not_zero(prev))
 			prev = NULL;
 	}
@@ -421,6 +486,12 @@ static int io_timeout_update(struct io_ring_ctx *ctx, __u64 user_data,
 	struct io_timeout *timeout = io_kiocb_to_cmd(req, struct io_timeout);
 	struct io_timeout_data *data;
 
+/*
+ * io_timeout_remove_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	if (IS_ERR(req))
 		return PTR_ERR(req);
 
@@ -451,6 +522,11 @@ int io_timeout_remove_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 			return -EINVAL;
 		if (tr->flags & IORING_LINK_TIMEOUT_UPDATE)
 			tr->ltimeout = true;
+/*
+ * io_translate_timeout_mode - TODO: Describe what this function does.
+ * @param unsigned int flags
+ * @return TODO: Return value description.
+ */
 		if (tr->flags & ~(IORING_TIMEOUT_UPDATE_MASK|IORING_TIMEOUT_ABS))
 			return -EINVAL;
 		if (get_timespec64(&tr->ts, u64_to_user_ptr(sqe->addr2)))
@@ -488,6 +564,13 @@ int io_timeout_remove(struct io_kiocb *req, unsigned int issue_flags)
 		spin_unlock(&ctx->completion_lock);
 	} else {
 		enum hrtimer_mode mode = io_translate_timeout_mode(tr->flags);
+/*
+ * __io_timeout_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @param bool is_timeout_link
+ * @return TODO: Return value description.
+ */
 
 		raw_spin_lock_irq(&ctx->timeout_lock);
 		if (tr->ltimeout)
@@ -557,14 +640,32 @@ static int __io_timeout_prep(struct io_kiocb *req,
 	data->mode = io_translate_timeout_mode(flags);
 
 	if (is_timeout_link) {
+/*
+ * io_timeout_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		struct io_submit_link *link = &req->ctx->submit_state.link;
 
 		if (!link->head)
 			return -EINVAL;
+/*
+ * io_link_timeout_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		if (link->last->opcode == IORING_OP_LINK_TIMEOUT)
 			return -EINVAL;
 		timeout->head = link->last;
 		link->last->flags |= REQ_F_ARM_LTIMEOUT;
+/*
+ * io_timeout - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		hrtimer_setup(&data->timer, io_link_timeout_fn, io_timeout_get_clock(data),
 			      data->mode);
 	} else {
@@ -656,6 +757,13 @@ void io_queue_linked_timeout(struct io_kiocb *req)
 }
 
 static bool io_match_task(struct io_kiocb *head, struct io_uring_task *tctx,
+/*
+ * io_kill_timeouts - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_task *tctx
+ * @param bool cancel_all
+ * @return TODO: Return value description.
+ */
 			  bool cancel_all)
 	__must_hold(&head->ctx->timeout_lock)
 {

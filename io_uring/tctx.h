@@ -22,6 +22,14 @@ int io_ringfd_unregister(struct io_ring_ctx *ctx, void __user *__arg,
 /*
  * Note that this task has used io_uring. We use it for cancelation purposes.
  */
+
+/*
+    Associating the currently executing task with a specific io_uring
+    context (ctx).
+    If tctx exists and tctx->last already points to passed ctx,
+    return 0 (success) immediately. Else, return with the return
+    value of __io_uring_add_tctx_node_from_submit(ctx)
+*/
 static inline int io_uring_add_tctx_node(struct io_ring_ctx *ctx)
 {
 	struct io_uring_task *tctx = current->io_uring;

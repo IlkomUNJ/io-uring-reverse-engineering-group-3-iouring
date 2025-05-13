@@ -29,7 +29,10 @@ struct io_wq_hash {
 	unsigned long map;
 	struct wait_queue_head wait;
 };
-
+/*
+    Decrements reference count of an io_wq_hash structure and frees it
+    if the reference count drops to zero.
+*/
 static inline void io_wq_put_hash(struct io_wq_hash *hash)
 {
 	if (refcount_dec_and_test(&hash->refs))
@@ -53,12 +56,17 @@ void io_wq_hash_work(struct io_wq_work *work, void *val);
 int io_wq_cpu_affinity(struct io_uring_task *tctx, cpumask_var_t mask);
 int io_wq_max_workers(struct io_wq *wq, int *new_count);
 bool io_wq_worker_stopped(void);
-
+/*
+    Checks if the IO_WQ_WORK_HASHED flag is set in a given raw work_flags value.
+*/
 static inline bool __io_wq_is_hashed(unsigned int work_flags)
 {
 	return work_flags & IO_WQ_WORK_HASHED;
 }
-
+/*
+    Checks if a given io_wq_work item is marked as "hashed", through
+    internal __io_wq_is_hashed.
+*/
 static inline bool io_wq_is_hashed(struct io_wq_work *work)
 {
 	return __io_wq_is_hashed(atomic_read(&work->flags));
@@ -73,14 +81,22 @@ enum io_wq_cancel io_wq_cancel_cb(struct io_wq *wq, work_cancel_fn *cancel,
 extern void io_wq_worker_sleeping(struct task_struct *);
 extern void io_wq_worker_running(struct task_struct *);
 #else
+/*
+    Stub function that does nothing; compiled when CONFIG_IO_WQ is not defined.
+*/
 static inline void io_wq_worker_sleeping(struct task_struct *tsk)
 {
 }
+/*
+    Stub function that does nothing; compiled when CONFIG_IO_WQ is not defined.
+*/
 static inline void io_wq_worker_running(struct task_struct *tsk)
 {
 }
 #endif
-
+/*
+    Determines if the currently executing context is an io_uring I/O worker thread.
+*/
 static inline bool io_wq_current_is_worker(void)
 {
 	return in_task() && (current->flags & PF_IO_WORKER) &&

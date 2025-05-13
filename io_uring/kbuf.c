@@ -31,6 +31,12 @@ struct io_provide_buf {
 	__u32				nbufs;
 	__u16				bid;
 };
+/*
+ * io_kbuf_inc_commit - TODO: Describe what this function does.
+ * @param struct io_buffer_list *bl
+ * @param int len
+ * @return TODO: Return value description.
+ */
 
 static bool io_kbuf_inc_commit(struct io_buffer_list *bl, int len)
 {
@@ -49,6 +55,14 @@ static bool io_kbuf_inc_commit(struct io_buffer_list *bl, int len)
 		len -= this_len;
 	}
 	return true;
+/*
+ * io_kbuf_commit - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_buffer_list *bl
+ * @param int len
+ * @param int nr
+ * @return TODO: Return value description.
+ */
 }
 
 bool io_kbuf_commit(struct io_kiocb *req,
@@ -72,6 +86,13 @@ static inline struct io_buffer_list *io_buffer_get_list(struct io_ring_ctx *ctx,
 {
 	lockdep_assert_held(&ctx->uring_lock);
 
+/*
+ * io_buffer_add_list - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_buffer_list *bl
+ * @param unsigned int bgid
+ * @return TODO: Return value description.
+ */
 	return xa_load(&ctx->io_bl_xa, bgid);
 }
 
@@ -84,6 +105,11 @@ static int io_buffer_add_list(struct io_ring_ctx *ctx,
 	 * always under the ->uring_lock, but lookups from mmap do.
 	 */
 	bl->bgid = bgid;
+/*
+ * io_kbuf_drop_legacy - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	guard(mutex)(&ctx->mmap_lock);
 	return xa_err(xa_store(&ctx->io_bl_xa, bgid, bl, GFP_KERNEL));
 }
@@ -93,6 +119,12 @@ void io_kbuf_drop_legacy(struct io_kiocb *req)
 	if (WARN_ON_ONCE(!(req->flags & REQ_F_BUFFER_SELECTED)))
 		return;
 	req->buf_index = req->kbuf->bgid;
+/*
+ * io_kbuf_recycle_legacy - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 	req->flags &= ~REQ_F_BUFFER_SELECTED;
 	kfree(req->kbuf);
 	req->kbuf = NULL;
@@ -130,6 +162,14 @@ static void __user *io_provided_buffer_select(struct io_kiocb *req, size_t *len,
 			req->flags |= REQ_F_BL_EMPTY;
 		req->flags |= REQ_F_BUFFER_SELECTED;
 		req->kbuf = kbuf;
+/*
+ * io_provided_buffers_select - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param size_t *len
+ * @param struct io_buffer_list *bl
+ * @param struct iovec *iov
+ * @return TODO: Return value description.
+ */
 		req->buf_index = kbuf->bid;
 		return u64_to_user_ptr(kbuf->addr);
 	}
@@ -208,6 +248,13 @@ void __user *io_buffer_select(struct io_kiocb *req, size_t *len,
 		else
 			ret = io_provided_buffer_select(req, len, bl);
 	}
+/*
+ * io_ring_buffers_peek - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct buf_sel_arg *arg
+ * @param struct io_buffer_list *bl
+ * @return TODO: Return value description.
+ */
 	io_ring_submit_unlock(req->ctx, issue_flags);
 	return ret;
 }
@@ -286,6 +333,13 @@ static int io_ring_buffers_peek(struct io_kiocb *req, struct buf_sel_arg *arg,
 		buf = io_ring_head_to_buf(br, ++head, bl->mask);
 	} while (--nr_iovs);
 
+/*
+ * io_buffers_select - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct buf_sel_arg *arg
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	if (head == tail)
 		req->flags |= REQ_F_BL_EMPTY;
 
@@ -318,6 +372,12 @@ int io_buffers_select(struct io_kiocb *req, struct buf_sel_arg *arg,
 		if (ret > 0) {
 			req->flags |= REQ_F_BUFFERS_COMMIT | REQ_F_BL_NO_RECYCLE;
 			io_kbuf_commit(req, bl, arg->out_len, ret);
+/*
+ * io_buffers_peek - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct buf_sel_arg *arg
+ * @return TODO: Return value description.
+ */
 		}
 	} else {
 		ret = io_provided_buffers_select(req, &arg->out_len, bl, arg->iovs);
@@ -340,6 +400,13 @@ int io_buffers_peek(struct io_kiocb *req, struct buf_sel_arg *arg)
 		return -ENOENT;
 
 	if (bl->flags & IOBL_BUF_RING) {
+/*
+ * __io_put_kbuf_ring - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int len
+ * @param int nr
+ * @return TODO: Return value description.
+ */
 		ret = io_ring_buffers_peek(req, arg, bl);
 		if (ret > 0)
 			req->flags |= REQ_F_BUFFERS_COMMIT;
@@ -352,6 +419,13 @@ int io_buffers_peek(struct io_kiocb *req, struct buf_sel_arg *arg)
 
 static inline bool __io_put_kbuf_ring(struct io_kiocb *req, int len, int nr)
 {
+/*
+ * __io_put_kbufs - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int len
+ * @param int nbufs
+ * @return TODO: Return value description.
+ */
 	struct io_buffer_list *bl = req->buf_list;
 	bool ret = true;
 
@@ -367,6 +441,13 @@ unsigned int __io_put_kbufs(struct io_kiocb *req, int len, int nbufs)
 {
 	unsigned int ret;
 
+/*
+ * __io_remove_buffers - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_buffer_list *bl
+ * @param unsigned nbufs
+ * @return TODO: Return value description.
+ */
 	ret = IORING_CQE_F_BUFFER | (req->buf_index << IORING_CQE_BUFFER_SHIFT);
 
 	if (unlikely(!(req->flags & REQ_F_BUFFER_RING))) {
@@ -402,11 +483,22 @@ static int __io_remove_buffers(struct io_ring_ctx *ctx,
 
 	while (!list_empty(&bl->buf_list)) {
 		struct io_buffer *nxt;
+/*
+ * io_put_bl - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_buffer_list *bl
+ * @return TODO: Return value description.
+ */
 
 		nxt = list_first_entry(&bl->buf_list, struct io_buffer, list);
 		list_del(&nxt->list);
 		kfree(nxt);
 
+/*
+ * io_destroy_buffers - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		if (++i == nbufs)
 			return i;
 		cond_resched();
@@ -424,12 +516,24 @@ static void io_put_bl(struct io_ring_ctx *ctx, struct io_buffer_list *bl)
 void io_destroy_buffers(struct io_ring_ctx *ctx)
 {
 	struct io_buffer_list *bl;
+/*
+ * io_destroy_bl - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_buffer_list *bl
+ * @return TODO: Return value description.
+ */
 
 	while (1) {
 		unsigned long index = 0;
 
 		scoped_guard(mutex, &ctx->mmap_lock) {
 			bl = xa_find(&ctx->io_bl_xa, &index, ULONG_MAX, XA_PRESENT);
+/*
+ * io_remove_buffers_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 			if (bl)
 				xa_erase(&ctx->io_bl_xa, bl->bgid);
 		}
@@ -448,6 +552,12 @@ static void io_destroy_bl(struct io_ring_ctx *ctx, struct io_buffer_list *bl)
 
 int io_remove_buffers_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
+/*
+ * io_remove_buffers - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	struct io_provide_buf *p = io_kiocb_to_cmd(req, struct io_provide_buf);
 	u64 tmp;
 
@@ -471,6 +581,12 @@ int io_remove_buffers(struct io_kiocb *req, unsigned int issue_flags)
 	struct io_ring_ctx *ctx = req->ctx;
 	struct io_buffer_list *bl;
 	int ret = 0;
+/*
+ * io_provide_buffers_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 	io_ring_submit_lock(ctx, issue_flags);
 
@@ -506,6 +622,13 @@ int io_provide_buffers_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe
 	p->len = READ_ONCE(sqe->len);
 
 	if (check_mul_overflow((unsigned long)p->len, (unsigned long)p->nbufs,
+/*
+ * io_add_buffers - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_provide_buf *pbuf
+ * @param struct io_buffer_list *bl
+ * @return TODO: Return value description.
+ */
 				&size))
 		return -EOVERFLOW;
 	if (check_add_overflow((unsigned long)p->addr, size, &tmp_check))
@@ -530,6 +653,12 @@ static int io_add_buffers(struct io_ring_ctx *ctx, struct io_provide_buf *pbuf,
 {
 	struct io_buffer *buf;
 	u64 addr = pbuf->addr;
+/*
+ * io_provide_buffers - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	int i, bid = pbuf->bid;
 
 	for (i = 0; i < pbuf->nbufs; i++) {
@@ -568,6 +697,12 @@ int io_provide_buffers(struct io_kiocb *req, unsigned int issue_flags)
 		}
 		INIT_LIST_HEAD(&bl->buf_list);
 		ret = io_buffer_add_list(ctx, bl, p->bgid);
+/*
+ * io_register_pbuf_ring - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 		if (ret) {
 			kfree(bl);
 			goto err;
@@ -649,6 +784,12 @@ int io_register_pbuf_ring(struct io_ring_ctx *ctx, void __user *arg)
 	 * if we, by chance, don't end up with aligned addresses. The app
 	 * should use IOU_PBUF_RING_MMAP instead, and liburing will handle
 	 * this transparently.
+/*
+ * io_unregister_pbuf_ring - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 	 */
 	if (!(reg.flags & IOU_PBUF_RING_MMAP) &&
 	    ((reg.ring_addr | (unsigned long)br) & (SHM_COLOUR - 1))) {
@@ -675,6 +816,12 @@ int io_unregister_pbuf_ring(struct io_ring_ctx *ctx, void __user *arg)
 {
 	struct io_uring_buf_reg reg;
 	struct io_buffer_list *bl;
+/*
+ * io_register_pbuf_status - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 
 	lockdep_assert_held(&ctx->uring_lock);
 

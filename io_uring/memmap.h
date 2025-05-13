@@ -23,12 +23,19 @@ int io_create_region_mmap_safe(struct io_ring_ctx *ctx,
 				struct io_mapped_region *mr,
 				struct io_uring_region_desc *reg,
 				unsigned long mmap_offset);
-
+/*
+    Accessor to retrieve the kernel virtual address where a mapped memory
+    region (io_mapped_region) begins.
+*/
 static inline void *io_region_get_ptr(struct io_mapped_region *mr)
 {
 	return mr->ptr;
 }
-
+/*
+    This function checks if a given io_mapped_region has been properly
+    initialized or "set up," likely by checking if it has any pages
+    associated with it.
+*/
 static inline bool io_region_is_set(struct io_mapped_region *mr)
 {
 	return !!mr->nr_pages;

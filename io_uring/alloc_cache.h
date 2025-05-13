@@ -15,7 +15,11 @@ bool io_alloc_cache_init(struct io_alloc_cache *cache,
 			 unsigned int init_bytes);
 
 void *io_cache_alloc_new(struct io_alloc_cache *cache, gfp_t gfp);
-
+/*
+    pushes a new entry to a given cache array.
+    returns true if object is successfully put,
+    false if cache is full or KASAN poisoning fails.
+*/
 static inline bool io_alloc_cache_put(struct io_alloc_cache *cache,
 				      void *entry)
 {
@@ -27,7 +31,10 @@ static inline bool io_alloc_cache_put(struct io_alloc_cache *cache,
 	}
 	return false;
 }
-
+/*
+    pops an entry to a given cache array if available. also unpoisons
+    and optionally zeroes the first bytes under KASAN.
+*/
 static inline void *io_alloc_cache_get(struct io_alloc_cache *cache)
 {
 	if (cache->nr_cached) {
@@ -49,6 +56,10 @@ static inline void *io_alloc_cache_get(struct io_alloc_cache *cache)
 	return NULL;
 }
 
+/*
+    convenience wrapper for calling io_alloc_cache_get and falls back to kmalloc()
+    (called through io_cache_alloc_new) if the function fails.
+*/
 static inline void *io_cache_alloc(struct io_alloc_cache *cache, gfp_t gfp)
 {
 	void *obj;
@@ -58,7 +69,10 @@ static inline void *io_cache_alloc(struct io_alloc_cache *cache, gfp_t gfp)
 		return obj;
 	return io_cache_alloc_new(cache, gfp);
 }
-
+/*
+    convenience wrapper for calling io_alloc_cache_put and falls back to
+    kfree() if cache is full.
+*/
 static inline void io_cache_free(struct io_alloc_cache *cache, void *obj)
 {
 	if (!io_alloc_cache_put(cache, obj))

@@ -20,6 +20,10 @@ int io_register_file_alloc_range(struct io_ring_ctx *ctx,
 
 io_req_flags_t io_file_get_flags(struct file *file);
 
+
+/*
+    Clear specified bit in a filetable's allocation bitmap, update allocation hint.
+*/
 static inline void io_file_bitmap_clear(struct io_file_table *table, int bit)
 {
 	WARN_ON_ONCE(!test_bit(bit, table->bitmap));
@@ -27,6 +31,9 @@ static inline void io_file_bitmap_clear(struct io_file_table *table, int bit)
 	table->alloc_hint = bit;
 }
 
+/*
+    Sets a specified bit in the file table's allocation bitmap and updates the allocation hint.
+*/
 static inline void io_file_bitmap_set(struct io_file_table *table, int bit)
 {
 	WARN_ON_ONCE(test_bit(bit, table->bitmap));
@@ -38,24 +45,39 @@ static inline void io_file_bitmap_set(struct io_file_table *table, int bit)
 #define FFS_ISREG		0x2UL
 #define FFS_MASK		~(FFS_NOWAIT|FFS_ISREG)
 
+/*
+    Extracts flags (specifically related to NOWAIT support)
+    that are encoded within the file_ptr field of an io_rsrc_node.
+*/
 static inline unsigned int io_slot_flags(struct io_rsrc_node *node)
 {
 
 	return (node->file_ptr & ~FFS_MASK) << REQ_F_SUPPORT_NOWAIT_BIT;
 }
 
+/*
+    Retrieves the actual struct file * pointer from an io_rsrc_node, where the
+    pointer is stored alongside some flags in the file_ptr field.
+*/
 static inline struct file *io_slot_file(struct io_rsrc_node *node)
 {
 	return (struct file *)(node->file_ptr & FFS_MASK);
 }
-
+/*
+    Stores a struct file * pointer and its associated flags
+    (related to NOWAIT support) into the file_ptr field of an io_rsrc_node.
+*/
 static inline void io_fixed_file_set(struct io_rsrc_node *node,
 				     struct file *file)
 {
 	node->file_ptr = (unsigned long)file |
 		(io_file_get_flags(file) >> REQ_F_SUPPORT_NOWAIT_BIT);
 }
-
+/*
+    Configures a specific range within the io_uring's fixed file table
+    that can be used for dynamic allocation of file slots by
+    io_uring_register with IORING_REGISTER_FILES_UPDATE.
+*/
 static inline void io_file_table_set_alloc_range(struct io_ring_ctx *ctx,
 						 unsigned off, unsigned len)
 {

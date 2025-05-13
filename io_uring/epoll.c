@@ -25,7 +25,14 @@ struct io_epoll_wait {
 	int				maxevents;
 	struct epoll_event __user	*events;
 };
-
+/**
+ * io_epoll_ctl_prep - Prepare an epoll_ctl operation from io_uring SQE
+ * @req: io_kiocb structure representing the request
+ * @sqe: submission queue entry from user space
+ *
+ * Extracts epoll_ctl parameters (epoll fd, op, target fd, and optional event)
+ * from the SQE and stores them into the internal io_epoll structure.
+ */
 int io_epoll_ctl_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	struct io_epoll *epoll = io_kiocb_to_cmd(req, struct io_epoll);
@@ -47,11 +54,14 @@ int io_epoll_ctl_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	return 0;
 }
-
 /**
-* prepare io_epoll reference, then start the eventpoll in non-blocking mode according
-* to the value passed on io_kiocdb
-*/
+ * io_epoll_ctl - Execute an epoll_ctl() operation via io_uring
+ * @req: prepared io_kiocb request
+ * @issue_flags: submission context flags
+ *
+ * Performs epoll_ctl() system call in non-blocking mode (if specified).
+ * Reports -EAGAIN if retry is needed in non-blocking mode.
+ */
 int io_epoll_ctl(struct io_kiocb *req, unsigned int issue_flags)
 {
 	struct io_epoll *ie = io_kiocb_to_cmd(req, struct io_epoll);
@@ -67,7 +77,14 @@ int io_epoll_ctl(struct io_kiocb *req, unsigned int issue_flags)
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
 }
-
+/**
+ * io_epoll_wait_prep - Prepare an epoll_wait operation from io_uring SQE
+ * @req: io_kiocb request
+ * @sqe: submission queue entry from userspace
+ *
+ * Extracts the user pointer and number of max events to wait for,
+ * and stores them into io_epoll_wait structure.
+ */
 int io_epoll_wait_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	struct io_epoll_wait *iew = io_kiocb_to_cmd(req, struct io_epoll_wait);
@@ -79,7 +96,14 @@ int io_epoll_wait_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	iew->events = u64_to_user_ptr(READ_ONCE(sqe->addr));
 	return 0;
 }
-
+/**
+ * io_epoll_wait - Execute an epoll_wait-style event send via io_uring
+ * @req: prepared request structure
+ * @issue_flags: issue-time flags (unused here)
+ *
+ * Sends pending epoll events back to userspace. Returns -EAGAIN if
+ * no events are ready yet. Otherwise, sets the number of sent events.
+ */
 int io_epoll_wait(struct io_kiocb *req, unsigned int issue_flags)
 {
 	struct io_epoll_wait *iew = io_kiocb_to_cmd(req, struct io_epoll_wait);

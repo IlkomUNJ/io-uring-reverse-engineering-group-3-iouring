@@ -14,6 +14,23 @@
 #include "kbuf.h"
 #include "rsrc.h"
 
+/**
+ * io_mem_alloc_compound - Allocate a compound memory region for I/O
+ * @pages: Output array to store pointers to each allocated page
+ * @nr_pages: Number of pages to allocate
+ * @size: Total size of the memory region to allocate
+ * @gfp: GFP mask used for memory allocation
+ *
+ * This function allocates a compound memory region consisting of
+ * @nr_pages pages using the provided GFP flags. If the order of
+ * allocation exceeds the maximum allowed page order, it returns
+ * -ENOMEM. The function sets each element in @pages to point to the
+ * respective page in the compound allocation and returns the virtual
+ * address of the first page.
+ *
+ * Return: The starting address of the allocated memory region on success,
+ * or an ERR_PTR encoded error on failure.
+ */
 static void *io_mem_alloc_compound(struct page **pages, int nr_pages,
 				   size_t size, gfp_t gfp)
 {
@@ -35,6 +52,7 @@ static void *io_mem_alloc_compound(struct page **pages, int nr_pages,
 
 	return page_address(page);
 }
+
 
 struct page **io_pin_pages(unsigned long uaddr, unsigned long len, int *npages)
 {
@@ -87,6 +105,19 @@ enum {
 	IO_REGION_F_SINGLE_REF			= 4,
 };
 
+/**
+ * io_free_region - Free and unmap an I/O memory-mapped region
+ * @ctx: The io_uring context associated with the region
+ * @mr: The memory-mapped region to be released
+ *
+ * This function cleans up and frees resources associated with a memory-mapped
+ * region used in io_uring. It handles both user-provided and internally
+ * allocated page arrays. If the region was mapped via `vmalloc`, it also
+ * unmaps the virtual address. It accounts for memory usage and ensures
+ * the memory is properly released.
+ *
+ * All fields in the region struct are cleared after deallocation.
+ */
 void io_free_region(struct io_ring_ctx *ctx, struct io_mapped_region *mr)
 {
 	if (mr->pages) {
@@ -110,6 +141,18 @@ void io_free_region(struct io_ring_ctx *ctx, struct io_mapped_region *mr)
 	memset(mr, 0, sizeof(*mr));
 }
 
+/**
+ * io_region_init_ptr - Initialize the virtual pointer for a mapped I/O region
+ * @mr: Pointer to the io_mapped_region structure to initialize
+ *
+ * This function attempts to set up a usable virtual memory pointer for a
+ * given memory-mapped region. If the memory is physically contiguous and
+ * can be coalesced, it sets the pointer directly to the first page's address.
+ * Otherwise, it uses `vmap()` to create a virtually contiguous mapping over
+ * the region's pages. If `vmap()` is used, the corresponding flag is set.
+ *
+ * Return: 0 on success, -ENOMEM if the mapping failed.
+ */
 static int io_region_init_ptr(struct io_mapped_region *mr)
 {
 	struct io_imu_folio_data ifd;
@@ -128,8 +171,22 @@ static int io_region_init_ptr(struct io_mapped_region *mr)
 	mr->ptr = ptr;
 	mr->flags |= IO_REGION_F_VMAP;
 	return 0;
+
 }
 
+/**
+ * io_region_pin_pages - Pin user-space pages for a mapped I/O region
+ * @ctx: Pointer to the io_ring_ctx context
+ * @mr: Pointer to the io_mapped_region structure to store pinned pages
+ * @reg: Pointer to the io_uring_region_desc describing the user buffer
+ *
+ * This function pins the user pages specified in the region descriptor
+ * and stores the resulting `struct page` pointers into the `mr` region.
+ * It validates that the number of pinned pages matches expectations.
+ * If successful, it marks the region as user-provided.
+ *
+ * Return: 0 on success, negative error code on failure.
+ */
 static int io_region_pin_pages(struct io_ring_ctx *ctx,
 				struct io_mapped_region *mr,
 				struct io_uring_region_desc *reg)
@@ -146,9 +203,24 @@ static int io_region_pin_pages(struct io_ring_ctx *ctx,
 
 	mr->pages = pages;
 	mr->flags |= IO_REGION_F_USER_PROVIDED;
+/
 	return 0;
 }
 
+/**
+ * io_region_allocate_pages - Allocate kernel pages for a mapped I/O region
+ * @ctx: Pointer to the io_ring_ctx context
+ * @mr: Pointer to the io_mapped_region to populate with pages
+ * @reg: Pointer to the io_uring_region_desc to store the mmap offset
+ * @mmap_offset: Offset used for mmap region identification
+ *
+ * Allocates memory for the I/O region described by @mr. First attempts
+ * to allocate a compound page if possible. If that fails, it falls back
+ * to bulk-allocating individual pages. On success, sets the region's page
+ * pointers and flags. Updates the mmap offset in @reg.
+ *
+ * Return: 0 on success, -ENOMEM if memory allocation fails.
+ */
 static int io_region_allocate_pages(struct io_ring_ctx *ctx,
 				    struct io_mapped_region *mr,
 				    struct io_uring_region_desc *reg,
@@ -180,10 +252,26 @@ static int io_region_allocate_pages(struct io_ring_ctx *ctx,
 	}
 done:
 	reg->mmap_offset = mmap_offset;
+
 	mr->pages = pages;
 	return 0;
 }
 
+/**
+ * io_create_region - Initialize and allocate a memory-mapped I/O region
+ * @ctx: Pointer to the io_uring context (io_ring_ctx)
+ * @mr: Pointer to the region metadata structure (io_mapped_region)
+ * @reg: Region descriptor provided by userspace (io_uring_region_desc)
+ * @mmap_offset: Offset to associate with the mmap region
+ *
+ * Validates and creates a new memory-mapped I/O region. The region can
+ * either be backed by user-provided memory (pinned) or allocated from
+ * kernel memory. This function performs sanity checks on user input,
+ * accounts memory if the context has a user struct, pins or allocates pages,
+ * and prepares a usable pointer via `io_region_init_ptr()`.
+ *
+ * Return: 0 on success, negative error code on failure.
+ */
 int io_create_region(struct io_ring_ctx *ctx, struct io_mapped_region *mr,
 		     struct io_uring_region_desc *reg,
 		     unsigned long mmap_offset)
@@ -228,11 +316,25 @@ int io_create_region(struct io_ring_ctx *ctx, struct io_mapped_region *mr,
 	if (ret)
 		goto out_free;
 	return 0;
+	
 out_free:
 	io_free_region(ctx, mr);
 	return ret;
 }
 
+/**
+ * io_create_region_mmap_safe - Safely initialize a memory region with mmap visibility
+ * @ctx: Pointer to the io_uring context (io_ring_ctx)
+ * @mr: Pointer to the region metadata structure to be initialized
+ * @reg: User-provided region descriptor (io_uring_region_desc)
+ * @mmap_offset: Offset for mmap registration
+ *
+ * Performs a safe creation of a new memory-mapped region by first initializing
+ * a temporary region structure. If successful, it updates the shared region
+ * under the protection of `ctx->mmap_lock` to ensure safe concurrent mmap access.
+ *
+ * Return: 0 on success, or a negative error code on failure.
+ */
 int io_create_region_mmap_safe(struct io_ring_ctx *ctx, struct io_mapped_region *mr,
 				struct io_uring_region_desc *reg,
 				unsigned long mmap_offset)
@@ -254,6 +356,18 @@ int io_create_region_mmap_safe(struct io_ring_ctx *ctx, struct io_mapped_region 
 	return 0;
 }
 
+/**
+ * io_mmap_get_region - Retrieve the mapped memory region for a given page offset
+ * @ctx: Pointer to the io_uring context (struct io_ring_ctx)
+ * @pgoff: Page offset as received from the mmap() system call
+ *
+ * This function resolves a memory-mapped region in the io_uring context
+ * corresponding to the given page offset. It handles various types of offsets,
+ * including SQ/CQ ring, SQEs, parameter regions, and buffer rings identified
+ * by buffer group ID (bgid).
+ *
+ * Return: Pointer to the matching io_mapped_region structure, or NULL if no match is found.
+ */
 static struct io_mapped_region *io_mmap_get_region(struct io_ring_ctx *ctx,
 						   loff_t pgoff)
 {
@@ -298,6 +412,14 @@ static void *io_uring_validate_mmap_request(struct file *file, loff_t pgoff,
 
 	region = io_mmap_get_region(ctx, pgoff);
 	if (!region)
+/*
+ * io_region_mmap - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_region *mr
+ * @param struct vm_area_struct *vma
+ * @param unsigned max_pages
+ * @return TODO: Return value description.
+ */
 		return ERR_PTR(-EINVAL);
 	return io_region_validate_mmap(ctx, region);
 }
@@ -308,6 +430,12 @@ static int io_region_mmap(struct io_ring_ctx *ctx,
 			  struct io_mapped_region *mr,
 			  struct vm_area_struct *vma,
 			  unsigned max_pages)
+/*
+ * io_uring_mmap - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param struct vm_area_struct *vma
+ * @return TODO: Return value description.
+ */
 {
 	unsigned long nr_pages = min(mr->nr_pages, max_pages);
 
@@ -333,6 +461,15 @@ __cold int io_uring_mmap(struct file *file, struct vm_area_struct *vma)
 	switch (offset & IORING_OFF_MMAP_MASK) {
 	case IORING_OFF_SQ_RING:
 	case IORING_OFF_CQ_RING:
+/*
+ * io_uring_get_unmapped_area - TODO: Describe what this function does.
+ * @param struct file *filp
+ * @param unsigned long addr
+ * @param unsigned long len
+ * @param unsigned long pgoff
+ * @param unsigned long flags
+ * @return TODO: Return value description.
+ */
 		page_limit = (sz + PAGE_SIZE - 1) >> PAGE_SHIFT;
 		break;
 	}
@@ -380,14 +517,34 @@ unsigned long io_uring_get_unmapped_area(struct file *filp, unsigned long addr,
 	pgoff = 0;	/* has been translated to ptr above */
 #ifdef SHM_COLOUR
 	addr = (uintptr_t) ptr;
+/*
+ * io_uring_mmap - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param struct vm_area_struct *vma
+ * @return TODO: Return value description.
+ */
 	pgoff = addr >> PAGE_SHIFT;
 #else
 	addr = 0UL;
 #endif
+/*
+ * io_uring_nommu_mmap_capabilities - TODO: Describe what this function does.
+ * @param struct file *file
+ * @return TODO: Return value description.
+ */
 	return mm_get_unmapped_area(current->mm, filp, addr, len, pgoff, flags);
 }
 
 #else /* !CONFIG_MMU */
+/*
+ * io_uring_get_unmapped_area - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param unsigned long addr
+ * @param unsigned long len
+ * @param unsigned long pgoff
+ * @param unsigned long flags
+ * @return TODO: Return value description.
+ */
 
 int io_uring_mmap(struct file *file, struct vm_area_struct *vma)
 {

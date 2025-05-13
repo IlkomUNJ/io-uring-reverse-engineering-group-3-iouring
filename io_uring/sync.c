@@ -21,6 +21,12 @@ struct io_sync {
 	int				flags;
 	int				mode;
 };
+/*
+ * io_sfr_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 int io_sfr_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
@@ -35,6 +41,12 @@ int io_sfr_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	req->flags |= REQ_F_FORCE_ASYNC;
 
 	return 0;
+/*
+ * io_sync_file_range - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 int io_sync_file_range(struct io_kiocb *req, unsigned int issue_flags)
@@ -47,6 +59,12 @@ int io_sync_file_range(struct io_kiocb *req, unsigned int issue_flags)
 
 	ret = sync_file_range(req->file, sync->off, sync->len, sync->flags);
 	io_req_set_res(req, ret, 0);
+/*
+ * io_fsync_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	return IOU_OK;
 }
 
@@ -63,6 +81,12 @@ int io_fsync_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	sync->off = READ_ONCE(sqe->off);
 	sync->len = READ_ONCE(sqe->len);
+/*
+ * io_fsync - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	req->flags |= REQ_F_FORCE_ASYNC;
 	return 0;
 }
@@ -77,6 +101,12 @@ int io_fsync(struct io_kiocb *req, unsigned int issue_flags)
 	WARN_ON_ONCE(issue_flags & IO_URING_F_NONBLOCK);
 
 	ret = vfs_fsync_range(req->file, sync->off, end > 0 ? end : LLONG_MAX,
+/*
+ * io_fallocate_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 				sync->flags & IORING_FSYNC_DATASYNC);
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
@@ -90,6 +120,12 @@ int io_fallocate_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 		return -EINVAL;
 
 	sync->off = READ_ONCE(sqe->off);
+/*
+ * io_fallocate - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	sync->len = READ_ONCE(sqe->addr);
 	sync->mode = READ_ONCE(sqe->len);
 	req->flags |= REQ_F_FORCE_ASYNC;

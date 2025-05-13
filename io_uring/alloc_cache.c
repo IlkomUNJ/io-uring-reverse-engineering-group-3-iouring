@@ -1,7 +1,14 @@
 // SPDX-License-Identifier: GPL-2.0
 
 #include "alloc_cache.h"
-
+/**
+ * io_alloc_cache_free - Frees all objects in the allocation cache
+ * @cache: pointer to the io_alloc_cache structure
+ * @free: callback function used to free each individual entry
+ *
+ * Iterates through the internal cache and frees all objects using the provided
+ * callback. Finally, deallocates the entry array itself.
+ */
 void io_alloc_cache_free(struct io_alloc_cache *cache,
 			 void (*free)(const void *))
 {
@@ -16,7 +23,14 @@ void io_alloc_cache_free(struct io_alloc_cache *cache,
 	kvfree(cache->entries);
 	cache->entries = NULL;
 }
-
+/**
+ * io_alloc_cache_init - Initializes the allocation cache
+ * @cache: pointer to the io_alloc_cache structure to initialize
+ * @max_nr: maximum number of elements that can be cached
+ * @size: size of each cached object
+ * @init_bytes: number of bytes to clear in each new object
+ *
+ * Allocates memory for internal cache storage and sets initial values.
 /* returns false if the cache was initialized properly */
 bool io_alloc_cache_init(struct io_alloc_cache *cache,
 			 unsigned max_nr, unsigned int size,
@@ -32,7 +46,14 @@ bool io_alloc_cache_init(struct io_alloc_cache *cache,
 	cache->init_clear = init_bytes;
 	return false;
 }
-
+/**
+ * io_cache_alloc_new - Allocates a new object for the cache
+ * @cache: pointer to the io_alloc_cache structure
+ * @gfp: allocation flags (e.g., GFP_KERNEL)
+ *
+ * Allocates a new object of the requested size using kmalloc.
+ * If @init_clear is set, clears the allocated memory up to init_clear bytes.
+ */
 void *io_cache_alloc_new(struct io_alloc_cache *cache, gfp_t gfp)
 {
 	void *obj;

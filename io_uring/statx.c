@@ -19,6 +19,12 @@ struct io_statx {
 	struct filename			*filename;
 	struct statx __user		*buffer;
 };
+/*
+ * io_statx_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 int io_statx_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
@@ -48,6 +54,12 @@ int io_statx_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	req->flags |= REQ_F_NEED_CLEANUP;
 	req->flags |= REQ_F_FORCE_ASYNC;
 	return 0;
+/*
+ * io_statx - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 int io_statx(struct io_kiocb *req, unsigned int issue_flags)
@@ -59,6 +71,11 @@ int io_statx(struct io_kiocb *req, unsigned int issue_flags)
 
 	ret = do_statx(sx->dfd, sx->filename, sx->flags, sx->mask, sx->buffer);
 	io_req_set_res(req, ret, 0);
+/*
+ * io_statx_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	return IOU_OK;
 }
 

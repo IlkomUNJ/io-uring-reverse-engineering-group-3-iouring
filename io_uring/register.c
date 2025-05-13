@@ -34,6 +34,13 @@
 
 #define IORING_MAX_RESTRICTIONS	(IORING_RESTRICTION_LAST + \
 				 IORING_REGISTER_LAST + IORING_OP_LAST)
+/*
+ * io_probe - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned nr_args
+ * @return TODO: Return value description.
+ */
 
 static __cold int io_probe(struct io_ring_ctx *ctx, void __user *arg,
 			   unsigned nr_args)
@@ -72,6 +79,12 @@ static __cold int io_probe(struct io_ring_ctx *ctx, void __user *arg,
 out:
 	kfree(p);
 	return ret;
+/*
+ * io_unregister_personality - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned id
+ * @return TODO: Return value description.
+ */
 }
 
 int io_unregister_personality(struct io_ring_ctx *ctx, unsigned id)
@@ -84,6 +97,11 @@ int io_unregister_personality(struct io_ring_ctx *ctx, unsigned id)
 		return 0;
 	}
 
+/*
+ * io_register_personality - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	return -EINVAL;
 }
 
@@ -101,6 +119,13 @@ static int io_register_personality(struct io_ring_ctx *ctx)
 	if (ret < 0) {
 		put_cred(creds);
 		return ret;
+/*
+ * io_parse_restrictions - TODO: Describe what this function does.
+ * @param void __user *arg
+ * @param unsigned int nr_args
+ * @param struct io_restriction *restrictions
+ * @return TODO: Return value description.
+ */
 	}
 	return id;
 }
@@ -150,6 +175,13 @@ static __cold int io_parse_restrictions(void __user *arg, unsigned int nr_args,
 
 	ret = 0;
 
+/*
+ * io_register_restrictions - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned int nr_args
+ * @return TODO: Return value description.
+ */
 err:
 	kfree(res);
 	return ret;
@@ -195,6 +227,12 @@ static int io_register_enable_rings(struct io_ring_ctx *ctx)
 	if (ctx->restrictions.registered)
 		ctx->restricted = 1;
 
+/*
+ * __io_register_iowq_aff - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param cpumask_var_t new_mask
+ * @return TODO: Return value description.
+ */
 	ctx->flags &= ~IORING_SETUP_R_DISABLED;
 	if (ctx->sq_data && wq_has_sleeper(&ctx->sq_data->wait))
 		wake_up(&ctx->sq_data->wait);
@@ -210,6 +248,13 @@ static __cold int __io_register_iowq_aff(struct io_ring_ctx *ctx,
 		ret = io_wq_cpu_affinity(current->io_uring, new_mask);
 	} else {
 		mutex_unlock(&ctx->uring_lock);
+/*
+ * io_register_iowq_aff - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned len
+ * @return TODO: Return value description.
+ */
 		ret = io_sqpoll_wq_cpu_affinity(ctx, new_mask);
 		mutex_lock(&ctx->uring_lock);
 	}
@@ -241,6 +286,11 @@ static __cold int io_register_iowq_aff(struct io_ring_ctx *ctx,
 
 	if (ret) {
 		free_cpumask_var(new_mask);
+/*
+ * io_unregister_iowq_aff - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		return -EFAULT;
 	}
 
@@ -331,6 +381,12 @@ static __cold int io_register_iowq_max_workers(struct io_ring_ctx *ctx,
 	}
 	return 0;
 err:
+/*
+ * io_register_clock - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_clock_register __user *arg
+ * @return TODO: Return value description.
+ */
 	if (sqd) {
 		mutex_unlock(&ctx->uring_lock);
 		mutex_unlock(&sqd->lock);
@@ -385,6 +441,12 @@ static void io_register_free_rings(struct io_ring_ctx *ctx,
 	io_free_region(ctx, &r->ring_region);
 }
 
+/*
+ * io_register_resize_rings - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 #define swap_old(ctx, o, n, field)		\
 	do {					\
 		(o).field = (ctx)->field;	\
@@ -570,6 +632,12 @@ overflow:
 	swap_old(ctx, o, n, sq_region);
 	to_free = &o;
 	ret = 0;
+/*
+ * io_register_mem_region - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *uarg
+ * @return TODO: Return value description.
+ */
 out:
 	spin_unlock(&ctx->completion_lock);
 	mutex_unlock(&ctx->mmap_lock);
@@ -867,6 +935,13 @@ struct file *io_uring_register_get_file(unsigned int fd, bool registered)
 	}
 
 	if (unlikely(!file))
+/*
+ * io_uring_register_blind - TODO: Describe what this function does.
+ * @param unsigned int opcode
+ * @param void __user *arg
+ * @param unsigned int nr_args
+ * @return TODO: Return value description.
+ */
 		return ERR_PTR(-EBADF);
 	if (io_is_uring_fops(file))
 		return file;

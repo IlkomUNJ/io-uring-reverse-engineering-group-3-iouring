@@ -39,18 +39,57 @@
 #include "truncate.h"
 #include "zcrx.h"
 
+/**
+ * io_no_issue - Placeholder issue handler that should never be called
+ * @req: Pointer to the io_kiocb request structure
+ * @issue_flags: Flags passed during issue handling
+ *
+ * This function acts as a fallback for unsupported or invalid operations.
+ * It triggers a warning if executed, indicating a logic error in the caller,
+ * and returns -ECANCELED to signal that the operation cannot proceed.
+ *
+ * Return: Always returns -ECANCELED.
+ */
 static int io_no_issue(struct io_kiocb *req, unsigned int issue_flags)
 {
 	WARN_ON_ONCE(1);
 	return -ECANCELED;
-}
-
+/**
+ * io_eopnotsupp_prep - Preparation handler for unsupported operations
+ * @kiocb: Pointer to the io_kiocb request structure
+ * @sqe: Submission queue entry associated with the request
+ *
+ * This function is used as a stub preparation function for operations
+ * that are explicitly not supported by io_uring. It returns -EOPNOTSUPP
+ * to indicate that the attempted operation is not implemented.
+ *
+ * Return: Always returns -EOPNOTSUPP.
+ */
 static __maybe_unused int io_eopnotsupp_prep(struct io_kiocb *kiocb,
 					     const struct io_uring_sqe *sqe)
 {
 	return -EOPNOTSUPP;
 }
-
+/**
+ * io_issue_defs - Definition table for supported io_uring operations.
+ *
+ * This static array maps each io_uring opcode (IORING_OP_*) to its corresponding
+ * preparation (`.prep`) and execution (`.issue`) function pointers, along with
+ * various operational flags that control runtime behavior and dispatch semantics.
+ *
+ * Each entry may define:
+ *  - .prep: Function to validate and prepare the SQE request.
+ *  - .issue: Function to issue the prepared request.
+ *  - .async_size: Size of additional memory required for async execution.
+ *  - .iopoll: Whether operation supports polling mode.
+ *  - .needs_file: Whether a valid file descriptor is required.
+ *  - .unbound_nonreg_file: Whether the file doesn't need registration or binding.
+ *  - .plug, .vectored, .pollin, .pollout: Flags describing I/O behavior.
+ *  - .audit_skip: Skip auditing for this opcode (e.g., for performance or safety).
+ *
+ * Used by the submission and execution logic to dispatch appropriate handlers
+ * for each supported operation type.
+ */
 const struct io_issue_def io_issue_defs[] = {
 	[IORING_OP_NOP] = {
 		.audit_skip		= 1,
@@ -570,7 +609,19 @@ const struct io_issue_def io_issue_defs[] = {
 		.issue			= io_write,
 	},
 };
-
+/**
+ * io_cold_defs - Cold-path metadata for each io_uring operation.
+ *
+ * This static array holds auxiliary metadata definitions for all supported
+ * io_uring operations, indexed by their opcode (IORING_OP_*).
+ *
+ * Each entry in the array contains:
+ * - name: A string representing the opcode for debugging and logging.
+ * - cleanup (optional): A function pointer used to clean up resources related to the request.
+ * - fail (optional): A function pointer to handle failure scenarios.
+ *
+ * Used primarily for diagnostics, cleanup logic, and fallback paths.
+ */
 const struct io_cold_def io_cold_defs[] = {
 	[IORING_OP_NOP] = {
 		.name			= "NOP",
@@ -816,22 +867,52 @@ const struct io_cold_def io_cold_defs[] = {
 		.fail			= io_rw_fail,
 	},
 };
-
+/**
+ * io_uring_get_opcode - Retrieve the string name of a given io_uring opcode.
+ * @opcode: The opcode value to look up.
+ *
+ * This function returns a human-readable name corresponding to the provided
+ * io_uring opcode. It looks up the opcode in the `io_cold_defs` table.
+ * If the opcode is invalid (i.e., greater than or equal to IORING_OP_LAST),
+ * the function returns the string "INVALID".
+ *
+ * Return: A const char pointer to the name of the opcode, or "INVALID" if unknown.
+ */
 const char *io_uring_get_opcode(u8 opcode)
 {
 	if (opcode < IORING_OP_LAST)
 		return io_cold_defs[opcode].name;
 	return "INVALID";
 }
-
+/**
+ * io_uring_op_supported - Check whether a given io_uring opcode is supported.
+ * @opcode: The opcode to check (of type u8).
+ *
+ * This function determines if the specified opcode is implemented by checking
+ * whether its associated preparation function is not `io_eopnotsupp_prep`.
+ * 
+ * Return: true if the operation is supported, false otherwise.
+ */
 bool io_uring_op_supported(u8 opcode)
 {
 	if (opcode < IORING_OP_LAST &&
 	    io_issue_defs[opcode].prep != io_eopnotsupp_prep)
-		return true;
+	return true;
 	return false;
 }
-
+/**
+ * io_uring_optable_init - Initialize and validate the io_uring operation tables.
+ *
+ * This function is called at initialization time to ensure that the `io_issue_defs`
+ * and `io_cold_defs` tables are properly populated and consistent with the number
+ * of supported opcodes (`IORING_OP_LAST`).
+ *
+ * It performs the following checks:
+ * - Ensures both tables have the correct size using `BUILD_BUG_ON`.
+ * - Asserts that every operation has a preparation function.
+ * - If an operation is supported (not using `io_eopnotsupp_prep`), it must have a valid issue function.
+ * - Emits a warning if the cold definition lacks a name.
+ */
 void __init io_uring_optable_init(void)
 {
 	int i;

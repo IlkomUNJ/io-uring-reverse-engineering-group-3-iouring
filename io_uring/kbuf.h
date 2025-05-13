@@ -84,6 +84,17 @@ bool io_kbuf_commit(struct io_kiocb *req,
 struct io_mapped_region *io_pbuf_get_region(struct io_ring_ctx *ctx,
 					    unsigned int bgid);
 
+/*
+    Handles the "recycling" logic specifically for buffers that are part of a
+    user-provided buffer ring (indicated by REQ_F_BUFFER_RING flag,
+    though this flag is cleared by the function itself).
+    "Recycling" in this context means preparing the buffer state so it
+    might be reused or its consumption isn't finalized in the ring.
+    Returns true if buffer selection is requested (REQ_F_BUFFER_SELECT is set)
+    AND a buffer has not yet been selected (REQ_F_BUFFER_SELECTED is not set)
+    AND it's not flagged as a ring buffer case that skips this check
+    (REQ_F_BUFFER_RING is not set); false otherwise.
+*/
 static inline bool io_kbuf_recycle_ring(struct io_kiocb *req)
 {
 	/*
@@ -100,14 +111,21 @@ static inline bool io_kbuf_recycle_ring(struct io_kiocb *req)
 	}
 	return false;
 }
-
+/*
+    Determines whether a buffer selection process needs to be initiated
+    for the given I/O request.
+*/
 static inline bool io_do_buffer_select(struct io_kiocb *req)
 {
 	if (!(req->flags & REQ_F_BUFFER_SELECT))
 		return false;
 	return !(req->flags & (REQ_F_BUFFER_SELECTED|REQ_F_BUFFER_RING));
 }
-
+/*
+    Acts as a dispatcher to call the appropriate buffer recycling logic based
+    on the type of buffer used by the request (legacy selected buffer or ring
+    buffer) or if recycling is explicitly disabled.
+*/
 static inline bool io_kbuf_recycle(struct io_kiocb *req, unsigned issue_flags)
 {
 	if (req->flags & REQ_F_BL_NO_RECYCLE)
@@ -118,7 +136,12 @@ static inline bool io_kbuf_recycle(struct io_kiocb *req, unsigned issue_flags)
 		return io_kbuf_recycle_ring(req);
 	return false;
 }
-
+/*
+    A wrapper to "put back" or release a single kernel buffer that was used
+    by an I/O operation, if that buffer was part of a buffer ring or a legacy
+    provided buffer mechanism. Returns 0 if the request doesn't use a ring buffer
+    or a legacy selected buffer. Otherwise, the result of __io_put_kbufs().
+*/
 static inline unsigned int io_put_kbuf(struct io_kiocb *req, int len,
 				       unsigned issue_flags)
 {
@@ -126,7 +149,12 @@ static inline unsigned int io_put_kbuf(struct io_kiocb *req, int len,
 		return 0;
 	return __io_put_kbufs(req, len, 1);
 }
-
+/*
+    Designed to "put back" or release multiple kernel buffers that
+    were used by an I/O operation, applicable to buffer rings or
+    legacy provided buffers. Returns 0 if the request doesn't use a ring buffer
+    or a legacy selected buffer. Otherwise, the result of __io_put_kbufs().
+*/
 static inline unsigned int io_put_kbufs(struct io_kiocb *req, int len,
 					int nbufs, unsigned issue_flags)
 {

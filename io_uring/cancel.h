@@ -31,7 +31,13 @@ bool io_cancel_remove_all(struct io_ring_ctx *ctx, struct io_uring_task *tctx,
 int io_cancel_remove(struct io_ring_ctx *ctx, struct io_cancel_data *cd,
 		     unsigned int issue_flags, struct hlist_head *list,
 		     bool (*cancel)(struct io_kiocb *));
-
+/*
+    helping in preventing a single req from being match multiple times
+    within the same cancel all/cancel any operation.
+    checking if the request has already been marked with the current
+    attempt's unique sequence number, and returning true if already marked,
+    false if first seen.
+*/
 static inline bool io_cancel_match_sequence(struct io_kiocb *req, int sequence)
 {
 	if (req->cancel_seq_set && sequence == req->work.cancel_seq)

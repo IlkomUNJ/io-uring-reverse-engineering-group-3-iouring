@@ -62,12 +62,22 @@ static inline struct io_kiocb *wqe_to_req(struct wait_queue_entry *wqe)
 
 	return (struct io_kiocb *)(priv & ~IO_WQE_F_DOUBLE);
 }
+/*
+ * wqe_is_double - TODO: Describe what this function does.
+ * @param struct wait_queue_entry *wqe
+ * @return TODO: Return value description.
+ */
 
 static inline bool wqe_is_double(struct wait_queue_entry *wqe)
 {
 	unsigned long priv = (unsigned long)wqe->private;
 
 	return priv & IO_WQE_F_DOUBLE;
+/*
+ * io_poll_get_ownership_slowpath - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 static bool io_poll_get_ownership_slowpath(struct io_kiocb *req)
@@ -89,11 +99,21 @@ static bool io_poll_get_ownership_slowpath(struct io_kiocb *req)
  * If refs part of ->poll_refs (see IO_POLL_REF_MASK) is 0, it's free. We can
  * bump it and acquire ownership. It's disallowed to modify requests while not
  * owning it, that prevents from races for enqueueing task_work's and b/w
+/*
+ * io_poll_get_ownership - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
  * arming poll and wakeups.
  */
 static inline bool io_poll_get_ownership(struct io_kiocb *req)
 {
 	if (unlikely(atomic_read(&req->poll_refs) >= IO_POLL_REF_BIAS))
+/*
+ * io_poll_mark_cancelled - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		return io_poll_get_ownership_slowpath(req);
 	return !(atomic_fetch_inc(&req->poll_refs) & IO_POLL_REF_MASK);
 }
@@ -113,6 +133,11 @@ static struct io_poll *io_poll_get_double(struct io_kiocb *req)
 
 static struct io_poll *io_poll_get_single(struct io_kiocb *req)
 {
+/*
+ * io_poll_req_insert - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	if (req->opcode == IORING_OP_POLL_ADD)
 		return io_kiocb_to_cmd(req, struct io_poll);
 	return &req->apoll->poll;
@@ -122,6 +147,12 @@ static void io_poll_req_insert(struct io_kiocb *req)
 {
 	struct io_hash_table *table = &req->ctx->cancel_table;
 	u32 index = hash_long(req->cqe.user_data, table->hash_bits);
+/*
+ * io_init_poll_iocb - TODO: Describe what this function does.
+ * @param struct io_poll *poll
+ * @param __poll_t events
+ * @return TODO: Return value description.
+ */
 
 	lockdep_assert_held(&req->ctx->uring_lock);
 
@@ -131,6 +162,11 @@ static void io_poll_req_insert(struct io_kiocb *req)
 static void io_init_poll_iocb(struct io_poll *poll, __poll_t events)
 {
 	poll->head = NULL;
+/*
+ * io_poll_remove_entry - TODO: Describe what this function does.
+ * @param struct io_poll *poll
+ * @return TODO: Return value description.
+ */
 #define IO_POLL_UNMASK	(EPOLLERR|EPOLLHUP|EPOLLNVAL|EPOLLRDHUP)
 	/* mask in events that we always want/need */
 	poll->events = events | IO_POLL_UNMASK;
@@ -142,6 +178,11 @@ static inline void io_poll_remove_entry(struct io_poll *poll)
 {
 	struct wait_queue_head *head = smp_load_acquire(&poll->head);
 
+/*
+ * io_poll_remove_entries - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	if (head) {
 		spin_lock_irq(&head->lock);
 		list_del_init(&poll->wait.entry);
@@ -181,6 +222,12 @@ static void io_poll_remove_entries(struct io_kiocb *req)
 		io_poll_remove_entry(io_poll_get_double(req));
 	rcu_read_unlock();
 }
+/*
+ * __io_poll_execute - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int mask
+ * @return TODO: Return value description.
+ */
 
 enum {
 	IOU_POLL_DONE = 0,
@@ -194,6 +241,12 @@ static void __io_poll_execute(struct io_kiocb *req, int mask)
 {
 	unsigned flags = 0;
 
+/*
+ * io_poll_execute - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int res
+ * @return TODO: Return value description.
+ */
 	io_req_set_res(req, mask, 0);
 	req->io_task_work.func = io_poll_task_func;
 
@@ -210,6 +263,12 @@ static inline void io_poll_execute(struct io_kiocb *req, int res)
 		__io_poll_execute(req, res);
 }
 
+/*
+ * io_poll_check_events - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 /*
  * All poll tw should go through this. Checks for poll events, manages
  * references, does rewait, etc.
@@ -345,6 +404,11 @@ void io_poll_task_func(struct io_kiocb *req, io_tw_token_t tw)
 
 		io_req_set_res(req, req->cqe.res, 0);
 		io_req_task_complete(req, tw);
+/*
+ * io_poll_cancel_req - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	} else {
 		io_tw_lock(req->ctx, tw);
 
@@ -353,6 +417,12 @@ void io_poll_task_func(struct io_kiocb *req, io_tw_token_t tw)
 		else if (ret == IOU_POLL_DONE || ret == IOU_POLL_REISSUE)
 			io_req_task_submit(req, tw);
 		else
+/*
+ * io_pollfree_wake - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_poll *poll
+ * @return TODO: Return value description.
+ */
 			io_req_defer_failed(req, ret);
 	}
 }
@@ -377,6 +447,14 @@ static __cold int io_pollfree_wake(struct io_kiocb *req, struct io_poll *poll)
 	 * holds ownership over it, we have to tear down the request as
 	 * best we can. That means immediately removing the request from
 	 * its waitqueue and preventing all further accesses to the
+/*
+ * io_poll_wake - TODO: Describe what this function does.
+ * @param struct wait_queue_entry *wait
+ * @param unsigned mode
+ * @param int sync
+ * @param void *key
+ * @return TODO: Return value description.
+ */
 	 * waitqueue via the request.
 	 */
 	list_del_init(&poll->wait.entry);
@@ -496,6 +574,13 @@ static void __io_queue_proc(struct io_poll *poll, struct io_poll_table *pt,
 		}
 		*poll_ptr = poll;
 	} else {
+/*
+ * io_poll_queue_proc - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param struct wait_queue_head *head
+ * @param struct poll_table_struct *p
+ * @return TODO: Return value description.
+ */
 		/* fine to modify, there is no poll queued to race with us */
 		req->flags |= REQ_F_SINGLE_POLL;
 	}
@@ -505,11 +590,23 @@ static void __io_queue_proc(struct io_poll *poll, struct io_poll_table *pt,
 	poll->wait.private = (void *) wqe_private;
 
 	if (poll->events & EPOLLEXCLUSIVE) {
+/*
+ * io_poll_can_finish_inline - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_poll_table *pt
+ * @return TODO: Return value description.
+ */
 		add_wait_queue_exclusive(head, &poll->wait);
 	} else {
 		add_wait_queue(head, &poll->wait);
 	}
 }
+/*
+ * io_poll_add_hash - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 static void io_poll_queue_proc(struct file *file, struct wait_queue_head *head,
 			       struct poll_table_struct *p)
@@ -525,6 +622,15 @@ static bool io_poll_can_finish_inline(struct io_kiocb *req,
 				      struct io_poll_table *pt)
 {
 	return pt->owning || io_poll_get_ownership(req);
+/*
+ * __io_arm_poll_handler - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_poll *poll
+ * @param struct io_poll_table *ipt
+ * @param __poll_t mask
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_poll_add_hash(struct io_kiocb *req, unsigned int issue_flags)
@@ -608,6 +714,13 @@ static int __io_arm_poll_handler(struct io_kiocb *req,
 	}
 
 	io_poll_add_hash(req, issue_flags);
+/*
+ * io_async_queue_proc - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param struct wait_queue_head *head
+ * @param struct poll_table_struct *p
+ * @return TODO: Return value description.
+ */
 
 	if (mask && (poll->events & EPOLLET) &&
 	    io_poll_can_finish_inline(req, ipt)) {
@@ -649,6 +762,12 @@ static struct async_poll *io_req_alloc_apoll(struct io_kiocb *req,
 {
 	struct io_ring_ctx *ctx = req->ctx;
 	struct async_poll *apoll;
+/*
+ * io_arm_poll_handler - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 
 	if (req->flags & REQ_F_POLLED) {
 		apoll = req->apoll;
@@ -695,6 +814,13 @@ int io_arm_poll_handler(struct io_kiocb *req, unsigned issue_flags)
 	}
 	if (def->poll_exclusive)
 		mask |= EPOLLEXCLUSIVE;
+/*
+ * io_poll_remove_all - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_task *tctx
+ * @param bool cancel_all
+ * @return TODO: Return value description.
+ */
 
 	apoll = io_req_alloc_apoll(req, issue_flags);
 	if (!apoll)
@@ -757,6 +883,11 @@ static struct io_kiocb *io_poll_find(struct io_ring_ctx *ctx, bool poll_only,
 				continue;
 		}
 		return req;
+/*
+ * io_poll_disarm - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	}
 	return NULL;
 }
@@ -767,6 +898,12 @@ static struct io_kiocb *io_poll_file_find(struct io_ring_ctx *ctx,
 	unsigned nr_buckets = 1U << ctx->cancel_table.hash_bits;
 	struct io_kiocb *req;
 	int i;
+/*
+ * __io_poll_cancel - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_cancel_data *cd
+ * @return TODO: Return value description.
+ */
 
 	for (i = 0; i < nr_buckets; i++) {
 		struct io_hash_bucket *hb = &ctx->cancel_table.hbs[i];
@@ -783,6 +920,13 @@ static int io_poll_disarm(struct io_kiocb *req)
 {
 	if (!req)
 		return -ENOENT;
+/*
+ * io_poll_cancel - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_cancel_data *cd
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 	if (!io_poll_get_ownership(req))
 		return -EALREADY;
 	io_poll_remove_entries(req);
@@ -793,6 +937,12 @@ static int io_poll_disarm(struct io_kiocb *req)
 static int __io_poll_cancel(struct io_ring_ctx *ctx, struct io_cancel_data *cd)
 {
 	struct io_kiocb *req;
+/*
+ * io_poll_parse_events - TODO: Describe what this function does.
+ * @param const struct io_uring_sqe *sqe
+ * @param unsigned int flags
+ * @return TODO: Return value description.
+ */
 
 	if (cd->flags & (IORING_ASYNC_CANCEL_FD | IORING_ASYNC_CANCEL_OP |
 			 IORING_ASYNC_CANCEL_ANY))
@@ -809,6 +959,12 @@ static int __io_poll_cancel(struct io_ring_ctx *ctx, struct io_cancel_data *cd)
 
 int io_poll_cancel(struct io_ring_ctx *ctx, struct io_cancel_data *cd,
 		   unsigned issue_flags)
+/*
+ * io_poll_remove_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 {
 	int ret;
 
@@ -838,6 +994,12 @@ static __poll_t io_poll_parse_events(const struct io_uring_sqe *sqe,
 int io_poll_remove_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	struct io_poll_update *upd = io_kiocb_to_cmd(req, struct io_poll_update);
+/*
+ * io_poll_add_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	u32 flags;
 
 	if (sqe->buf_index || sqe->splice_fd_in)
@@ -854,6 +1016,12 @@ int io_poll_remove_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	upd->update_events = flags & IORING_POLL_UPDATE_EVENTS;
 	upd->update_user_data = flags & IORING_POLL_UPDATE_USER_DATA;
 
+/*
+ * io_poll_add - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	upd->new_user_data = READ_ONCE(sqe->off);
 	if (!upd->update_user_data && upd->new_user_data)
 		return -EINVAL;
@@ -869,6 +1037,12 @@ int io_poll_add_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	struct io_poll *poll = io_kiocb_to_cmd(req, struct io_poll);
 	u32 flags;
+/*
+ * io_poll_remove - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	if (sqe->buf_index || sqe->off || sqe->addr)
 		return -EINVAL;

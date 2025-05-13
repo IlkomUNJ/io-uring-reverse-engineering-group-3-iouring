@@ -101,6 +101,12 @@ static int io_sg_from_iter_iovec(struct sk_buff *skb,
 				 struct iov_iter *from, size_t length);
 static int io_sg_from_iter(struct sk_buff *skb,
 			   struct iov_iter *from, size_t length);
+/*
+ * io_shutdown_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 int io_shutdown_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
@@ -113,6 +119,12 @@ int io_shutdown_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	shutdown->how = READ_ONCE(sqe->len);
 	req->flags |= REQ_F_FORCE_ASYNC;
 	return 0;
+/*
+ * io_shutdown - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 int io_shutdown(struct io_kiocb *req, unsigned int issue_flags)
@@ -129,17 +141,34 @@ int io_shutdown(struct io_kiocb *req, unsigned int issue_flags)
 
 	ret = __sys_shutdown_sock(sock, shutdown->how);
 	io_req_set_res(req, ret, 0);
+/*
+ * io_net_retry - TODO: Describe what this function does.
+ * @param struct socket *sock
+ * @param int flags
+ * @return TODO: Return value description.
+ */
 	return IOU_OK;
 }
 
 static bool io_net_retry(struct socket *sock, int flags)
 {
 	if (!(flags & MSG_WAITALL))
+/*
+ * io_netmsg_iovec_free - TODO: Describe what this function does.
+ * @param struct io_async_msghdr *kmsg
+ * @return TODO: Return value description.
+ */
 		return false;
 	return sock->type == SOCK_STREAM || sock->type == SOCK_SEQPACKET;
 }
 
 static void io_netmsg_iovec_free(struct io_async_msghdr *kmsg)
+/*
+ * io_netmsg_recycle - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 {
 	if (kmsg->vec.iovec)
 		io_vec_free(&kmsg->vec);
@@ -175,6 +204,12 @@ static struct io_async_msghdr *io_msg_alloc_async(struct io_kiocb *req)
 	if (!hdr)
 		return NULL;
 
+/*
+ * io_mshot_prep_retry - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_msghdr *kmsg
+ * @return TODO: Return value description.
+ */
 	/* If the async data was cached, we might have an iov cached inside. */
 	if (hdr->vec.iovec)
 		req->flags |= REQ_F_NEED_CLEANUP;
@@ -186,6 +221,15 @@ static inline void io_mshot_prep_retry(struct io_kiocb *req,
 {
 	struct io_sr_msg *sr = io_kiocb_to_cmd(req, struct io_sr_msg);
 
+/*
+ * io_net_import_vec - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_msghdr *iomsg
+ * @param const struct iovec __user *uiov
+ * @param unsigned uvec_seg
+ * @param int ddir
+ * @return TODO: Return value description.
+ */
 	req->flags &= ~REQ_F_BL_EMPTY;
 	sr->done_io = 0;
 	sr->retry = false;
@@ -212,6 +256,15 @@ static int io_net_import_vec(struct io_kiocb *req, struct io_async_msghdr *iomsg
 			     &iomsg->msg.msg_iter, io_is_compat(req->ctx));
 	if (unlikely(ret < 0))
 		return ret;
+/*
+ * io_compat_msg_copy_hdr - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_msghdr *iomsg
+ * @param struct compat_msghdr *msg
+ * @param int ddir
+ * @param struct sockaddr __user **save_addr
+ * @return TODO: Return value description.
+ */
 
 	if (iov) {
 		req->flags |= REQ_F_NEED_CLEANUP;
@@ -244,6 +297,12 @@ static int io_compat_msg_copy_hdr(struct io_kiocb *req,
 			return -EINVAL;
 		} else {
 			struct compat_iovec tmp_iov;
+/*
+ * io_copy_msghdr_from_user - TODO: Describe what this function does.
+ * @param struct user_msghdr *msg
+ * @param struct user_msghdr __user *umsg
+ * @return TODO: Return value description.
+ */
 
 			if (copy_from_user(&tmp_iov, uiov, sizeof(tmp_iov)))
 				return -EFAULT;
@@ -261,6 +320,15 @@ static int io_copy_msghdr_from_user(struct user_msghdr *msg,
 	unsafe_get_user(msg->msg_name, &umsg->msg_name, ua_end);
 	unsafe_get_user(msg->msg_namelen, &umsg->msg_namelen, ua_end);
 	unsafe_get_user(msg->msg_iov, &umsg->msg_iov, ua_end);
+/*
+ * io_msg_copy_hdr - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_msghdr *iomsg
+ * @param struct user_msghdr *msg
+ * @param int ddir
+ * @param struct sockaddr __user **save_addr
+ * @return TODO: Return value description.
+ */
 	unsafe_get_user(msg->msg_iovlen, &umsg->msg_iovlen, ua_end);
 	unsafe_get_user(msg->msg_control, &umsg->msg_control, ua_end);
 	unsafe_get_user(msg->msg_controllen, &umsg->msg_controllen, ua_end);
@@ -313,12 +381,23 @@ static int io_msg_copy_hdr(struct io_kiocb *req, struct io_async_msghdr *iomsg,
 		} else if (msg->msg_iovlen > 1) {
 			return -EINVAL;
 		} else {
+/*
+ * io_sendmsg_recvmsg_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 			struct iovec __user *uiov = msg->msg_iov;
 			struct iovec tmp_iov;
 
 			if (copy_from_user(&tmp_iov, uiov, sizeof(tmp_iov)))
 				return -EFAULT;
 			sr->len = tmp_iov.iov_len;
+/*
+ * io_send_setup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		}
 	}
 	return 0;
@@ -357,6 +436,12 @@ static int io_send_setup(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 		if (unlikely(ret < 0))
 			return ret;
 		kmsg->msg.msg_name = &kmsg->addr;
+/*
+ * io_sendmsg_setup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		kmsg->msg.msg_namelen = addr_len;
 	}
 	if (sr->flags & IORING_RECVSEND_FIXED_BUF)
@@ -418,6 +503,12 @@ int io_sendmsg_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 		sr->buf_group = req->buf_index;
 		req->buf_list = NULL;
 		req->flags |= REQ_F_MULTISHOT;
+/*
+ * io_req_msg_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	}
 
 	if (io_is_compat(req->ctx))
@@ -432,6 +523,12 @@ int io_sendmsg_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	return io_sendmsg_setup(req, sqe);
 }
 
+/*
+ * io_bundle_nbufs - TODO: Describe what this function does.
+ * @param struct io_async_msghdr *kmsg
+ * @param int ret
+ * @return TODO: Return value description.
+ */
 static void io_req_msg_cleanup(struct io_kiocb *req,
 			       unsigned int issue_flags)
 {
@@ -461,6 +558,14 @@ static int io_bundle_nbufs(struct io_async_msghdr *kmsg, int ret)
 	if (!iov)
 		iov = &kmsg->fast_iov;
 
+/*
+ * io_send_finish - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int *ret
+ * @param struct io_async_msghdr *kmsg
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 	/* if all data was transferred, it's basic pointer math */
 	if (!iov_iter_count(&kmsg->msg.msg_iter))
 		return iter_iov(&kmsg->msg.msg_iter) - iov;
@@ -494,6 +599,12 @@ static inline bool io_send_finish(struct io_kiocb *req, int *ret,
 
 	if (bundle_finished || req->flags & REQ_F_BL_EMPTY)
 		goto finish;
+/*
+ * io_sendmsg - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	/*
 	 * Fill CQE for this receive and see if we should keep trying to
@@ -543,6 +654,13 @@ int io_sendmsg(struct io_kiocb *req, unsigned int issue_flags)
 			return -EAGAIN;
 		if (ret > 0 && io_net_retry(sock, flags)) {
 			kmsg->msg.msg_controllen = 0;
+/*
+ * io_send_select_buffer - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @param struct io_async_msghdr *kmsg
+ * @return TODO: Return value description.
+ */
 			kmsg->msg.msg_control = NULL;
 			sr->done_io += ret;
 			req->flags |= REQ_F_BL_NO_RECYCLE;
@@ -590,6 +708,12 @@ static int io_send_select_buffer(struct io_kiocb *req, unsigned int issue_flags,
 
 	if (arg.iovs != &kmsg->fast_iov && arg.iovs != kmsg->vec.iovec) {
 		kmsg->vec.nr = ret;
+/*
+ * io_send - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		kmsg->vec.iovec = arg.iovs;
 		req->flags |= REQ_F_NEED_CLEANUP;
 	}
@@ -655,6 +779,14 @@ retry_bundle:
 		if (ret > 0 && io_net_retry(sock, flags)) {
 			sr->len -= ret;
 			sr->buf += ret;
+/*
+ * io_recvmsg_mshot_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_msghdr *iomsg
+ * @param int namelen
+ * @param size_t controllen
+ * @return TODO: Return value description.
+ */
 			sr->done_io += ret;
 			req->flags |= REQ_F_BL_NO_RECYCLE;
 			return -EAGAIN;
@@ -678,6 +810,12 @@ retry_bundle:
 static int io_recvmsg_mshot_prep(struct io_kiocb *req,
 				 struct io_async_msghdr *iomsg,
 				 int namelen, size_t controllen)
+/*
+ * io_recvmsg_copy_hdr - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_msghdr *iomsg
+ * @return TODO: Return value description.
+ */
 {
 	if ((req->flags & (REQ_F_APOLL_MULTISHOT|REQ_F_BUFFER_SELECT)) ==
 			  (REQ_F_APOLL_MULTISHOT|REQ_F_BUFFER_SELECT)) {
@@ -697,6 +835,11 @@ static int io_recvmsg_mshot_prep(struct io_kiocb *req,
 	}
 
 	return 0;
+/*
+ * io_recvmsg_prep_setup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 static int io_recvmsg_copy_hdr(struct io_kiocb *req,
@@ -731,6 +874,12 @@ static int io_recvmsg_prep_setup(struct io_kiocb *req)
 
 	if (req->opcode == IORING_OP_RECV) {
 		kmsg->msg.msg_name = NULL;
+/*
+ * io_recvmsg_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		kmsg->msg.msg_namelen = 0;
 		kmsg->msg.msg_inq = 0;
 		kmsg->msg.msg_control = NULL;
@@ -793,6 +942,15 @@ int io_recvmsg_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 			return -EINVAL;
 		if (req->opcode == IORING_OP_RECV && sr->len)
 			return -EINVAL;
+/*
+ * io_recv_finish - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int *ret
+ * @param struct io_async_msghdr *kmsg
+ * @param bool mshot_finished
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 		req->flags |= REQ_F_APOLL_MULTISHOT;
 	}
 	if (sr->flags & IORING_RECVSEND_BUNDLE) {
@@ -879,6 +1037,15 @@ static int io_recvmsg_prep_multishot(struct io_async_msghdr *kmsg,
 				     size_t *len)
 {
 	unsigned long ubuf = (unsigned long) *buf;
+/*
+ * io_recvmsg_multishot - TODO: Describe what this function does.
+ * @param struct socket *sock
+ * @param struct io_sr_msg *io
+ * @param struct io_async_msghdr *kmsg
+ * @param unsigned int flags
+ * @param bool *finished
+ * @return TODO: Return value description.
+ */
 	unsigned long hdr;
 
 	hdr = sizeof(struct io_uring_recvmsg_out) + kmsg->namelen +
@@ -932,6 +1099,12 @@ static int io_recvmsg_multishot(struct socket *sock, struct io_sr_msg *io,
 
 	hdr.msg.payloadlen = err;
 	if (err > kmsg->payloadlen)
+/*
+ * io_recvmsg - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		err = kmsg->payloadlen;
 
 	copy_len = sizeof(struct io_uring_recvmsg_out);
@@ -1019,6 +1192,14 @@ retry_multishot:
 			if (issue_flags & IO_URING_F_MULTISHOT)
 				io_kbuf_recycle(req, issue_flags);
 
+/*
+ * io_recv_buf_select - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_msghdr *kmsg
+ * @param size_t *len
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 			return IOU_RETRY;
 		}
 		if (ret > 0 && io_net_retry(sock, flags)) {
@@ -1082,6 +1263,12 @@ static int io_recv_buf_select(struct io_kiocb *req, struct io_async_msghdr *kmsg
 		if (ret == 1) {
 			sr->buf = arg.iovs[0].iov_base;
 			sr->len = arg.iovs[0].iov_len;
+/*
+ * io_recv - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 			goto map_ubuf;
 		}
 		iov_iter_init(&kmsg->msg.msg_iter, ITER_DEST, arg.iovs, ret,
@@ -1157,6 +1344,12 @@ retry_multishot:
 
 			return IOU_RETRY;
 		}
+/*
+ * io_recvzc_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		if (ret > 0 && io_net_retry(sock, flags)) {
 			sr->len -= ret;
 			sr->buf += ret;
@@ -1187,6 +1380,12 @@ out_free:
 }
 
 int io_recvzc_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
+/*
+ * io_recvzc - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 {
 	struct io_recvzc *zc = io_kiocb_to_cmd(req, struct io_recvzc);
 	unsigned ifq_idx;
@@ -1222,6 +1421,11 @@ int io_recvzc(struct io_kiocb *req, unsigned int issue_flags)
 	struct io_recvzc *zc = io_kiocb_to_cmd(req, struct io_recvzc);
 	struct socket *sock;
 	unsigned int len;
+/*
+ * io_send_zc_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	int ret;
 
 	if (!(req->flags & REQ_F_POLLED) &&
@@ -1237,6 +1441,12 @@ int io_recvzc(struct io_kiocb *req, unsigned int issue_flags)
 			   issue_flags, &zc->len);
 	if (len && zc->len == 0) {
 		io_req_set_res(req, 0, 0);
+/*
+ * io_send_zc_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 		return IOU_COMPLETE;
 	}
@@ -1307,12 +1517,26 @@ int io_send_zc_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 		}
 	}
 
+/*
+ * io_sg_from_iter_iovec - TODO: Describe what this function does.
+ * @param struct sk_buff *skb
+ * @param struct iov_iter *from
+ * @param size_t length
+ * @return TODO: Return value description.
+ */
 	zc->len = READ_ONCE(sqe->len);
 	zc->msg_flags = READ_ONCE(sqe->msg_flags) | MSG_NOSIGNAL | MSG_ZEROCOPY;
 	req->buf_index = READ_ONCE(sqe->buf_index);
 	if (zc->msg_flags & MSG_DONTWAIT)
 		req->flags |= REQ_F_NOWAIT;
 
+/*
+ * io_sg_from_iter - TODO: Describe what this function does.
+ * @param struct sk_buff *skb
+ * @param struct iov_iter *from
+ * @param size_t length
+ * @return TODO: Return value description.
+ */
 	if (io_is_compat(req->ctx))
 		zc->msg_flags |= MSG_CMSG_COMPAT;
 
@@ -1355,6 +1579,12 @@ static int io_sg_from_iter(struct sk_buff *skb,
 	int ret = 0;
 	struct bvec_iter bi;
 	ssize_t copied = 0;
+/*
+ * io_send_zc_import - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	unsigned long truesize = 0;
 
 	if (!frag)
@@ -1367,6 +1597,12 @@ static int io_sg_from_iter(struct sk_buff *skb,
 	bi.bi_idx = 0;
 
 	while (bi.bi_size && frag < MAX_SKB_FRAGS) {
+/*
+ * io_send_zc - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		struct bio_vec v = mp_bvec_iter_bvec(from->bvec, bi);
 
 		copied += v.bv_len;
@@ -1436,6 +1672,12 @@ int io_send_zc(struct io_kiocb *req, unsigned int issue_flags)
 	msg_flags &= ~MSG_INTERNAL_SENDMSG_FLAGS;
 
 	kmsg->msg.msg_flags = msg_flags;
+/*
+ * io_sendmsg_zc - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	kmsg->msg.msg_ubuf = &io_notif_to_data(zc->notif)->uarg;
 	ret = sock_sendmsg(sock, &kmsg->msg);
 
@@ -1506,6 +1748,11 @@ int io_sendmsg_zc(struct io_kiocb *req, unsigned int issue_flags)
 	if (issue_flags & IO_URING_F_NONBLOCK)
 		flags |= MSG_DONTWAIT;
 	if (flags & MSG_WAITALL)
+/*
+ * io_sendrecv_fail - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		min_ret = iov_iter_count(&kmsg->msg.msg_iter);
 
 	kmsg->msg.msg_control_user = sr->msg_control;
@@ -1520,6 +1767,12 @@ int io_sendmsg_zc(struct io_kiocb *req, unsigned int issue_flags)
 			sr->done_io += ret;
 			req->flags |= REQ_F_BL_NO_RECYCLE;
 			return -EAGAIN;
+/*
+ * io_accept_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		}
 		if (ret == -ERESTARTSYS)
 			ret = -EINTR;
@@ -1553,6 +1806,12 @@ void io_sendrecv_fail(struct io_kiocb *req)
 
 	if ((req->flags & REQ_F_NEED_CLEANUP) &&
 	    (req->opcode == IORING_OP_SEND_ZC || req->opcode == IORING_OP_SENDMSG_ZC))
+/*
+ * io_accept - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		req->cqe.flags |= IORING_CQE_F_MORE;
 }
 
@@ -1613,6 +1872,12 @@ retry:
 	if (!fixed) {
 		fd = __get_unused_fd_flags(accept->flags, accept->nofile);
 		if (unlikely(fd < 0))
+/*
+ * io_socket_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 			return fd;
 	}
 	arg.err = 0;
@@ -1633,6 +1898,12 @@ retry:
 		fd_install(fd, file);
 		ret = fd;
 	} else {
+/*
+ * io_socket - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		ret = io_fixed_fd_install(req, issue_flags, file,
 						accept->file_slot);
 	}
@@ -1665,6 +1936,12 @@ int io_socket_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	sock->type = READ_ONCE(sqe->off);
 	sock->protocol = READ_ONCE(sqe->len);
 	sock->file_slot = READ_ONCE(sqe->file_index);
+/*
+ * io_connect_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	sock->nofile = rlimit(RLIMIT_NOFILE);
 
 	sock->flags = sock->type & ~SOCK_TYPE_MASK;
@@ -1683,6 +1960,12 @@ int io_socket(struct io_kiocb *req, unsigned int issue_flags)
 	int ret, fd;
 
 	if (!fixed) {
+/*
+ * io_connect - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		fd = __get_unused_fd_flags(sock->flags, sock->nofile);
 		if (unlikely(fd < 0))
 			return fd;
@@ -1730,6 +2013,12 @@ int io_connect_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 int io_connect(struct io_kiocb *req, unsigned int issue_flags)
 {
 	struct io_connect *connect = io_kiocb_to_cmd(req, struct io_connect);
+/*
+ * io_bind_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	struct io_async_msghdr *io = req->async_data;
 	unsigned file_flags;
 	int ret;
@@ -1747,6 +2036,12 @@ int io_connect(struct io_kiocb *req, unsigned int issue_flags)
 	if ((ret == -EAGAIN || ret == -EINPROGRESS || ret == -ECONNABORTED)
 	    && force_nonblock) {
 		if (ret == -EINPROGRESS) {
+/*
+ * io_bind - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 			connect->in_progress = true;
 		} else if (ret == -ECONNABORTED) {
 			if (connect->seen_econnaborted)
@@ -1764,6 +2059,12 @@ int io_connect(struct io_kiocb *req, unsigned int issue_flags)
 		 */
 		if (ret == -EBADFD || ret == -EISCONN)
 			ret = sock_error(sock_from_file(req->file)->sk);
+/*
+ * io_listen_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	}
 	if (ret == -ERESTARTSYS)
 		ret = -EINTR;
@@ -1774,6 +2075,12 @@ out:
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
 }
+/*
+ * io_listen - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 int io_bind_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
@@ -1790,6 +2097,11 @@ int io_bind_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	io = io_msg_alloc_async(req);
 	if (unlikely(!io))
 		return -ENOMEM;
+/*
+ * io_netmsg_cache_free - TODO: Describe what this function does.
+ * @param const void *entry
+ * @return TODO: Return value description.
+ */
 	return move_addr_to_kernel(uaddr, bind->addr_len, &io->addr);
 }
 

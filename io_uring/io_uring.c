@@ -178,14 +178,29 @@ static const struct ctl_table kernel_io_uring_disabled_table[] = {
 	},
 };
 #endif
+/*
+ * __io_cqring_events - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 
 static inline unsigned int __io_cqring_events(struct io_ring_ctx *ctx)
 {
 	return ctx->cached_cq_tail - READ_ONCE(ctx->rings->cq.head);
+/*
+ * __io_cqring_events_user - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 }
 
 static inline unsigned int __io_cqring_events_user(struct io_ring_ctx *ctx)
 {
+/*
+ * io_match_linked - TODO: Describe what this function does.
+ * @param struct io_kiocb *head
+ * @return TODO: Return value description.
+ */
 	return READ_ONCE(ctx->rings->cq.tail) - READ_ONCE(ctx->rings->cq.head);
 }
 
@@ -223,21 +238,43 @@ bool io_match_task_safe(struct io_kiocb *head, struct io_uring_task *tctx,
 		raw_spin_unlock_irq(&ctx->timeout_lock);
 	} else {
 		matched = io_match_linked(head);
+/*
+ * req_fail_link_node - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int res
+ * @return TODO: Return value description.
+ */
 	}
 	return matched;
 }
 
 static inline void req_fail_link_node(struct io_kiocb *req, int res)
+/*
+ * io_req_add_to_cache - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 {
 	req_set_fail(req);
 	io_req_set_res(req, res, 0);
 }
+/*
+ * io_ring_ctx_ref_free - TODO: Describe what this function does.
+ * @param struct percpu_ref *ref
+ * @return TODO: Return value description.
+ */
 
 static inline void io_req_add_to_cache(struct io_kiocb *req, struct io_ring_ctx *ctx)
 {
 	wq_stack_add_head(&req->comp_list, &ctx->submit_state.free_list);
 }
 
+/*
+ * io_fallback_req_func - TODO: Describe what this function does.
+ * @param struct work_struct *work
+ * @return TODO: Return value description.
+ */
 static __cold void io_ring_ctx_ref_free(struct percpu_ref *ref)
 {
 	struct io_ring_ctx *ctx = container_of(ref, struct io_ring_ctx, refs);
@@ -254,6 +291,12 @@ static __cold void io_fallback_req_func(struct work_struct *work)
 	struct io_tw_state ts = {};
 
 	percpu_ref_get(&ctx->refs);
+/*
+ * io_alloc_hash_table - TODO: Describe what this function does.
+ * @param struct io_hash_table *table
+ * @param unsigned bits
+ * @return TODO: Return value description.
+ */
 	mutex_lock(&ctx->uring_lock);
 	llist_for_each_entry_safe(req, tmp, node, io_task_work.node)
 		req->io_task_work.func(req, ts);
@@ -275,6 +318,11 @@ static int io_alloc_hash_table(struct io_hash_table *table, unsigned bits)
 			break;
 		if (bits == 1)
 			return -ENOMEM;
+/*
+ * io_free_alloc_caches - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		bits--;
 	} while (1);
 
@@ -370,6 +418,11 @@ static __cold struct io_ring_ctx *io_ring_ctx_alloc(struct io_uring_params *p)
 
 	return ctx;
 
+/*
+ * io_account_cq_overflow - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 free_ref:
 	percpu_ref_exit(&ctx->refs);
 err:
@@ -377,6 +430,12 @@ err:
 	kvfree(ctx->cancel_table.hbs);
 	xa_destroy(&ctx->io_bl_xa);
 	kfree(ctx);
+/*
+ * req_need_defer - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param u32 seq
+ * @return TODO: Return value description.
+ */
 	return NULL;
 }
 
@@ -387,6 +446,11 @@ static void io_account_cq_overflow(struct io_ring_ctx *ctx)
 	WRITE_ONCE(r->cq_overflow, READ_ONCE(r->cq_overflow) + 1);
 	ctx->cq_extra--;
 }
+/*
+ * io_clean_op - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 static bool req_need_defer(struct io_kiocb *req, u32 seq)
 {
@@ -413,6 +477,11 @@ static void io_clean_op(struct io_kiocb *req)
 	if ((req->flags & REQ_F_POLLED) && req->apoll) {
 		kfree(req->apoll->double_poll);
 		kfree(req->apoll);
+/*
+ * io_req_track_inflight - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		req->apoll = NULL;
 	}
 	if (req->flags & REQ_F_INFLIGHT)
@@ -441,6 +510,11 @@ static struct io_kiocb *__io_prep_linked_timeout(struct io_kiocb *req)
 
 	req->flags &= ~REQ_F_ARM_LTIMEOUT;
 	req->flags |= REQ_F_LINK_TIMEOUT;
+/*
+ * __io_arm_ltimeout - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 	/* linked timeouts should have two refs once prep'ed */
 	io_req_set_refcount(req);
@@ -451,6 +525,11 @@ static struct io_kiocb *__io_prep_linked_timeout(struct io_kiocb *req)
 static inline struct io_kiocb *io_prep_linked_timeout(struct io_kiocb *req)
 {
 	if (likely(!(req->flags & REQ_F_ARM_LTIMEOUT)))
+/*
+ * io_prep_async_work - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		return NULL;
 	return __io_prep_linked_timeout(req);
 }
@@ -483,6 +562,11 @@ static void io_prep_async_work(struct io_kiocb *req)
 
 	if (req->file && !(req->flags & REQ_F_FIXED_FILE))
 		req->flags |= io_file_get_flags(req->file);
+/*
+ * io_prep_async_link - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 	if (req->file && (req->flags & REQ_F_ISREG)) {
 		bool should_hash = def->hash_reg_file;
@@ -499,6 +583,11 @@ static void io_prep_async_work(struct io_kiocb *req)
 	}
 }
 
+/*
+ * io_queue_iowq - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 static void io_prep_async_link(struct io_kiocb *req)
 {
 	struct io_kiocb *cur;
@@ -540,6 +629,11 @@ static void io_queue_iowq(struct io_kiocb *req)
 	 */
 	if (WARN_ON_ONCE(!same_thread_group(tctx->task, current)))
 		atomic_or(IO_WQ_WORK_CANCEL, &req->work.flags);
+/*
+ * io_queue_deferred - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 
 	trace_io_uring_queue_async_work(req, io_wq_is_hashed(&req->work));
 	io_wq_enqueue(tctx->io_wq, &req->work);
@@ -555,6 +649,11 @@ static void io_req_queue_iowq_tw(struct io_kiocb *req, io_tw_token_t tw)
 void io_req_queue_iowq(struct io_kiocb *req)
 {
 	req->io_task_work.func = io_req_queue_iowq_tw;
+/*
+ * __io_commit_cqring_flush - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	io_req_task_work_add(req);
 }
 
@@ -566,6 +665,11 @@ static __cold noinline void io_queue_deferred(struct io_ring_ctx *ctx)
 						struct io_defer_entry, list);
 
 		if (req_need_defer(de->req, de->seq))
+/*
+ * __io_cq_lock - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 			break;
 		list_del_init(&de->list);
 		io_req_task_queue(de->req);
@@ -577,6 +681,11 @@ static __cold noinline void io_queue_deferred(struct io_ring_ctx *ctx)
 void __io_commit_cqring_flush(struct io_ring_ctx *ctx)
 {
 	if (ctx->poll_activated)
+/*
+ * __io_cq_unlock_post - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		io_poll_wq_wake(ctx);
 	if (ctx->off_timeout_used)
 		io_flush_timeouts(ctx);
@@ -598,6 +707,12 @@ static inline void io_cq_lock(struct io_ring_ctx *ctx)
 	spin_lock(&ctx->completion_lock);
 }
 
+/*
+ * __io_cqring_overflow_flush - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param bool dying
+ * @return TODO: Return value description.
+ */
 static inline void __io_cq_unlock_post(struct io_ring_ctx *ctx)
 {
 	io_commit_cqring(ctx);
@@ -649,11 +764,21 @@ static void __io_cqring_overflow_flush(struct io_ring_ctx *ctx, bool dying)
 		list_del(&ocqe->list);
 		kfree(ocqe);
 
+/*
+ * io_cqring_overflow_kill - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		/*
 		 * For silly syzbot cases that deliberately overflow by huge
 		 * amounts, check if we need to resched and drop and
 		 * reacquire the locks if so. Nothing real would ever hit this.
 		 * Ideally we'd have a non-posting unlock for this, but hard
+/*
+ * io_cqring_do_overflow_flush - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		 * to care for a non-real case.
 		 */
 		if (need_resched()) {
@@ -662,6 +787,11 @@ static void __io_cqring_overflow_flush(struct io_ring_ctx *ctx, bool dying)
 			cond_resched();
 			mutex_lock(&ctx->uring_lock);
 			io_cq_lock(ctx);
+/*
+ * io_put_task - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		}
 	}
 
@@ -674,6 +804,11 @@ static void __io_cqring_overflow_flush(struct io_ring_ctx *ctx, bool dying)
 
 static void io_cqring_overflow_kill(struct io_ring_ctx *ctx)
 {
+/*
+ * io_task_refs_refill - TODO: Describe what this function does.
+ * @param struct io_uring_task *tctx
+ * @return TODO: Return value description.
+ */
 	if (ctx->rings)
 		__io_cqring_overflow_flush(ctx, true);
 }
@@ -682,6 +817,11 @@ static void io_cqring_do_overflow_flush(struct io_ring_ctx *ctx)
 {
 	mutex_lock(&ctx->uring_lock);
 	__io_cqring_overflow_flush(ctx, false);
+/*
+ * io_uring_drop_tctx_refs - TODO: Describe what this function does.
+ * @param struct task_struct *task
+ * @return TODO: Return value description.
+ */
 	mutex_unlock(&ctx->uring_lock);
 }
 
@@ -693,6 +833,16 @@ static inline void io_put_task(struct io_kiocb *req)
 	if (likely(tctx->task == current)) {
 		tctx->cached_refs++;
 	} else {
+/*
+ * io_cqring_event_overflow - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param u64 user_data
+ * @param s32 res
+ * @param u32 cflags
+ * @param u64 extra1
+ * @param u64 extra2
+ * @return TODO: Return value description.
+ */
 		percpu_counter_sub(&tctx->inflight, 1);
 		if (unlikely(atomic_read(&tctx->in_cancel)))
 			wake_up(&tctx->wait);
@@ -732,6 +882,11 @@ static bool io_cqring_event_overflow(struct io_ring_ctx *ctx, u64 user_data,
 
 	if (is_cqe32)
 		ocq_size += sizeof(struct io_uring_cqe);
+/*
+ * io_req_cqe_overflow - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 	ocqe = kmalloc(ocq_size, GFP_ATOMIC | __GFP_ACCOUNT);
 	trace_io_uring_cqe_overflow(ctx, user_data, res, cflags, ocqe);
@@ -745,6 +900,12 @@ static bool io_cqring_event_overflow(struct io_ring_ctx *ctx, u64 user_data,
 		set_bit(IO_CHECK_CQ_DROPPED_BIT, &ctx->check_cq);
 		return false;
 	}
+/*
+ * io_cqe_cache_refill - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param bool overflow
+ * @return TODO: Return value description.
+ */
 	if (list_empty(&ctx->cq_overflow_list)) {
 		set_bit(IO_CHECK_CQ_OVERFLOW_BIT, &ctx->check_cq);
 		atomic_or(IORING_SQ_CQ_OVERFLOW, &ctx->rings->sq_flags);
@@ -775,6 +936,14 @@ static void io_req_cqe_overflow(struct io_kiocb *req)
  * fill the cq entry
  */
 bool io_cqe_cache_refill(struct io_ring_ctx *ctx, bool overflow)
+/*
+ * io_fill_cqe_aux - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param u64 user_data
+ * @param s32 res
+ * @param u32 cflags
+ * @return TODO: Return value description.
+ */
 {
 	struct io_rings *rings = ctx->rings;
 	unsigned int off = ctx->cached_cq_tail & (ctx->cq_entries - 1);
@@ -802,6 +971,14 @@ bool io_cqe_cache_refill(struct io_ring_ctx *ctx, bool overflow)
 	}
 
 	ctx->cqe_cached = &rings->cqes[off];
+/*
+ * io_post_aux_cqe - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param u64 user_data
+ * @param s32 res
+ * @param u32 cflags
+ * @return TODO: Return value description.
+ */
 	ctx->cqe_sentinel = ctx->cqe_cached + len;
 	return true;
 }
@@ -818,6 +995,14 @@ static bool io_fill_cqe_aux(struct io_ring_ctx *ctx, u64 user_data, s32 res,
 	 * submission (by quite a lot). Increment the overflow count in
 	 * the ring.
 	 */
+/*
+ * io_add_aux_cqe - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param u64 user_data
+ * @param s32 res
+ * @param u32 cflags
+ * @return TODO: Return value description.
+ */
 	if (likely(io_get_cqe(ctx, &cqe))) {
 		WRITE_ONCE(cqe->user_data, user_data);
 		WRITE_ONCE(cqe->res, res);
@@ -831,6 +1016,13 @@ static bool io_fill_cqe_aux(struct io_ring_ctx *ctx, u64 user_data, s32 res,
 		trace_io_uring_complete(ctx, NULL, cqe);
 		return true;
 	}
+/*
+ * io_req_post_cqe - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param s32 res
+ * @param u32 cflags
+ * @return TODO: Return value description.
+ */
 	return false;
 }
 
@@ -844,6 +1036,12 @@ bool io_post_aux_cqe(struct io_ring_ctx *ctx, u64 user_data, s32 res, u32 cflags
 		filled = io_cqring_event_overflow(ctx, user_data, res, cflags, 0, 0);
 	io_cq_unlock_post(ctx);
 	return filled;
+/*
+ * io_req_complete_post - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 /*
@@ -900,6 +1098,12 @@ defer_complete:
 		req->io_task_work.func = io_req_task_complete;
 		io_req_task_work_add(req);
 		return;
+/*
+ * io_preinit_req - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	}
 
 	io_cq_lock(ctx);
@@ -946,6 +1150,11 @@ static void io_preinit_req(struct io_kiocb *req, struct io_ring_ctx *ctx)
 	memset(&req->cqe, 0, sizeof(req->cqe));
 	memset(&req->big_cqe, 0, sizeof(req->big_cqe));
 }
+/*
+ * io_free_req - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 /*
  * A request might get retired back into the request caches even before opcode
@@ -955,6 +1164,11 @@ static void io_preinit_req(struct io_kiocb *req, struct io_ring_ctx *ctx)
  */
 __cold bool __io_alloc_req_refill(struct io_ring_ctx *ctx)
 	__must_hold(&ctx->uring_lock)
+/*
+ * __io_req_find_next_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 {
 	gfp_t gfp = GFP_KERNEL | __GFP_NOWARN;
 	void *reqs[IO_REQ_ALLOC_BATCH];
@@ -980,6 +1194,12 @@ __cold bool __io_alloc_req_refill(struct io_ring_ctx *ctx)
 		io_preinit_req(req, ctx);
 		io_req_add_to_cache(req, ctx);
 	}
+/*
+ * ctx_flush_and_put - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 	return true;
 }
 
@@ -1030,6 +1250,12 @@ static void ctx_flush_and_put(struct io_ring_ctx *ctx, io_tw_token_t tw)
 	mutex_unlock(&ctx->uring_lock);
 	percpu_ref_put(&ctx->refs);
 }
+/*
+ * __io_fallback_tw - TODO: Describe what this function does.
+ * @param struct llist_node *node
+ * @param bool sync
+ * @return TODO: Return value description.
+ */
 
 /*
  * Run queued task_work, returning the number of entries processed in *count.
@@ -1056,6 +1282,12 @@ struct llist_node *io_handle_tw_list(struct llist_node *node,
 		}
 		INDIRECT_CALL_2(req->io_task_work.func,
 				io_poll_task_func, io_req_rw_complete,
+/*
+ * io_fallback_tw - TODO: Describe what this function does.
+ * @param struct io_uring_task *tctx
+ * @param bool sync
+ * @return TODO: Return value description.
+ */
 				req, ts);
 		node = next;
 		(*count)++;
@@ -1087,6 +1319,11 @@ static __cold void __io_fallback_tw(struct llist_node *node, bool sync)
 			percpu_ref_get(&last_ctx->refs);
 		}
 		if (llist_add(&req->io_task_work.node,
+/*
+ * tctx_task_work - TODO: Describe what this function does.
+ * @param struct callback_head *cb
+ * @return TODO: Return value description.
+ */
 			      &req->ctx->fallback_llist))
 			schedule_delayed_work(&req->ctx->fallback_work, 1);
 	}
@@ -1098,6 +1335,12 @@ static __cold void __io_fallback_tw(struct llist_node *node, bool sync)
 }
 
 static void io_fallback_tw(struct io_uring_task *tctx, bool sync)
+/*
+ * io_req_local_work_add - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned flags
+ * @return TODO: Return value description.
+ */
 {
 	struct llist_node *node = llist_del_all(&tctx->task_list);
 
@@ -1191,6 +1434,12 @@ static void io_req_local_work_add(struct io_kiocb *req, unsigned flags)
 	 * in set_current_state() on the io_cqring_wait() side. It's used
 	 * to ensure that either we see updated ->cq_wait_nr, or waiters
 	 * going to sleep will observe the work added to the list, which
+/*
+ * __io_req_task_work_add - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned flags
+ * @return TODO: Return value description.
+ */
 	 * is similar to the wait/wawke task state sync.
 	 */
 
@@ -1198,6 +1447,12 @@ static void io_req_local_work_add(struct io_kiocb *req, unsigned flags)
 		if (ctx->flags & IORING_SETUP_TASKRUN_FLAG)
 			atomic_or(IORING_SQ_TASKRUN, &ctx->rings->sq_flags);
 		if (ctx->has_evfd)
+/*
+ * io_req_task_work_add_remote - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned flags
+ * @return TODO: Return value description.
+ */
 			io_eventfd_signal(ctx);
 	}
 
@@ -1213,6 +1468,13 @@ static void io_req_local_work_add(struct io_kiocb *req, unsigned flags)
 
 static void io_req_normal_work_add(struct io_kiocb *req)
 {
+/*
+ * io_run_local_work_continue - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param int events
+ * @param int min_events
+ * @return TODO: Return value description.
+ */
 	struct io_uring_task *tctx = req->tctx;
 	struct io_ring_ctx *ctx = req->ctx;
 
@@ -1245,6 +1507,14 @@ void __io_req_task_work_add(struct io_kiocb *req, unsigned flags)
 
 void io_req_task_work_add_remote(struct io_kiocb *req, unsigned flags)
 {
+/*
+ * __io_run_local_work - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param io_tw_token_t tw
+ * @param int min_events
+ * @param int max_events
+ * @return TODO: Return value description.
+ */
 	if (WARN_ON_ONCE(!(req->ctx->flags & IORING_SETUP_DEFER_TASKRUN)))
 		return;
 	__io_req_task_work_add(req, flags);
@@ -1281,6 +1551,12 @@ static int __io_run_local_work_loop(struct llist_node **node,
 		struct llist_node *next = (*node)->next;
 		struct io_kiocb *req = container_of(*node, struct io_kiocb,
 						    io_task_work.node);
+/*
+ * io_run_local_work_locked - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param int min_events
+ * @return TODO: Return value description.
+ */
 		INDIRECT_CALL_2(req->io_task_work.func,
 				io_poll_task_func, io_req_rw_complete,
 				req, tw);
@@ -1291,6 +1567,13 @@ static int __io_run_local_work_loop(struct llist_node **node,
 
 	return ret;
 }
+/*
+ * io_run_local_work - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param int min_events
+ * @param int max_events
+ * @return TODO: Return value description.
+ */
 
 static int __io_run_local_work(struct io_ring_ctx *ctx, io_tw_token_t tw,
 			       int min_events, int max_events)
@@ -1302,11 +1585,23 @@ static int __io_run_local_work(struct io_ring_ctx *ctx, io_tw_token_t tw,
 	if (WARN_ON_ONCE(ctx->submitter_task != current))
 		return -EEXIST;
 	if (ctx->flags & IORING_SETUP_TASKRUN_FLAG)
+/*
+ * io_req_task_cancel - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 		atomic_andnot(IORING_SQ_TASKRUN, &ctx->rings->sq_flags);
 again:
 	min_events -= ret;
 	ret = __io_run_local_work_loop(&ctx->retry_llist.first, tw, max_events);
 	if (ctx->retry_llist.first)
+/*
+ * io_req_task_submit - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 		goto retry_done;
 
 	/*
@@ -1317,17 +1612,33 @@ again:
 	ret += __io_run_local_work_loop(&node, tw, max_events - ret);
 	ctx->retry_llist.first = node;
 	loops++;
+/*
+ * io_req_task_queue_fail - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int ret
+ * @return TODO: Return value description.
+ */
 
 	if (io_run_local_work_continue(ctx, ret, min_events))
 		goto again;
 retry_done:
 	io_submit_flush_completions(ctx);
 	if (io_run_local_work_continue(ctx, ret, min_events))
+/*
+ * io_req_task_queue - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		goto again;
 
 	trace_io_uring_local_work_run(ctx, ret, loops);
 	return ret;
 }
+/*
+ * io_queue_next - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 static inline int io_run_local_work_locked(struct io_ring_ctx *ctx,
 					   int min_events)
@@ -1413,6 +1724,11 @@ static void io_free_batch_list(struct io_ring_ctx *ctx,
 			if ((req->flags & REQ_F_POLLED) && req->apoll) {
 				struct async_poll *apoll = req->apoll;
 
+/*
+ * io_cqring_events - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 				if (apoll->double_poll)
 					kfree(apoll->double_poll);
 				io_cache_free(&ctx->apoll_cache, apoll);
@@ -1424,6 +1740,11 @@ static void io_free_batch_list(struct io_ring_ctx *ctx,
 				io_clean_op(req);
 		}
 		io_put_file(req);
+/*
+ * io_iopoll_try_reap_events - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		io_req_put_rsrc_nodes(req);
 		io_put_task(req);
 
@@ -1534,6 +1855,12 @@ static int io_iopoll_check(struct io_ring_ctx *ctx, unsigned int min_events)
 	if (io_cqring_events(ctx))
 		return 0;
 
+/*
+ * io_iopoll_req_issued - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	do {
 		int ret = 0;
 
@@ -1581,6 +1908,11 @@ static int io_iopoll_check(struct io_ring_ctx *ctx, unsigned int min_events)
 
 void io_req_task_complete(struct io_kiocb *req, io_tw_token_t tw)
 {
+/*
+ * io_file_get_flags - TODO: Describe what this function does.
+ * @param struct file *file
+ * @return TODO: Return value description.
+ */
 	io_req_complete_defer(req);
 }
 
@@ -1593,6 +1925,11 @@ void io_req_task_complete(struct io_kiocb *req, io_tw_token_t tw)
 static void io_iopoll_req_issued(struct io_kiocb *req, unsigned int issue_flags)
 {
 	struct io_ring_ctx *ctx = req->ctx;
+/*
+ * io_get_sequence - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	const bool needs_lock = issue_flags & IO_URING_F_UNLOCKED;
 
 	/* workqueue context doesn't hold uring_lock, grab it now */
@@ -1644,6 +1981,13 @@ io_req_flags_t io_file_get_flags(struct file *file)
 	io_req_flags_t res = 0;
 
 	BUILD_BUG_ON(REQ_F_ISREG_BIT != REQ_F_SUPPORT_NOWAIT_BIT + 1);
+/*
+ * io_assign_file - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_issue_def *def
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	if (S_ISREG(file_inode(file)->i_mode))
 		res |= REQ_F_ISREG;
@@ -1657,6 +2001,13 @@ static u32 io_get_sequence(struct io_kiocb *req)
 	u32 seq = req->ctx->cached_sq_head;
 	struct io_kiocb *cur;
 
+/*
+ * __io_issue_sqe - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @param const struct io_issue_def *def
+ * @return TODO: Return value description.
+ */
 	/* need original cached_sq_head, but it was increased for each req */
 	io_for_each_link(cur, req)
 		seq--;
@@ -1680,6 +2031,12 @@ queue:
 		io_req_task_queue(req);
 		return;
 	}
+/*
+ * io_issue_sqe - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	spin_unlock(&ctx->completion_lock);
 
 	io_prep_async_link(req);
@@ -1709,6 +2066,12 @@ static bool io_assign_file(struct io_kiocb *req, const struct io_issue_def *def,
 {
 	if (req->file || !def->needs_file)
 		return true;
+/*
+ * io_poll_issue - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 
 	if (req->flags & REQ_F_FIXED_FILE)
 		req->file = io_file_get_fixed(req, req->cqe.fd, issue_flags);
@@ -1740,6 +2103,11 @@ static inline int __io_issue_sqe(struct io_kiocb *req,
 		revert_creds(creds);
 
 	return ret;
+/*
+ * io_wq_submit_work - TODO: Describe what this function does.
+ * @param struct io_wq_work *work
+ * @return TODO: Return value description.
+ */
 }
 
 static int io_issue_sqe(struct io_kiocb *req, unsigned int issue_flags)
@@ -1936,6 +2304,13 @@ static void io_queue_async(struct io_kiocb *req, int ret)
 	__must_hold(&req->ctx->uring_lock)
 {
 	struct io_kiocb *linked_timeout;
+/*
+ * io_check_restriction - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_kiocb *req
+ * @param unsigned int sqe_flags
+ * @return TODO: Return value description.
+ */
 
 	if (ret != -EAGAIN || (req->flags & REQ_F_NOWAIT)) {
 		io_req_defer_failed(req, ret);
@@ -1952,6 +2327,11 @@ static void io_queue_async(struct io_kiocb *req, int ret)
 	case IO_APOLL_ABORTED:
 		io_kbuf_recycle(req, 0);
 		io_queue_iowq(req);
+/*
+ * io_init_drain - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		break;
 	case IO_APOLL_OK:
 		break;
@@ -2163,6 +2543,11 @@ static __cold int io_submit_fail_init(const struct io_uring_sqe *sqe,
 		if (head) {
 			link->last->link = req;
 			link->head = NULL;
+/*
+ * io_submit_state_end - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 			req = head;
 		}
 		io_queue_sqe_fallback(req);
@@ -2177,6 +2562,12 @@ static __cold int io_submit_fail_init(const struct io_uring_sqe *sqe,
 	return 0;
 }
 
+/*
+ * io_submit_state_start - TODO: Describe what this function does.
+ * @param struct io_submit_state *state
+ * @param unsigned int max_ios
+ * @return TODO: Return value description.
+ */
 static inline int io_submit_sqe(struct io_ring_ctx *ctx, struct io_kiocb *req,
 			 const struct io_uring_sqe *sqe)
 	__must_hold(&ctx->uring_lock)
@@ -2185,6 +2576,11 @@ static inline int io_submit_sqe(struct io_ring_ctx *ctx, struct io_kiocb *req,
 	int ret;
 
 	ret = io_init_req(ctx, req, sqe);
+/*
+ * io_commit_sqring - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	if (unlikely(ret))
 		return io_submit_fail_init(sqe, req, ret);
 
@@ -2290,6 +2686,14 @@ static bool io_get_sqe(struct io_ring_ctx *ctx, const struct io_uring_sqe **sqe)
 			WRITE_ONCE(ctx->rings->sq_dropped,
 				   READ_ONCE(ctx->rings->sq_dropped) + 1);
 			return false;
+/*
+ * io_wake_function - TODO: Describe what this function does.
+ * @param struct wait_queue_entry *curr
+ * @param unsigned int mode
+ * @param int wake_flags
+ * @param void *key
+ * @return TODO: Return value description.
+ */
 		}
 		head = array_index_nospec(head, ctx->sq_entries);
 	}
@@ -2303,6 +2707,11 @@ static bool io_get_sqe(struct io_ring_ctx *ctx, const struct io_uring_sqe **sqe)
 	 *    though the application is the one updating it.
 	 */
 
+/*
+ * io_run_task_work_sig - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	/* double index for 128-byte SQEs, twice as long */
 	if (ctx->flags & IORING_SETUP_SQE128)
 		head <<= 1;
@@ -2316,6 +2725,10 @@ int io_submit_sqes(struct io_ring_ctx *ctx, unsigned int nr)
 	unsigned int entries = io_sqring_entries(ctx);
 	unsigned int left;
 	int ret;
+/*
+ * current_pending_io - TODO: Describe what this function does.
+ * @return TODO: Return value description.
+ */
 
 	if (unlikely(!entries))
 		return 0;
@@ -2324,6 +2737,11 @@ int io_submit_sqes(struct io_ring_ctx *ctx, unsigned int nr)
 	io_get_task_refs(left);
 	io_submit_state_start(&ctx->submit_state, left);
 
+/*
+ * io_cqring_timer_wakeup - TODO: Describe what this function does.
+ * @param struct hrtimer *timer
+ * @return TODO: Return value description.
+ */
 	do {
 		const struct io_uring_sqe *sqe;
 		struct io_kiocb *req;
@@ -2339,6 +2757,11 @@ int io_submit_sqes(struct io_ring_ctx *ctx, unsigned int nr)
 		 * Continue submitting even for sqe failure if the
 		 * ring was setup with IORING_SETUP_SUBMIT_ALL
 		 */
+/*
+ * io_cqring_min_timer_wakeup - TODO: Describe what this function does.
+ * @param struct hrtimer *timer
+ * @return TODO: Return value description.
+ */
 		if (unlikely(io_submit_sqe(ctx, req, sqe)) &&
 		    !(ctx->flags & IORING_SETUP_SUBMIT_ALL)) {
 			left--;
@@ -2376,6 +2799,13 @@ static int io_wake_function(struct wait_queue_entry *curr, unsigned int mode,
 
 int io_run_task_work_sig(struct io_ring_ctx *ctx)
 {
+/*
+ * io_cqring_schedule_timeout - TODO: Describe what this function does.
+ * @param struct io_wait_queue *iowq
+ * @param clockid_t clock_id
+ * @param ktime_t start_time
+ * @return TODO: Return value description.
+ */
 	if (io_local_work_pending(ctx)) {
 		__set_current_state(TASK_RUNNING);
 		if (io_run_local_work(ctx, INT_MAX, IO_LOCAL_TW_DEFAULT_MAX) > 0)
@@ -2412,6 +2842,14 @@ static enum hrtimer_restart io_cqring_timer_wakeup(struct hrtimer *timer)
  * wake up. If not, and we have a normal timeout, switch to that and keep
  * sleeping.
  */
+/*
+ * __io_cqring_wait_schedule - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_wait_queue *iowq
+ * @param struct ext_arg *ext_arg
+ * @param ktime_t start_time
+ * @return TODO: Return value description.
+ */
 static enum hrtimer_restart io_cqring_min_timer_wakeup(struct hrtimer *timer)
 {
 	struct io_wait_queue *iowq = container_of(timer, struct io_wait_queue, t);
@@ -2435,6 +2873,14 @@ static enum hrtimer_restart io_cqring_min_timer_wakeup(struct hrtimer *timer)
 	 * If using deferred task_work running and application is waiting on
 	 * more than one request, ensure we reset it now where we are switching
 	 * to normal sleeps. Any request completion post min_wait should wake
+/*
+ * io_cqring_wait_schedule - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_wait_queue *iowq
+ * @param struct ext_arg *ext_arg
+ * @param ktime_t start_time
+ * @return TODO: Return value description.
+ */
 	 * the task and return.
 	 */
 	if (ctx->flags & IORING_SETUP_DEFER_TASKRUN) {
@@ -2457,6 +2903,14 @@ static int io_cqring_schedule_timeout(struct io_wait_queue *iowq,
 	ktime_t timeout;
 
 	if (iowq->min_timeout) {
+/*
+ * io_cqring_wait - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param int min_events
+ * @param u32 flags
+ * @param struct ext_arg *ext_arg
+ * @return TODO: Return value description.
+ */
 		timeout = ktime_add_ns(iowq->min_timeout, start_time);
 		hrtimer_setup_on_stack(&iowq->t, io_cqring_min_timer_wakeup, clock_id,
 				       HRTIMER_MODE_ABS);
@@ -2580,6 +3034,11 @@ static int io_cqring_wait(struct io_ring_ctx *ctx, int min_events, u32 flags,
 			ret = set_compat_user_sigmask((const compat_sigset_t __user *)ext_arg->sig,
 						      ext_arg->argsz);
 		else
+/*
+ * io_rings_free - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 #endif
 			ret = set_user_sigmask(ext_arg->sig, ext_arg->argsz);
 
@@ -2587,6 +3046,14 @@ static int io_cqring_wait(struct io_ring_ctx *ctx, int min_events, u32 flags,
 			return ret;
 	}
 
+/*
+ * rings_size - TODO: Describe what this function does.
+ * @param unsigned int flags
+ * @param unsigned int sq_entries
+ * @param unsigned int cq_entries
+ * @param size_t *sq_offset
+ * @return TODO: Return value description.
+ */
 	io_napi_busy_loop(ctx, &iowq);
 
 	trace_io_uring_cqring_wait(ctx, min_events);
@@ -2640,6 +3107,11 @@ static int io_cqring_wait(struct io_ring_ctx *ctx, int min_events, u32 flags,
 			if (check_cq & BIT(IO_CHECK_CQ_OVERFLOW_BIT))
 				io_cqring_do_overflow_flush(ctx);
 			if (check_cq & BIT(IO_CHECK_CQ_DROPPED_BIT)) {
+/*
+ * io_ring_ctx_free - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 				ret = -EBADR;
 				break;
 			}
@@ -2680,6 +3152,11 @@ unsigned long rings_size(unsigned int flags, unsigned int sq_entries,
 		if (check_shl_overflow(off, 1, &off))
 			return SIZE_MAX;
 	}
+/*
+ * io_activate_pollwq_cb - TODO: Describe what this function does.
+ * @param struct callback_head *cb
+ * @return TODO: Return value description.
+ */
 
 #ifdef CONFIG_SMP
 	off = ALIGN(off, SMP_CACHE_BYTES);
@@ -2696,6 +3173,11 @@ unsigned long rings_size(unsigned int flags, unsigned int sq_entries,
 
 	sq_array_size = array_size(sizeof(u32), sq_entries);
 	if (sq_array_size == SIZE_MAX)
+/*
+ * io_activate_pollwq - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		return SIZE_MAX;
 
 	if (check_add_overflow(off, sq_array_size, &off))
@@ -2717,6 +3199,12 @@ static void io_req_caches_free(struct io_ring_ctx *ctx)
 		nr++;
 	}
 	if (nr)
+/*
+ * io_uring_poll - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param poll_table *wait
+ * @return TODO: Return value description.
+ */
 		percpu_ref_put_many(&ctx->refs, nr);
 	mutex_unlock(&ctx->uring_lock);
 }
@@ -2758,6 +3246,11 @@ static __cold void io_ring_ctx_free(struct io_ring_ctx *ctx)
 		io_wq_put_hash(ctx->hash_map);
 	io_napi_free(ctx);
 	kvfree(ctx->cancel_table.hbs);
+/*
+ * io_tctx_exit_cb - TODO: Describe what this function does.
+ * @param struct callback_head *cb
+ * @return TODO: Return value description.
+ */
 	xa_destroy(&ctx->io_bl_xa);
 	kfree(ctx);
 }
@@ -2781,6 +3274,11 @@ static __cold void io_activate_pollwq_cb(struct callback_head *cb)
 
 __cold void io_activate_pollwq(struct io_ring_ctx *ctx)
 {
+/*
+ * io_ring_exit_work - TODO: Describe what this function does.
+ * @param struct work_struct *work
+ * @return TODO: Return value description.
+ */
 	spin_lock(&ctx->completion_lock);
 	/* already activated or in progress */
 	if (ctx->poll_activated || ctx->poll_wq_task_work.func)
@@ -2881,6 +3379,11 @@ static __cold void io_ring_exit_work(struct work_struct *work)
 	 * submitted async (out-of-line), then completions can come in while
 	 * we're waiting for refs to drop. We need to reap these manually,
 	 * as nobody else will be looking for them.
+/*
+ * io_ring_ctx_wait_and_kill - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	 */
 	do {
 		if (test_bit(IO_CHECK_CQ_OVERFLOW_BIT, &ctx->check_cq)) {
@@ -2903,6 +3406,12 @@ static __cold void io_ring_exit_work(struct work_struct *work)
 
 		if (ctx->sq_data) {
 			struct io_sq_data *sqd = ctx->sq_data;
+/*
+ * io_uring_release - TODO: Describe what this function does.
+ * @param struct inode *inode
+ * @param struct file *file
+ * @return TODO: Return value description.
+ */
 			struct task_struct *tsk;
 
 			io_sq_thread_park(sqd);
@@ -2916,6 +3425,12 @@ static __cold void io_ring_exit_work(struct work_struct *work)
 		io_req_caches_free(ctx);
 
 		if (WARN_ON_ONCE(time_after(jiffies, timeout))) {
+/*
+ * io_cancel_task_cb - TODO: Describe what this function does.
+ * @param struct io_wq_work *work
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 			/* there is little hope left, don't run it too often */
 			interval = HZ * 60;
 		}
@@ -2923,6 +3438,13 @@ static __cold void io_ring_exit_work(struct work_struct *work)
 		 * This is really an uninterruptible wait, as it has to be
 		 * complete. But it's also run from a kworker, which doesn't
 		 * take signals, so it's fine to make it interruptible. This
+/*
+ * io_cancel_defer_files - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_task *tctx
+ * @param bool cancel_all
+ * @return TODO: Return value description.
+ */
 		 * avoids scenarios where we knowingly can wait much longer
 		 * on completions, for example if someone does a SIGSTOP on
 		 * a task that needs to finish task_work to make this loop
@@ -2949,6 +3471,11 @@ static __cold void io_ring_exit_work(struct work_struct *work)
 			continue;
 
 		mutex_unlock(&ctx->uring_lock);
+/*
+ * io_uring_try_cancel_iowq - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		/*
 		 * See comment above for
 		 * wait_for_completion_interruptible_timeout() on why this
@@ -2972,6 +3499,14 @@ static __cold void io_ring_ctx_wait_and_kill(struct io_ring_ctx *ctx)
 {
 	unsigned long index;
 	struct creds *creds;
+/*
+ * io_uring_try_cancel_requests - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_task *tctx
+ * @param bool cancel_all
+ * @param bool is_sqpoll_thread
+ * @return TODO: Return value description.
+ */
 
 	mutex_lock(&ctx->uring_lock);
 	percpu_ref_kill(&ctx->refs);
@@ -3030,6 +3565,12 @@ static __cold bool io_cancel_defer_files(struct io_ring_ctx *ctx,
 	spin_unlock(&ctx->completion_lock);
 	if (list_empty(&list))
 		return false;
+/*
+ * tctx_inflight - TODO: Describe what this function does.
+ * @param struct io_uring_task *tctx
+ * @param bool tracked
+ * @return TODO: Return value description.
+ */
 
 	while (!list_empty(&list)) {
 		de = list_first_entry(&list, struct io_defer_entry, list);
@@ -3041,6 +3582,12 @@ static __cold bool io_cancel_defer_files(struct io_ring_ctx *ctx,
 }
 
 static __cold bool io_uring_try_cancel_iowq(struct io_ring_ctx *ctx)
+/*
+ * io_uring_cancel_generic - TODO: Describe what this function does.
+ * @param bool cancel_all
+ * @param struct io_sq_data *sqd
+ * @return TODO: Return value description.
+ */
 {
 	struct io_tctx_node *node;
 	enum io_wq_cancel cret;
@@ -3124,6 +3671,11 @@ static __cold bool io_uring_try_cancel_requests(struct io_ring_ctx *ctx,
 }
 
 static s64 tctx_inflight(struct io_uring_task *tctx, bool tracked)
+/*
+ * __io_uring_cancel - TODO: Describe what this function does.
+ * @param bool cancel_all
+ * @return TODO: Return value description.
+ */
 {
 	if (tracked)
 		return atomic_read(&tctx->inflight_tracked);
@@ -3148,6 +3700,14 @@ __cold void io_uring_cancel_generic(bool cancel_all, struct io_sq_data *sqd)
 	if (!current->io_uring)
 		return;
 	if (tctx->io_wq)
+/*
+ * io_validate_ext_arg - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned flags
+ * @param const void __user *argp
+ * @param size_t argsz
+ * @return TODO: Return value description.
+ */
 		io_wq_exit_start(tctx->io_wq);
 
 	atomic_inc(&tctx->in_cancel);
@@ -3163,6 +3723,14 @@ __cold void io_uring_cancel_generic(bool cancel_all, struct io_sq_data *sqd)
 		if (!inflight)
 			break;
 
+/*
+ * io_get_ext_arg - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned flags
+ * @param const void __user *argp
+ * @param struct ext_arg *ext_arg
+ * @return TODO: Return value description.
+ */
 		if (!sqd) {
 			xa_for_each(&tctx->xa, index, node) {
 				/* sqpoll task will cancel all its requests */
@@ -3376,10 +3944,21 @@ SYSCALL_DEFINE6(io_uring_enter, unsigned int, fd, u32, to_submit,
 	if (unlikely(ctx->flags & IORING_SETUP_R_DISABLED))
 		goto out;
 
+/*
+ * io_is_uring_fops - TODO: Describe what this function does.
+ * @param struct file *file
+ * @return TODO: Return value description.
+ */
 	/*
 	 * For SQ polling, the thread will do all submissions and completions.
 	 * Just return the requested submit count, and wake the thread if
 	 * we were asked to.
+/*
+ * io_allocate_scq_urings - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_params *p
+ * @return TODO: Return value description.
+ */
 	 */
 	ret = 0;
 	if (ctx->flags & IORING_SETUP_SQPOLL) {
@@ -3438,6 +4017,11 @@ iopoll_locked:
 
 			ret2 = io_get_ext_arg(ctx, flags, argp, &ext_arg);
 			if (likely(!ret2))
+/*
+ * io_uring_install_fd - TODO: Describe what this function does.
+ * @param struct file *file
+ * @return TODO: Return value description.
+ */
 				ret2 = io_cqring_wait(ctx, min_complete, flags,
 						      &ext_arg);
 		}
@@ -3460,6 +4044,11 @@ out:
 		fput(file);
 	return ret;
 }
+/*
+ * io_uring_sanitise_params - TODO: Describe what this function does.
+ * @param struct io_uring_params *p
+ * @return TODO: Return value description.
+ */
 
 static const struct file_operations io_uring_fops = {
 	.release	= io_uring_release,
@@ -3497,6 +4086,12 @@ static __cold int io_allocate_scq_urings(struct io_ring_ctx *ctx,
 		return -EOVERFLOW;
 
 	memset(&rd, 0, sizeof(rd));
+/*
+ * io_uring_fill_params - TODO: Describe what this function does.
+ * @param unsigned entries
+ * @param struct io_uring_params *p
+ * @return TODO: Return value description.
+ */
 	rd.size = PAGE_ALIGN(size);
 	if (ctx->flags & IORING_SETUP_NO_MMAP) {
 		rd.user_addr = p->cq_off.user_addr;
@@ -3700,6 +4295,12 @@ static __cold int io_uring_create(unsigned entries, struct io_uring_params *p,
 	 * lazy poll_wq activation relies on ->task_complete for synchronisation
 	 * purposes, see io_activate_pollwq()
 	 */
+/*
+ * io_uring_setup - TODO: Describe what this function does.
+ * @param u32 entries
+ * @param struct io_uring_params __user *params
+ * @return TODO: Return value description.
+ */
 	if (!ctx->task_complete)
 		ctx->poll_activated = true;
 
@@ -3724,6 +4325,10 @@ static __cold int io_uring_create(unsigned entries, struct io_uring_params *p,
 	if (ctx->flags & (IORING_SETUP_SQPOLL|IORING_SETUP_COOP_TASKRUN))
 		ctx->notify_method = TWA_SIGNAL_NO_IPI;
 	else
+/*
+ * io_uring_allowed - TODO: Describe what this function does.
+ * @return TODO: Return value description.
+ */
 		ctx->notify_method = TWA_SIGNAL;
 
 	/*
@@ -3757,6 +4362,10 @@ static __cold int io_uring_create(unsigned entries, struct io_uring_params *p,
 			IORING_FEAT_RW_ATTR | IORING_FEAT_NO_IOWAIT;
 
 	if (copy_to_user(params, p, sizeof(*p))) {
+/*
+ * io_uring_init - TODO: Describe what this function does.
+ * @return TODO: Return value description.
+ */
 		ret = -EFAULT;
 		goto err;
 	}

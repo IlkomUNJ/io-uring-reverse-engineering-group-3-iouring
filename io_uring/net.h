@@ -61,6 +61,7 @@ int io_listen(struct io_kiocb *req, unsigned int issue_flags);
 
 void io_netmsg_cache_free(const void *entry);
 #else
+/* Does nothing when CONFIG_NET is disabled. */
 static inline void io_netmsg_cache_free(const void *entry)
 {
 }

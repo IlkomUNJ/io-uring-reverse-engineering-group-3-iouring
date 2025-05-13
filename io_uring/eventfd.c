@@ -11,6 +11,8 @@
 #include "io-wq.h"
 #include "eventfd.h"
 
+static void io_eventfd_free(struct rcu_head *rcu)
+{
 struct io_ev_fd {
 	struct eventfd_ctx	*cq_ev_fd;
 	unsigned int		eventfd_async;
@@ -24,7 +26,12 @@ struct io_ev_fd {
 enum {
 	IO_EVENTFD_OP_SIGNAL_BIT,
 };
-
+/**
+ * io_eventfd_free - RCU callback to free io_ev_fd object
+ * @rcu: pointer to the embedded RCU head
+ *
+ * Releases the eventfd context and frees the io_ev_fd structure.
+ */
 static void io_eventfd_free(struct rcu_head *rcu)
 {
 	struct io_ev_fd *ev_fd = container_of(rcu, struct io_ev_fd, rcu);
@@ -32,13 +39,23 @@ static void io_eventfd_free(struct rcu_head *rcu)
 	eventfd_ctx_put(ev_fd->cq_ev_fd);
 	kfree(ev_fd);
 }
-
+/**
+ * io_eventfd_put - Drop a reference to io_ev_fd and free if needed
+ * @ev_fd: pointer to io_ev_fd
+ *
+ * Decreases the reference count and frees the object if it's the last reference.
+ */
 static void io_eventfd_put(struct io_ev_fd *ev_fd)
 {
 	if (refcount_dec_and_test(&ev_fd->refs))
 		call_rcu(&ev_fd->rcu, io_eventfd_free);
 }
-
+/**
+ * io_eventfd_do_signal - RCU-safe deferred eventfd signal callback
+ * @rcu: pointer to RCU head embedded in io_ev_fd
+ *
+ * Signals the eventfd and then drops a reference to the io_ev_fd.
+ */
 static void io_eventfd_do_signal(struct rcu_head *rcu)
 {
 	struct io_ev_fd *ev_fd = container_of(rcu, struct io_ev_fd, rcu);
@@ -46,16 +63,25 @@ static void io_eventfd_do_signal(struct rcu_head *rcu)
 	eventfd_signal_mask(ev_fd->cq_ev_fd, EPOLL_URING_WAKE);
 	io_eventfd_put(ev_fd);
 }
-
+/**
+ * io_eventfd_release - Release io_ev_fd with optional ref put
+ * @ev_fd: pointer to io_ev_fd
+ * @put_ref: whether to drop a reference
+ *
+ * Releases the RCU read lock and optionally decreases the reference.
+ */
 static void io_eventfd_release(struct io_ev_fd *ev_fd, bool put_ref)
 {
 	if (put_ref)
 		io_eventfd_put(ev_fd);
 	rcu_read_unlock();
 }
-
-/*
- * Returns true if the caller should put the ev_fd reference, false if not.
+/**
+ * __io_eventfd_signal - Triggers eventfd signal if allowed
+ * @ev_fd: pointer to io_ev_fd
+ *
+ * Signals the eventfd either immediately or defers via call_rcu_hurry.
+ * Returns true if caller should drop the reference.
  */
 static bool __io_eventfd_signal(struct io_ev_fd *ev_fd)
 {
@@ -69,10 +95,11 @@ static bool __io_eventfd_signal(struct io_ev_fd *ev_fd)
 	}
 	return true;
 }
-
-/*
- * Trigger if eventfd_async isn't set, or if it's set and the caller is
- * an async worker. If ev_fd isn't valid, obviously return false.
+/**
+ * io_eventfd_trigger - Check if it's valid to trigger eventfd
+ * @ev_fd: pointer to io_ev_fd
+ *
+ * Returns true if async signaling is permitted in current context.
  */
 static bool io_eventfd_trigger(struct io_ev_fd *ev_fd)
 {
@@ -80,10 +107,12 @@ static bool io_eventfd_trigger(struct io_ev_fd *ev_fd)
 		return !ev_fd->eventfd_async || io_wq_current_is_worker();
 	return false;
 }
-
-/*
- * On success, returns with an ev_fd reference grabbed and the RCU read
- * lock held.
+/**
+ * io_eventfd_grab - Grab io_ev_fd safely with refcount
+ * @ctx: the io_uring ring context
+ *
+ * Returns a valid io_ev_fd with refcount incremented and RCU lock held,
+ * or NULL if no eventfd is registered or usable.
  */
 static struct io_ev_fd *io_eventfd_grab(struct io_ring_ctx *ctx)
 {
@@ -111,7 +140,12 @@ static struct io_ev_fd *io_eventfd_grab(struct io_ring_ctx *ctx)
 	rcu_read_unlock();
 	return NULL;
 }
-
+/**
+ * io_eventfd_signal - Trigger an eventfd signal from io_uring
+ * @ctx: the io_uring ring context
+ *
+ * Signals the associated eventfd if one is registered and triggerable.
+ */
 void io_eventfd_signal(struct io_ring_ctx *ctx)
 {
 	struct io_ev_fd *ev_fd;
@@ -120,7 +154,13 @@ void io_eventfd_signal(struct io_ring_ctx *ctx)
 	if (ev_fd)
 		io_eventfd_release(ev_fd, __io_eventfd_signal(ev_fd));
 }
-
+/**
+ * io_eventfd_flush_signal - Optimized eventfd signaling for CQ events
+ * @ctx: io_uring ring context
+ *
+ * Avoids signaling if no new completions since the last signal.
+ * Useful for performance-sensitive applications.
+ */
 void io_eventfd_flush_signal(struct io_ring_ctx *ctx)
 {
 	struct io_ev_fd *ev_fd;
@@ -149,7 +189,15 @@ void io_eventfd_flush_signal(struct io_ring_ctx *ctx)
 		io_eventfd_release(ev_fd, put_ref);
 	}
 }
-
+/**
+ * io_eventfd_register - Register a user eventfd for io_uring completions
+ * @ctx: io_uring context
+ * @arg: user pointer to eventfd descriptor
+ * @eventfd_async: whether to enable async eventfd signaling
+ *
+ * Registers a user-provided eventfd to be signaled on CQE completion.
+ * Fails if one is already registered.
+ */
 int io_eventfd_register(struct io_ring_ctx *ctx, void __user *arg,
 			unsigned int eventfd_async)
 {
@@ -189,6 +237,13 @@ int io_eventfd_register(struct io_ring_ctx *ctx, void __user *arg,
 	return 0;
 }
 
+/**
+ * io_eventfd_unregister - Unregister an existing eventfd
+ * @ctx: io_uring context
+ *
+ * Removes a previously registered eventfd from the ring.
+ * Returns 0 on success or -ENXIO if none is registered.
+ */
 int io_eventfd_unregister(struct io_ring_ctx *ctx)
 {
 	struct io_ev_fd *ev_fd;

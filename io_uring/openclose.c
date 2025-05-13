@@ -35,6 +35,11 @@ struct io_fixed_install {
 	struct file			*file;
 	unsigned int			o_flags;
 };
+/*
+ * io_openat_force_async - TODO: Describe what this function does.
+ * @param struct io_open *open
+ * @return TODO: Return value description.
+ */
 
 static bool io_openat_force_async(struct io_open *open)
 {
@@ -45,6 +50,12 @@ static bool io_openat_force_async(struct io_open *open)
 	 * async for.
 	 */
 	return open->how.flags & (O_TRUNC | O_CREAT | __O_TMPFILE);
+/*
+ * __io_openat_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 }
 
 static int __io_openat_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
@@ -79,6 +90,12 @@ static int __io_openat_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe
 	req->flags |= REQ_F_NEED_CLEANUP;
 	if (io_openat_force_async(open))
 		req->flags |= REQ_F_FORCE_ASYNC;
+/*
+ * io_openat_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	return 0;
 }
 
@@ -88,6 +105,12 @@ int io_openat_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	u64 mode = READ_ONCE(sqe->len);
 	u64 flags = READ_ONCE(sqe->open_flags);
 
+/*
+ * io_openat2_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	open->how = build_open_how(flags, mode);
 	return __io_openat_prep(req, sqe);
 }
@@ -106,6 +129,12 @@ int io_openat2_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	ret = copy_struct_from_user(&open->how, sizeof(open->how), how, len);
 	if (ret)
+/*
+ * io_openat2 - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		return ret;
 
 	return __io_openat_prep(req, sqe);
@@ -166,10 +195,21 @@ int io_openat2(struct io_kiocb *req, unsigned int issue_flags)
 err:
 	putname(open->filename);
 	req->flags &= ~REQ_F_NEED_CLEANUP;
+/*
+ * io_openat - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	if (ret < 0)
 		req_set_fail(req);
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
+/*
+ * io_open_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 int io_openat(struct io_kiocb *req, unsigned int issue_flags)
@@ -177,6 +217,13 @@ int io_openat(struct io_kiocb *req, unsigned int issue_flags)
 	return io_openat2(req, issue_flags);
 }
 
+/*
+ * __io_close_fixed - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned int issue_flags
+ * @param unsigned int offset
+ * @return TODO: Return value description.
+ */
 void io_open_cleanup(struct io_kiocb *req)
 {
 	struct io_open *open = io_kiocb_to_cmd(req, struct io_open);
@@ -188,12 +235,24 @@ void io_open_cleanup(struct io_kiocb *req)
 int __io_close_fixed(struct io_ring_ctx *ctx, unsigned int issue_flags,
 		     unsigned int offset)
 {
+/*
+ * io_close_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	int ret;
 
 	io_ring_submit_lock(ctx, issue_flags);
 	ret = io_fixed_fd_remove(ctx, offset);
 	io_ring_submit_unlock(ctx, issue_flags);
 
+/*
+ * io_close_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	return ret;
 }
 
@@ -210,6 +269,12 @@ int io_close_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	if (sqe->off || sqe->addr || sqe->len || sqe->rw_flags || sqe->buf_index)
 		return -EINVAL;
+/*
+ * io_close - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	if (req->flags & REQ_F_FIXED_FILE)
 		return -EBADF;
 
@@ -248,6 +313,12 @@ int io_close(struct io_kiocb *req, unsigned int issue_flags)
 
 	file = file_close_fd_locked(files, close->fd);
 	spin_unlock(&files->file_lock);
+/*
+ * io_install_fixed_fd_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	if (!file)
 		goto err;
 
@@ -277,6 +348,12 @@ int io_install_fixed_fd_prep(struct io_kiocb *req, const struct io_uring_sqe *sq
 	if (flags & ~IORING_FIXED_FD_NO_CLOEXEC)
 		return -EINVAL;
 
+/*
+ * io_install_fixed_fd - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	/* ensure the task's creds are used when installing/receiving fds */
 	if (req->flags & REQ_F_CREDS)
 		return -EPERM;

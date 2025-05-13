@@ -10,7 +10,13 @@ struct io_timeout_data {
 
 struct io_kiocb *__io_disarm_linked_timeout(struct io_kiocb *req,
 					    struct io_kiocb *link);
-
+/*
+    Checks if a given io_uring request has another request
+    linked to it that is specifically an IOURING_OP_LINK_TIMEOUT.
+    If so, the function initiates the process of disarming/cancelling
+    the timeout by calling a helper __io_disarm_linked_timeout
+    function.
+*/
 static inline struct io_kiocb *io_disarm_linked_timeout(struct io_kiocb *req)
 {
 	struct io_kiocb *link = req->link;
