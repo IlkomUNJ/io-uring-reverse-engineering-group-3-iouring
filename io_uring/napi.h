@@ -19,10 +19,21 @@ int __io_napi_add_id(struct io_ring_ctx *ctx, unsigned int napi_id);
 
 void __io_napi_busy_loop(struct io_ring_ctx *ctx, struct io_wait_queue *iowq);
 int io_napi_sqpoll_busy_poll(struct io_ring_ctx *ctx);
+/*
+ * io_napi - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 
 static inline bool io_napi(struct io_ring_ctx *ctx)
 {
 	return !list_empty(&ctx->napi_list);
+/*
+ * io_napi_busy_loop - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_wait_queue *iowq
+ * @return TODO: Return value description.
+ */
 }
 
 static inline void io_napi_busy_loop(struct io_ring_ctx *ctx,
@@ -37,6 +48,11 @@ static inline void io_napi_busy_loop(struct io_ring_ctx *ctx,
  * io_napi_add() - Add napi id to the busy poll list
  * @req: pointer to io_kiocb request
  *
+/*
+ * io_napi_add - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
  * Add the napi id of the socket to the napi busy poll list and hash table.
  */
 static inline void io_napi_add(struct io_kiocb *req)
@@ -50,27 +66,58 @@ static inline void io_napi_add(struct io_kiocb *req)
 	sock = sock_from_file(req->file);
 	if (sock && sock->sk)
 		__io_napi_add_id(ctx, READ_ONCE(sock->sk->sk_napi_id));
+/*
+ * io_napi_init - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 }
 
 #else
+/*
+ * io_napi_free - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 
 static inline void io_napi_init(struct io_ring_ctx *ctx)
 {
 }
 static inline void io_napi_free(struct io_ring_ctx *ctx)
 {
+/*
+ * io_unregister_napi - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 }
 static inline int io_register_napi(struct io_ring_ctx *ctx, void __user *arg)
 {
+/*
+ * io_napi - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	return -EOPNOTSUPP;
 }
 static inline int io_unregister_napi(struct io_ring_ctx *ctx, void __user *arg)
+/*
+ * io_napi_add - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 {
 	return -EOPNOTSUPP;
 }
 static inline bool io_napi(struct io_ring_ctx *ctx)
 {
 	return false;
+/*
+ * io_napi_sqpoll_busy_poll - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 }
 static inline void io_napi_add(struct io_kiocb *req)
 {
