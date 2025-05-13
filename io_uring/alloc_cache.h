@@ -15,6 +15,12 @@ bool io_alloc_cache_init(struct io_alloc_cache *cache,
 			 unsigned int init_bytes);
 
 void *io_cache_alloc_new(struct io_alloc_cache *cache, gfp_t gfp);
+/*
+ * io_alloc_cache_put - TODO: Describe what this function does.
+ * @param struct io_alloc_cache *cache
+ * @param void *entry
+ * @return TODO: Return value description.
+ */
 
 static inline bool io_alloc_cache_put(struct io_alloc_cache *cache,
 				      void *entry)
@@ -57,6 +63,12 @@ static inline void *io_cache_alloc(struct io_alloc_cache *cache, gfp_t gfp)
 	if (obj)
 		return obj;
 	return io_cache_alloc_new(cache, gfp);
+/*
+ * io_cache_free - TODO: Describe what this function does.
+ * @param struct io_alloc_cache *cache
+ * @param void *obj
+ * @return TODO: Return value description.
+ */
 }
 
 static inline void io_cache_free(struct io_alloc_cache *cache, void *obj)
