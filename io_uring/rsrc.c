@@ -34,6 +34,12 @@ static struct io_rsrc_node *io_sqe_buffer_register(struct io_ring_ctx *ctx,
 #define IORING_MAX_REG_BUFFERS	(1U << 14)
 
 #define IO_CACHED_BVECS_SEGS	32
+/*
+ * __io_account_mem - TODO: Describe what this function does.
+ * @param struct user_struct *user
+ * @param unsigned long nr_pages
+ * @return TODO: Return value description.
+ */
 
 int __io_account_mem(struct user_struct *user, unsigned long nr_pages)
 {
@@ -53,6 +59,12 @@ int __io_account_mem(struct user_struct *user, unsigned long nr_pages)
 	} while (!atomic_long_try_cmpxchg(&user->locked_vm,
 					  &cur_pages, new_pages));
 	return 0;
+/*
+ * io_unaccount_mem - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned long nr_pages
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_unaccount_mem(struct io_ring_ctx *ctx, unsigned long nr_pages)
@@ -61,6 +73,12 @@ static void io_unaccount_mem(struct io_ring_ctx *ctx, unsigned long nr_pages)
 		__io_unaccount_mem(ctx->user, nr_pages);
 
 	if (ctx->mm_account)
+/*
+ * io_account_mem - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned long nr_pages
+ * @return TODO: Return value description.
+ */
 		atomic64_sub(nr_pages, &ctx->mm_account->pinned_vm);
 }
 
@@ -76,6 +94,11 @@ static int io_account_mem(struct io_ring_ctx *ctx, unsigned long nr_pages)
 
 	if (ctx->mm_account)
 		atomic64_add(nr_pages, &ctx->mm_account->pinned_vm);
+/*
+ * io_buffer_validate - TODO: Describe what this function does.
+ * @param struct iovec *iov
+ * @return TODO: Return value description.
+ */
 
 	return 0;
 }
@@ -99,6 +122,11 @@ int io_buffer_validate(struct iovec *iov)
 		return -EFAULT;
 
 	if (check_add_overflow((unsigned long)iov->iov_base, acct_len, &tmp))
+/*
+ * io_release_ubuf - TODO: Describe what this function does.
+ * @param void *priv
+ * @return TODO: Return value description.
+ */
 		return -EOVERFLOW;
 
 	return 0;
@@ -116,6 +144,12 @@ static void io_release_ubuf(void *priv)
 static struct io_mapped_ubuf *io_alloc_imu(struct io_ring_ctx *ctx,
 					   int nr_bvecs)
 {
+/*
+ * io_free_imu - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_ubuf *imu
+ * @return TODO: Return value description.
+ */
 	if (nr_bvecs <= IO_CACHED_BVECS_SEGS)
 		return io_cache_alloc(&ctx->imu_cache, GFP_KERNEL);
 	return kvmalloc(struct_size_t(struct io_mapped_ubuf, bvec, nr_bvecs),
@@ -123,6 +157,12 @@ static struct io_mapped_ubuf *io_alloc_imu(struct io_ring_ctx *ctx,
 }
 
 static void io_free_imu(struct io_ring_ctx *ctx, struct io_mapped_ubuf *imu)
+/*
+ * io_buffer_unmap - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_ubuf *imu
+ * @return TODO: Return value description.
+ */
 {
 	if (imu->nr_bvecs <= IO_CACHED_BVECS_SEGS)
 		io_cache_free(&ctx->imu_cache, imu);
@@ -147,6 +187,11 @@ struct io_rsrc_node *io_rsrc_node_alloc(struct io_ring_ctx *ctx, int type)
 
 	node = io_cache_alloc(&ctx->node_cache, GFP_KERNEL);
 	if (node) {
+/*
+ * io_rsrc_cache_init - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		node->type = type;
 		node->refs = 1;
 		node->tag = 0;
@@ -160,11 +205,22 @@ bool io_rsrc_cache_init(struct io_ring_ctx *ctx)
 	const int imu_cache_size = struct_size_t(struct io_mapped_ubuf, bvec,
 						 IO_CACHED_BVECS_SEGS);
 	const int node_size = sizeof(struct io_rsrc_node);
+/*
+ * io_rsrc_cache_free - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	bool ret;
 
 	ret = io_alloc_cache_init(&ctx->node_cache, IO_ALLOC_CACHE_MAX,
 				  node_size, 0);
 	ret |= io_alloc_cache_init(&ctx->imu_cache, IO_ALLOC_CACHE_MAX,
+/*
+ * io_rsrc_data_free - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_rsrc_data *data
+ * @return TODO: Return value description.
+ */
 				   imu_cache_size, 0);
 	return ret;
 }
@@ -178,6 +234,12 @@ void io_rsrc_cache_free(struct io_ring_ctx *ctx)
 __cold void io_rsrc_data_free(struct io_ring_ctx *ctx,
 			      struct io_rsrc_data *data)
 {
+/*
+ * io_rsrc_data_alloc - TODO: Describe what this function does.
+ * @param struct io_rsrc_data *data
+ * @param unsigned nr
+ * @return TODO: Return value description.
+ */
 	if (!data->nr)
 		return;
 	while (data->nr--) {
@@ -188,6 +250,13 @@ __cold void io_rsrc_data_free(struct io_ring_ctx *ctx,
 	data->nodes = NULL;
 	data->nr = 0;
 }
+/*
+ * __io_sqe_files_update - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_rsrc_update2 *up
+ * @param unsigned nr_args
+ * @return TODO: Return value description.
+ */
 
 __cold int io_rsrc_data_alloc(struct io_rsrc_data *data, unsigned nr)
 {
@@ -252,6 +321,13 @@ static int __io_sqe_files_update(struct io_ring_ctx *ctx,
 			node = io_rsrc_node_alloc(ctx, IORING_RSRC_FILE);
 			if (!node) {
 				err = -ENOMEM;
+/*
+ * __io_sqe_buffers_update - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_rsrc_update2 *up
+ * @param unsigned int nr_args
+ * @return TODO: Return value description.
+ */
 				fput(file);
 				break;
 			}
@@ -308,6 +384,14 @@ static int __io_sqe_buffers_update(struct io_ring_ctx *ctx,
 			if (!node) {
 				err = -EINVAL;
 				break;
+/*
+ * __io_register_rsrc_update - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param unsigned type
+ * @param struct io_uring_rsrc_update2 *up
+ * @param unsigned nr_args
+ * @return TODO: Return value description.
+ */
 			}
 			node->tag = tag;
 		}
@@ -327,6 +411,13 @@ static int __io_register_rsrc_update(struct io_ring_ctx *ctx, unsigned type,
 				     unsigned nr_args)
 {
 	__u32 tmp;
+/*
+ * io_register_files_update - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned nr_args
+ * @return TODO: Return value description.
+ */
 
 	lockdep_assert_held(&ctx->uring_lock);
 
@@ -341,6 +432,14 @@ static int __io_register_rsrc_update(struct io_ring_ctx *ctx, unsigned type,
 	}
 	return -EINVAL;
 }
+/*
+ * io_register_rsrc_update - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned size
+ * @param unsigned type
+ * @return TODO: Return value description.
+ */
 
 int io_register_files_update(struct io_ring_ctx *ctx, void __user *arg,
 			     unsigned nr_args)
@@ -354,6 +453,14 @@ int io_register_files_update(struct io_ring_ctx *ctx, void __user *arg,
 		return -EFAULT;
 	if (up.resv || up.resv2)
 		return -EINVAL;
+/*
+ * io_register_rsrc - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned int size
+ * @param unsigned int type
+ * @return TODO: Return value description.
+ */
 	return __io_register_rsrc_update(ctx, IORING_RSRC_FILE, &up, nr_args);
 }
 
@@ -385,6 +492,12 @@ __cold int io_register_rsrc(struct io_ring_ctx *ctx, void __user *arg,
 		return -EFAULT;
 	if (!rr.nr || rr.resv2)
 		return -EINVAL;
+/*
+ * io_files_update_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	if (rr.flags & ~IORING_RSRC_REGISTER_SPARSE)
 		return -EINVAL;
 
@@ -401,6 +514,12 @@ __cold int io_register_rsrc(struct io_ring_ctx *ctx, void __user *arg,
 					       rr.nr, u64_to_user_ptr(rr.tags));
 	}
 	return -EINVAL;
+/*
+ * io_files_update_with_index_alloc - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 int io_files_update_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
@@ -439,6 +558,12 @@ static int io_files_update_with_index_alloc(struct io_kiocb *req,
 		}
 
 		file = fget(fd);
+/*
+ * io_files_update - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		if (!file) {
 			ret = -EBADF;
 			break;
@@ -467,6 +592,12 @@ int io_files_update(struct io_kiocb *req, unsigned int issue_flags)
 	int ret;
 
 	up2.offset = up->offset;
+/*
+ * io_free_rsrc_node - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_rsrc_node *node
+ * @return TODO: Return value description.
+ */
 	up2.data = up->arg;
 	up2.nr = 0;
 	up2.tags = 0;
@@ -486,6 +617,11 @@ int io_files_update(struct io_kiocb *req, unsigned int issue_flags)
 		req_set_fail(req);
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
+/*
+ * io_sqe_files_unregister - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 }
 
 void io_free_rsrc_node(struct io_ring_ctx *ctx, struct io_rsrc_node *node)
@@ -495,6 +631,14 @@ void io_free_rsrc_node(struct io_ring_ctx *ctx, struct io_rsrc_node *node)
 
 	switch (node->type) {
 	case IORING_RSRC_FILE:
+/*
+ * io_sqe_files_register - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned nr_args
+ * @param u64 __user *tags
+ * @return TODO: Return value description.
+ */
 		fput(io_slot_file(node));
 		break;
 	case IORING_RSRC_BUFFER:
@@ -563,6 +707,11 @@ int io_sqe_files_register(struct io_ring_ctx *ctx, void __user *arg,
 		 * Don't allow io_uring instances to be registered.
 		 */
 		if (io_is_uring_fops(file)) {
+/*
+ * io_sqe_buffers_unregister - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 			fput(file);
 			goto fail;
 		}
@@ -643,6 +792,13 @@ static int io_buffer_account_pin(struct io_ring_ctx *ctx, struct page **pages,
 	int i, ret;
 
 	imu->acct_pages = 0;
+/*
+ * io_coalesce_buffer - TODO: Describe what this function does.
+ * @param struct page ***pages
+ * @param int *nr_pages
+ * @param struct io_imu_folio_data *data
+ * @return TODO: Return value description.
+ */
 	for (i = 0; i < nr_pages; i++) {
 		if (!PageCompound(pages[i])) {
 			imu->acct_pages++;
@@ -811,6 +967,14 @@ static struct io_rsrc_node *io_sqe_buffer_register(struct io_ring_ctx *ctx,
 	imu->priv = imu;
 	imu->is_kbuf = false;
 	imu->dir = IO_IMU_DEST | IO_IMU_SOURCE;
+/*
+ * io_sqe_buffers_register - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @param unsigned int nr_args
+ * @param u64 __user *tags
+ * @return TODO: Return value description.
+ */
 	if (coalesced)
 		imu->folio_shift = data.folio_shift;
 	refcount_set(&imu->refs, 1);
@@ -942,6 +1106,13 @@ int io_buffer_register_bvec(struct io_uring_cmd *cmd, struct request *rq,
 	imu = io_alloc_imu(ctx, nr_bvecs);
 	if (!imu) {
 		kfree(node);
+/*
+ * io_buffer_unregister_bvec - TODO: Describe what this function does.
+ * @param struct io_uring_cmd *cmd
+ * @param unsigned int index
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		ret = -ENOMEM;
 		goto unlock;
 	}
@@ -974,6 +1145,13 @@ int io_buffer_unregister_bvec(struct io_uring_cmd *cmd, unsigned int index,
 {
 	struct io_ring_ctx *ctx = cmd_to_io_kiocb(cmd)->ctx;
 	struct io_rsrc_data *data = &ctx->buf_table;
+/*
+ * validate_fixed_range - TODO: Describe what this function does.
+ * @param u64 buf_addr
+ * @param size_t len
+ * @param const struct io_mapped_ubuf *imu
+ * @return TODO: Return value description.
+ */
 	struct io_rsrc_node *node;
 	int ret = 0;
 
@@ -988,6 +1166,15 @@ int io_buffer_unregister_bvec(struct io_uring_cmd *cmd, unsigned int index,
 	if (!node) {
 		ret = -EINVAL;
 		goto unlock;
+/*
+ * io_import_fixed - TODO: Describe what this function does.
+ * @param int ddir
+ * @param struct iov_iter *iter
+ * @param struct io_mapped_ubuf *imu
+ * @param u64 buf_addr
+ * @param size_t len
+ * @return TODO: Return value description.
+ */
 	}
 	if (!node->buf->is_kbuf) {
 		ret = -EBUSY;
@@ -1086,6 +1273,12 @@ static int io_import_fixed(int ddir, struct iov_iter *iter,
 }
 
 inline struct io_rsrc_node *io_find_buf_node(struct io_kiocb *req,
+/*
+ * lock_two_rings - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx1
+ * @param struct io_ring_ctx *ctx2
+ * @return TODO: Return value description.
+ */
 					     unsigned issue_flags)
 {
 	struct io_ring_ctx *ctx = req->ctx;
@@ -1094,6 +1287,13 @@ inline struct io_rsrc_node *io_find_buf_node(struct io_kiocb *req,
 	if (req->flags & REQ_F_BUF_NODE)
 		return req->buf_node;
 
+/*
+ * io_clone_buffers - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_ring_ctx *src_ctx
+ * @param struct io_uring_clone_buffers *arg
+ * @return TODO: Return value description.
+ */
 	io_ring_submit_lock(ctx, issue_flags);
 	node = io_rsrc_node_lookup(&ctx->buf_table, req->buf_index);
 	if (node)
@@ -1208,6 +1408,12 @@ static int io_clone_buffers(struct io_ring_ctx *ctx, struct io_ring_ctx *src_ctx
 		}
 		data.nodes[off++] = dst_node;
 		i++;
+/*
+ * io_register_clone_buffers - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *arg
+ * @return TODO: Return value description.
+ */
 	}
 
 	/*
@@ -1243,6 +1449,11 @@ int io_register_clone_buffers(struct io_ring_ctx *ctx, void __user *arg)
 {
 	struct io_uring_clone_buffers buf;
 	struct io_ring_ctx *src_ctx;
+/*
+ * io_vec_free - TODO: Describe what this function does.
+ * @param struct iou_vec *iv
+ * @return TODO: Return value description.
+ */
 	bool registered_src;
 	struct file *file;
 	int ret;
@@ -1251,6 +1462,12 @@ int io_register_clone_buffers(struct io_ring_ctx *ctx, void __user *arg)
 		return -EFAULT;
 	if (buf.flags & ~(IORING_REGISTER_SRC_REGISTERED|IORING_REGISTER_DST_REPLACE))
 		return -EINVAL;
+/*
+ * io_vec_realloc - TODO: Describe what this function does.
+ * @param struct iou_vec *iv
+ * @param unsigned nr_entries
+ * @return TODO: Return value description.
+ */
 	if (!(buf.flags & IORING_REGISTER_DST_REPLACE) && ctx->buf_table.nr)
 		return -EBUSY;
 	if (memchr_inv(buf.pad, 0, sizeof(buf.pad)))
@@ -1265,6 +1482,16 @@ int io_register_clone_buffers(struct io_ring_ctx *ctx, void __user *arg)
 	if (src_ctx != ctx) {
 		mutex_unlock(&ctx->uring_lock);
 		lock_two_rings(ctx, src_ctx);
+/*
+ * io_vec_fill_bvec - TODO: Describe what this function does.
+ * @param int ddir
+ * @param struct iov_iter *iter
+ * @param struct io_mapped_ubuf *imu
+ * @param struct iovec *iovec
+ * @param unsigned nr_iovs
+ * @param struct iou_vec *vec
+ * @return TODO: Return value description.
+ */
 	}
 
 	ret = io_clone_buffers(ctx, src_ctx, &buf);
@@ -1314,6 +1541,13 @@ static int io_vec_fill_bvec(int ddir, struct iov_iter *iter,
 	unsigned iov_idx;
 
 	for (iov_idx = 0; iov_idx < nr_iovs; iov_idx++) {
+/*
+ * io_estimate_bvec_size - TODO: Describe what this function does.
+ * @param struct iovec *iov
+ * @param unsigned nr_iovs
+ * @param struct io_mapped_ubuf *imu
+ * @return TODO: Return value description.
+ */
 		size_t iov_len = iovec[iov_idx].iov_len;
 		u64 buf_addr = (u64)(uintptr_t)iovec[iov_idx].iov_base;
 		struct bio_vec *src_bvec;
@@ -1325,6 +1559,16 @@ static int io_vec_fill_bvec(int ddir, struct iov_iter *iter,
 			return ret;
 
 		if (unlikely(!iov_len))
+/*
+ * io_vec_fill_kern_bvec - TODO: Describe what this function does.
+ * @param int ddir
+ * @param struct iov_iter *iter
+ * @param struct io_mapped_ubuf *imu
+ * @param struct iovec *iovec
+ * @param unsigned nr_iovs
+ * @param struct iou_vec *vec
+ * @return TODO: Return value description.
+ */
 			return -EFAULT;
 		if (unlikely(check_add_overflow(total_len, iov_len, &total_len)))
 			return -EOVERFLOW;
@@ -1352,6 +1596,13 @@ static int io_vec_fill_bvec(int ddir, struct iov_iter *iter,
 
 static int io_estimate_bvec_size(struct iovec *iov, unsigned nr_iovs,
 				 struct io_mapped_ubuf *imu)
+/*
+ * iov_kern_bvec_size - TODO: Describe what this function does.
+ * @param const struct iovec *iov
+ * @param const struct io_mapped_ubuf *imu
+ * @param unsigned int *nr_seg
+ * @return TODO: Return value description.
+ */
 {
 	unsigned shift = imu->folio_shift;
 	size_t max_segs = 0;
@@ -1374,6 +1625,14 @@ static int io_vec_fill_kern_bvec(int ddir, struct iov_iter *iter,
 	unsigned iov_idx;
 
 	for (iov_idx = 0; iov_idx < nr_iovs; iov_idx++) {
+/*
+ * io_kern_bvec_size - TODO: Describe what this function does.
+ * @param struct iovec *iov
+ * @param unsigned nr_iovs
+ * @param struct io_mapped_ubuf *imu
+ * @param unsigned *nr_segs
+ * @return TODO: Return value description.
+ */
 		size_t offset = (size_t)(uintptr_t)iovec[iov_idx].iov_base;
 		size_t iov_len = iovec[iov_idx].iov_len;
 		struct bvec_iter bi = {
@@ -1398,6 +1657,16 @@ static int iov_kern_bvec_size(const struct iovec *iov,
 	const struct bio_vec *bvec = imu->bvec;
 	int start = 0, i = 0;
 	size_t off = 0;
+/*
+ * io_import_reg_vec - TODO: Describe what this function does.
+ * @param int ddir
+ * @param struct iov_iter *iter
+ * @param struct io_kiocb *req
+ * @param struct iou_vec *vec
+ * @param unsigned nr_iovs
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 	int ret;
 
 	ret = validate_fixed_range(offset, iov->iov_len, imu);
@@ -1457,6 +1726,14 @@ int io_import_reg_vec(int ddir, struct iov_iter *iter,
 
 	iovec_off = vec->nr - nr_iovs;
 	iov = vec->iovec + iovec_off;
+/*
+ * io_prep_reg_iovec - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct iou_vec *iv
+ * @param const struct iovec __user *uvec
+ * @param size_t uvec_segs
+ * @return TODO: Return value description.
+ */
 
 	if (imu->is_kbuf) {
 		int ret = io_kern_bvec_size(iov, nr_iovs, imu, &nr_segs);
