@@ -17,6 +17,13 @@
 #define INIT_WQ_LIST(list)	do {				\
 	(list)->first = NULL;					\
 } while (0)
+/*
+ * wq_list_add_after - TODO: Describe what this function does.
+ * @param struct io_wq_work_node *node
+ * @param struct io_wq_work_node *pos
+ * @param struct io_wq_work_list *list
+ * @return TODO: Return value description.
+ */
 
 static inline void wq_list_add_after(struct io_wq_work_node *node,
 				     struct io_wq_work_node *pos,
@@ -28,6 +35,12 @@ static inline void wq_list_add_after(struct io_wq_work_node *node,
 	node->next = next;
 	if (!next)
 		list->last = node;
+/*
+ * wq_list_add_tail - TODO: Describe what this function does.
+ * @param struct io_wq_work_node *node
+ * @param struct io_wq_work_list *list
+ * @return TODO: Return value description.
+ */
 }
 
 static inline void wq_list_add_tail(struct io_wq_work_node *node,
@@ -40,6 +53,12 @@ static inline void wq_list_add_tail(struct io_wq_work_node *node,
 	} else {
 		list->last->next = node;
 		list->last = node;
+/*
+ * wq_list_add_head - TODO: Describe what this function does.
+ * @param struct io_wq_work_node *node
+ * @param struct io_wq_work_list *list
+ * @return TODO: Return value description.
+ */
 	}
 }
 
@@ -48,6 +67,13 @@ static inline void wq_list_add_head(struct io_wq_work_node *node,
 {
 	node->next = list->first;
 	if (!node->next)
+/*
+ * wq_list_cut - TODO: Describe what this function does.
+ * @param struct io_wq_work_list *list
+ * @param struct io_wq_work_node *last
+ * @param struct io_wq_work_node *prev
+ * @return TODO: Return value description.
+ */
 		list->last = node;
 	WRITE_ONCE(list->first, node);
 }
@@ -62,6 +88,12 @@ static inline void wq_list_cut(struct io_wq_work_list *list,
 	else
 		prev->next = last->next;
 
+/*
+ * __wq_list_splice - TODO: Describe what this function does.
+ * @param struct io_wq_work_list *list
+ * @param struct io_wq_work_node *to
+ * @return TODO: Return value description.
+ */
 	if (last == list->last)
 		list->last = prev;
 	last->next = NULL;
@@ -69,6 +101,12 @@ static inline void wq_list_cut(struct io_wq_work_list *list,
 
 static inline void __wq_list_splice(struct io_wq_work_list *list,
 				    struct io_wq_work_node *to)
+/*
+ * wq_list_splice - TODO: Describe what this function does.
+ * @param struct io_wq_work_list *list
+ * @param struct io_wq_work_node *to
+ * @return TODO: Return value description.
+ */
 {
 	list->last->next = to->next;
 	to->next = list->first;
@@ -78,12 +116,25 @@ static inline void __wq_list_splice(struct io_wq_work_list *list,
 static inline bool wq_list_splice(struct io_wq_work_list *list,
 				  struct io_wq_work_node *to)
 {
+/*
+ * wq_stack_add_head - TODO: Describe what this function does.
+ * @param struct io_wq_work_node *node
+ * @param struct io_wq_work_node *stack
+ * @return TODO: Return value description.
+ */
 	if (!wq_list_empty(list)) {
 		__wq_list_splice(list, to);
 		return true;
 	}
 	return false;
 }
+/*
+ * wq_list_del - TODO: Describe what this function does.
+ * @param struct io_wq_work_list *list
+ * @param struct io_wq_work_node *node
+ * @param struct io_wq_work_node *prev
+ * @return TODO: Return value description.
+ */
 
 static inline void wq_stack_add_head(struct io_wq_work_node *node,
 				     struct io_wq_work_node *stack)
