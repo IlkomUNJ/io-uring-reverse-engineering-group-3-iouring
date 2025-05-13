@@ -28,6 +28,11 @@ static inline void *io_region_get_ptr(struct io_mapped_region *mr)
 {
 	return mr->ptr;
 }
+/*
+ * io_region_is_set - TODO: Describe what this function does.
+ * @param struct io_mapped_region *mr
+ * @return TODO: Return value description.
+ */
 
 static inline bool io_region_is_set(struct io_mapped_region *mr)
 {
