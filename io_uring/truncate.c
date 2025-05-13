@@ -19,6 +19,12 @@ struct io_ftrunc {
 	struct file			*file;
 	loff_t				len;
 };
+/*
+ * io_ftruncate_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 int io_ftruncate_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
@@ -32,6 +38,12 @@ int io_ftruncate_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	req->flags |= REQ_F_FORCE_ASYNC;
 	return 0;
+/*
+ * io_ftruncate - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 int io_ftruncate(struct io_kiocb *req, unsigned int issue_flags)
