@@ -28,10 +28,11 @@ struct async_poll {
  * potentially other cases where we already "own" this poll request.
  */
 /*
- * io_poll_multishot_retry - TODO: Describe what this function does.
- * @param struct io_kiocb *req
- * @return TODO: Return value description.
- */
+    Manages the lifecycle of a multishot poll request in io_uring.
+    This function helps ensure the poll request remains valid and isn't
+    prematurely cleaned up after it fires an event, allowing it to be "retried"
+    or, more accurately, re-armed for subsequent events.
+*/
 static inline void io_poll_multishot_retry(struct io_kiocb *req)
 {
 	atomic_inc(&req->poll_refs);
