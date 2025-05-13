@@ -31,6 +31,12 @@ bool io_cancel_remove_all(struct io_ring_ctx *ctx, struct io_uring_task *tctx,
 int io_cancel_remove(struct io_ring_ctx *ctx, struct io_cancel_data *cd,
 		     unsigned int issue_flags, struct hlist_head *list,
 		     bool (*cancel)(struct io_kiocb *));
+/*
+ * io_cancel_match_sequence - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int sequence
+ * @return TODO: Return value description.
+ */
 
 static inline bool io_cancel_match_sequence(struct io_kiocb *req, int sequence)
 {
