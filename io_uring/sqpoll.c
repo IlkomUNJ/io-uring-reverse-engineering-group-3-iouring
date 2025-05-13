@@ -54,6 +54,11 @@ void io_sq_thread_park(struct io_sq_data *sqd)
 	if (sqd->thread)
 		wake_up_process(sqd->thread);
 }
+/*
+ * io_sq_thread_stop - TODO: Describe what this function does.
+ * @param struct io_sq_data *sqd
+ * @return TODO: Return value description.
+ */
 
 void io_sq_thread_stop(struct io_sq_data *sqd)
 {
@@ -66,6 +71,11 @@ void io_sq_thread_stop(struct io_sq_data *sqd)
 		wake_up_process(sqd->thread);
 	mutex_unlock(&sqd->lock);
 	wait_for_completion(&sqd->exited);
+/*
+ * io_put_sq_data - TODO: Describe what this function does.
+ * @param struct io_sq_data *sqd
+ * @return TODO: Return value description.
+ */
 }
 
 void io_put_sq_data(struct io_sq_data *sqd)
@@ -75,6 +85,11 @@ void io_put_sq_data(struct io_sq_data *sqd)
 
 		io_sq_thread_stop(sqd);
 		kfree(sqd);
+/*
+ * io_sqd_update_thread_idle - TODO: Describe what this function does.
+ * @param struct io_sq_data *sqd
+ * @return TODO: Return value description.
+ */
 	}
 }
 
@@ -84,6 +99,11 @@ static __cold void io_sqd_update_thread_idle(struct io_sq_data *sqd)
 	unsigned sq_thread_idle = 0;
 
 	list_for_each_entry(ctx, &sqd->ctx_list, sqd_list)
+/*
+ * io_sq_thread_finish - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 		sq_thread_idle = max(sq_thread_idle, ctx->sq_thread_idle);
 	sqd->sq_thread_idle = sq_thread_idle;
 }
@@ -150,10 +170,21 @@ static struct io_sq_data *io_get_sq_data(struct io_uring_params *p,
 	refcount_set(&sqd->refs, 1);
 	INIT_LIST_HEAD(&sqd->ctx_list);
 	mutex_init(&sqd->lock);
+/*
+ * io_sqd_events_pending - TODO: Describe what this function does.
+ * @param struct io_sq_data *sqd
+ * @return TODO: Return value description.
+ */
 	init_waitqueue_head(&sqd->wait);
 	init_completion(&sqd->exited);
 	return sqd;
 }
+/*
+ * __io_sq_thread - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param bool cap_entries
+ * @return TODO: Return value description.
+ */
 
 static inline bool io_sqd_events_pending(struct io_sq_data *sqd)
 {
@@ -191,6 +222,11 @@ static int __io_sq_thread(struct io_ring_ctx *ctx, bool cap_entries)
 
 		if (to_submit && wq_has_sleeper(&ctx->sqo_sq_wait))
 			wake_up(&ctx->sqo_sq_wait);
+/*
+ * io_sqd_handle_event - TODO: Describe what this function does.
+ * @param struct io_sq_data *sqd
+ * @return TODO: Return value description.
+ */
 		if (creds)
 			revert_creds(creds);
 	}
@@ -214,6 +250,12 @@ static bool io_sqd_handle_event(struct io_sq_data *sqd)
 	}
 	return did_sig || test_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state);
 }
+/*
+ * io_sq_tw - TODO: Describe what this function does.
+ * @param struct llist_node **retry_list
+ * @param int max_entries
+ * @return TODO: Return value description.
+ */
 
 /*
  * Run task_work, processing the retry_list first. The retry_list holds
@@ -230,12 +272,23 @@ static unsigned int io_sq_tw(struct llist_node **retry_list, int max_entries)
 		*retry_list = io_handle_tw_list(*retry_list, &count, max_entries);
 		if (count >= max_entries)
 			goto out;
+/*
+ * io_sq_tw_pending - TODO: Describe what this function does.
+ * @param struct llist_node *retry_list
+ * @return TODO: Return value description.
+ */
 		max_entries -= count;
 	}
 	*retry_list = tctx_task_work_run(tctx, max_entries, &count);
 out:
 	if (task_work_pending(current))
 		task_work_run();
+/*
+ * io_sq_update_worktime - TODO: Describe what this function does.
+ * @param struct io_sq_data *sqd
+ * @param struct rusage *start
+ * @return TODO: Return value description.
+ */
 	return count;
 }
 
@@ -246,6 +299,11 @@ static bool io_sq_tw_pending(struct llist_node *retry_list)
 	return retry_list || !llist_empty(&tctx->task_list);
 }
 
+/*
+ * io_sq_thread - TODO: Describe what this function does.
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 static void io_sq_update_worktime(struct io_sq_data *sqd, struct rusage *start)
 {
 	struct rusage end;
@@ -377,6 +435,11 @@ static int io_sq_thread(void *data)
 
 	if (retry_list)
 		io_sq_tw(&retry_list, UINT_MAX);
+/*
+ * io_sqpoll_wait_sq - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 
 	io_uring_cancel_generic(true, sqd);
 	sqd->thread = NULL;
@@ -393,6 +456,12 @@ void io_sqpoll_wait_sq(struct io_ring_ctx *ctx)
 {
 	DEFINE_WAIT(wait);
 
+/*
+ * io_sq_offload_create - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_params *p
+ * @return TODO: Return value description.
+ */
 	do {
 		if (!io_sqring_full(ctx))
 			break;
