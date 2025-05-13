@@ -33,6 +33,12 @@ struct io_rw {
 	u32				len;
 	rwf_t				flags;
 };
+/*
+ * io_file_supports_nowait - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param __poll_t mask
+ * @return TODO: Return value description.
+ */
 
 static bool io_file_supports_nowait(struct io_kiocb *req, __poll_t mask)
 {
@@ -58,6 +64,11 @@ static int io_iov_compat_buffer_select_prep(struct io_rw *rw)
 		return -EFAULT;
 	rw->len = iov.iov_len;
 	return 0;
+/*
+ * io_iov_buffer_select_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 static int io_iov_buffer_select_prep(struct io_kiocb *req)
@@ -76,6 +87,15 @@ static int io_iov_buffer_select_prep(struct io_kiocb *req)
 	if (copy_from_user(&iov, uiov, sizeof(*uiov)))
 		return -EFAULT;
 	rw->len = iov.iov_len;
+/*
+ * io_import_vec - TODO: Describe what this function does.
+ * @param int ddir
+ * @param struct io_kiocb *req
+ * @param struct io_async_rw *io
+ * @param const struct iovec __user *uvec
+ * @param size_t uvec_segs
+ * @return TODO: Return value description.
+ */
 	return 0;
 }
 
@@ -102,6 +122,14 @@ static int io_import_vec(int ddir, struct io_kiocb *req,
 	if (iov) {
 		req->flags |= REQ_F_NEED_CLEANUP;
 		io_vec_reset_iovec(&io->vec, iov, io->iter.nr_segs);
+/*
+ * __io_import_rw_buffer - TODO: Describe what this function does.
+ * @param int ddir
+ * @param struct io_kiocb *req
+ * @param struct io_async_rw *io
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	}
 	return 0;
 }
@@ -123,6 +151,14 @@ static int __io_import_rw_buffer(int ddir, struct io_kiocb *req,
 		if (!buf)
 			return -ENOBUFS;
 		rw->addr = (unsigned long) buf;
+/*
+ * io_import_rw_buffer - TODO: Describe what this function does.
+ * @param int rw
+ * @param struct io_kiocb *req
+ * @param struct io_async_rw *io
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		rw->len = sqe_len;
 	}
 	return import_ubuf(ddir, buf, sqe_len, &io->iter);
@@ -136,6 +172,12 @@ static inline int io_import_rw_buffer(int rw, struct io_kiocb *req,
 
 	ret = __io_import_rw_buffer(rw, req, io, issue_flags);
 	if (unlikely(ret < 0))
+/*
+ * io_rw_recycle - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		return ret;
 
 	iov_iter_save_state(&io->iter, &io->iter_state);
@@ -152,6 +194,12 @@ static void io_rw_recycle(struct io_kiocb *req, unsigned int issue_flags)
 	io_alloc_cache_vec_kasan(&rw->vec);
 	if (rw->vec.nr > IO_VEC_CACHE_SOFT_CAP)
 		io_vec_free(&rw->vec);
+/*
+ * io_req_rw_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	if (io_alloc_cache_put(&req->ctx->rw_cache, rw)) {
 		req->async_data = NULL;
@@ -186,6 +234,11 @@ static void io_req_rw_cleanup(struct io_kiocb *req, unsigned int issue_flags)
 	 * This is really a bug in the core code that does this, any issue
 	 * path should assume that a successful (or -EIOCBQUEUED) return can
 	 * mean that the underlying data can be gone at any time. But that
+/*
+ * io_rw_alloc_async - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	 * should be fixed seperately, and then this check could be killed.
 	 */
 	if (!(req->flags & (REQ_F_REISSUE | REQ_F_REFCOUNT))) {
@@ -199,11 +252,22 @@ static int io_rw_alloc_async(struct io_kiocb *req)
 	struct io_ring_ctx *ctx = req->ctx;
 	struct io_async_rw *rw;
 
+/*
+ * io_meta_save_state - TODO: Describe what this function does.
+ * @param struct io_async_rw *io
+ * @return TODO: Return value description.
+ */
 	rw = io_uring_alloc_async_data(&ctx->rw_cache, req);
 	if (!rw)
 		return -ENOMEM;
 	if (rw->vec.iovec)
 		req->flags |= REQ_F_NEED_CLEANUP;
+/*
+ * io_meta_restore - TODO: Describe what this function does.
+ * @param struct io_async_rw *io
+ * @param struct kiocb *kiocb
+ * @return TODO: Return value description.
+ */
 	rw->bytes_done = 0;
 	return 0;
 }
@@ -211,6 +275,15 @@ static int io_rw_alloc_async(struct io_kiocb *req)
 static inline void io_meta_save_state(struct io_async_rw *io)
 {
 	io->meta_state.seed = io->meta.seed;
+/*
+ * io_prep_rw_pi - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_rw *rw
+ * @param int ddir
+ * @param u64 attr_ptr
+ * @param u64 attr_type_mask
+ * @return TODO: Return value description.
+ */
 	iov_iter_save_state(&io->meta.iter, &io->meta_state.iter_meta);
 }
 
@@ -237,6 +310,13 @@ static int io_prep_rw_pi(struct io_kiocb *req, struct io_rw *rw, int ddir,
 		return -EINVAL;
 
 	io = req->async_data;
+/*
+ * __io_prep_rw - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @param int ddir
+ * @return TODO: Return value description.
+ */
 	io->meta.flags = pi_attr.flags;
 	io->meta.app_tag = pi_attr.app_tag;
 	io->meta.seed = pi_attr.seed;
@@ -287,6 +367,12 @@ static int __io_prep_rw(struct io_kiocb *req, const struct io_uring_sqe *sqe,
 	rw->flags = READ_ONCE(sqe->rw_flags);
 
 	attr_type_mask = READ_ONCE(sqe->attr_type_mask);
+/*
+ * io_rw_do_import - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int ddir
+ * @return TODO: Return value description.
+ */
 	if (attr_type_mask) {
 		u64 attr_ptr;
 
@@ -294,6 +380,13 @@ static int __io_prep_rw(struct io_kiocb *req, const struct io_uring_sqe *sqe,
 		if (attr_type_mask != IORING_RW_ATTR_FLAG_PI)
 			return -EINVAL;
 
+/*
+ * io_prep_rw - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @param int ddir
+ * @return TODO: Return value description.
+ */
 		attr_ptr = READ_ONCE(sqe->attr_ptr);
 		return io_prep_rw_pi(req, rw, ddir, attr_ptr, attr_type_mask);
 	}
@@ -305,14 +398,33 @@ static int io_rw_do_import(struct io_kiocb *req, int ddir)
 	if (io_do_buffer_select(req))
 		return 0;
 
+/*
+ * io_prep_read - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 	return io_import_rw_buffer(ddir, req, req->async_data, 0);
 }
 
 static int io_prep_rw(struct io_kiocb *req, const struct io_uring_sqe *sqe,
+/*
+ * io_prep_write - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		      int ddir)
 {
 	int ret;
 
+/*
+ * io_prep_rwv - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @param int ddir
+ * @return TODO: Return value description.
+ */
 	ret = __io_prep_rw(req, sqe, ddir);
 	if (unlikely(ret))
 		return ret;
@@ -330,14 +442,33 @@ int io_prep_write(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	return io_prep_rw(req, sqe, ITER_SOURCE);
 }
 
+/*
+ * io_prep_readv - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 static int io_prep_rwv(struct io_kiocb *req, const struct io_uring_sqe *sqe,
 		       int ddir)
 {
 	int ret;
+/*
+ * io_prep_writev - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 	ret = io_prep_rw(req, sqe, ddir);
 	if (unlikely(ret))
 		return ret;
+/*
+ * io_init_rw_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @param int ddir
+ * @return TODO: Return value description.
+ */
 	if (!(req->flags & REQ_F_BUFFER_SELECT))
 		return 0;
 
@@ -353,14 +484,34 @@ int io_prep_readv(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	return io_prep_rwv(req, sqe, ITER_DEST);
 }
 
+/*
+ * io_prep_read_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 int io_prep_writev(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	return io_prep_rwv(req, sqe, ITER_SOURCE);
 }
+/*
+ * io_prep_write_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 static int io_init_rw_fixed(struct io_kiocb *req, unsigned int issue_flags,
 			    int ddir)
 {
+/*
+ * io_rw_import_reg_vec - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_async_rw *io
+ * @param int ddir
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	struct io_rw *rw = io_kiocb_to_cmd(req, struct io_rw);
 	struct io_async_rw *io = req->async_data;
 	int ret;
@@ -377,6 +528,11 @@ static int io_init_rw_fixed(struct io_kiocb *req, unsigned int issue_flags,
 int io_prep_read_fixed(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	return __io_prep_rw(req, sqe, ITER_DEST);
+/*
+ * io_rw_prep_reg_vec - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 int io_prep_write_fixed(struct io_kiocb *req, const struct io_uring_sqe *sqe)
@@ -386,6 +542,12 @@ int io_prep_write_fixed(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 static int io_rw_import_reg_vec(struct io_kiocb *req,
 				struct io_async_rw *io,
+/*
+ * io_prep_readv_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 				int ddir, unsigned int issue_flags)
 {
 	struct io_rw *rw = io_kiocb_to_cmd(req, struct io_rw);
@@ -395,6 +557,12 @@ static int io_rw_import_reg_vec(struct io_kiocb *req,
 	ret = io_import_reg_vec(ddir, &io->iter, req, &io->vec,
 				uvec_segs, issue_flags);
 	if (unlikely(ret))
+/*
+ * io_prep_writev_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		return ret;
 	iov_iter_save_state(&io->iter, &io->iter_state);
 	req->flags &= ~REQ_F_IMPORT_BUFFER;
@@ -409,6 +577,12 @@ static int io_rw_prep_reg_vec(struct io_kiocb *req)
 
 	uvec = u64_to_user_ptr(rw->addr);
 	return io_prep_reg_iovec(req, &io->vec, uvec, rw->len);
+/*
+ * io_read_mshot_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 }
 
 int io_prep_readv_fixed(struct io_kiocb *req, const struct io_uring_sqe *sqe)
@@ -427,6 +601,11 @@ int io_prep_writev_fixed(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	ret = __io_prep_rw(req, sqe, ITER_SOURCE);
 	if (unlikely(ret))
+/*
+ * io_readv_writev_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		return ret;
 	return io_rw_prep_reg_vec(req);
 }
@@ -449,6 +628,11 @@ int io_read_mshot_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 		return ret;
 
 	if (rw->addr || rw->len)
+/*
+ * io_rw_should_reissue - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		return -EINVAL;
 
 	req->flags |= REQ_F_APOLL_MULTISHOT;
@@ -477,6 +661,11 @@ static inline loff_t *io_kiocb_update_pos(struct io_kiocb *req)
 	rw->kiocb.ki_pos = 0;
 	return NULL;
 }
+/*
+ * io_req_end_write - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 static bool io_rw_should_reissue(struct io_kiocb *req)
 {
@@ -490,6 +679,11 @@ static bool io_rw_should_reissue(struct io_kiocb *req)
 		return false;
 	if ((req->flags & REQ_F_NOWAIT) || (io_wq_current_is_worker() &&
 	    !(ctx->flags & IORING_SETUP_IOPOLL)))
+/*
+ * io_req_io_end - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		return false;
 	/*
 	 * If ref is dying, we might be running poll reap from the exit work.
@@ -500,6 +694,12 @@ static bool io_rw_should_reissue(struct io_kiocb *req)
 		return false;
 
 	io_meta_restore(io, &rw->kiocb);
+/*
+ * __io_complete_rw_common - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param long res
+ * @return TODO: Return value description.
+ */
 	iov_iter_restore(&io->iter, &io->iter_state);
 	return true;
 #else
@@ -511,6 +711,12 @@ static void io_req_end_write(struct io_kiocb *req)
 {
 	if (req->flags & REQ_F_ISREG) {
 		struct io_rw *rw = io_kiocb_to_cmd(req, struct io_rw);
+/*
+ * io_fixup_rw_res - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param long res
+ * @return TODO: Return value description.
+ */
 
 		kiocb_end_write(&rw->kiocb);
 	}
@@ -524,6 +730,12 @@ static void io_req_io_end(struct io_kiocb *req)
 {
 	struct io_rw *rw = io_kiocb_to_cmd(req, struct io_rw);
 
+/*
+ * io_req_rw_complete - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 	if (rw->kiocb.ki_flags & IOCB_WRITE) {
 		io_req_end_write(req);
 		fsnotify_modify(req->file);
@@ -543,6 +755,12 @@ static void __io_complete_rw_common(struct io_kiocb *req, long res)
 		req->cqe.res = res;
 	}
 }
+/*
+ * io_complete_rw - TODO: Describe what this function does.
+ * @param struct kiocb *kiocb
+ * @param long res
+ * @return TODO: Return value description.
+ */
 
 static inline int io_fixup_rw_res(struct io_kiocb *req, long res)
 {
@@ -555,6 +773,12 @@ static inline int io_fixup_rw_res(struct io_kiocb *req, long res)
 		else
 			res += io->bytes_done;
 	}
+/*
+ * io_complete_rw_iopoll - TODO: Describe what this function does.
+ * @param struct kiocb *kiocb
+ * @param long res
+ * @return TODO: Return value description.
+ */
 	return res;
 }
 
@@ -572,6 +796,12 @@ void io_req_rw_complete(struct io_kiocb *req, io_tw_token_t tw)
 	io_req_io_end(req);
 
 	if (req->flags & (REQ_F_BUFFER_SELECTED|REQ_F_BUFFER_RING))
+/*
+ * io_rw_done - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param ssize_t ret
+ * @return TODO: Return value description.
+ */
 		req->cqe.flags |= io_put_kbuf(req, req->cqe.res, 0);
 
 	io_req_rw_cleanup(req, 0);
@@ -602,6 +832,13 @@ static void io_complete_rw_iopoll(struct kiocb *kiocb, long res)
 		if (res == -EAGAIN && io_rw_should_reissue(req))
 			req->flags |= REQ_F_REISSUE | REQ_F_BL_NO_RECYCLE;
 		else
+/*
+ * kiocb_done - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param ssize_t ret
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 			req->cqe.res = res;
 	}
 
@@ -636,6 +873,13 @@ static inline void io_rw_done(struct io_kiocb *req, ssize_t ret)
 
 	if (req->ctx->flags & IORING_SETUP_IOPOLL)
 		io_complete_rw_iopoll(&rw->kiocb, ret);
+/*
+ * loop_rw_iter - TODO: Describe what this function does.
+ * @param int ddir
+ * @param struct io_rw *rw
+ * @param struct iov_iter *iter
+ * @return TODO: Return value description.
+ */
 	else
 		io_complete_rw(&rw->kiocb, ret);
 }
@@ -710,6 +954,14 @@ static ssize_t loop_rw_iter(int ddir, struct io_rw *rw, struct iov_iter *iter)
 			len = iter_iov_len(iter);
 		} else {
 			addr = u64_to_user_ptr(rw->addr);
+/*
+ * io_async_buf_func - TODO: Describe what this function does.
+ * @param struct wait_queue_entry *wait
+ * @param unsigned mode
+ * @param int sync
+ * @param void *arg
+ * @return TODO: Return value description.
+ */
 			len = rw->len;
 		}
 
@@ -775,6 +1027,12 @@ static int io_async_buf_func(struct wait_queue_entry *wait, unsigned mode,
  * we prepare a private wait_page_queue entry and retry the operation. This
  * will either succeed because the page is now uptodate and unlocked, or it
  * will register a callback when the page is unlocked at IO completion. Through
+/*
+ * io_iter_do_read - TODO: Describe what this function does.
+ * @param struct io_rw *rw
+ * @param struct iov_iter *iter
+ * @return TODO: Return value description.
+ */
  * that callback, io_uring uses task_work to setup a retry of the operation.
  * That retry will attempt the buffered read again. The retry will generally
  * succeed, or in rare cases where it fails, we then fall back to using the
@@ -786,11 +1044,23 @@ static bool io_rw_should_retry(struct io_kiocb *req)
 	struct wait_page_queue *wait = &io->wpq;
 	struct io_rw *rw = io_kiocb_to_cmd(req, struct io_rw);
 	struct kiocb *kiocb = &rw->kiocb;
+/*
+ * need_complete_io - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 	/*
 	 * Never retry for NOWAIT or a request with metadata, we just complete
 	 * with -EAGAIN.
 	 */
+/*
+ * io_rw_init_file - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param fmode_t mode
+ * @param int rw_type
+ * @return TODO: Return value description.
+ */
 	if (req->flags & (REQ_F_NOWAIT | REQ_F_HAS_METADATA))
 		return false;
 
@@ -851,6 +1121,12 @@ static int io_rw_init_file(struct io_kiocb *req, fmode_t mode, int rw_type)
 	kiocb->ki_flags = file->f_iocb_flags;
 	ret = kiocb_set_rw_flags(kiocb, rw->flags, rw_type);
 	if (unlikely(ret))
+/*
+ * __io_read - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		return ret;
 	kiocb->ki_flags |= IOCB_ALLOC_CACHE;
 
@@ -964,6 +1240,12 @@ static int __io_read(struct io_kiocb *req, unsigned int issue_flags)
 		goto done;
 	}
 
+/*
+ * io_read - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	/*
 	 * Don't depend on the iter state matching what was consumed, or being
 	 * untouched in case of error. Restore it and we'll advance it
@@ -1040,6 +1322,12 @@ int io_read_mshot(struct io_kiocb *req, unsigned int issue_flags)
 	 * If we get -EAGAIN, recycle our buffer and just let normal poll
 	 * handling arm it.
 	 */
+/*
+ * io_kiocb_start_write - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct kiocb *kiocb
+ * @return TODO: Return value description.
+ */
 	if (ret == -EAGAIN) {
 		/*
 		 * Reset rw->len to 0 again to avoid clamping future mshot
@@ -1154,6 +1442,12 @@ int io_write(struct io_kiocb *req, unsigned int issue_flags)
 
 	if (likely(req->file->f_op->write_iter))
 		ret2 = req->file->f_op->write_iter(kiocb, &io->iter);
+/*
+ * io_read_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	else if (req->file->f_op->write)
 		ret2 = loop_rw_iter(WRITE, rw, &io->iter);
 	else
@@ -1164,6 +1458,12 @@ int io_write(struct io_kiocb *req, unsigned int issue_flags)
 	 * retry them without IOCB_NOWAIT.
 	 */
 	if (ret2 == -EOPNOTSUPP && (kiocb->ki_flags & IOCB_NOWAIT))
+/*
+ * io_write_fixed - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		ret2 = -EAGAIN;
 	/* no retry on NONBLOCK nor RWF_NOWAIT */
 	if (ret2 == -EAGAIN && (req->flags & REQ_F_NOWAIT))
@@ -1174,6 +1474,11 @@ int io_write(struct io_kiocb *req, unsigned int issue_flags)
 			goto ret_eagain;
 
 		if (ret2 != req->cqe.res && ret2 >= 0 && need_complete_io(req)) {
+/*
+ * io_rw_fail - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 			trace_io_uring_short_write(req->ctx, kiocb->ki_pos - ret2,
 						req->cqe.res, ret2);
 
@@ -1181,6 +1486,13 @@ int io_write(struct io_kiocb *req, unsigned int issue_flags)
 			 * updated, setup the async struct to complete the request
 			 * in the worker. Also update bytes_done to account for
 			 * the bytes already written.
+/*
+ * io_uring_classic_poll - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_comp_batch *iob
+ * @param unsigned int poll_flags
+ * @return TODO: Return value description.
+ */
 			 */
 			iov_iter_save_state(&io->iter, &io->iter_state);
 			io->bytes_done += ret2;
@@ -1197,6 +1509,12 @@ ret_eagain:
 		io_meta_restore(io, kiocb);
 		if (kiocb->ki_flags & IOCB_WRITE)
 			io_req_end_write(req);
+/*
+ * io_hybrid_iopoll_delay - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 		return -EAGAIN;
 	}
 }
@@ -1230,6 +1548,13 @@ void io_rw_fail(struct io_kiocb *req)
 	res = io_fixup_rw_res(req, req->cqe.res);
 	io_req_set_res(req, res, req->cqe.flags);
 }
+/*
+ * io_uring_hybrid_poll - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_comp_batch *iob
+ * @param unsigned int poll_flags
+ * @return TODO: Return value description.
+ */
 
 static int io_uring_classic_poll(struct io_kiocb *req, struct io_comp_batch *iob,
 				unsigned int poll_flags)
@@ -1250,6 +1575,12 @@ static int io_uring_classic_poll(struct io_kiocb *req, struct io_comp_batch *iob
 
 static u64 io_hybrid_iopoll_delay(struct io_ring_ctx *ctx, struct io_kiocb *req)
 {
+/*
+ * io_do_iopoll - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param bool force_nonspin
+ * @return TODO: Return value description.
+ */
 	struct hrtimer_sleeper timer;
 	enum hrtimer_mode mode;
 	ktime_t kt;
@@ -1321,6 +1652,11 @@ int io_do_iopoll(struct io_ring_ctx *ctx, bool force_nonspin)
 		struct io_kiocb *req = container_of(pos, struct io_kiocb, comp_list);
 		int ret;
 
+/*
+ * io_rw_cache_free - TODO: Describe what this function does.
+ * @param const void *entry
+ * @return TODO: Return value description.
+ */
 		/*
 		 * Move completed and retryable entries to our local lists.
 		 * If we find a request that requires polling, break out
