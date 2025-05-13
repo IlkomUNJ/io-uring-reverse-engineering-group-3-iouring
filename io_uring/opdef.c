@@ -38,11 +38,23 @@
 #include "futex.h"
 #include "truncate.h"
 #include "zcrx.h"
+/*
+ * io_no_issue - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 static int io_no_issue(struct io_kiocb *req, unsigned int issue_flags)
 {
 	WARN_ON_ONCE(1);
 	return -ECANCELED;
+/*
+ * io_eopnotsupp_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *kiocb
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 }
 
 static __maybe_unused int io_eopnotsupp_prep(struct io_kiocb *kiocb,
@@ -821,6 +833,11 @@ const char *io_uring_get_opcode(u8 opcode)
 {
 	if (opcode < IORING_OP_LAST)
 		return io_cold_defs[opcode].name;
+/*
+ * io_uring_op_supported - TODO: Describe what this function does.
+ * @param u8 opcode
+ * @return TODO: Return value description.
+ */
 	return "INVALID";
 }
 
@@ -828,6 +845,10 @@ bool io_uring_op_supported(u8 opcode)
 {
 	if (opcode < IORING_OP_LAST &&
 	    io_issue_defs[opcode].prep != io_eopnotsupp_prep)
+/*
+ * io_uring_optable_init - TODO: Describe what this function does.
+ * @return TODO: Return value description.
+ */
 		return true;
 	return false;
 }
