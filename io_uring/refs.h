@@ -10,17 +10,32 @@
  */
 #define req_ref_zero_or_close_to_overflow(req)	\
 	((unsigned int) atomic_read(&(req->refs)) + 127u <= 127u)
+/*
+ * req_ref_inc_not_zero - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 static inline bool req_ref_inc_not_zero(struct io_kiocb *req)
 {
 	WARN_ON_ONCE(!(req->flags & REQ_F_REFCOUNT));
 	return atomic_inc_not_zero(&req->refs);
+/*
+ * req_ref_put_and_test_atomic - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 }
 
 static inline bool req_ref_put_and_test_atomic(struct io_kiocb *req)
 {
 	WARN_ON_ONCE(!(data_race(req->flags) & REQ_F_REFCOUNT));
 	WARN_ON_ONCE(req_ref_zero_or_close_to_overflow(req));
+/*
+ * req_ref_put_and_test - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	return atomic_dec_and_test(&req->refs);
 }
 
@@ -29,18 +44,34 @@ static inline bool req_ref_put_and_test(struct io_kiocb *req)
 	if (likely(!(req->flags & REQ_F_REFCOUNT)))
 		return true;
 
+/*
+ * req_ref_get - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	WARN_ON_ONCE(req_ref_zero_or_close_to_overflow(req));
 	return atomic_dec_and_test(&req->refs);
 }
 
 static inline void req_ref_get(struct io_kiocb *req)
 {
+/*
+ * req_ref_put - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	WARN_ON_ONCE(!(req->flags & REQ_F_REFCOUNT));
 	WARN_ON_ONCE(req_ref_zero_or_close_to_overflow(req));
 	atomic_inc(&req->refs);
 }
 
 static inline void req_ref_put(struct io_kiocb *req)
+/*
+ * __io_req_set_refcount - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int nr
+ * @return TODO: Return value description.
+ */
 {
 	WARN_ON_ONCE(!(req->flags & REQ_F_REFCOUNT));
 	WARN_ON_ONCE(req_ref_zero_or_close_to_overflow(req));
@@ -48,6 +79,11 @@ static inline void req_ref_put(struct io_kiocb *req)
 }
 
 static inline void __io_req_set_refcount(struct io_kiocb *req, int nr)
+/*
+ * io_req_set_refcount - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 {
 	if (!(req->flags & REQ_F_REFCOUNT)) {
 		req->flags |= REQ_F_REFCOUNT;
