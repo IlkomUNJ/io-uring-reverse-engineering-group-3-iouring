@@ -146,7 +146,7 @@ Defines the prototype for functions implemented in `filetable.c`, as well as the
 
 ### fs.h
 
-The file only defines the prototype for functions implemented in `fs.c`.
+Declares function prototypes for internal operations defined in fs.c. Typically includes low-level file system helpers or integration points specific to io_uring’s asynchronous file operations.
 
 ### futex.h
 Defines function prototypes and structures related to futex operations, for use in futex.c and other internal logic involving wait queues and fast mutexes.
@@ -164,16 +164,16 @@ Defines structures and function prototypes to be implemented in `kbuf.c`, as wel
 Defines function prototypes to be implemented in memmap.c, as well as functions helper functions for getting pointers of a region (`io_region_get_ptr`), and checking if a region is set (`io_region_is_set`)
 
 ### msg_ring.h
-Defines function prototypes to be implemented in `msg_ring.c`.
+Declares function prototypes for operations implemented in msg_ring.c. Supports inter-ring communication via IORING_OP_MSG_RING, enabling message passing between different io_uring instances for advanced coordination and delegation.
 
 ### napi.h
 Defines function prototypes to be implemented in `napi.h`, as well as implementing functions for adding napi id to a busy poll list (`io_napi_add`), registering (`io_register_napi`) and unregistering (`io_unregister_napi`), checking if a napi list is empty (`io_napi`), executing busy pool loop (`__io_napi_busy_loop`), etc.
 
 ### net.h
-Defines function prototypes to be included in `net.c`
+Declares function prototypes and internal interfaces used in net.c, including asynchronous handlers for socket operations like send, recv, accept, and connect. Supports non-blocking and zero-copy networking features in io_uring.
 
 ### nop.h
-Defines the function prototypes to be implemented in `nop.c`.
+Declares prototypes for nop-related handlers implemented in nop.c. Includes no-operation (NOP) command logic, often used for testing, chaining, or as placeholder operations in submission queues.
 
 ### notif.h
 Defines function prototypes to be implemented in `notif.h`, as well as defining core data structure `io_notif_data`, preprocessor macros (`IO_NOTIF_UBUF_FLAGS` and `IO_NOTIF_SPLICE_BATCH`), and helper functions for some tasks (`io_notif_to_data`, `io_notif_flush`, `io_notif_account_mem`).
@@ -185,7 +185,7 @@ Defines internal constants (`io_issue_def`, `io_cold_def`), and data structures 
 Contains function declarations related to file open/close operations within the io_uring context.
 
 ### poll.h
-Declares prototypes and data structures for polling support, used for monitoring file descriptor readiness.
+Defines function prototypes and data structures for poll and epoll-style operations. Provides event registration, readiness notifications, and ties into the kernel's poll infrastructure for non-blocking I/O
 
 ### refs.h
 Provides reference-counting helper macros and inline functions for resource management in io_uring.
