@@ -95,12 +95,25 @@ static inline struct io_rsrc_node *io_rsrc_node_lookup(struct io_rsrc_data *data
 		return data->nodes[array_index_nospec(index, data->nr)];
 	return NULL;
 }
+/*
+ * io_put_rsrc_node - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_rsrc_node *node
+ * @return TODO: Return value description.
+ */
 
 static inline void io_put_rsrc_node(struct io_ring_ctx *ctx, struct io_rsrc_node *node)
 {
 	lockdep_assert_held(&ctx->uring_lock);
 	if (!--node->refs)
 		io_free_rsrc_node(ctx, node);
+/*
+ * io_reset_rsrc_node - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_rsrc_data *data
+ * @param int index
+ * @return TODO: Return value description.
+ */
 }
 
 static inline bool io_reset_rsrc_node(struct io_ring_ctx *ctx,
@@ -112,6 +125,11 @@ static inline bool io_reset_rsrc_node(struct io_ring_ctx *ctx,
 		return false;
 	io_put_rsrc_node(ctx, node);
 	data->nodes[index] = NULL;
+/*
+ * io_req_put_rsrc_nodes - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	return true;
 }
 
@@ -123,12 +141,24 @@ static inline void io_req_put_rsrc_nodes(struct io_kiocb *req)
 	}
 	if (req->flags & REQ_F_BUF_NODE) {
 		io_put_rsrc_node(req->ctx, req->buf_node);
+/*
+ * io_req_assign_rsrc_node - TODO: Describe what this function does.
+ * @param struct io_rsrc_node **dst_node
+ * @param struct io_rsrc_node *node
+ * @return TODO: Return value description.
+ */
 		req->buf_node = NULL;
 	}
 }
 
 static inline void io_req_assign_rsrc_node(struct io_rsrc_node **dst_node,
 					   struct io_rsrc_node *node)
+/*
+ * io_req_assign_buf_node - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_rsrc_node *node
+ * @return TODO: Return value description.
+ */
 {
 	node->refs++;
 	*dst_node = node;
@@ -140,6 +170,12 @@ static inline void io_req_assign_buf_node(struct io_kiocb *req,
 	io_req_assign_rsrc_node(&req->buf_node, node);
 	req->flags |= REQ_F_BUF_NODE;
 }
+/*
+ * __io_unaccount_mem - TODO: Describe what this function does.
+ * @param struct user_struct *user
+ * @param unsigned long nr_pages
+ * @return TODO: Return value description.
+ */
 
 int io_files_update(struct io_kiocb *req, unsigned int issue_flags);
 int io_files_update_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe);
@@ -148,6 +184,13 @@ int __io_account_mem(struct user_struct *user, unsigned long nr_pages);
 
 static inline void __io_unaccount_mem(struct user_struct *user,
 				      unsigned long nr_pages)
+/*
+ * io_vec_reset_iovec - TODO: Describe what this function does.
+ * @param struct iou_vec *iv
+ * @param struct iovec *iovec
+ * @param unsigned nr
+ * @return TODO: Return value description.
+ */
 {
 	atomic_long_sub(nr_pages, &user->locked_vm);
 }
@@ -155,6 +198,11 @@ static inline void __io_unaccount_mem(struct user_struct *user,
 void io_vec_free(struct iou_vec *iv);
 int io_vec_realloc(struct iou_vec *iv, unsigned nr_entries);
 
+/*
+ * io_alloc_cache_vec_kasan - TODO: Describe what this function does.
+ * @param struct iou_vec *iv
+ * @return TODO: Return value description.
+ */
 static inline void io_vec_reset_iovec(struct iou_vec *iv,
 				      struct iovec *iovec, unsigned nr)
 {
