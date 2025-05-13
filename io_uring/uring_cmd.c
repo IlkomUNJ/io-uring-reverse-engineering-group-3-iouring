@@ -15,6 +15,11 @@
 #include "alloc_cache.h"
 #include "rsrc.h"
 #include "uring_cmd.h"
+/*
+ * io_cmd_cache_free - TODO: Describe what this function does.
+ * @param const void *entry
+ * @return TODO: Return value description.
+ */
 
 void io_cmd_cache_free(const void *entry)
 {
@@ -22,6 +27,12 @@ void io_cmd_cache_free(const void *entry)
 
 	io_vec_free(&ac->vec);
 	kfree(ac);
+/*
+ * io_req_uring_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_req_uring_cleanup(struct io_kiocb *req, unsigned int issue_flags)
@@ -46,10 +57,22 @@ static void io_req_uring_cleanup(struct io_kiocb *req, unsigned int issue_flags)
 		ioucmd->sqe = NULL;
 		req->async_data = NULL;
 		req->flags &= ~(REQ_F_ASYNC_DATA|REQ_F_NEED_CLEANUP);
+/*
+ * io_uring_cmd_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	}
 }
 
 void io_uring_cmd_cleanup(struct io_kiocb *req)
+/*
+ * io_uring_try_cancel_uring_cmd - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_task *tctx
+ * @param bool cancel_all
+ * @return TODO: Return value description.
+ */
 {
 	io_req_uring_cleanup(req, 0);
 }
@@ -77,6 +100,12 @@ bool io_uring_try_cancel_uring_cmd(struct io_ring_ctx *ctx,
 						   IO_URING_F_COMPLETE_DEFER);
 			ret = true;
 		}
+/*
+ * io_uring_cmd_del_cancelable - TODO: Describe what this function does.
+ * @param struct io_uring_cmd *cmd
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	}
 	io_submit_flush_completions(ctx);
 	return ret;
@@ -101,6 +130,12 @@ static void io_uring_cmd_del_cancelable(struct io_uring_cmd *cmd,
  * Mark this command as concelable, then io_uring_try_cancel_uring_cmd()
  * will try to cancel this issued command by sending ->uring_cmd() with
  * issue_flags of IO_URING_F_CANCEL.
+/*
+ * io_uring_cmd_mark_cancelable - TODO: Describe what this function does.
+ * @param struct io_uring_cmd *cmd
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
  *
  * The command is guaranteed to not be done when calling ->uring_cmd()
  * with IO_URING_F_CANCEL, but it is driver's responsibility to deal
@@ -114,6 +149,12 @@ void io_uring_cmd_mark_cancelable(struct io_uring_cmd *cmd,
 
 	if (!(cmd->flags & IORING_URING_CMD_CANCELABLE)) {
 		cmd->flags |= IORING_URING_CMD_CANCELABLE;
+/*
+ * io_uring_cmd_work - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 		io_ring_submit_lock(ctx, issue_flags);
 		hlist_add_head(&req->hash_node, &ctx->cancelable_uring_cmd);
 		io_ring_submit_unlock(ctx, issue_flags);
@@ -137,6 +178,13 @@ void __io_uring_cmd_do_in_task(struct io_uring_cmd *ioucmd,
 			void (*task_work_cb)(struct io_uring_cmd *, unsigned),
 			unsigned flags)
 {
+/*
+ * io_req_set_cqe32_extra - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param u64 extra1
+ * @param u64 extra2
+ * @return TODO: Return value description.
+ */
 	struct io_kiocb *req = cmd_to_io_kiocb(ioucmd);
 
 	ioucmd->task_work_cb = task_work_cb;
@@ -148,6 +196,14 @@ EXPORT_SYMBOL_GPL(__io_uring_cmd_do_in_task);
 static inline void io_req_set_cqe32_extra(struct io_kiocb *req,
 					  u64 extra1, u64 extra2)
 {
+/*
+ * io_uring_cmd_done - TODO: Describe what this function does.
+ * @param struct io_uring_cmd *ioucmd
+ * @param ssize_t ret
+ * @param u64 res2
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 	req->big_cqe.extra1 = extra1;
 	req->big_cqe.extra2 = extra2;
 }
@@ -219,6 +275,12 @@ int io_uring_cmd_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 
 	ioucmd->flags = READ_ONCE(sqe->uring_cmd_flags);
 	if (ioucmd->flags & ~IORING_URING_CMD_MASK)
+/*
+ * io_uring_cmd - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		return -EINVAL;
 
 	if (ioucmd->flags & IORING_URING_CMD_FIXED)
@@ -255,6 +317,16 @@ int io_uring_cmd(struct io_kiocb *req, unsigned int issue_flags)
 		issue_flags |= IO_URING_F_IOPOLL;
 		req->iopoll_completed = 0;
 	}
+/*
+ * io_uring_cmd_import_fixed - TODO: Describe what this function does.
+ * @param u64 ubuf
+ * @param unsigned long len
+ * @param int rw
+ * @param struct iov_iter *iter
+ * @param struct io_uring_cmd *ioucmd
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	ret = file->f_op->uring_cmd(ioucmd, issue_flags);
 	if (ret == -EAGAIN || ret == -EIOCBQUEUED)
@@ -265,6 +337,16 @@ int io_uring_cmd(struct io_kiocb *req, unsigned int issue_flags)
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
 }
+/*
+ * io_uring_cmd_import_fixed_vec - TODO: Describe what this function does.
+ * @param struct io_uring_cmd *ioucmd
+ * @param const struct iovec __user *uvec
+ * @param size_t uvec_segs
+ * @param int ddir
+ * @param struct iov_iter *iter
+ * @param unsigned issue_flags
+ * @return TODO: Return value description.
+ */
 
 int io_uring_cmd_import_fixed(u64 ubuf, unsigned long len, int rw,
 			      struct iov_iter *iter,
@@ -283,12 +365,24 @@ int io_uring_cmd_import_fixed_vec(struct io_uring_cmd *ioucmd,
 				  int ddir, struct iov_iter *iter,
 				  unsigned issue_flags)
 {
+/*
+ * io_uring_cmd_issue_blocking - TODO: Describe what this function does.
+ * @param struct io_uring_cmd *ioucmd
+ * @return TODO: Return value description.
+ */
 	struct io_kiocb *req = cmd_to_io_kiocb(ioucmd);
 	struct io_async_cmd *ac = req->async_data;
 	int ret;
 
 	ret = io_prep_reg_iovec(req, &ac->vec, uvec, uvec_segs);
 	if (ret)
+/*
+ * io_uring_cmd_getsockopt - TODO: Describe what this function does.
+ * @param struct socket *sock
+ * @param struct io_uring_cmd *cmd
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 		return ret;
 
 	return io_import_reg_vec(ddir, iter, req, &ac->vec, uvec_segs,
@@ -315,6 +409,13 @@ static inline int io_uring_cmd_getsockopt(struct socket *sock,
 	level = READ_ONCE(sqe->level);
 	if (level != SOL_SOCKET)
 		return -EOPNOTSUPP;
+/*
+ * io_uring_cmd_setsockopt - TODO: Describe what this function does.
+ * @param struct socket *sock
+ * @param struct io_uring_cmd *cmd
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	optval = u64_to_user_ptr(READ_ONCE(sqe->optval));
 	optname = READ_ONCE(sqe->optname);
@@ -336,6 +437,12 @@ static inline int io_uring_cmd_setsockopt(struct socket *sock,
 {
 	const struct io_uring_sqe *sqe = cmd->sqe;
 	bool compat = !!(issue_flags & IO_URING_F_COMPAT);
+/*
+ * io_uring_cmd_sock - TODO: Describe what this function does.
+ * @param struct io_uring_cmd *cmd
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	int optname, optlen, level;
 	void __user *optval;
 	sockptr_t optval_s;
