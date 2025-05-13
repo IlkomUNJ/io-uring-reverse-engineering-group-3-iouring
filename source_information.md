@@ -191,7 +191,7 @@ Declares prototypes and data structures for polling support, used for monitoring
 Provides reference-counting helper macros and inline functions for resource management in io_uring.
 
 ### register.h
-Declares internal functions used for handling resource registration, including buffers, files, and personality IDs.
+Declares internal APIs for resource registration mechanisms (io_uring_register), including file descriptors, buffers, personality IDs, and eventfds. Handles validation and management of these registered entities.
 
 ### rsrc.h
 Defines internal structures and management functions for registered resources used in io_uring.
@@ -203,7 +203,7 @@ Declares the read/write handlers and related data structures for I/O operations.
 Implements a simple lockless singly-linked list, used for efficient communication between threads in the kernel.
 
 ### splice.h
-Declares splice operation handlers and internal helper functions for zero-copy data movement.
+Declares internal handlers and helpers for zero-copy operations like splice, tee, and vmsplice. Enables efficient data movement between file descriptors without copying through user space.
 
 ### sqpoll.h
 Defines functions and macros related to the submission queue polling feature, including management of the SQPOLL thread.
@@ -212,16 +212,16 @@ Defines functions and macros related to the submission queue polling feature, in
 Contains function prototypes and helper functions for statx (stat with extended info) file operations.
 
 ### sync.h
-Declares synchronization-related operations and helper utilities for ensuring file and data durability.
+Declares functions for synchronization-related file operations, including fsync, fdatasync, and sync_file_range. Ensures durability of file content and metadata.
 
 ### tctx.h
-Declares task context structures and helper functions, enabling per-task lifecycle management in io_uring.
+Defines task-level context structures (io_task_ctx) and helpers that track per-task lifecycle in io_uring, including task work queues and cleanup logic.
 
 ### timeout.h
-Declares timeout operation prototypes and helper macros used to schedule and manage timed I/O.
+Declares timeout-related operation prototypes such as io_timeout, io_link_timeout, and cancellation via io_timeout_remove. Integrates with the kernel’s timer and hrtimer facilities.
 
 ### truncate.h
-Declares asynchronous truncate operation handler used in truncate.c.
+Declares asynchronous handlers for truncate operations (truncate, ftruncate). Handles file size updates, cache invalidation, and fsync if required.
 
 ### uring_cmd.h
 Declares data structures and prototypes used for vendor-defined or driver-specific commands through io_uring.
