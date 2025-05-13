@@ -23,6 +23,12 @@ struct io_splice {
 	unsigned int			flags;
 	struct io_rsrc_node		*rsrc_node;
 };
+/*
+ * __io_splice_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 static int __io_splice_prep(struct io_kiocb *req,
 			    const struct io_uring_sqe *sqe)
@@ -38,12 +44,23 @@ static int __io_splice_prep(struct io_kiocb *req,
 	sp->rsrc_node = NULL;
 	req->flags |= REQ_F_FORCE_ASYNC;
 	return 0;
+/*
+ * io_tee_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 }
 
 int io_tee_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	if (READ_ONCE(sqe->splice_off_in) || READ_ONCE(sqe->off))
 		return -EINVAL;
+/*
+ * io_splice_cleanup - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	return __io_splice_prep(req, sqe);
 }
 
@@ -74,6 +91,12 @@ static struct file *io_splice_get_file(struct io_kiocb *req,
 		file = io_slot_file(node);
 		req->flags |= REQ_F_NEED_CLEANUP;
 	}
+/*
+ * io_tee - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	io_ring_submit_unlock(ctx, issue_flags);
 	return file;
 }
@@ -101,6 +124,12 @@ int io_tee(struct io_kiocb *req, unsigned int issue_flags)
 		fput(in);
 done:
 	if (ret != sp->len)
+/*
+ * io_splice_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 		req_set_fail(req);
 	io_req_set_res(req, ret, 0);
 	return IOU_OK;
@@ -109,6 +138,12 @@ done:
 int io_splice_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
 	struct io_splice *sp = io_kiocb_to_cmd(req, struct io_splice);
+/*
+ * io_splice - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 
 	sp->off_in = READ_ONCE(sqe->splice_off_in);
 	sp->off_out = READ_ONCE(sqe->off);
