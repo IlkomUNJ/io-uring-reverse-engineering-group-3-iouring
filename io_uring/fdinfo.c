@@ -16,6 +16,16 @@
 #include "rsrc.h"
 
 #ifdef CONFIG_PROC_FS
+
+/**
+ * io_uring_show_cred - Show user and group credentials in /proc
+ * @m: the seq_file used to output to /proc
+ * @id: personality index
+ * @cred: credential struct associated with io_uring personality
+ *
+ * Prints UIDs, GIDs, groups, and capabilities associated with a registered
+ * io_uring personality.
+ */
 static __cold int io_uring_show_cred(struct seq_file *m, unsigned int id,
 		const struct cred *cred)
 {
@@ -86,9 +96,20 @@ static inline void napi_show_fdinfo(struct io_ring_ctx *ctx,
 }
 #endif
 
-/*
- * Caller holds a reference to the file already, we don't need to do
- * anything else to get an extra reference.
+/**
+ * io_uring_show_fdinfo - Show detailed io_uring ring info in /proc/<pid>/fdinfo
+ * @m: the seq_file used to output the data
+ * @file: file structure associated with io_uring instance
+ *
+ * Outputs internal state of an io_uring context including:
+ * - Submission/completion queue indices and masks
+ * - SQEs and CQEs with detailed opcode and parameters
+ * - SQPOLL thread info (if enabled)
+ * - Registered user buffers, files, personalities
+ * - Polling lists and overflow entries
+ *
+ * This information helps in debugging, monitoring, and tooling that inspects
+ * ring state during runtime.
  */
 __cold void io_uring_show_fdinfo(struct seq_file *m, struct file *file)
 {
