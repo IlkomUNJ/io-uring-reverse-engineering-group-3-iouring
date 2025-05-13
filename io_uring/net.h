@@ -61,6 +61,11 @@ int io_listen(struct io_kiocb *req, unsigned int issue_flags);
 
 void io_netmsg_cache_free(const void *entry);
 #else
+/*
+ * io_netmsg_cache_free - TODO: Describe what this function does.
+ * @param const void *entry
+ * @return TODO: Return value description.
+ */
 static inline void io_netmsg_cache_free(const void *entry)
 {
 }
