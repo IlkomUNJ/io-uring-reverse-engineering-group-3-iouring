@@ -39,6 +39,11 @@ struct io_zcrx_ifq {
 	spinlock_t			lock;
 };
 
+/*
+    The functions are only included in the header and will only
+    appear in the compiled kernel if CONFIG_IO_URING_ZCRX is
+    enabled within Linux's kernel configuration.
+*/
 #if defined(CONFIG_IO_URING_ZCRX)
 int io_register_zcrx_ifq(struct io_ring_ctx *ctx,
 			 struct io_uring_zcrx_ifq_reg __user *arg);
@@ -49,37 +54,28 @@ int io_zcrx_recv(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
 		 unsigned issue_flags, unsigned int *len);
 #else
 /*
- * io_register_zcrx_ifq - TODO: Describe what this function does.
- * @param struct io_ring_ctx *ctx
- * @param struct io_uring_zcrx_ifq_reg __user *arg
- * @return TODO: Return value description.
- */
+    Returns -EOPNOTSUPP if the flag is not enabled within
+    the linux kernel configuration.
+*/
 static inline int io_register_zcrx_ifq(struct io_ring_ctx *ctx,
 					struct io_uring_zcrx_ifq_reg __user *arg)
 {
 	return -EOPNOTSUPP;
-/*
- * io_unregister_zcrx_ifqs - TODO: Describe what this function does.
- * @param struct io_ring_ctx *ctx
- * @return TODO: Return value description.
- */
 }
+/*
+    These two functions don't do anything if the flag is not
+    enabled within the linux kernel configuration.
+*/
 static inline void io_unregister_zcrx_ifqs(struct io_ring_ctx *ctx)
 {
 }
 static inline void io_shutdown_zcrx_ifqs(struct io_ring_ctx *ctx)
-/*
- * io_zcrx_recv - TODO: Describe what this function does.
- * @param struct io_kiocb *req
- * @param struct io_zcrx_ifq *ifq
- * @param struct socket *sock
- * @param unsigned int flags
- * @param unsigned issue_flags
- * @param unsigned int *len
- * @return TODO: Return value description.
- */
 {
 }
+/*
+    Returns -EOPNOTSUPP if the flag is not enabled within
+    the linux kernel configuration.
+*/
 static inline int io_zcrx_recv(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
 			       struct socket *sock, unsigned int flags,
 			       unsigned issue_flags, unsigned int *len)
