@@ -109,6 +109,11 @@ void io_free_region(struct io_ring_ctx *ctx, struct io_mapped_region *mr)
 
 	memset(mr, 0, sizeof(*mr));
 }
+/*
+ * io_region_init_ptr - TODO: Describe what this function does.
+ * @param struct io_mapped_region *mr
+ * @return TODO: Return value description.
+ */
 
 static int io_region_init_ptr(struct io_mapped_region *mr)
 {
@@ -128,6 +133,13 @@ static int io_region_init_ptr(struct io_mapped_region *mr)
 	mr->ptr = ptr;
 	mr->flags |= IO_REGION_F_VMAP;
 	return 0;
+/*
+ * io_region_pin_pages - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_region *mr
+ * @param struct io_uring_region_desc *reg
+ * @return TODO: Return value description.
+ */
 }
 
 static int io_region_pin_pages(struct io_ring_ctx *ctx,
@@ -146,6 +158,14 @@ static int io_region_pin_pages(struct io_ring_ctx *ctx,
 
 	mr->pages = pages;
 	mr->flags |= IO_REGION_F_USER_PROVIDED;
+/*
+ * io_region_allocate_pages - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_region *mr
+ * @param struct io_uring_region_desc *reg
+ * @param unsigned long mmap_offset
+ * @return TODO: Return value description.
+ */
 	return 0;
 }
 
@@ -180,6 +200,14 @@ static int io_region_allocate_pages(struct io_ring_ctx *ctx,
 	}
 done:
 	reg->mmap_offset = mmap_offset;
+/*
+ * io_create_region - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_region *mr
+ * @param struct io_uring_region_desc *reg
+ * @param unsigned long mmap_offset
+ * @return TODO: Return value description.
+ */
 	mr->pages = pages;
 	return 0;
 }
@@ -228,6 +256,14 @@ int io_create_region(struct io_ring_ctx *ctx, struct io_mapped_region *mr,
 	if (ret)
 		goto out_free;
 	return 0;
+/*
+ * io_create_region_mmap_safe - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_region *mr
+ * @param struct io_uring_region_desc *reg
+ * @param unsigned long mmap_offset
+ * @return TODO: Return value description.
+ */
 out_free:
 	io_free_region(ctx, mr);
 	return ret;
@@ -298,6 +334,14 @@ static void *io_uring_validate_mmap_request(struct file *file, loff_t pgoff,
 
 	region = io_mmap_get_region(ctx, pgoff);
 	if (!region)
+/*
+ * io_region_mmap - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_mapped_region *mr
+ * @param struct vm_area_struct *vma
+ * @param unsigned max_pages
+ * @return TODO: Return value description.
+ */
 		return ERR_PTR(-EINVAL);
 	return io_region_validate_mmap(ctx, region);
 }
@@ -308,6 +352,12 @@ static int io_region_mmap(struct io_ring_ctx *ctx,
 			  struct io_mapped_region *mr,
 			  struct vm_area_struct *vma,
 			  unsigned max_pages)
+/*
+ * io_uring_mmap - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param struct vm_area_struct *vma
+ * @return TODO: Return value description.
+ */
 {
 	unsigned long nr_pages = min(mr->nr_pages, max_pages);
 
@@ -333,6 +383,15 @@ __cold int io_uring_mmap(struct file *file, struct vm_area_struct *vma)
 	switch (offset & IORING_OFF_MMAP_MASK) {
 	case IORING_OFF_SQ_RING:
 	case IORING_OFF_CQ_RING:
+/*
+ * io_uring_get_unmapped_area - TODO: Describe what this function does.
+ * @param struct file *filp
+ * @param unsigned long addr
+ * @param unsigned long len
+ * @param unsigned long pgoff
+ * @param unsigned long flags
+ * @return TODO: Return value description.
+ */
 		page_limit = (sz + PAGE_SIZE - 1) >> PAGE_SHIFT;
 		break;
 	}
@@ -380,14 +439,34 @@ unsigned long io_uring_get_unmapped_area(struct file *filp, unsigned long addr,
 	pgoff = 0;	/* has been translated to ptr above */
 #ifdef SHM_COLOUR
 	addr = (uintptr_t) ptr;
+/*
+ * io_uring_mmap - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param struct vm_area_struct *vma
+ * @return TODO: Return value description.
+ */
 	pgoff = addr >> PAGE_SHIFT;
 #else
 	addr = 0UL;
 #endif
+/*
+ * io_uring_nommu_mmap_capabilities - TODO: Describe what this function does.
+ * @param struct file *file
+ * @return TODO: Return value description.
+ */
 	return mm_get_unmapped_area(current->mm, filp, addr, len, pgoff, flags);
 }
 
 #else /* !CONFIG_MMU */
+/*
+ * io_uring_get_unmapped_area - TODO: Describe what this function does.
+ * @param struct file *file
+ * @param unsigned long addr
+ * @param unsigned long len
+ * @param unsigned long pgoff
+ * @param unsigned long flags
+ * @return TODO: Return value description.
+ */
 
 int io_uring_mmap(struct file *file, struct vm_area_struct *vma)
 {
