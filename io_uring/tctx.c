@@ -43,6 +43,11 @@ static struct io_wq *io_init_wq_offload(struct io_ring_ctx *ctx,
 
 	return io_wq_create(concurrency, &data);
 }
+/*
+ * __io_uring_free - TODO: Describe what this function does.
+ * @param struct task_struct *tsk
+ * @return TODO: Return value description.
+ */
 
 void __io_uring_free(struct task_struct *tsk)
 {
@@ -66,6 +71,12 @@ void __io_uring_free(struct task_struct *tsk)
 	percpu_counter_destroy(&tctx->inflight);
 	kfree(tctx);
 	tsk->io_uring = NULL;
+/*
+ * io_uring_alloc_task_context - TODO: Describe what this function does.
+ * @param struct task_struct *task
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 }
 
 __cold int io_uring_alloc_task_context(struct task_struct *task,
@@ -100,6 +111,11 @@ __cold int io_uring_alloc_task_context(struct task_struct *task,
 	task->io_uring = tctx;
 	init_llist_head(&tctx->task_list);
 	init_task_work(&tctx->task_work, tctx_task_work);
+/*
+ * __io_uring_add_tctx_node - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	return 0;
 }
 
@@ -141,6 +157,11 @@ int __io_uring_add_tctx_node(struct io_ring_ctx *ctx)
 		mutex_lock(&ctx->uring_lock);
 		list_add(&node->ctx_node, &ctx->tctx_list);
 		mutex_unlock(&ctx->uring_lock);
+/*
+ * __io_uring_add_tctx_node_from_submit - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	}
 	return 0;
 }
@@ -160,6 +181,11 @@ int __io_uring_add_tctx_node_from_submit(struct io_ring_ctx *ctx)
 	current->io_uring->last = ctx;
 	return 0;
 }
+/*
+ * io_uring_del_tctx_node - TODO: Describe what this function does.
+ * @param unsigned long index
+ * @return TODO: Return value description.
+ */
 
 /*
  * Remove this io_uring_file -> task mapping.
@@ -181,6 +207,11 @@ __cold void io_uring_del_tctx_node(unsigned long index)
 	mutex_lock(&node->ctx->uring_lock);
 	list_del(&node->ctx_node);
 	mutex_unlock(&node->ctx->uring_lock);
+/*
+ * io_uring_clean_tctx - TODO: Describe what this function does.
+ * @param struct io_uring_task *tctx
+ * @return TODO: Return value description.
+ */
 
 	if (tctx->last == node->ctx)
 		tctx->last = NULL;
@@ -213,6 +244,14 @@ void io_uring_unreg_ringfd(void)
 	int i;
 
 	for (i = 0; i < IO_RINGFD_REG_MAX; i++) {
+/*
+ * io_ring_add_registered_file - TODO: Describe what this function does.
+ * @param struct io_uring_task *tctx
+ * @param struct file *file
+ * @param int start
+ * @param int end
+ * @return TODO: Return value description.
+ */
 		if (tctx->registered_rings[i]) {
 			fput(tctx->registered_rings[i]);
 			tctx->registered_rings[i] = NULL;
@@ -227,6 +266,14 @@ int io_ring_add_registered_file(struct io_uring_task *tctx, struct file *file,
 	for (offset = start; offset < end; offset++) {
 		offset = array_index_nospec(offset, IO_RINGFD_REG_MAX);
 		if (tctx->registered_rings[offset])
+/*
+ * io_ring_add_registered_fd - TODO: Describe what this function does.
+ * @param struct io_uring_task *tctx
+ * @param int fd
+ * @param int start
+ * @param int end
+ * @return TODO: Return value description.
+ */
 			continue;
 
 		tctx->registered_rings[offset] = file;
@@ -254,6 +301,13 @@ static int io_ring_add_registered_fd(struct io_uring_task *tctx, int fd,
 	return offset;
 }
 
+/*
+ * io_ringfd_register - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *__arg
+ * @param unsigned nr_args
+ * @return TODO: Return value description.
+ */
 /*
  * Register a ring fd to avoid fdget/fdput for each io_uring_enter()
  * invocation. User passes in an array of struct io_uring_rsrc_update
@@ -311,6 +365,13 @@ int io_ringfd_register(struct io_ring_ctx *ctx, void __user *__arg,
 
 		reg.offset = ret;
 		if (copy_to_user(&arg[i], &reg, sizeof(reg))) {
+/*
+ * io_ringfd_unregister - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param void __user *__arg
+ * @param unsigned nr_args
+ * @return TODO: Return value description.
+ */
 			fput(tctx->registered_rings[reg.offset]);
 			tctx->registered_rings[reg.offset] = NULL;
 			ret = -EFAULT;
