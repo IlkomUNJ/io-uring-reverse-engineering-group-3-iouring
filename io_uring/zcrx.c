@@ -27,6 +27,13 @@
 #include "rsrc.h"
 
 #define IO_DMA_ATTR (DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_WEAK_ORDERING)
+/*
+ * __io_zcrx_unmap_area - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct io_zcrx_area *area
+ * @param int nr_mapped
+ * @return TODO: Return value description.
+ */
 
 static void __io_zcrx_unmap_area(struct io_zcrx_ifq *ifq,
 				 struct io_zcrx_area *area, int nr_mapped)
@@ -42,11 +49,23 @@ static void __io_zcrx_unmap_area(struct io_zcrx_ifq *ifq,
 				     DMA_FROM_DEVICE, IO_DMA_ATTR);
 		net_mp_niov_set_dma_addr(niov, 0);
 	}
+/*
+ * io_zcrx_unmap_area - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct io_zcrx_area *area
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_zcrx_unmap_area(struct io_zcrx_ifq *ifq, struct io_zcrx_area *area)
 {
 	if (area->is_mapped)
+/*
+ * io_zcrx_map_area - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct io_zcrx_area *area
+ * @return TODO: Return value description.
+ */
 		__io_zcrx_unmap_area(ifq, area, area->nia.num_niovs);
 }
 
@@ -74,6 +93,12 @@ static int io_zcrx_map_area(struct io_zcrx_ifq *ifq, struct io_zcrx_area *area)
 		return -EINVAL;
 	}
 
+/*
+ * io_zcrx_sync_for_device - TODO: Describe what this function does.
+ * @param const struct page_pool *pool
+ * @param struct net_iov *niov
+ * @return TODO: Return value description.
+ */
 	area->is_mapped = true;
 	return 0;
 }
@@ -115,6 +140,11 @@ static inline struct io_zcrx_area *io_zcrx_iov_to_area(const struct net_iov *nio
 
 static inline atomic_t *io_get_user_counter(struct net_iov *niov)
 {
+/*
+ * io_zcrx_put_niov_uref - TODO: Describe what this function does.
+ * @param struct net_iov *niov
+ * @return TODO: Return value description.
+ */
 	struct io_zcrx_area *area = io_zcrx_iov_to_area(niov);
 
 	return &area->user_refs[net_iov_idx(niov)];
@@ -124,6 +154,11 @@ static bool io_zcrx_put_niov_uref(struct net_iov *niov)
 {
 	atomic_t *uref = io_get_user_counter(niov);
 
+/*
+ * io_zcrx_get_niov_uref - TODO: Describe what this function does.
+ * @param struct net_iov *niov
+ * @return TODO: Return value description.
+ */
 	if (unlikely(!atomic_read(uref)))
 		return false;
 	atomic_dec(uref);
@@ -135,6 +170,13 @@ static void io_zcrx_get_niov_uref(struct net_iov *niov)
 	atomic_inc(io_get_user_counter(niov));
 }
 
+/*
+ * io_allocate_rbuf_ring - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct io_uring_zcrx_ifq_reg *reg
+ * @param struct io_uring_region_desc *rd
+ * @return TODO: Return value description.
+ */
 static inline struct page *io_zcrx_iov_page(const struct net_iov *niov)
 {
 	struct io_zcrx_area *area = io_zcrx_iov_to_area(niov);
@@ -158,12 +200,22 @@ static int io_allocate_rbuf_ring(struct io_zcrx_ifq *ifq,
 	ret = io_create_region_mmap_safe(ifq->ctx, &ifq->ctx->zcrx_region, rd,
 					 IORING_MAP_OFF_ZCRX_REGION);
 	if (ret < 0)
+/*
+ * io_free_rbuf_ring - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @return TODO: Return value description.
+ */
 		return ret;
 
 	ptr = io_region_get_ptr(&ifq->ctx->zcrx_region);
 	ifq->rq_ring = (struct io_uring *)ptr;
 	ifq->rqes = (struct io_uring_zcrx_rqe *)(ptr + off);
 	return 0;
+/*
+ * io_zcrx_free_area - TODO: Describe what this function does.
+ * @param struct io_zcrx_area *area
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_free_rbuf_ring(struct io_zcrx_ifq *ifq)
@@ -177,6 +229,13 @@ static void io_zcrx_free_area(struct io_zcrx_area *area)
 {
 	io_zcrx_unmap_area(area->ifq, area);
 
+/*
+ * io_zcrx_create_area - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct io_zcrx_area **res
+ * @param struct io_uring_zcrx_area_reg *area_reg
+ * @return TODO: Return value description.
+ */
 	kvfree(area->freelist);
 	kvfree(area->nia.niovs);
 	kvfree(area->user_refs);
@@ -266,6 +325,11 @@ static struct io_zcrx_ifq *io_zcrx_ifq_alloc(struct io_ring_ctx *ctx)
 {
 	struct io_zcrx_ifq *ifq;
 
+/*
+ * io_zcrx_drop_netdev - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @return TODO: Return value description.
+ */
 	ifq = kzalloc(sizeof(*ifq), GFP_KERNEL);
 	if (!ifq)
 		return NULL;
@@ -275,6 +339,11 @@ static struct io_zcrx_ifq *io_zcrx_ifq_alloc(struct io_ring_ctx *ctx)
 	spin_lock_init(&ifq->lock);
 	spin_lock_init(&ifq->rq_lock);
 	return ifq;
+/*
+ * io_close_queue - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_zcrx_drop_netdev(struct io_zcrx_ifq *ifq)
@@ -299,6 +368,11 @@ static void io_close_queue(struct io_zcrx_ifq *ifq)
 	if (ifq->if_rxq == -1)
 		return;
 
+/*
+ * io_zcrx_ifq_free - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @return TODO: Return value description.
+ */
 	spin_lock(&ifq->lock);
 	netdev = ifq->netdev;
 	netdev_tracker = ifq->netdev_tracker;
@@ -312,6 +386,12 @@ static void io_close_queue(struct io_zcrx_ifq *ifq)
 	ifq->if_rxq = -1;
 }
 
+/*
+ * io_register_zcrx_ifq - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_zcrx_ifq_reg __user *arg
+ * @return TODO: Return value description.
+ */
 static void io_zcrx_ifq_free(struct io_zcrx_ifq *ifq)
 {
 	io_close_queue(ifq);
@@ -406,6 +486,11 @@ int io_register_zcrx_ifq(struct io_ring_ctx *ctx,
 
 	reg.offsets.rqes = sizeof(struct io_uring);
 	reg.offsets.head = offsetof(struct io_uring, head);
+/*
+ * io_unregister_zcrx_ifqs - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	reg.offsets.tail = offsetof(struct io_uring, tail);
 
 	if (copy_to_user(arg, &reg, sizeof(reg)) ||
@@ -428,6 +513,11 @@ void io_unregister_zcrx_ifqs(struct io_ring_ctx *ctx)
 	lockdep_assert_held(&ctx->uring_lock);
 
 	if (!ifq)
+/*
+ * io_zcrx_return_niov_freelist - TODO: Describe what this function does.
+ * @param struct net_iov *niov
+ * @return TODO: Return value description.
+ */
 		return;
 
 	ctx->ifq = NULL;
@@ -436,6 +526,11 @@ void io_unregister_zcrx_ifqs(struct io_ring_ctx *ctx)
 
 static struct net_iov *__io_zcrx_get_free_niov(struct io_zcrx_area *area)
 {
+/*
+ * io_zcrx_return_niov - TODO: Describe what this function does.
+ * @param struct net_iov *niov
+ * @return TODO: Return value description.
+ */
 	unsigned niov_idx;
 
 	lockdep_assert_held(&area->freelist_lock);
@@ -447,6 +542,11 @@ static struct net_iov *__io_zcrx_get_free_niov(struct io_zcrx_area *area)
 static void io_zcrx_return_niov_freelist(struct net_iov *niov)
 {
 	struct io_zcrx_area *area = io_zcrx_iov_to_area(niov);
+/*
+ * io_zcrx_scrub - TODO: Describe what this function does.
+ * @param struct io_zcrx_ifq *ifq
+ * @return TODO: Return value description.
+ */
 
 	spin_lock_bh(&area->freelist_lock);
 	area->freelist[area->free_count++] = net_iov_idx(niov);
@@ -467,6 +567,11 @@ static void io_zcrx_return_niov(struct net_iov *niov)
 
 static void io_zcrx_scrub(struct io_zcrx_ifq *ifq)
 {
+/*
+ * io_shutdown_zcrx_ifqs - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 	struct io_zcrx_area *area = ifq->area;
 	int i;
 
@@ -492,6 +597,12 @@ void io_shutdown_zcrx_ifqs(struct io_ring_ctx *ctx)
 
 	if (!ctx->ifq)
 		return;
+/*
+ * io_zcrx_ring_refill - TODO: Describe what this function does.
+ * @param struct page_pool *pp
+ * @param struct io_zcrx_ifq *ifq
+ * @return TODO: Return value description.
+ */
 	io_zcrx_scrub(ctx->ifq);
 	io_close_queue(ctx->ifq);
 }
@@ -545,6 +656,12 @@ static void io_zcrx_ring_refill(struct page_pool *pp,
 			continue;
 		niov_idx = array_index_nospec(niov_idx, area->nia.num_niovs);
 
+/*
+ * io_zcrx_refill_slow - TODO: Describe what this function does.
+ * @param struct page_pool *pp
+ * @param struct io_zcrx_ifq *ifq
+ * @return TODO: Return value description.
+ */
 		niov = &area->nia.niovs[niov_idx];
 		if (!io_zcrx_put_niov_uref(niov))
 			continue;
@@ -560,6 +677,12 @@ static void io_zcrx_ring_refill(struct page_pool *pp,
 
 		io_zcrx_sync_for_device(pp, niov);
 		net_mp_netmem_place_in_cache(pp, netmem);
+/*
+ * io_pp_zc_alloc_netmems - TODO: Describe what this function does.
+ * @param struct page_pool *pp
+ * @param gfp_t gfp
+ * @return TODO: Return value description.
+ */
 	} while (--entries);
 
 	smp_store_release(&ifq->rq_ring->head, ifq->cached_rq_head);
@@ -578,6 +701,12 @@ static void io_zcrx_refill_slow(struct page_pool *pp, struct io_zcrx_ifq *ifq)
 		net_mp_niov_set_page_pool(pp, niov);
 		io_zcrx_sync_for_device(pp, niov);
 		net_mp_netmem_place_in_cache(pp, netmem);
+/*
+ * io_pp_zc_release_netmem - TODO: Describe what this function does.
+ * @param struct page_pool *pp
+ * @param netmem_ref netmem
+ * @return TODO: Return value description.
+ */
 	}
 	spin_unlock_bh(&area->freelist_lock);
 }
@@ -590,6 +719,11 @@ static netmem_ref io_pp_zc_alloc_netmems(struct page_pool *pp, gfp_t gfp)
 	if (unlikely(pp->alloc.count))
 		goto out_return;
 
+/*
+ * io_pp_zc_init - TODO: Describe what this function does.
+ * @param struct page_pool *pp
+ * @return TODO: Return value description.
+ */
 	io_zcrx_ring_refill(pp, ifq);
 	if (likely(pp->alloc.count))
 		goto out_return;
@@ -608,6 +742,11 @@ static bool io_pp_zc_release_netmem(struct page_pool *pp, netmem_ref netmem)
 	if (WARN_ON_ONCE(!netmem_is_net_iov(netmem)))
 		return false;
 
+/*
+ * io_pp_zc_destroy - TODO: Describe what this function does.
+ * @param struct page_pool *pp
+ * @return TODO: Return value description.
+ */
 	niov = netmem_to_net_iov(netmem);
 	net_mp_niov_clear_page_pool(niov);
 	io_zcrx_return_niov_freelist(niov);
@@ -617,6 +756,13 @@ static bool io_pp_zc_release_netmem(struct page_pool *pp, netmem_ref netmem)
 static int io_pp_zc_init(struct page_pool *pp)
 {
 	struct io_zcrx_ifq *ifq = pp->mp_priv;
+/*
+ * io_pp_nl_fill - TODO: Describe what this function does.
+ * @param void *mp_priv
+ * @param struct sk_buff *rsp
+ * @param struct netdev_rx_queue *rxq
+ * @return TODO: Return value description.
+ */
 
 	if (WARN_ON_ONCE(!ifq))
 		return -EINVAL;
@@ -631,6 +777,12 @@ static int io_pp_zc_init(struct page_pool *pp)
 
 	percpu_ref_get(&ifq->ctx->refs);
 	return 0;
+/*
+ * io_pp_uninstall - TODO: Describe what this function does.
+ * @param void *mp_priv
+ * @param struct netdev_rx_queue *rxq
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_pp_zc_destroy(struct page_pool *pp)
@@ -649,6 +801,15 @@ static int io_pp_nl_fill(void *mp_priv, struct sk_buff *rsp,
 	struct nlattr *nest;
 	int type;
 
+/*
+ * io_zcrx_queue_cqe - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct net_iov *niov
+ * @param struct io_zcrx_ifq *ifq
+ * @param int off
+ * @param int len
+ * @return TODO: Return value description.
+ */
 	type = rxq ? NETDEV_A_QUEUE_IO_URING : NETDEV_A_PAGE_POOL_IO_URING;
 	nest = nla_nest_start(rsp, type);
 	if (!nest)
@@ -685,6 +846,16 @@ static bool io_zcrx_queue_cqe(struct io_kiocb *req, struct net_iov *niov,
 	struct io_uring_cqe *cqe;
 	u64 offset;
 
+/*
+ * io_zcrx_copy_chunk - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_zcrx_ifq *ifq
+ * @param void *src_base
+ * @param struct page *src_page
+ * @param unsigned int src_offset
+ * @param size_t len
+ * @return TODO: Return value description.
+ */
 	if (!io_defer_get_uncommited_cqe(req->ctx, &cqe))
 		return false;
 
@@ -731,6 +902,15 @@ static ssize_t io_zcrx_copy_chunk(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
 
 		niov = io_zcrx_alloc_fallback(area);
 		if (!niov) {
+/*
+ * io_zcrx_copy_frag - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_zcrx_ifq *ifq
+ * @param const skb_frag_t *frag
+ * @param int off
+ * @param int len
+ * @return TODO: Return value description.
+ */
 			ret = -ENOMEM;
 			break;
 		}
@@ -749,6 +929,15 @@ static ssize_t io_zcrx_copy_chunk(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
 		if (!io_zcrx_queue_cqe(req, niov, ifq, dst_off, copy_size)) {
 			io_zcrx_return_niov(niov);
 			ret = -ENOSPC;
+/*
+ * io_zcrx_recv_frag - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_zcrx_ifq *ifq
+ * @param const skb_frag_t *frag
+ * @param int off
+ * @param int len
+ * @return TODO: Return value description.
+ */
 			break;
 		}
 
@@ -773,6 +962,14 @@ static int io_zcrx_copy_frag(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
 	skb_frag_foreach_page(frag, off, len,
 			      page, p_off, p_len, t) {
 		ret = io_zcrx_copy_chunk(req, ifq, NULL, page, p_off, p_len);
+/*
+ * io_zcrx_recv_skb - TODO: Describe what this function does.
+ * @param read_descriptor_t *desc
+ * @param struct sk_buff *skb
+ * @param unsigned int offset
+ * @param size_t len
+ * @return TODO: Return value description.
+ */
 		if (ret < 0)
 			return copied ? copied : ret;
 		copied += ret;
@@ -874,6 +1071,16 @@ io_zcrx_recv_skb(read_descriptor_t *desc, struct sk_buff *skb,
 			if (len == 0 || ret != copy)
 				goto out;
 		}
+/*
+ * io_zcrx_tcp_recvmsg - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct sock *sk
+ * @param int flags
+ * @param unsigned issue_flags
+ * @param unsigned int *outlen
+ * @return TODO: Return value description.
+ */
 		start = end;
 	}
 
@@ -919,6 +1126,16 @@ static int io_zcrx_tcp_recvmsg(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
 	};
 	read_descriptor_t rd_desc = {
 		.count = len ? len : UINT_MAX,
+/*
+ * io_zcrx_recv - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct socket *sock
+ * @param unsigned int flags
+ * @param unsigned issue_flags
+ * @param unsigned int *len
+ * @return TODO: Return value description.
+ */
 		.arg.data = &args,
 	};
 	int ret;

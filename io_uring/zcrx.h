@@ -48,15 +48,36 @@ int io_zcrx_recv(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
 		 struct socket *sock, unsigned int flags,
 		 unsigned issue_flags, unsigned int *len);
 #else
+/*
+ * io_register_zcrx_ifq - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_zcrx_ifq_reg __user *arg
+ * @return TODO: Return value description.
+ */
 static inline int io_register_zcrx_ifq(struct io_ring_ctx *ctx,
 					struct io_uring_zcrx_ifq_reg __user *arg)
 {
 	return -EOPNOTSUPP;
+/*
+ * io_unregister_zcrx_ifqs - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @return TODO: Return value description.
+ */
 }
 static inline void io_unregister_zcrx_ifqs(struct io_ring_ctx *ctx)
 {
 }
 static inline void io_shutdown_zcrx_ifqs(struct io_ring_ctx *ctx)
+/*
+ * io_zcrx_recv - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param struct io_zcrx_ifq *ifq
+ * @param struct socket *sock
+ * @param unsigned int flags
+ * @param unsigned issue_flags
+ * @param unsigned int *len
+ * @return TODO: Return value description.
+ */
 {
 }
 static inline int io_zcrx_recv(struct io_kiocb *req, struct io_zcrx_ifq *ifq,

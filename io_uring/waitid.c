@@ -31,6 +31,11 @@ struct io_waitid {
 	struct siginfo __user *infop;
 	struct waitid_info info;
 };
+/*
+ * io_waitid_free - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 
 static void io_waitid_free(struct io_kiocb *req)
 {
@@ -40,6 +45,12 @@ static void io_waitid_free(struct io_kiocb *req)
 	kfree(req->async_data);
 	req->async_data = NULL;
 	req->flags &= ~REQ_F_ASYNC_DATA;
+/*
+ * io_waitid_compat_copy_si - TODO: Describe what this function does.
+ * @param struct io_waitid *iw
+ * @param int signo
+ * @return TODO: Return value description.
+ */
 }
 
 static bool io_waitid_compat_copy_si(struct io_waitid *iw, int signo)
@@ -64,6 +75,12 @@ done:
 	return ret;
 Efault:
 	ret = false;
+/*
+ * io_waitid_copy_si - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int signo
+ * @return TODO: Return value description.
+ */
 	goto done;
 }
 
@@ -92,6 +109,12 @@ done:
 	user_write_access_end();
 	return ret;
 Efault:
+/*
+ * io_waitid_finish - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int ret
+ * @return TODO: Return value description.
+ */
 	ret = false;
 	goto done;
 }
@@ -106,6 +129,12 @@ static int io_waitid_finish(struct io_kiocb *req, int ret)
 	}
 
 	if (!io_waitid_copy_si(req, signo))
+/*
+ * io_waitid_complete - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param int ret
+ * @return TODO: Return value description.
+ */
 		ret = -EFAULT;
 	io_waitid_free(req);
 	return ret;
@@ -122,6 +151,11 @@ static void io_waitid_complete(struct io_kiocb *req, int ret)
 
 	hlist_del_init(&req->hash_node);
 
+/*
+ * __io_waitid_cancel - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	ret = io_waitid_finish(req, ret);
 	if (ret < 0)
 		req_set_fail(req);
@@ -144,16 +178,35 @@ static bool __io_waitid_cancel(struct io_kiocb *req)
 		return false;
 
 	spin_lock_irq(&iw->head->lock);
+/*
+ * io_waitid_cancel - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_cancel_data *cd
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	list_del_init(&iwa->wo.child_wait.entry);
 	spin_unlock_irq(&iw->head->lock);
 	io_waitid_complete(req, -ECANCELED);
 	io_req_queue_tw_complete(req, -ECANCELED);
 	return true;
+/*
+ * io_waitid_remove_all - TODO: Describe what this function does.
+ * @param struct io_ring_ctx *ctx
+ * @param struct io_uring_task *tctx
+ * @param bool cancel_all
+ * @return TODO: Return value description.
+ */
 }
 
 int io_waitid_cancel(struct io_ring_ctx *ctx, struct io_cancel_data *cd,
 		     unsigned int issue_flags)
 {
+/*
+ * io_waitid_drop_issue_ref - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @return TODO: Return value description.
+ */
 	return io_cancel_remove(ctx, cd, issue_flags, &ctx->waitid_list, __io_waitid_cancel);
 }
 
@@ -171,6 +224,12 @@ static inline bool io_waitid_drop_issue_ref(struct io_kiocb *req)
 	if (!atomic_sub_return(1, &iw->refs))
 		return false;
 
+/*
+ * io_waitid_cb - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param io_tw_token_t tw
+ * @return TODO: Return value description.
+ */
 	/*
 	 * Wakeup triggered, racing with us. It was prevented from
 	 * completing because of that, queue up the tw to do that.
@@ -231,6 +290,12 @@ static int io_waitid_wait(struct wait_queue_entry *wait, unsigned mode,
 
 	if (!pid_child_should_wake(wo, p))
 		return 0;
+/*
+ * io_waitid_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 	/* cancel is in progress */
 	if (atomic_fetch_inc(&iw->refs) & IO_WAITID_REF_MASK)
@@ -250,6 +315,12 @@ int io_waitid_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	if (sqe->addr || sqe->buf_index || sqe->addr3 || sqe->waitid_flags)
 		return -EINVAL;
 
+/*
+ * io_waitid - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 	iwa = io_uring_alloc_async_data(NULL, req);
 	if (!unlikely(iwa))
 		return -ENOMEM;
