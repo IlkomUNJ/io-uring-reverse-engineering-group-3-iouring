@@ -21,6 +21,12 @@ struct io_nop {
 
 #define NOP_FLAGS	(IORING_NOP_INJECT_RESULT | IORING_NOP_FIXED_FILE | \
 			 IORING_NOP_FIXED_BUFFER | IORING_NOP_FILE)
+/*
+ * io_nop_prep - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param const struct io_uring_sqe *sqe
+ * @return TODO: Return value description.
+ */
 
 int io_nop_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 {
@@ -41,6 +47,12 @@ int io_nop_prep(struct io_kiocb *req, const struct io_uring_sqe *sqe)
 	if (nop->flags & IORING_NOP_FIXED_BUFFER)
 		req->buf_index = READ_ONCE(sqe->buf_index);
 	return 0;
+/*
+ * io_nop - TODO: Describe what this function does.
+ * @param struct io_kiocb *req
+ * @param unsigned int issue_flags
+ * @return TODO: Return value description.
+ */
 }
 
 int io_nop(struct io_kiocb *req, unsigned int issue_flags)
