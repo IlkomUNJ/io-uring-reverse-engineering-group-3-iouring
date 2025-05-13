@@ -153,39 +153,75 @@ static bool io_acct_cancel_pending_work(struct io_wq *wq,
 static void create_worker_cb(struct callback_head *cb);
 static void io_wq_cancel_tw_create(struct io_wq *wq);
 
+
+/**
+ * io_worker_get - Safely increments the reference count of an io_worker.
+ * @worker: Pointer to the io_worker structure.
+ *
+ * Returns true if the refcount was successfully incremented.
+ */
 static bool io_worker_get(struct io_worker *worker)
 {
 	return refcount_inc_not_zero(&worker->ref);
 }
 
+/**
+ * io_worker_release - Decrease reference count of an io_worker
+ * @worker: the worker to release
+ *
+ * Completes cleanup when reference hits zero.
+ */
 static void io_worker_release(struct io_worker *worker)
 {
 	if (refcount_dec_and_test(&worker->ref))
 		complete(&worker->ref_done);
 }
 
+/**
+ * io_get_acct - Returns the appropriate accounting structure (bounded/unbounded).
+ * @wq: io_wq instance.
+ * @bound: Boolean flag for bounded (true) or unbounded (false).
+ */
 static inline struct io_wq_acct *io_get_acct(struct io_wq *wq, bool bound)
 {
 	return &wq->acct[bound ? IO_WQ_ACCT_BOUND : IO_WQ_ACCT_UNBOUND];
 }
 
+/**
+ * io_work_get_acct - Get accounting struct based on work flags
+ * @wq: io_wq context
+ * @work_flags: flags for the current work
+ */
 static inline struct io_wq_acct *io_work_get_acct(struct io_wq *wq,
 						  unsigned int work_flags)
 {
 	return io_get_acct(wq, !(work_flags & IO_WQ_WORK_UNBOUND));
 }
 
+/**
+ * io_wq_get_acct - Get the accounting struct associated with a worker.
+ * @worker: The io_worker whose account to retrieve.
+ */
 static inline struct io_wq_acct *io_wq_get_acct(struct io_worker *worker)
 {
 	return worker->acct;
 }
 
+/**
+ * io_worker_ref_put - Decrements the global worker reference count.
+ * @wq: io_wq instance.
+ */
 static void io_worker_ref_put(struct io_wq *wq)
 {
 	if (atomic_dec_and_test(&wq->worker_refs))
 		complete(&wq->worker_done);
 }
 
+/**
+ * io_wq_worker_stopped - Checks if the current io_wq worker is being stopped.
+ *
+ * Returns true if the worker is stopping or misconfigured.
+ */
 bool io_wq_worker_stopped(void)
 {
 	struct io_worker *worker = current->worker_private;
@@ -196,6 +232,10 @@ bool io_wq_worker_stopped(void)
 	return test_bit(IO_WQ_BIT_EXIT, &worker->wq->state);
 }
 
+/**
+ * io_worker_cancel_cb - Updates accounting when cancelling worker creation.
+ * @worker: io_worker being cancelled.
+ */
 static void io_worker_cancel_cb(struct io_worker *worker)
 {
 	struct io_wq_acct *acct = io_wq_get_acct(worker);
@@ -210,6 +250,13 @@ static void io_worker_cancel_cb(struct io_worker *worker)
 	io_worker_release(worker);
 }
 
+/**
+ * io_task_worker_match - Match a task_work callback to a worker
+ * @cb: callback pointer
+ * @data: expected worker
+ *
+ * Returns true if callback matches the given worker.
+ */
 static bool io_task_worker_match(struct callback_head *cb, void *data)
 {
 	struct io_worker *worker;
@@ -220,6 +267,10 @@ static bool io_task_worker_match(struct callback_head *cb, void *data)
 	return worker == data;
 }
 
+/**
+ * io_worker_exit - Exit and clean up an io_worker
+ * @worker: the worker to shut down
+ */
 static void io_worker_exit(struct io_worker *worker)
 {
 	struct io_wq *wq = worker->wq;
@@ -261,9 +312,11 @@ static inline bool __io_acct_run_queue(struct io_wq_acct *acct)
 		!wq_list_empty(&acct->work_list);
 }
 
-/*
- * If there's work to do, returns true with acct->lock acquired. If not,
- * returns false with no lock held.
+/**
+ * io_acct_run_queue - Determines if there's runnable work under a given account.
+ * @acct: Accounting structure to examine.
+ *
+ * Locks and returns true if runnable, false otherwise.
  */
 static inline bool io_acct_run_queue(struct io_wq_acct *acct)
 	__acquires(&acct->lock)
@@ -276,9 +329,12 @@ static inline bool io_acct_run_queue(struct io_wq_acct *acct)
 	return false;
 }
 
-/*
- * Check head of free list for an available worker. If one isn't available,
- * caller must create one.
+
+/**
+ * io_acct_activate_free_worker - Attempts to wake a free worker.
+ * @acct: Account to activate from.
+ *
+ * Returns true if a worker was activated.
  */
 static bool io_acct_activate_free_worker(struct io_wq_acct *acct)
 	__must_hold(RCU)
@@ -339,6 +395,17 @@ static void io_wq_inc_running(struct io_worker *worker)
 	atomic_inc(&acct->nr_running);
 }
 
+/**
+ * create_worker_cb - Callback to conditionally create a new io_wq worker.
+ * @cb: Callback pointer cast to io_worker.
+ *
+ * This function is executed via task_work to create a new worker thread
+ * if the current number of workers is below the allowed maximum. It ensures
+ * proper locking and state management to avoid over-creating workers.
+ *
+ * If the limit has already been reached, it decrements the running counter
+ * and releases references accordingly.
+ */
 static void create_worker_cb(struct callback_head *cb)
 {
 	struct io_worker *worker;
@@ -367,6 +434,12 @@ static void create_worker_cb(struct callback_head *cb)
 	io_worker_release(worker);
 }
 
+/**
+ * io_queue_worker_create - Schedules creation of a new worker.
+ * @worker: Worker structure.
+ * @acct: Accounting context.
+ * @func: Task function to run on creation.
+ */
 static bool io_queue_worker_create(struct io_worker *worker,
 				   struct io_wq_acct *acct,
 				   task_work_func_t func)
@@ -412,6 +485,18 @@ fail:
 	return false;
 }
 
+**
+ * io_wq_dec_running - Decrement the running worker count and create new worker if needed
+ * @worker: The io_worker that is transitioning to a non-running state
+ *
+ * This function decrements the `nr_running` counter in the corresponding
+ * accounting structure. If the count reaches zero and there is still
+ * work pending in the queue, it schedules the creation of a new worker
+ * thread using task_work.
+ *
+ * It also ensures proper reference counting of the `io_wq` structure
+ * and avoids race conditions by managing spinlocks around queue checks.
+ */
 static void io_wq_dec_running(struct io_worker *worker)
 {
 	struct io_wq_acct *acct = io_wq_get_acct(worker);
@@ -431,9 +516,15 @@ static void io_wq_dec_running(struct io_worker *worker)
 	io_queue_worker_create(worker, acct, create_worker_cb);
 }
 
-/*
- * Worker will start processing some work. Move it to the busy list, if
- * it's currently on the freelist
+/**
+ * __io_worker_busy - Marks a worker as busy and removes it from the freelist
+ * @acct: The accounting structure the worker belongs to
+ * @worker: The io_worker to mark as busy
+ *
+ * If the worker is currently flagged as free (i.e., idle), this function clears
+ * the `IO_WORKER_F_FREE` flag and removes it from the freelist maintained by
+ * the accounting structure. This transition reflects that the worker is about
+ * to begin processing work.
  */
 static void __io_worker_busy(struct io_wq_acct *acct, struct io_worker *worker)
 {
@@ -445,8 +536,16 @@ static void __io_worker_busy(struct io_wq_acct *acct, struct io_worker *worker)
 	}
 }
 
-/*
- * No work, worker going to sleep. Move to freelist.
+/**
+ * __io_worker_idle - Marks a worker as idle and adds it to the freelist
+ * @acct: The accounting context for the worker
+ * @worker: The io_worker being marked as idle
+ *
+ * This function sets the `IO_WORKER_F_FREE` flag and adds the worker to the
+ * `free_list` RCU-protected list of idle workers. It is called when a worker
+ * has no more work to do and is preparing to sleep.
+ *
+ * Caller must hold `acct->workers_lock`.
  */
 static void __io_worker_idle(struct io_wq_acct *acct, struct io_worker *worker)
 	__must_hold(acct->workers_lock)
@@ -457,16 +556,36 @@ static void __io_worker_idle(struct io_wq_acct *acct, struct io_worker *worker)
 	}
 }
 
+/**
+ * __io_get_work_hash - Extract the hash index from work flags.
+ * @work_flags: Flags from a work item.
+ *
+ * Returns the hash index used to control concurrency via hashing.
+ */
 static inline unsigned int __io_get_work_hash(unsigned int work_flags)
 {
 	return work_flags >> IO_WQ_HASH_SHIFT;
 }
 
+/**
+ * io_get_work_hash - Retrieves the hash index from a work item.
+ * @work: Pointer to the work item.
+ *
+ * Uses atomic read of the work flags and extracts the hash index.
+ */
 static inline unsigned int io_get_work_hash(struct io_wq_work *work)
 {
 	return __io_get_work_hash(atomic_read(&work->flags));
 }
 
+/**
+ * io_wait_on_hash - Wait until the hashed work item becomes unstalled.
+ * @wq: The io_wq instance.
+ * @hash: The hash slot being waited on.
+ *
+ * If the current hash slot is not active, marks the task runnable and removes
+ * it from the wait list. Returns true if the wait was successful.
+ */
 static bool io_wait_on_hash(struct io_wq *wq, unsigned int hash)
 {
 	bool ret = false;
@@ -484,6 +603,18 @@ static bool io_wait_on_hash(struct io_wq *wq, unsigned int hash)
 	return ret;
 }
 
+/**
+ * io_get_next_work - Fetches the next work item from the queue.
+ * @acct: Accounting context containing the work list.
+ * @wq: The io_wq instance.
+ *
+ * Iterates the work list to find the next runnable work item. If the item
+ * is hashed and another worker is already processing that hash, stalls and
+ * optionally sleeps until it becomes available.
+ *
+ * Returns a pointer to the next work item or NULL if none available.
+ * Caller must hold acct->lock and releases it if stall occurs.
+ */
 static struct io_wq_work *io_get_next_work(struct io_wq_acct *acct,
 					   struct io_wq *wq)
 	__must_hold(acct->lock)
@@ -542,6 +673,11 @@ static struct io_wq_work *io_get_next_work(struct io_wq_acct *acct,
 	return NULL;
 }
 
+/**
+ * io_assign_current_work - Assigns or clears the current work for a worker.
+ * @worker: The io_worker.
+ * @work: The work item to assign (or NULL).
+ */
 static void io_assign_current_work(struct io_worker *worker,
 				   struct io_wq_work *work)
 {
@@ -555,8 +691,12 @@ static void io_assign_current_work(struct io_worker *worker,
 	raw_spin_unlock(&worker->lock);
 }
 
-/*
- * Called with acct->lock held, drops it before returning
+/**
+ * io_worker_handle_work - Main loop for processing queued work.
+ * @acct: Accounting context.
+ * @worker: The worker executing the work.
+ *
+ * Processes dependencies, cancellations, and hash clearing.
  */
 static void io_worker_handle_work(struct io_wq_acct *acct,
 				  struct io_worker *worker)
@@ -642,6 +782,12 @@ static void io_worker_handle_work(struct io_wq_acct *acct,
 	} while (1);
 }
 
+/**
+ * io_wq_worker - Entry point function for a worker thread.
+ * @data: Pointer to the io_worker.
+ *
+ * Manages task scheduling, idling, and termination.
+ */
 static int io_wq_worker(void *data)
 {
 	struct io_worker *worker = data;
@@ -706,8 +852,9 @@ static int io_wq_worker(void *data)
 	return 0;
 }
 
-/*
- * Called when a worker is scheduled in. Mark us as currently running.
+/**
+ * io_wq_worker_running - Marks a worker as currently running.
+ * @tsk: Task struct of the worker.
  */
 void io_wq_worker_running(struct task_struct *tsk)
 {
@@ -723,9 +870,10 @@ void io_wq_worker_running(struct task_struct *tsk)
 	io_wq_inc_running(worker);
 }
 
-/*
- * Called when worker is going to sleep. If there are no workers currently
- * running and we have work pending, wake up a free one or create a new one.
+
+/**
+ * io_wq_worker_sleeping - Marks a worker as going to sleep.
+ * @tsk: Task struct of the worker.
  */
 void io_wq_worker_sleeping(struct task_struct *tsk)
 {
@@ -742,6 +890,13 @@ void io_wq_worker_sleeping(struct task_struct *tsk)
 	io_wq_dec_running(worker);
 }
 
+/**
+ * io_init_new_worker - Initializes a newly created worker.
+ * @wq: The io_wq context.
+ * @acct: Accounting context.
+ * @worker: io_worker instance.
+ * @tsk: Task structure of the new worker.
+ */
 static void io_init_new_worker(struct io_wq *wq, struct io_wq_acct *acct, struct io_worker *worker,
 			       struct task_struct *tsk)
 {
@@ -757,11 +912,21 @@ static void io_init_new_worker(struct io_wq *wq, struct io_wq_acct *acct, struct
 	wake_up_new_task(tsk);
 }
 
+/**
+ * io_wq_work_match_all - Match-all callback for cancelling work.
+ * @work: Work item.
+ * @data: Unused.
+ */
 static bool io_wq_work_match_all(struct io_wq_work *work, void *data)
 {
 	return true;
 }
 
+/**
+ * io_should_retry_thread - Determines whether a worker creation should be retried.
+ * @worker: The worker that failed to be created.
+ * @err: The error code.
+ */
 static inline bool io_should_retry_thread(struct io_worker *worker, long err)
 {
 	/*
@@ -784,6 +949,10 @@ static inline bool io_should_retry_thread(struct io_worker *worker, long err)
 	}
 }
 
+/**
+ * queue_create_worker_retry - Schedules retry of worker creation.
+ * @worker: Worker that failed creation.
+ */
 static void queue_create_worker_retry(struct io_worker *worker)
 {
 	/*
@@ -796,6 +965,13 @@ static void queue_create_worker_retry(struct io_worker *worker)
 			      msecs_to_jiffies(worker->init_retries * 5));
 }
 
+/**
+ * create_worker_cont - Continuation function for retrying worker creation.
+ * @cb: Callback head from task work mechanism.
+ *
+ * Tries to create a new io_worker thread. If creation fails permanently,
+ * updates accounting and cancels pending work. Otherwise, schedules a retry.
+ */
 static void create_worker_cont(struct callback_head *cb)
 {
 	struct io_worker *worker;
@@ -838,6 +1014,12 @@ static void create_worker_cont(struct callback_head *cb)
 	queue_create_worker_retry(worker);
 }
 
+/**
+ * io_workqueue_create - Task work callback to create a worker from workqueue context.
+ * @work: Pointer to the delayed_work structure inside io_worker.
+ *
+ * Invokes the creation of a new worker using the delayed_work mechanism.
+ */
 static void io_workqueue_create(struct work_struct *work)
 {
 	struct io_worker *worker = container_of(work, struct io_worker,
@@ -848,6 +1030,14 @@ static void io_workqueue_create(struct work_struct *work)
 		kfree(worker);
 }
 
+/**
+ * create_io_worker - Allocates and starts a new io_worker thread.
+ * @wq: io_wq instance to attach the worker to.
+ * @acct: Accounting context for the worker.
+ *
+ * Returns true on success, false on failure. If thread creation fails but is retryable,
+ * schedules a delayed retry.
+ */
 static bool create_io_worker(struct io_wq *wq, struct io_wq_acct *acct)
 {
 	struct io_worker *worker;
@@ -886,9 +1076,13 @@ fail:
 	return true;
 }
 
-/*
- * Iterate the passed in list and call the specific function for each
- * worker that isn't exiting
+/**
+ * io_acct_for_each_worker - Iterate over all workers in an acct and apply a function.
+ * @acct: Accounting context (bounded or unbounded).
+ * @func: Function to apply to each worker.
+ * @data: Data passed to the function.
+ *
+ * Returns true if the callback function returns true for any worker.
  */
 static bool io_acct_for_each_worker(struct io_wq_acct *acct,
 				    bool (*func)(struct io_worker *, void *),
@@ -911,6 +1105,14 @@ static bool io_acct_for_each_worker(struct io_wq_acct *acct,
 	return ret;
 }
 
+/**
+ * io_wq_for_each_worker - Iterate over all workers in the io_wq.
+ * @wq: io_wq instance.
+ * @func: Callback function.
+ * @data: User data passed to callback.
+ *
+ * Returns true if callback returns true for any worker.
+ */
 static bool io_wq_for_each_worker(struct io_wq *wq,
 				  bool (*func)(struct io_worker *, void *),
 				  void *data)
@@ -923,6 +1125,13 @@ static bool io_wq_for_each_worker(struct io_wq *wq,
 	return true;
 }
 
+/**
+ * io_wq_worker_wake - Wakes up a sleeping worker by sending a signal.
+ * @worker: Worker to wake.
+ * @data: Unused.
+ *
+ * Returns false to indicate continuation of iteration.
+ */
 static bool io_wq_worker_wake(struct io_worker *worker, void *data)
 {
 	__set_notify_signal(worker->task);
@@ -930,6 +1139,13 @@ static bool io_wq_worker_wake(struct io_worker *worker, void *data)
 	return false;
 }
 
+/**
+ * io_run_cancel - Executes and frees a work item marked for cancellation.
+ * @work: Work item to cancel.
+ * @wq: io_wq associated with the work.
+ *
+ * Marks the work as cancelled and executes its work and cleanup functions.
+ */
 static void io_run_cancel(struct io_wq_work *work, struct io_wq *wq)
 {
 	do {
@@ -939,6 +1155,13 @@ static void io_run_cancel(struct io_wq_work *work, struct io_wq *wq)
 	} while (work);
 }
 
+/**
+ * io_wq_insert_work - Inserts a work item into the appropriate queue.
+ * @wq: io_wq context.
+ * @acct: Accounting context (bounded/unbounded).
+ * @work: Work item to insert.
+ * @work_flags: Flags determining how the work should be queued.
+ */
 static void io_wq_insert_work(struct io_wq *wq, struct io_wq_acct *acct,
 			      struct io_wq_work *work, unsigned int work_flags)
 {
@@ -960,11 +1183,26 @@ append:
 	wq_list_add_after(&work->list, &tail->list, &acct->work_list);
 }
 
+/**
+ * io_wq_work_match_item - Work match function comparing work by pointer.
+ * @work: Work item to compare.
+ * @data: Target work item pointer.
+ *
+ * Returns true if work matches data.
+ */
 static bool io_wq_work_match_item(struct io_wq_work *work, void *data)
 {
 	return work == data;
 }
 
+/**
+ * io_wq_enqueue - Enqueue a new work item into the io-wq.
+ * @wq: io_wq instance.
+ * @work: Work item to queue.
+ *
+ * If no workers are available, attempts to create one. If the system is exiting,
+ * the work will be cancelled.
+ */
 void io_wq_enqueue(struct io_wq *wq, struct io_wq_work *work)
 {
 	unsigned int work_flags = atomic_read(&work->flags);
@@ -1015,9 +1253,13 @@ void io_wq_enqueue(struct io_wq *wq, struct io_wq_work *work)
 	}
 }
 
-/*
- * Work items that hash to the same value will not be done in parallel.
- * Used to limit concurrent writes, generally hashed by inode.
+/**
+ * io_wq_hash_work - Assigns a hash to a work item to ensure serialized execution.
+ * @work: The work item to tag.
+ * @val: The value to hash, typically an inode or unique identifier.
+ *
+ * Marks the work item with a hash so that it will not be executed concurrently
+ * with other work items sharing the same hash value.
  */
 void io_wq_hash_work(struct io_wq_work *work, void *val)
 {
@@ -1027,6 +1269,15 @@ void io_wq_hash_work(struct io_wq_work *work, void *val)
 	atomic_or(IO_WQ_WORK_HASHED | (bit << IO_WQ_HASH_SHIFT), &work->flags);
 }
 
+/**
+ * __io_wq_worker_cancel - Attempts to cancel currently executing work on a worker.
+ * @worker: The worker to check.
+ * @match: Cancellation criteria and statistics.
+ * @work: Work item to test against cancellation criteria.
+ *
+ * If the work item matches the cancellation condition, its cancel flag is set and
+ * the worker is notified via signal. Returns true if cancellation was performed.
+ */
 static bool __io_wq_worker_cancel(struct io_worker *worker,
 				  struct io_cb_cancel_data *match,
 				  struct io_wq_work *work)
@@ -1040,6 +1291,15 @@ static bool __io_wq_worker_cancel(struct io_worker *worker,
 	return false;
 }
 
+/**
+ * io_wq_worker_cancel - Cancellation handler for a specific worker.
+ * @worker: The worker to inspect.
+ * @data: Pointer to cancellation criteria (io_cb_cancel_data).
+ *
+ * This function locks the worker, checks whether the current work item matches
+ * the cancel criteria, and updates the cancellation statistics if it does.
+ * Returns false if cancellation should continue for other workers.
+ */
 static bool io_wq_worker_cancel(struct io_worker *worker, void *data)
 {
 	struct io_cb_cancel_data *match = data;
@@ -1056,6 +1316,15 @@ static bool io_wq_worker_cancel(struct io_worker *worker, void *data)
 	return match->nr_running && !match->cancel_all;
 }
 
+/**
+ * io_wq_remove_pending - Removes a pending work item from the work list.
+ * @wq: io_wq context.
+ * @acct: Accounting context for the worker type.
+ * @work: Work item to remove.
+ * @prev: Previous node in the list.
+ *
+ * Also updates the hash tail tracking if applicable.
+ */
 static inline void io_wq_remove_pending(struct io_wq *wq,
 					struct io_wq_acct *acct,
 					 struct io_wq_work *work,
@@ -1075,6 +1344,14 @@ static inline void io_wq_remove_pending(struct io_wq *wq,
 	wq_list_del(&acct->work_list, &work->list, prev);
 }
 
+/**
+ * io_acct_cancel_pending_work - Search and cancel pending work in accounting queue.
+ * @wq: io_wq instance.
+ * @acct: Worker accounting group (bound/unbound).
+ * @match: Matching rules and stats.
+ *
+ * Cancels at most one matching pending work item. Returns true if one was found.
+ */
 static bool io_acct_cancel_pending_work(struct io_wq *wq,
 					struct io_wq_acct *acct,
 					struct io_cb_cancel_data *match)
@@ -1099,6 +1376,13 @@ static bool io_acct_cancel_pending_work(struct io_wq *wq,
 	return false;
 }
 
+/**
+ * io_wq_cancel_pending_work - Cancel pending work items across all accounts.
+ * @wq: io_wq instance.
+ * @match: Cancel match criteria and counters.
+ *
+ * Cancels all matching pending work across bound and unbound workers.
+ */
 static void io_wq_cancel_pending_work(struct io_wq *wq,
 				      struct io_cb_cancel_data *match)
 {
@@ -1115,6 +1399,11 @@ retry:
 	}
 }
 
+/**
+ * io_acct_cancel_running_work - Signal cancellation for in-progress work.
+ * @acct: Worker accounting context.
+ * @match: Match info to identify cancellable work.
+ */
 static void io_acct_cancel_running_work(struct io_wq_acct *acct,
 					struct io_cb_cancel_data *match)
 {
@@ -1123,6 +1412,11 @@ static void io_acct_cancel_running_work(struct io_wq_acct *acct,
 	raw_spin_unlock(&acct->workers_lock);
 }
 
+/**
+ * io_wq_cancel_running_work - Attempt to cancel running work across all workers.
+ * @wq: io_wq instance.
+ * @match: Matching data and cancellation statistics.
+ */
 static void io_wq_cancel_running_work(struct io_wq *wq,
 				       struct io_cb_cancel_data *match)
 {
@@ -1134,6 +1428,19 @@ static void io_wq_cancel_running_work(struct io_wq *wq,
 	rcu_read_unlock();
 }
 
+
+/**
+ * io_wq_cancel_cb - Cancel work that matches given criteria.
+ * @wq: io_wq context.
+ * @cancel: Callback to match work.
+ * @data: Data passed to the callback.
+ * @cancel_all: If true, continue cancelling all matching items.
+ *
+ * Returns one of:
+ *   - IO_WQ_CANCEL_OK: Cancelled pending work.
+ *   - IO_WQ_CANCEL_RUNNING: Cancellation signaled for running work.
+ *   - IO_WQ_CANCEL_NOTFOUND: No match found.
+ */
 enum io_wq_cancel io_wq_cancel_cb(struct io_wq *wq, work_cancel_fn *cancel,
 				  void *data, bool cancel_all)
 {
@@ -1171,6 +1478,15 @@ enum io_wq_cancel io_wq_cancel_cb(struct io_wq *wq, work_cancel_fn *cancel,
 	return IO_WQ_CANCEL_NOTFOUND;
 }
 
+/**
+ * io_wq_hash_wake - Wake a worker if hash becomes unstalled.
+ * @wait: Wait queue entry.
+ * @mode: Wake mode.
+ * @sync: Wake synchronization flag.
+ * @key: Optional wait key.
+ *
+ * Called when a stalled hash can now progress. Returns 1 if a worker was awakened.
+ */
 static int io_wq_hash_wake(struct wait_queue_entry *wait, unsigned mode,
 			    int sync, void *key)
 {
@@ -1190,6 +1506,13 @@ static int io_wq_hash_wake(struct wait_queue_entry *wait, unsigned mode,
 	return 1;
 }
 
+/**
+ * io_wq_create - Allocate and initialize a new io_wq instance.
+ * @bounded: Number of bounded worker threads to allow.
+ * @data: Setup data including task and callbacks.
+ *
+ * Returns a pointer to the new io_wq or an ERR_PTR on failure.
+ */
 struct io_wq *io_wq_create(unsigned bounded, struct io_wq_data *data)
 {
 	int ret, i;
@@ -1247,6 +1570,13 @@ err:
 	return ERR_PTR(ret);
 }
 
+/**
+ * io_task_work_match - Checks if a task_work item matches io_wq creation callbacks.
+ * @cb: The callback to check.
+ * @data: The expected io_wq pointer.
+ *
+ * Returns true if the task work is related to creating a worker for the given io_wq.
+ */
 static bool io_task_work_match(struct callback_head *cb, void *data)
 {
 	struct io_worker *worker;
@@ -1257,11 +1587,23 @@ static bool io_task_work_match(struct callback_head *cb, void *data)
 	return worker->wq == data;
 }
 
+/**
+ * io_wq_exit_start - Marks the io_wq as exiting.
+ * @wq: io_wq instance.
+ *
+ * Sets the IO_WQ_BIT_EXIT state flag to indicate shutdown has begun.
+ */
 void io_wq_exit_start(struct io_wq *wq)
 {
 	set_bit(IO_WQ_BIT_EXIT, &wq->state);
 }
 
+/**
+ * io_wq_cancel_tw_create - Cancels any in-progress worker creation task_work.
+ * @wq: io_wq instance.
+ *
+ * Cancels any queued task_work that was going to create a worker for this wq.
+ */
 static void io_wq_cancel_tw_create(struct io_wq *wq)
 {
 	struct callback_head *cb;
@@ -1280,6 +1622,12 @@ static void io_wq_cancel_tw_create(struct io_wq *wq)
 	}
 }
 
+/**
+ * io_wq_exit_workers - Signals all workers to exit and waits for completion.
+ * @wq: io_wq instance.
+ *
+ * Ensures all workers are cancelled, signaled to wake up, and cleaned up.
+ */
 static void io_wq_exit_workers(struct io_wq *wq)
 {
 	if (!wq->task)
@@ -1301,6 +1649,12 @@ static void io_wq_exit_workers(struct io_wq *wq)
 	wq->task = NULL;
 }
 
+/**
+ * io_wq_destroy - Frees all resources associated with an io_wq.
+ * @wq: io_wq instance.
+ *
+ * Cancels all pending work, removes CPU hotplug handlers, and releases memory.
+ */
 static void io_wq_destroy(struct io_wq *wq)
 {
 	struct io_cb_cancel_data match = {
@@ -1315,6 +1669,12 @@ static void io_wq_destroy(struct io_wq *wq)
 	kfree(wq);
 }
 
+/**
+ * io_wq_put_and_exit - Public API to shut down an io_wq and free it.
+ * @wq: io_wq instance.
+ *
+ * This is the safe way to terminate and clean up an io_wq structure.
+ */
 void io_wq_put_and_exit(struct io_wq *wq)
 {
 	WARN_ON_ONCE(!test_bit(IO_WQ_BIT_EXIT, &wq->state));
@@ -1328,6 +1688,13 @@ struct online_data {
 	bool online;
 };
 
+/**
+ * io_wq_worker_affinity - Adjusts CPU mask for a given worker.
+ * @worker: The io_worker whose affinity is updated.
+ * @data: Contains CPU and online status.
+ *
+ * Updates the worker's allowed CPUs based on CPU online/offline event.
+ */
 static bool io_wq_worker_affinity(struct io_worker *worker, void *data)
 {
 	struct online_data *od = data;
@@ -1339,6 +1706,14 @@ static bool io_wq_worker_affinity(struct io_worker *worker, void *data)
 	return false;
 }
 
+/**
+ * __io_wq_cpu_online - Applies CPU hotplug event to a wq's workers.
+ * @wq: io_wq instance.
+ * @cpu: CPU being added or removed.
+ * @online: True if CPU is coming online, false if offline.
+ *
+ * Updates worker CPU affinity masks accordingly.
+ */
 static int __io_wq_cpu_online(struct io_wq *wq, unsigned int cpu, bool online)
 {
 	struct online_data od = {
@@ -1352,6 +1727,13 @@ static int __io_wq_cpu_online(struct io_wq *wq, unsigned int cpu, bool online)
 	return 0;
 }
 
+/**
+ * io_wq_cpu_online - CPU hotplug callback when CPU becomes online.
+ * @cpu: The CPU coming online.
+ * @node: cpuhp handler node.
+ *
+ * Registers the CPU to all workers in the io_wq instance.
+ */
 static int io_wq_cpu_online(unsigned int cpu, struct hlist_node *node)
 {
 	struct io_wq *wq = hlist_entry_safe(node, struct io_wq, cpuhp_node);
@@ -1359,6 +1741,13 @@ static int io_wq_cpu_online(unsigned int cpu, struct hlist_node *node)
 	return __io_wq_cpu_online(wq, cpu, true);
 }
 
+/**
+ * io_wq_cpu_offline - CPU hotplug callback when CPU goes offline.
+ * @cpu: The CPU going offline.
+ * @node: cpuhp handler node.
+ *
+ * Unregisters the CPU from worker affinity masks in io_wq.
+ */
 static int io_wq_cpu_offline(unsigned int cpu, struct hlist_node *node)
 {
 	struct io_wq *wq = hlist_entry_safe(node, struct io_wq, cpuhp_node);
@@ -1366,6 +1755,13 @@ static int io_wq_cpu_offline(unsigned int cpu, struct hlist_node *node)
 	return __io_wq_cpu_online(wq, cpu, false);
 }
 
+/**
+ * io_wq_cpu_affinity - Adjusts allowed CPU mask for a given task's io_wq.
+ * @tctx: io_uring task context.
+ * @mask: Optional new CPU mask to apply (NULL to reset to default).
+ *
+ * Returns 0 on success or -EINVAL/-ENOMEM on failure.
+ */
 int io_wq_cpu_affinity(struct io_uring_task *tctx, cpumask_var_t mask)
 {
 	cpumask_var_t allowed_mask;
@@ -1393,9 +1789,12 @@ int io_wq_cpu_affinity(struct io_uring_task *tctx, cpumask_var_t mask)
 	return ret;
 }
 
-/*
- * Set max number of unbounded workers, returns old value. If new_count is 0,
- * then just return the old value.
+/**
+ * io_wq_max_workers - Update or retrieve max worker limits.
+ * @wq: io_wq instance.
+ * @new_count: Optional new values (per acct); 0 means no change.
+ *
+ * Updates max_workers for bounded and unbounded workers and returns previous values.
  */
 int io_wq_max_workers(struct io_wq *wq, int *new_count)
 {
@@ -1433,6 +1832,13 @@ int io_wq_max_workers(struct io_wq *wq, int *new_count)
 	return 0;
 }
 
+/**
+ * io_wq_init - Module initialization for io_wq.
+ *
+ * Sets up CPU hotplug handling for io_wq worker affinity management.
+ *
+ * Returns 0 on success, negative error code on failure.
+ */
 static __init int io_wq_init(void)
 {
 	int ret;
