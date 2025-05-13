@@ -152,10 +152,20 @@ static bool io_acct_cancel_pending_work(struct io_wq *wq,
 					struct io_cb_cancel_data *match);
 static void create_worker_cb(struct callback_head *cb);
 static void io_wq_cancel_tw_create(struct io_wq *wq);
+/*
+ * io_worker_get - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 
 static bool io_worker_get(struct io_worker *worker)
 {
 	return refcount_inc_not_zero(&worker->ref);
+/*
+ * io_worker_release - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 }
 
 static void io_worker_release(struct io_worker *worker)
@@ -177,11 +187,20 @@ static inline struct io_wq_acct *io_work_get_acct(struct io_wq *wq,
 
 static inline struct io_wq_acct *io_wq_get_acct(struct io_worker *worker)
 {
+/*
+ * io_worker_ref_put - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @return TODO: Return value description.
+ */
 	return worker->acct;
 }
 
 static void io_worker_ref_put(struct io_wq *wq)
 {
+/*
+ * io_wq_worker_stopped - TODO: Describe what this function does.
+ * @return TODO: Return value description.
+ */
 	if (atomic_dec_and_test(&wq->worker_refs))
 		complete(&wq->worker_done);
 }
@@ -191,6 +210,11 @@ bool io_wq_worker_stopped(void)
 	struct io_worker *worker = current->worker_private;
 
 	if (WARN_ON_ONCE(!io_wq_current_is_worker()))
+/*
+ * io_worker_cancel_cb - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 		return true;
 
 	return test_bit(IO_WQ_BIT_EXIT, &worker->wq->state);
@@ -204,6 +228,12 @@ static void io_worker_cancel_cb(struct io_worker *worker)
 	atomic_dec(&acct->nr_running);
 	raw_spin_lock(&acct->workers_lock);
 	acct->nr_workers--;
+/*
+ * io_task_worker_match - TODO: Describe what this function does.
+ * @param struct callback_head *cb
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 	raw_spin_unlock(&acct->workers_lock);
 	io_worker_ref_put(wq);
 	clear_bit_unlock(0, &worker->create_state);
@@ -213,6 +243,11 @@ static void io_worker_cancel_cb(struct io_worker *worker)
 static bool io_task_worker_match(struct callback_head *cb, void *data)
 {
 	struct io_worker *worker;
+/*
+ * io_worker_exit - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 
 	if (cb->func != create_worker_cb)
 		return false;
@@ -247,6 +282,11 @@ static void io_worker_exit(struct io_worker *worker)
 	 * this worker is a goner, clear ->worker_private to avoid any
 	 * inc/dec running calls that could happen as part of exit from
 	 * touching 'worker'.
+/*
+ * __io_acct_run_queue - TODO: Describe what this function does.
+ * @param struct io_wq_acct *acct
+ * @return TODO: Return value description.
+ */
 	 */
 	current->worker_private = NULL;
 
@@ -303,6 +343,12 @@ static bool io_acct_activate_free_worker(struct io_wq_acct *acct)
 		io_worker_release(worker);
 		return true;
 	}
+/*
+ * io_wq_create_worker - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_wq_acct *acct
+ * @return TODO: Return value description.
+ */
 
 	return false;
 }
@@ -322,12 +368,22 @@ static bool io_wq_create_worker(struct io_wq *wq, struct io_wq_acct *acct)
 
 	raw_spin_lock(&acct->workers_lock);
 	if (acct->nr_workers >= acct->max_workers) {
+/*
+ * io_wq_inc_running - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 		raw_spin_unlock(&acct->workers_lock);
 		return true;
 	}
 	acct->nr_workers++;
 	raw_spin_unlock(&acct->workers_lock);
 	atomic_inc(&acct->nr_running);
+/*
+ * create_worker_cb - TODO: Describe what this function does.
+ * @param struct callback_head *cb
+ * @return TODO: Return value description.
+ */
 	atomic_inc(&wq->worker_refs);
 	return create_io_worker(wq, acct);
 }
@@ -355,6 +411,13 @@ static void create_worker_cb(struct callback_head *cb)
 	if (acct->nr_workers < acct->max_workers) {
 		acct->nr_workers++;
 		do_create = true;
+/*
+ * io_queue_worker_create - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @param struct io_wq_acct *acct
+ * @param task_work_func_t func
+ * @return TODO: Return value description.
+ */
 	}
 	raw_spin_unlock(&acct->workers_lock);
 	if (do_create) {
@@ -399,6 +462,11 @@ static bool io_queue_worker_create(struct io_worker *worker,
 		 */
 		if (test_bit(IO_WQ_BIT_EXIT, &wq->state))
 			io_wq_cancel_tw_create(wq);
+/*
+ * io_wq_dec_running - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 		io_worker_ref_put(wq);
 		return true;
 	}
@@ -422,6 +490,12 @@ static void io_wq_dec_running(struct io_worker *worker)
 
 	if (!atomic_dec_and_test(&acct->nr_running))
 		return;
+/*
+ * __io_worker_busy - TODO: Describe what this function does.
+ * @param struct io_wq_acct *acct
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 	if (!io_acct_run_queue(acct))
 		return;
 
@@ -442,6 +516,11 @@ static void __io_worker_busy(struct io_wq_acct *acct, struct io_worker *worker)
 		raw_spin_lock(&acct->workers_lock);
 		hlist_nulls_del_init_rcu(&worker->nulls_node);
 		raw_spin_unlock(&acct->workers_lock);
+/*
+ * __io_get_work_hash - TODO: Describe what this function does.
+ * @param unsigned int work_flags
+ * @return TODO: Return value description.
+ */
 	}
 }
 
@@ -451,6 +530,12 @@ static void __io_worker_busy(struct io_wq_acct *acct, struct io_worker *worker)
 static void __io_worker_idle(struct io_wq_acct *acct, struct io_worker *worker)
 	__must_hold(acct->workers_lock)
 {
+/*
+ * io_wait_on_hash - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param unsigned int hash
+ * @return TODO: Return value description.
+ */
 	if (!test_bit(IO_WORKER_F_FREE, &worker->flags)) {
 		set_bit(IO_WORKER_F_FREE, &worker->flags);
 		hlist_nulls_add_head_rcu(&worker->nulls_node, &acct->free_list);
@@ -625,6 +710,11 @@ static void io_worker_handle_work(struct io_wq_acct *acct,
 			if (linked)
 				io_wq_enqueue(wq, linked);
 
+/*
+ * io_wq_worker - TODO: Describe what this function does.
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 			if (hash != -1U && !next_hashed) {
 				/* serialize hash clear with wake_up() */
 				spin_lock_irq(&wq->hash->wait.lock);
@@ -692,6 +782,11 @@ static int io_wq_worker(void *data)
 				continue;
 			break;
 		}
+/*
+ * io_wq_worker_running - TODO: Describe what this function does.
+ * @param struct task_struct *tsk
+ * @return TODO: Return value description.
+ */
 		if (!ret) {
 			last_timeout = true;
 			exit_mask = !cpumask_test_cpu(raw_smp_processor_id(),
@@ -724,6 +819,14 @@ void io_wq_worker_running(struct task_struct *tsk)
 }
 
 /*
+ * io_init_new_worker - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_wq_acct *acct
+ * @param struct io_worker *worker
+ * @param struct task_struct *tsk
+ * @return TODO: Return value description.
+ */
+/*
  * Called when worker is going to sleep. If there are no workers currently
  * running and we have work pending, wake up a free one or create a new one.
  */
@@ -737,10 +840,22 @@ void io_wq_worker_sleeping(struct task_struct *tsk)
 		return;
 	if (!test_bit(IO_WORKER_F_RUNNING, &worker->flags))
 		return;
+/*
+ * io_wq_work_match_all - TODO: Describe what this function does.
+ * @param struct io_wq_work *work
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 
 	clear_bit(IO_WORKER_F_RUNNING, &worker->flags);
 	io_wq_dec_running(worker);
 }
+/*
+ * io_should_retry_thread - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @param long err
+ * @return TODO: Return value description.
+ */
 
 static void io_init_new_worker(struct io_wq *wq, struct io_wq_acct *acct, struct io_worker *worker,
 			       struct task_struct *tsk)
@@ -762,6 +877,11 @@ static bool io_wq_work_match_all(struct io_wq_work *work, void *data)
 	return true;
 }
 
+/*
+ * queue_create_worker_retry - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @return TODO: Return value description.
+ */
 static inline bool io_should_retry_thread(struct io_worker *worker, long err)
 {
 	/*
@@ -773,6 +893,11 @@ static inline bool io_should_retry_thread(struct io_worker *worker, long err)
 	if (worker->init_retries++ >= WORKER_INIT_LIMIT)
 		return false;
 
+/*
+ * create_worker_cont - TODO: Describe what this function does.
+ * @param struct callback_head *cb
+ * @return TODO: Return value description.
+ */
 	switch (err) {
 	case -EAGAIN:
 	case -ERESTARTSYS:
@@ -814,6 +939,11 @@ static void create_worker_cont(struct callback_head *cb)
 		return;
 	} else if (!io_should_retry_thread(worker, PTR_ERR(tsk))) {
 		atomic_dec(&acct->nr_running);
+/*
+ * io_workqueue_create - TODO: Describe what this function does.
+ * @param struct work_struct *work
+ * @return TODO: Return value description.
+ */
 		raw_spin_lock(&acct->workers_lock);
 		acct->nr_workers--;
 		if (!acct->nr_workers) {
@@ -823,6 +953,12 @@ static void create_worker_cont(struct callback_head *cb)
 			};
 
 			raw_spin_unlock(&acct->workers_lock);
+/*
+ * create_io_worker - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_wq_acct *acct
+ * @return TODO: Return value description.
+ */
 			while (io_acct_cancel_pending_work(wq, acct, &match))
 				;
 		} else {
@@ -897,12 +1033,24 @@ static bool io_acct_for_each_worker(struct io_wq_acct *acct,
 	struct io_worker *worker;
 	bool ret = false;
 
+/*
+ * io_wq_worker_wake - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 	list_for_each_entry_rcu(worker, &acct->all_list, all_list) {
 		if (io_worker_get(worker)) {
 			/* no task if node is/was offline */
 			if (worker->task)
 				ret = func(worker, data);
 			io_worker_release(worker);
+/*
+ * io_run_cancel - TODO: Describe what this function does.
+ * @param struct io_wq_work *work
+ * @param struct io_wq *wq
+ * @return TODO: Return value description.
+ */
 			if (ret)
 				break;
 		}
@@ -911,6 +1059,14 @@ static bool io_acct_for_each_worker(struct io_wq_acct *acct,
 	return ret;
 }
 
+/*
+ * io_wq_insert_work - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_wq_acct *acct
+ * @param struct io_wq_work *work
+ * @param unsigned int work_flags
+ * @return TODO: Return value description.
+ */
 static bool io_wq_for_each_worker(struct io_wq *wq,
 				  bool (*func)(struct io_worker *, void *),
 				  void *data)
@@ -931,10 +1087,22 @@ static bool io_wq_worker_wake(struct io_worker *worker, void *data)
 }
 
 static void io_run_cancel(struct io_wq_work *work, struct io_wq *wq)
+/*
+ * io_wq_work_match_item - TODO: Describe what this function does.
+ * @param struct io_wq_work *work
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 {
 	do {
 		atomic_or(IO_WQ_WORK_CANCEL, &work->flags);
 		wq->do_work(work);
+/*
+ * io_wq_enqueue - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_wq_work *work
+ * @return TODO: Return value description.
+ */
 		work = wq->free_work(work);
 	} while (work);
 }
@@ -989,12 +1157,25 @@ void io_wq_enqueue(struct io_wq *wq, struct io_wq_work *work)
 	raw_spin_lock(&acct->lock);
 	io_wq_insert_work(wq, acct, work, work_flags);
 	clear_bit(IO_ACCT_STALLED_BIT, &acct->flags);
+/*
+ * io_wq_hash_work - TODO: Describe what this function does.
+ * @param struct io_wq_work *work
+ * @param void *val
+ * @return TODO: Return value description.
+ */
 	raw_spin_unlock(&acct->lock);
 
 	rcu_read_lock();
 	do_create = !io_acct_activate_free_worker(acct);
 	rcu_read_unlock();
 
+/*
+ * __io_wq_worker_cancel - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @param struct io_cb_cancel_data *match
+ * @param struct io_wq_work *work
+ * @return TODO: Return value description.
+ */
 	if (do_create && ((work_flags & IO_WQ_WORK_CONCURRENT) ||
 	    !atomic_read(&acct->nr_running))) {
 		bool did_create;
@@ -1007,6 +1188,12 @@ void io_wq_enqueue(struct io_wq *wq, struct io_wq_work *work)
 		if (acct->nr_workers) {
 			raw_spin_unlock(&acct->workers_lock);
 			return;
+/*
+ * io_wq_worker_cancel - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 		}
 		raw_spin_unlock(&acct->workers_lock);
 
@@ -1022,6 +1209,14 @@ void io_wq_enqueue(struct io_wq *wq, struct io_wq_work *work)
 void io_wq_hash_work(struct io_wq_work *work, void *val)
 {
 	unsigned int bit;
+/*
+ * io_wq_remove_pending - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_wq_acct *acct
+ * @param struct io_wq_work *work
+ * @param struct io_wq_work_node *prev
+ * @return TODO: Return value description.
+ */
 
 	bit = hash_ptr(val, IO_WQ_HASH_ORDER);
 	atomic_or(IO_WQ_WORK_HASHED | (bit << IO_WQ_HASH_SHIFT), &work->flags);
@@ -1040,6 +1235,13 @@ static bool __io_wq_worker_cancel(struct io_worker *worker,
 	return false;
 }
 
+/*
+ * io_acct_cancel_pending_work - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_wq_acct *acct
+ * @param struct io_cb_cancel_data *match
+ * @return TODO: Return value description.
+ */
 static bool io_wq_worker_cancel(struct io_worker *worker, void *data)
 {
 	struct io_cb_cancel_data *match = data;
@@ -1063,6 +1265,12 @@ static inline void io_wq_remove_pending(struct io_wq *wq,
 {
 	unsigned int hash = io_get_work_hash(work);
 	struct io_wq_work *prev_work = NULL;
+/*
+ * io_wq_cancel_pending_work - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_cb_cancel_data *match
+ * @return TODO: Return value description.
+ */
 
 	if (io_wq_is_hashed(work) && work == wq->hash_tail[hash]) {
 		if (prev)
@@ -1078,6 +1286,12 @@ static inline void io_wq_remove_pending(struct io_wq *wq,
 static bool io_acct_cancel_pending_work(struct io_wq *wq,
 					struct io_wq_acct *acct,
 					struct io_cb_cancel_data *match)
+/*
+ * io_acct_cancel_running_work - TODO: Describe what this function does.
+ * @param struct io_wq_acct *acct
+ * @param struct io_cb_cancel_data *match
+ * @return TODO: Return value description.
+ */
 {
 	struct io_wq_work_node *node, *prev;
 	struct io_wq_work *work;
@@ -1085,6 +1299,12 @@ static bool io_acct_cancel_pending_work(struct io_wq *wq,
 	raw_spin_lock(&acct->lock);
 	wq_list_for_each(node, prev, &acct->work_list) {
 		work = container_of(node, struct io_wq_work, list);
+/*
+ * io_wq_cancel_running_work - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param struct io_cb_cancel_data *match
+ * @return TODO: Return value description.
+ */
 		if (!match->fn(work, match->data))
 			continue;
 		io_wq_remove_pending(wq, acct, work, prev);
@@ -1095,6 +1315,14 @@ static bool io_acct_cancel_pending_work(struct io_wq *wq,
 		return true;
 	}
 	raw_spin_unlock(&acct->lock);
+/*
+ * io_wq_cancel_cb - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param work_cancel_fn *cancel
+ * @param void *data
+ * @param bool cancel_all
+ * @return TODO: Return value description.
+ */
 
 	return false;
 }
@@ -1131,6 +1359,14 @@ static void io_wq_cancel_running_work(struct io_wq *wq,
 	for (int i = 0; i < IO_WQ_ACCT_NR; i++)
 		io_acct_cancel_running_work(&wq->acct[i], match);
 
+/*
+ * io_wq_hash_wake - TODO: Describe what this function does.
+ * @param struct wait_queue_entry *wait
+ * @param unsigned mode
+ * @param int sync
+ * @param void *key
+ * @return TODO: Return value description.
+ */
 	rcu_read_unlock();
 }
 
@@ -1206,6 +1442,12 @@ struct io_wq *io_wq_create(unsigned bounded, struct io_wq_data *data)
 
 	refcount_inc(&data->hash->refs);
 	wq->hash = data->hash;
+/*
+ * io_task_work_match - TODO: Describe what this function does.
+ * @param struct callback_head *cb
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 	wq->free_work = data->free_work;
 	wq->do_work = data->do_work;
 
@@ -1215,10 +1457,20 @@ struct io_wq *io_wq_create(unsigned bounded, struct io_wq_data *data)
 		goto err;
 	cpuset_cpus_allowed(data->task, wq->cpu_mask);
 	wq->acct[IO_WQ_ACCT_BOUND].max_workers = bounded;
+/*
+ * io_wq_exit_start - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @return TODO: Return value description.
+ */
 	wq->acct[IO_WQ_ACCT_UNBOUND].max_workers =
 				task_rlimit(current, RLIMIT_NPROC);
 	INIT_LIST_HEAD(&wq->wait.entry);
 	wq->wait.func = io_wq_hash_wake;
+/*
+ * io_wq_cancel_tw_create - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @return TODO: Return value description.
+ */
 	for (i = 0; i < IO_WQ_ACCT_NR; i++) {
 		struct io_wq_acct *acct = &wq->acct[i];
 
@@ -1236,6 +1488,11 @@ struct io_wq *io_wq_create(unsigned bounded, struct io_wq_data *data)
 	atomic_set(&wq->worker_refs, 1);
 	init_completion(&wq->worker_done);
 	ret = cpuhp_state_add_instance_nocalls(io_wq_online, &wq->cpuhp_node);
+/*
+ * io_wq_exit_workers - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @return TODO: Return value description.
+ */
 	if (ret)
 		goto err;
 
@@ -1256,6 +1513,11 @@ static bool io_task_work_match(struct callback_head *cb, void *data)
 	worker = container_of(cb, struct io_worker, create_work);
 	return worker->wq == data;
 }
+/*
+ * io_wq_destroy - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @return TODO: Return value description.
+ */
 
 void io_wq_exit_start(struct io_wq *wq)
 {
@@ -1269,6 +1531,11 @@ static void io_wq_cancel_tw_create(struct io_wq *wq)
 	while ((cb = task_work_cancel_match(wq->task, io_task_work_match, wq)) != NULL) {
 		struct io_worker *worker;
 
+/*
+ * io_wq_put_and_exit - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @return TODO: Return value description.
+ */
 		worker = container_of(cb, struct io_worker, create_work);
 		io_worker_cancel_cb(worker);
 		/*
@@ -1281,6 +1548,12 @@ static void io_wq_cancel_tw_create(struct io_wq *wq)
 }
 
 static void io_wq_exit_workers(struct io_wq *wq)
+/*
+ * io_wq_worker_affinity - TODO: Describe what this function does.
+ * @param struct io_worker *worker
+ * @param void *data
+ * @return TODO: Return value description.
+ */
 {
 	if (!wq->task)
 		return;
@@ -1291,6 +1564,13 @@ static void io_wq_exit_workers(struct io_wq *wq)
 	io_wq_for_each_worker(wq, io_wq_worker_wake, NULL);
 	rcu_read_unlock();
 	io_worker_ref_put(wq);
+/*
+ * __io_wq_cpu_online - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param unsigned int cpu
+ * @param bool online
+ * @return TODO: Return value description.
+ */
 	wait_for_completion(&wq->worker_done);
 
 	spin_lock_irq(&wq->hash->wait.lock);
@@ -1303,18 +1583,36 @@ static void io_wq_exit_workers(struct io_wq *wq)
 
 static void io_wq_destroy(struct io_wq *wq)
 {
+/*
+ * io_wq_cpu_online - TODO: Describe what this function does.
+ * @param unsigned int cpu
+ * @param struct hlist_node *node
+ * @return TODO: Return value description.
+ */
 	struct io_cb_cancel_data match = {
 		.fn		= io_wq_work_match_all,
 		.cancel_all	= true,
 	};
 
 	cpuhp_state_remove_instance_nocalls(io_wq_online, &wq->cpuhp_node);
+/*
+ * io_wq_cpu_offline - TODO: Describe what this function does.
+ * @param unsigned int cpu
+ * @param struct hlist_node *node
+ * @return TODO: Return value description.
+ */
 	io_wq_cancel_pending_work(wq, &match);
 	free_cpumask_var(wq->cpu_mask);
 	io_wq_put_hash(wq->hash);
 	kfree(wq);
 }
 
+/*
+ * io_wq_cpu_affinity - TODO: Describe what this function does.
+ * @param struct io_uring_task *tctx
+ * @param cpumask_var_t mask
+ * @return TODO: Return value description.
+ */
 void io_wq_put_and_exit(struct io_wq *wq)
 {
 	WARN_ON_ONCE(!test_bit(IO_WQ_BIT_EXIT, &wq->state));
@@ -1346,6 +1644,12 @@ static int __io_wq_cpu_online(struct io_wq *wq, unsigned int cpu, bool online)
 		.online = online
 	};
 
+/*
+ * io_wq_max_workers - TODO: Describe what this function does.
+ * @param struct io_wq *wq
+ * @param int *new_count
+ * @return TODO: Return value description.
+ */
 	rcu_read_lock();
 	io_wq_for_each_worker(wq, io_wq_worker_affinity, &od);
 	rcu_read_unlock();
@@ -1380,6 +1684,10 @@ int io_wq_cpu_affinity(struct io_uring_task *tctx, cpumask_var_t mask)
 	rcu_read_lock();
 	cpuset_cpus_allowed(tctx->io_wq->task, allowed_mask);
 	if (mask) {
+/*
+ * io_wq_init - TODO: Describe what this function does.
+ * @return TODO: Return value description.
+ */
 		if (cpumask_subset(mask, allowed_mask))
 			cpumask_copy(tctx->io_wq->cpu_mask, mask);
 		else
