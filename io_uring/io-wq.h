@@ -29,6 +29,11 @@ struct io_wq_hash {
 	unsigned long map;
 	struct wait_queue_head wait;
 };
+/*
+ * io_wq_put_hash - TODO: Describe what this function does.
+ * @param struct io_wq_hash *hash
+ * @return TODO: Return value description.
+ */
 
 static inline void io_wq_put_hash(struct io_wq_hash *hash)
 {
@@ -52,10 +57,20 @@ void io_wq_hash_work(struct io_wq_work *work, void *val);
 
 int io_wq_cpu_affinity(struct io_uring_task *tctx, cpumask_var_t mask);
 int io_wq_max_workers(struct io_wq *wq, int *new_count);
+/*
+ * __io_wq_is_hashed - TODO: Describe what this function does.
+ * @param unsigned int work_flags
+ * @return TODO: Return value description.
+ */
 bool io_wq_worker_stopped(void);
 
 static inline bool __io_wq_is_hashed(unsigned int work_flags)
 {
+/*
+ * io_wq_is_hashed - TODO: Describe what this function does.
+ * @param struct io_wq_work *work
+ * @return TODO: Return value description.
+ */
 	return work_flags & IO_WQ_WORK_HASHED;
 }
 
@@ -70,12 +85,21 @@ enum io_wq_cancel io_wq_cancel_cb(struct io_wq *wq, work_cancel_fn *cancel,
 					void *data, bool cancel_all);
 
 #if defined(CONFIG_IO_WQ)
+/*
+ * io_wq_worker_sleeping - TODO: Describe what this function does.
+ * @param struct task_struct *tsk
+ * @return TODO: Return value description.
+ */
 extern void io_wq_worker_sleeping(struct task_struct *);
 extern void io_wq_worker_running(struct task_struct *);
 #else
 static inline void io_wq_worker_sleeping(struct task_struct *tsk)
 {
 }
+/*
+ * io_wq_current_is_worker - TODO: Describe what this function does.
+ * @return TODO: Return value description.
+ */
 static inline void io_wq_worker_running(struct task_struct *tsk)
 {
 }
